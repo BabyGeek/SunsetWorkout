@@ -13,15 +13,7 @@ jobs:
           path: result.xml
       - store_test_results:
           path: result.xml
-  build:
-    macos:
-      xcode: 13.4.1
-    steps:
-      - checkout
-      - run: 
-          name: Install bundle
-          command: bundle install
-  test:
+  build-and-test:
     macos:
       xcode: 13.4.1
     environment:
@@ -29,6 +21,9 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
+      - run: 
+          name: Install bundle
+          command: bundle install
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
@@ -43,9 +38,6 @@ workflows:
   lint-build-test:
     jobs:
       - swiftlint
-      - build:
+      - build-and-test:
           requires:
             - swiftlint
-      - test:
-          requires:
-            - build
