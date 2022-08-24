@@ -51,4 +51,4 @@ workflows:
       - swiftlint
       - build
       - test:
-          requires: build
+          require: build
