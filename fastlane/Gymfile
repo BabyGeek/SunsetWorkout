@@ -10,6 +10,7 @@ clean(true)
 silent(true)
 scheme("SunsetWorkout")
 xcargs("-allowProvisioningUpdates")
+skip_package_ipa(true)
 
 # options available
 
