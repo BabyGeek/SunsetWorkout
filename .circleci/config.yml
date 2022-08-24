@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: SwiftLint
-          command: swiftlint lint --reporter junit | too result.xml
+          command: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
           path: result.xml
       - store_test_results:
