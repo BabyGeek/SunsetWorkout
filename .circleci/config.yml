@@ -22,7 +22,7 @@ jobs:
     macos:
       xcode: 13.4.1
     environment:
-      SCHEME: iOS
+      SCHEME: SunsetWorkout
     steps:
       - checkout
       - run:
