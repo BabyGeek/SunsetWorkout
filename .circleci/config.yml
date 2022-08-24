@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: SwiftLint autocorrect
+          command: swiftlint autocorrect
+      - run:
           name: SwiftLint
           command: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
