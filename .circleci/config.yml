@@ -1,6 +1,18 @@
 # .circleci/config.yml
 version: 2.1
 jobs:
+  swiftlint:
+    docker:
+      - image: dantoml/swiftlint:latest
+    steps:
+      - checkout
+      - run:
+          name: SwiftLint
+          command: swiftlint lint --reporter junit | too result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_test_results:
+          path: result.xml
   build-and-test:
     macos:
       xcode: 13.4.1
@@ -15,7 +27,7 @@ jobs:
           command: bundle install
       - run:
           name: Fastlane
-          command: fastlane scan
+          command: bundle exec fastlane $FASTLANE_LANE
           environment:
             SCAN_DEVICE: iPhone 13
       - store_artifacts:
@@ -24,6 +36,9 @@ jobs:
           path: output/scan
 
 workflows:
-  build-test:
+  lint-build-test:
     jobs:
-      - build-and-test
+      - swiftlint
+      - build-and-test:
+          requires:
+            - swiftlint
