@@ -24,13 +24,13 @@ jobs:
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: gym
-      WORKSPACE: SunsetWorkout.xcworkspace
+      WORKSPACE: project.xcworkspace
       APPNAME: SunsetWorkout
     steps:
       - checkout
       - run:
           name: Build
-          command: fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --clean
+          command: bundle exec fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --clean
       - store_artifacts:
           path: output
       
@@ -40,13 +40,13 @@ jobs:
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: scan
-      WORKSPACE: SunsetWorkout.xcworkspace
+      WORKSPACE: project.xcworkspace
       APPNAME: SunsetWorkout
     steps:
       - checkout
       - run:
           name: Fastlane tests
-          command: fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --device "iPhone 6" --clean
+          command: bundle exec fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --device "iPhone 6" --clean
           environment:
             SCAN_DEVICE: iPhone 13
       - store_artifacts:
