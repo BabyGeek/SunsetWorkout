@@ -1,6 +1,7 @@
 # .circleci/config.yml
 version: 2.1
 jobs:
+
   swiftlint:
     docker:
       - image: dantoml/swiftlint:latest
@@ -16,6 +17,7 @@ jobs:
           path: result.xml
       - store_test_results:
           path: result.xml
+
   build:
     macos:
       xcode: 13.4.1
@@ -28,6 +30,7 @@ jobs:
           path: output
       - store_test_results:
           path: output/scan
+
   test:
     macos:
       xcode: 13.4.1
@@ -51,4 +54,5 @@ workflows:
       - swiftlint
       - build
       - test:
-          require: build
+          requires:
+            - build
