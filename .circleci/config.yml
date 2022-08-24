@@ -22,21 +22,12 @@ jobs:
     macos:
       xcode: 13.4.1
     environment:
-      FL_OUTPUT_DIR: output
-      FASTLANE_LANE: gym
-      WORKSPACE: project.xcworkspace
-      APPNAME: SunsetWorkout
+      SCHEME: SunsetWorkout
     steps:
       - checkout
       - run:
-          name:  fastlane init match
-          command: fastlane match init
-      - run:
-          name:  fastlane match appstore
-          command: fastlane match appstore
-      - run:
           name: Build
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: bundle exec xcodebuild -scheme $SCHEME build
       - store_artifacts:
           path: output
       
