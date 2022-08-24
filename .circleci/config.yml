@@ -23,8 +23,13 @@ jobs:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
+      WORKSPACE: SunsetWorkout.xcodeproj
+      APPNAME: SunsetWorkout
     steps:
       - checkout
+      - run:
+          name: Build
+          command: fastlane gym --workspace $WORKSPACE --scheme $APPNAME --clean
       - store_artifacts:
           path: output
       
