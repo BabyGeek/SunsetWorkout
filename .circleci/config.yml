@@ -30,7 +30,7 @@ jobs:
       - checkout
       - run:
           name: Build
-          command: bundle exec fastlane $FASTLANE_LANE --silent
+          command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
       
