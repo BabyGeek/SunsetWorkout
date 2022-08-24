@@ -38,6 +38,4 @@ workflows:
   lint-build-test:
     jobs:
       - swiftlint
-      - build-and-test:
-          requires:
-            - swiftlint
+      - build-and-test
