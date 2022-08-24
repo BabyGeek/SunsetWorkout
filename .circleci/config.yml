@@ -7,21 +7,16 @@ jobs:
     steps:
       - checkout
       - run:
+          name: SwiftLint autocorrect
+          command: swiftlint autocorrect
+      - run:
           name: SwiftLint
-          command: swiftlint lint --reporter junit | too result.xml
+          command: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
           path: result.xml
       - store_test_results:
           path: result.xml
-  build:
-    macos:
-      xcode: 13.4.1
-    steps:
-      - checkout
-      - run: 
-          name: Install bundle
-          command: bundle install
-  test:
+  build-and-test:
     macos:
       xcode: 13.4.1
     environment:
@@ -29,6 +24,9 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
+      - run: 
+          name: Install bundle
+          command: bundle install
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
@@ -43,9 +41,4 @@ workflows:
   lint-build-test:
     jobs:
       - swiftlint
-      - build:
-          requires:
-            - swiftlint
-      - test:
-          requires:
-            - build
+      - build-and-test
