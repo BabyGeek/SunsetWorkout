@@ -30,7 +30,7 @@ jobs:
       - checkout
       - run:
           name: Build
-          command: bundle exec fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --clean
+          command: bundle exec fastlane $FASTLANE_LANE --silent
       - store_artifacts:
           path: output
       
@@ -46,7 +46,7 @@ jobs:
       - checkout
       - run:
           name: Fastlane tests
-          command: bundle exec fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --device "iPhone 6" --clean
+          command: bundle exec fastlane $FASTLANE_LANE
           environment:
             SCAN_DEVICE: iPhone 13
       - store_artifacts:
