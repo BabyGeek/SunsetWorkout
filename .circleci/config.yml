@@ -23,7 +23,7 @@ jobs:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test-iOS-15
+      FASTLANE_LANE: test_iOS_15
     steps:
       - checkout
       - run:
@@ -41,7 +41,7 @@ jobs:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test-iOS-14
+      FASTLANE_LANE: test_iOS_14
     steps:
       - checkout
       - run:
@@ -59,7 +59,7 @@ jobs:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test-iOS-14
+      FASTLANE_LANE: test
     steps:
       - checkout
       - run:

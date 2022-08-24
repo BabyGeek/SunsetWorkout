@@ -15,7 +15,7 @@ platform :ios do
   end
 
   desc "Runs all the tests on iOS15"
-  lane :test-iOS-15 do
+  lane :test_iOS_15 do
     run_tests(
       devices: ["iPhone 11 (15.0)", "iPhone 8 (15.0)"],
       scheme: "SunsetWorkout"
@@ -23,7 +23,7 @@ platform :ios do
   end
 
   desc "Runs all the tests on iOS14"
-  lane :test-iOS-14 do
+  lane :test_iOS_14 do
     run_tests(
       devices: ["iPhone 11 (14.0)", "iPhone 8 (14.0)"],
       scheme: "SunsetWorkout"
