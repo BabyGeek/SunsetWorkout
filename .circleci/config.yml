@@ -23,31 +23,30 @@ jobs:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      WORKSPACE: SunsetWorkout.xcodeproj
+      FASTLANE_LANE: gym
+      WORKSPACE: SunsetWorkout.xcworkspace
       APPNAME: SunsetWorkout
     steps:
       - checkout
       - run:
           name: Build
-          command: fastlane gym --workspace $WORKSPACE --scheme $APPNAME --clean
+          command: fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --clean
       - store_artifacts:
           path: output
       
-
   test:
     macos:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test
+      FASTLANE_LANE: scan
+      WORKSPACE: SunsetWorkout.xcworkspace
+      APPNAME: SunsetWorkout
     steps:
       - checkout
       - run:
-          name: Install SwiftLint
-          command: brew install swiftlint
-      - run:
           name: Fastlane tests
-          command: fastlane $FASTLANE_LANE
+          command: fastlane $FASTLANE_LANE --workspace "$WORKSPACE" --scheme "$APPNAME" --device "iPhone 6" --clean
           environment:
             SCAN_DEVICE: iPhone 13
       - store_artifacts:
