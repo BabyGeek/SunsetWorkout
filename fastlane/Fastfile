@@ -6,17 +6,28 @@ platform :ios do
     setup_circle_ci
   end
 
-  desc "Runs all the tests on iOS15"
-  lane :testiOS15 do
+  desc "Runs all the tests on lastest iOS"
+  lane :test do
     run_tests(
-      devices: ["iPhone 13", "iPhone 11", "iPhone 8", "iPhone6s"],
+      devices: ["iPhone 11", "iPhone 8"],
+      scheme: "SunsetWorkout"
+      )
+  end
+
+  desc "Runs all the tests on iOS15"
+  lane :test-iOS-15 do
+    run_tests(
+      devices: ["iPhone 11 (15.0)", "iPhone 8 (15.0)"],
       scheme: "SunsetWorkout"
       )
   end
 
   desc "Runs all the tests on iOS14"
-  lane :testiOS14 do
-    scan
+  lane :test-iOS-14 do
+    run_tests(
+      devices: ["iPhone 11 (14.0)", "iPhone 8 (14.0)"],
+      scheme: "SunsetWorkout"
+      )
   end
   
 end

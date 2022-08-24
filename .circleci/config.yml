@@ -18,12 +18,12 @@ jobs:
       - store_test_results:
           path: result.xml
 
-  build-and-testiOS15:
+  build-and-test-iOS-15:
     macos:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: testiOS15
+      FASTLANE_LANE: test-iOS-15
     steps:
       - checkout
       - run:
@@ -36,12 +36,30 @@ jobs:
       - store_test_results:
           path: output/scan
 
-  build-and-testiOS14:
+  build-and-test-iOS-14:
     macos:
       xcode: 13.4.1
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: testiOS15
+      FASTLANE_LANE: test-iOS-14
+    steps:
+      - checkout
+      - run:
+          name: Build and test iOS14
+          command: bundle exec fastlane $FASTLANE_LANE
+          environment:
+            SCAN_DEVICE: iPhone 13
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+  build-and-test-iOS-Latest:
+    macos:
+      xcode: 13.4.1
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test-iOS-14
     steps:
       - checkout
       - run:
@@ -58,7 +76,10 @@ workflows:
   lint-build-test:
     jobs:
       - swiftlint
-      - build-and-testiOS14
-      - build-and-testiOS15:
+      - build-and-test-iOS-14
+      - build-and-test-iOS-15:
           requires:
-            - build-and-testiOS14
+            - build-and-test-iOS-14
+      - build-and-test-iOS-Latest:
+          requires:
+            - build-and-test-iOS-15
