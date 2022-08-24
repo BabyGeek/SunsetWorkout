@@ -8,9 +8,10 @@ platform :ios do
 
   desc "Runs all the tests on iOS15"
   lane :testiOS15 do
-    run_tests(workspace: "project.xcworkspace",
-              devices: ["iPhone 13", "iPhone 11", "iPhone 8", "iPhone6s"],
-              scheme: "SunsetWorkout")
+    run_tests(
+      devices: ["iPhone 13", "iPhone 11", "iPhone 8", "iPhone6s"],
+      scheme: "SunsetWorkout"
+      )
   end
 
   desc "Runs all the tests on iOS14"
