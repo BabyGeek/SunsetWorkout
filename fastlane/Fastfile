@@ -8,16 +8,13 @@ platform :ios do
 
   desc "Runs all the tests on lastest iOS"
   lane :test do
-    run_tests(
-      devices: ["iPhone 11", "iPhone 8"],
-      scheme: "SunsetWorkout"
-      )
+    scan
   end
 
   desc "Runs all the tests on iOS15"
   lane :test_iOS_15 do
     run_tests(
-      devices: ["iPhone 11 (15.0)", "iPhone 8 (15.0)"],
+      devices: ["iPhone 11 (15.5)"],
       scheme: "SunsetWorkout"
       )
   end
@@ -25,7 +22,7 @@ platform :ios do
   desc "Runs all the tests on iOS14"
   lane :test_iOS_14 do
     run_tests(
-      devices: ["iPhone 11 (14.0)", "iPhone 8 (14.0)"],
+      devices: ["iPhone 8 (14.5)"],
       scheme: "SunsetWorkout"
       )
   end

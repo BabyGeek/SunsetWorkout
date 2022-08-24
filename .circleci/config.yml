@@ -29,8 +29,6 @@ jobs:
       - run:
           name: Build and test iOS15
           command: bundle exec fastlane $FASTLANE_LANE
-          environment:
-            SCAN_DEVICE: iPhone 13
       - store_artifacts:
           path: output
       - store_test_results:
@@ -47,8 +45,6 @@ jobs:
       - run:
           name: Build and test iOS14
           command: bundle exec fastlane $FASTLANE_LANE
-          environment:
-            SCAN_DEVICE: iPhone 13
       - store_artifacts:
           path: output
       - store_test_results:
@@ -63,7 +59,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and test iOS14
+          name: Build and test lastest iOS
           command: bundle exec fastlane $FASTLANE_LANE
           environment:
             SCAN_DEVICE: iPhone 13
