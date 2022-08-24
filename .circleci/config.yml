@@ -4,7 +4,7 @@ jobs:
   build-and-test:
     macos:
       xcode: 13.4.1
-    resource_class: large
+    #resource_class: large // Can't access this resource yet (paid resource)
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
@@ -15,7 +15,7 @@ jobs:
           command: bundle install
       - run:
           name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 13
       - store_artifacts:
