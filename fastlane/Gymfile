@@ -8,14 +8,8 @@ output_directory("./build")
 
 clean(true)
 silent(true)
-skip_profile_detection(true)
 scheme("SunsetWorkout")
-
-export_options({
-    provisioningProfiles: { 
-      "com.poggero.SunsetWorkout" => "Paul OGGERO",
-    }
-  })
+xcargs("-allowProvisioningUpdates")
 
 # options available
 
