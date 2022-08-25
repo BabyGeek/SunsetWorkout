@@ -67,7 +67,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - d3:76:14:51:c5:91:33:4d:47:e2:ce:6a:0b:ac:db:94
+            - 99:aa:a2:0d:88:e0:53:31:5f:73:39:a4:26:3a:b6:ad
       - checkout
       - run: bundle install
       - run:
@@ -87,7 +87,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - d3:76:14:51:c5:91:33:4d:47:e2:ce:6a:0b:ac:db:94
+            - 99:aa:a2:0d:88:e0:53:31:5f:73:39:a4:26:3a:b6:ad
       - checkout
       - run: bundle install
       - run:
@@ -101,7 +101,9 @@ workflows:
     jobs:
       - swiftlint
       - build-and-test
-      - screenshots
+      - screenshots:
+          requires:
+            - build-and-test
       - adhoc:
           filters:
             branches:
