@@ -63,6 +63,9 @@ jobs:
       FASTLANE_LANE: beta
     shell: /bin/bash --login -o pipefail
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - d3:76:14:51:c5:91:33:4d:47:e2:ce:6a:0b:ac:db:94
       - checkout
       - run: bundle install
       - run:
