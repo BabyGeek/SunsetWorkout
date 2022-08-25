@@ -1,0 +1,5 @@
+git_url "git@github.com:BabyGeek/SunsetWorkout.git"
+
+type "adhoc" # The default type, can be: appstore, adhoc or development
+
+app_identifier "com.poggero.SunsetWorkout"
