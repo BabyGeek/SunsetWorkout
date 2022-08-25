@@ -15,10 +15,17 @@ class SunsetWorkoutUITestsLaunchTests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
+        // UI tests must launch the application that they test.
+        // Doing this in setup will make sure it happens for each test method.
+
+        let app = XCUIApplication()
+        setupSnapshot(app)
+        app.launch()
     }
 
     func testLaunch() throws {
         let app = XCUIApplication()
+        snapshot("0_Launch")
         app.launch()
 
         // Insert steps here to perform after app launch but before taking a screenshot,
