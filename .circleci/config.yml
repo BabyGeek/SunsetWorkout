@@ -18,64 +18,73 @@ jobs:
       - store_test_results:
           path: result.xml
 
-  build-and-test-iOS-15:
+  build-and-test:
     macos:
-      xcode: 13.4.1
-    environment:
-      FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test_iOS_15
-    steps:
-      - checkout
-      - run:
-          name: Build and test iOS15
-          command: bundle exec fastlane $FASTLANE_LANE
-      - store_artifacts:
-          path: output
-      - store_test_results:
-          path: output/scan
-
-  build-and-test-iOS-14:
-    macos:
-      xcode: 13.4.1
-    environment:
-      FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test_iOS_14
-    steps:
-      - checkout
-      - run:
-          name: Build and test iOS14
-          command: bundle exec fastlane $FASTLANE_LANE
-      - store_artifacts:
-          path: output
-      - store_test_results:
-          path: output/scan
-
-  build-and-test-iOS-Latest:
-    macos:
-      xcode: 13.4.1
+      xcode: "13.4.1"
+    working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
+    shell: /bin/bash --login -o pipefail
     steps:
       - checkout
+      - run: bundle install
       - run:
-          name: Build and test lastest iOS
+          name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
-          environment:
-            SCAN_DEVICE: iPhone 13
       - store_artifacts:
           path: output
       - store_test_results:
           path: output/scan
+
+  adhoc:
+    macos:
+      xcode: "13.4.1"
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: adhoc
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - run: bundle install
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output/SunsetWorkout.ipa
+
+  beta:
+    macos:
+      xcode: "13.4.1"
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: beta
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - run: bundle install
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output/SunsetWorkout.ipa
 
 workflows:
   lint-build-test:
     jobs:
       - swiftlint
-      - build-and-test-iOS-14
-      - build-and-test-iOS-15:
+      - build-and-test
+      - adhoc:
+          filters:
+            branches:
+              only: development
           requires:
-            - build-and-test-iOS-14
-      - build-and-test-iOS-Latest:
-          requires:
-            - build-and-test-iOS-15
+            - build-and-test
+      #- beta:
+          #filters:
+            #branches:
+              #only: master
+          #requires:
+            #- build-and-test
