@@ -24,7 +24,7 @@ class SunsetWorkoutUITestsLaunchTests: XCTestCase {
     }
 
     func testLaunch() throws {
-        snapshot("0_Launch")
+        snapshot("0_Launch_Landscape")
         let app = XCUIApplication()
         app.launch()
 

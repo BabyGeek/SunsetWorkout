@@ -9,23 +9,11 @@ platform :ios do
   desc "Runs all the tests"
   lane :test do
     scan
+  end
+
+  desc "Runs all the snapshots"
+  lane :screenshots do
     snapshot
-  end
-
-  desc "Runs all the tests on iOS15"
-  lane :test_iOS_15 do
-    run_tests(
-      devices: ["iPhone 11 (15.5)"],
-      scheme: "SunsetWorkout"
-      )
-  end
-
-  desc "Runs all the tests on iOS14"
-  lane :test_iOS_14 do
-    run_tests(
-      devices: ["iPhone 8 (14.5)"],
-      scheme: "SunsetWorkout"
-      )
   end
   
   desc "Ad-hoc build"

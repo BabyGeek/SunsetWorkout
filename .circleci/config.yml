@@ -30,7 +30,26 @@ jobs:
       - checkout
       - run: bundle install
       - run:
-          name: Fastlane
+          name: Fastlane tests
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+  screenshots:
+    macos:
+      xcode: "13.4.1"
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: screenshots
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - run: bundle install
+      - run:
+          name: Fastlane screenshots
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
@@ -46,10 +65,13 @@ jobs:
       FASTLANE_LANE: adhoc
     shell: /bin/bash --login -o pipefail
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - d3:76:14:51:c5:91:33:4d:47:e2:ce:6a:0b:ac:db:94
       - checkout
       - run: bundle install
       - run:
-          name: Fastlane
+          name: Fastlane adhoc build
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output/SunsetWorkout.ipa
@@ -79,6 +101,7 @@ workflows:
     jobs:
       - swiftlint
       - build-and-test
+      - screenshots
       - adhoc:
           filters:
             branches:
