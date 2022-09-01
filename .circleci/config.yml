@@ -101,9 +101,9 @@ workflows:
     jobs:
       - swiftlint
       - build-and-test
-      - screenshots:
-          requires:
-            - build-and-test
+      # - screenshots:
+      #     requires:
+      #       - build-and-test
       - adhoc:
           filters:
             branches:

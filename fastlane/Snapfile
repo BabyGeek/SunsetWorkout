@@ -2,9 +2,9 @@
 
 # A list of devices you want to take the screenshots from
 devices([
-    "iPhone SE (2nd generation)",
-    "iPhone 8",
-    "iPhone 11 Pro",
+ #   "iPhone SE (2nd generation)",
+ #   "iPhone 8",
+ #   "iPhone 11 Pro",
     "iPhone 13 Pro Max",
  #   "iPhone X",
  #   "iPad Pro (12.9-inch)",
@@ -12,13 +12,13 @@ devices([
  #   "Apple TV 1080p"
   ])
  
-  languages([
+ # languages([
     "en-US",
-    "fr-FR",
+ #   "fr-FR",
  #   "de-DE",
  #   "it-IT",
  #   ["pt", "pt_BR"] # Portuguese with Brazilian locale
-  ])
+ # ])
  
  # The name of the scheme which contains the UI Tests
  scheme("SunsetWorkout")
