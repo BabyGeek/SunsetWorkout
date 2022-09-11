@@ -104,12 +104,12 @@ workflows:
       # - screenshots:
       #     requires:
       #       - build-and-test
-      - adhoc:
-          filters:
-            branches:
-              only: develop
-          requires:
-            - build-and-test
+      # - adhoc:
+      #     filters:
+      #       branches:
+      #         only: develop
+      #     requires:
+      #       - build-and-test
       #- beta:
           #filters:
             #branches:
