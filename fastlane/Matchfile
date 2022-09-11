@@ -3,3 +3,4 @@ username "babygeek83bis@gmail.com"
 type "adhoc" # The default type, can be: appstore, adhoc or development
 
 app_identifier "com.poggero.SunsetWorkout"
+match_password ""
