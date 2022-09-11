@@ -45,7 +45,7 @@ struct TabBarContainerView_Previews: PreviewProvider {
 
     static var previews: some View {
         TabBarContainerView(selection: .constant(tabs.first!)) {
-            AuthorizationView()
+            DashboardView()
         }
     }
 }

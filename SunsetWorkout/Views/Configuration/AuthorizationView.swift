@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct AuthorizationView: View {
-    @State private var healthKitIsAuthorized: Bool = false
+    @AppStorage("currentPage") var currenPage = 1
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Text("Sunset Workout")
+                .kerning(1.5)
+                .font(.title)
+                .fontWeight(.semibold)
 
-            Spacer()
+            Spacer(minLength: 50)
 
             Text("""
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
@@ -22,23 +25,13 @@ Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, eu
 Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
 Duis semper.
 """)
+            .kerning(1.3)
+            .font(.body)
+            .multilineTextAlignment(.center)
 
-            Spacer()
-
-            Button {
-                print("ask for auth and go to next after auth")
-                healthKitIsAuthorized = true
-            } label: {
-                Text("Allow HealthKit")
-                    .overlay(
-                        Capsule()
-                            .stroke(lineWidth: 2)
-                            .frame(width: 200, height: 50)
-                    )
-            }
+            Spacer(minLength: 100)
         }
-        .padding()
-        .navigate(to: ProfileConfigurationView(), when: $healthKitIsAuthorized)
+        .background(Color.yellow.ignoresSafeArea())
     }
 }
 

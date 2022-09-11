@@ -30,17 +30,17 @@ enum Feeling: CaseIterable {
     var relatedDescription: String {
         switch self {
         case .happy:
-            return "You're feeling happy today. That's great, continue in that way."
+            return "I'm feeling happy!"
         case .sad:
-            return "You're feeling sad, everything gonne be ok."
+            return "I'm sad :(."
         case .annoyed:
-            return "You're feeling annoyed."
+            return "I'm annoyed."
         case .excited:
-            return "You're feeling very excited today ! That's great for your workouts."
+            return "I'm feeling so excited!!."
         case .tired:
-            return "You're feeling tired. Maybe you need some break?"
+            return "I'm tired.."
         case .stressed:
-            return "You're feeling stressed, you should try to get this stress away."
+            return "I'm feeling so stressed."
         }
     }
 }

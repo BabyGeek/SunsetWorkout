@@ -8,14 +8,39 @@
 import SwiftUI
 
 struct FeelingConfigurationView: View {
-    @State var finishOnBoarding: Bool = false
+    @AppStorage("currentPage") var currenPage = 1
     @State var selected: Feeling?
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
+            HStack {
+                Button {
+                    currenPage -= 1
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+                        .background(Color.black.opacity(0.4))
+                        .cornerRadius(10)
+                }
+
+                Spacer()
+                Button {
+                    currenPage = WalkthroughConfigurationSettings.totalPages + 1
+                } label: {
+                    Text("Skip")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+                }
+            }
+
             Text("How are you feeling today?")
-                .font(.title)
-            Spacer()
+                .kerning(1.3)
+                .font(.title3)
+
             ForEach(Feeling.allCases, id: \.self) { feeling in
                 FeelingListingView(selected: $selected, feeling: feeling)
                     .onTapGesture {
@@ -25,31 +50,10 @@ struct FeelingConfigurationView: View {
                     }
             }
 
-            Spacer()
-
-            if selected != nil {
-                Button {
-                    finishOnBoarding = true
-                } label: {
-                    Text("Continue")
-                        .frame(width: UIScreen.main.bounds.width - 20, height: 50)
-                        .overlay(
-                        Capsule()
-                            .stroke(lineWidth: 1))
-                }
-            }
-
-            Button {
-                finishOnBoarding = true
-            } label: {
-                Text("Skip")
-                    .frame(width: UIScreen.main.bounds.width - 20, height: 50)
-                    .overlay(
-                    Capsule()
-                        .stroke(lineWidth: 1))
-            }
+            Spacer(minLength: 100)
         }
         .padding()
+        .background(Color.purple.ignoresSafeArea())
     }
 }
 
@@ -76,7 +80,6 @@ struct FeelingListingView: View {
         )
     }
 }
-
 
 struct FeelingConfigurationView_Previews: PreviewProvider {
     static var previews: some View {

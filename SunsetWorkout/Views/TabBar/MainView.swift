@@ -8,30 +8,18 @@
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("currentPage") var currenPage = 1
     @State private var selection: String = "dashboard"
     @State private var selectedTab: TabBarItem = .dashboard
-    @State private var boardingDone: Bool = false
 
     var body: some View {
-        if boardingDone {
+        if currenPage < WalkthroughConfigurationSettings.totalPages {
+            ConfigurationWalkthroughView()
+        } else {
             TabBarContainerView(selection: $selectedTab) {
                 DashboardView()
                     .tabBarItem(tab: .dashboard, selection: $selectedTab)
-
-                FeelingConfigurationView()
-                    .tabBarItem(tab: .statistics, selection: $selectedTab)
-
-                AuthorizationView()
-                        .tabBarItem(tab: .add, selection: $selectedTab)
-
-                AuthorizationView()
-                        .tabBarItem(tab: .workouts, selection: $selectedTab)
-
-                ProfileConfigurationView()
-                    .tabBarItem(tab: .profile, selection: $selectedTab)
             }
-        } else {
-            AuthorizationView()
         }
     }
 }

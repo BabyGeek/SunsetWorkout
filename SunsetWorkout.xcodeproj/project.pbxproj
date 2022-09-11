@@ -12,6 +12,7 @@
 		2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C428CB63D400361C0F /* DashboardView.swift */; };
 		2B6608C728CC9F6300361C0F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C628CC9F6300361C0F /* Colors.swift */; };
 		2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608CB28CCC84600361C0F /* ViewExtensions.swift */; };
+		2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
 		2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */; };
 		2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FE28B626FF006A3848 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		2B6608C428CB63D400361C0F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		2B6608C628CC9F6300361C0F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2B6608CB28CCC84600361C0F /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWalkthrough.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutApp.swift; sourceTree = "<group>"; };
 		2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */,
+				2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */,
 				2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */,
 				2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */,
 			);
@@ -252,6 +255,8 @@
 			dependencies = (
 			);
 			name = SunsetWorkout;
+			packageProductDependencies = (
+			);
 			productName = SunsetWorkout;
 			productReference = 2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */;
 			productType = "com.apple.product-type.application";
@@ -324,6 +329,8 @@
 				Base,
 			);
 			mainGroup = 2BD1D7EE28B626FE006A3848;
+			packageReferences = (
+			);
 			productRefGroup = 2BD1D7F828B626FE006A3848 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -378,7 +385,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n    swiftlint autocorrect & swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n    swiftlint --fix & swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -396,6 +403,7 @@
 				2BFF29AA28C4F55E0041841F /* Feeling.swift in Sources */,
 				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
 				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
+				2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */,
 				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
 				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,

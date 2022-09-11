@@ -8,16 +8,42 @@
 import SwiftUI
 
 struct ProfileConfigurationView: View {
-    @State private var continueToFeeling: Bool = false
+    @AppStorage("currentPage") var currenPage = 1
     @State var age = ""
     @State var height = ""
     @State var weight = ""
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
+            HStack {
+                Button {
+                    currenPage -= 1
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+                        .background(Color.black.opacity(0.4))
+                        .cornerRadius(10)
+                }
+
+                Spacer()
+                Button {
+                    currenPage = WalkthroughConfigurationSettings.totalPages + 1
+                } label: {
+                    Text("Skip")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal)
+                }
+            }
+
             Text("Configure your profile")
-                .font(.largeTitle)
-            Spacer()
+                .kerning(1.3)
+                .font(.title3)
+                .fontWeight(.semibold)
+
             VStack(spacing: 50) {
                 TextField("Your age", text: $age)
                     .frame(height: 50)
@@ -35,31 +61,12 @@ struct ProfileConfigurationView: View {
                     .overlay(Capsule()
                         .stroke(lineWidth: 1))
             }
-            Spacer()
-            VStack {
-                Button {
-                    continueToFeeling = true
-                } label: {
-                    Text("Continue")
-                        .frame(width: UIScreen.main.bounds.width - 20, height: 50)
-                        .overlay(
-                        Capsule()
-                            .stroke(lineWidth: 1))
-                }
-                Button {
-                    continueToFeeling = true
-                } label: {
-                    Text("Skip")
-                        .frame(width: UIScreen.main.bounds.width - 20, height: 50)
-                        .overlay(
-                        Capsule()
-                            .stroke(lineWidth: 1))
-                }
-            }
+
+            Spacer(minLength: 100)
 
         }
         .padding()
-        .navigate(to: FeelingConfigurationView(), when: $continueToFeeling)
+        .background(Color.blue.ignoresSafeArea())
     }
 }
 

@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: SwiftLint autocorrect
-          command: swiftlint autocorrect
+          command: swiftlint --fix
       - run:
           name: SwiftLint
           command: swiftlint lint --reporter junit | tee result.xml
