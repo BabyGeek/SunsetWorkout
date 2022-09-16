@@ -19,7 +19,7 @@ enum Feeling: CaseIterable {
         case .annoyed:
             return "😒"
         case .excited:
-            return "🤪"
+            return "😛"
         case .tired:
             return "😴"
         case .stressed:
@@ -32,13 +32,13 @@ enum Feeling: CaseIterable {
         case .happy:
             return "I'm feeling happy!"
         case .sad:
-            return "I'm sad :(."
+            return "I'm sad :("
         case .annoyed:
             return "I'm annoyed."
         case .excited:
-            return "I'm feeling so excited!!."
+            return "I'm feeling so excited!"
         case .tired:
-            return "I'm tired.."
+            return "I'm tired."
         case .stressed:
             return "I'm feeling so stressed."
         }
