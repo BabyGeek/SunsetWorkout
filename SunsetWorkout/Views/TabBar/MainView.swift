@@ -13,8 +13,8 @@ struct MainView: View {
     @State private var selectedTab: TabBarItem = .dashboard
 
     var body: some View {
-        if currenPage < WalkthroughConfigurationSettings.totalPages {
-            ConfigurationWalkthroughView()
+        if currenPage <= WalkthroughConfigurationSettings.totalPages {
+            ConfigurationWalkthroughView(SWHealthStoreManager: SWHealthStoreManager())
         } else {
             TabBarContainerView(selection: $selectedTab) {
                 DashboardView()

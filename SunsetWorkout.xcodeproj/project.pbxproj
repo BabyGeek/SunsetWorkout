@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1558EA28B780B50013987F /* SnapshotHelper.swift */; };
 		2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C128CB5A4E00361C0F /* MainView.swift */; };
 		2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C428CB63D400361C0F /* DashboardView.swift */; };
 		2B6608C728CC9F6300361C0F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C628CC9F6300361C0F /* Colors.swift */; };
 		2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608CB28CCC84600361C0F /* ViewExtensions.swift */; };
 		2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */; };
+		2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */; };
+		2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6608DB28D02D4F00361C0F /* HealthKit.framework */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
 		2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */; };
 		2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FE28B626FF006A3848 /* Assets.xcassets */; };
@@ -47,12 +50,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1558EA28B780B50013987F /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2B6608C128CB5A4E00361C0F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B6608C428CB63D400361C0F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		2B6608C628CC9F6300361C0F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2B6608CB28CCC84600361C0F /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWalkthrough.swift; sourceTree = "<group>"; };
+		2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWHealthStoreManager.swift; sourceTree = "<group>"; };
+		2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunsetWorkout.entitlements; sourceTree = "<group>"; };
+		2B6608DB28D02D4F00361C0F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutApp.swift; sourceTree = "<group>"; };
 		2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
@@ -77,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +116,17 @@
 		2B6608C828CCC56A00361C0F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B6608DA28D02D4F00361C0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B6608DB28D02D4F00361C0F /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2BD1D7EE28B626FE006A3848 = {
@@ -119,6 +136,7 @@
 				2BD1D80A28B626FF006A3848 /* SunsetWorkoutTests */,
 				2BD1D81428B626FF006A3848 /* SunsetWorkoutUITests */,
 				2BD1D7F828B626FE006A3848 /* Products */,
+				2B6608DA28D02D4F00361C0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,6 +153,7 @@
 		2BD1D7F928B626FE006A3848 /* SunsetWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */,
 				2BFF29A828C4F54B0041841F /* Utilities */,
 				2BFF299E28C350A50041841F /* Views */,
 				2B6608C828CCC56A00361C0F /* ViewModels */,
@@ -224,6 +243,7 @@
 				2BFF29AE28C59AD90041841F /* TabBarItemsPreferenceKey.swift */,
 				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
 				2B6608C628CC9F6300361C0F /* Colors.swift */,
+				2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -405,7 +425,9 @@
 				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
 				2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */,
 				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
+				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
 				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
+				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
 				2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */,
 			);
@@ -566,12 +588,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SunsetWorkout/SunsetWorkout.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Synchronize your workouts to the Apple's Health app";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout data will be used to show histories";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your health records will be used to make workouts sessions follow.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -596,12 +622,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SunsetWorkout/SunsetWorkout.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Synchronize your workouts to the Apple's Health app";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout data will be used to show histories";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your health records will be used to make workouts sessions follow.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

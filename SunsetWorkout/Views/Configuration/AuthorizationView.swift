@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthorizationView: View {
+    @EnvironmentObject var SWHealthStoreManager: SWHealthStoreManager
     @AppStorage("currentPage") var currenPage = 1
     var body: some View {
         VStack(spacing: 20) {
@@ -31,7 +32,12 @@ Duis semper.
 
             Spacer(minLength: 100)
         }
-        .background(Color.yellow.ignoresSafeArea())
+        .background(Color.orange.ignoresSafeArea())
+        .onAppear {
+            SWHealthStoreManager.askForPermission { result in
+                dump(result)
+            }
+        }
     }
 }
 
