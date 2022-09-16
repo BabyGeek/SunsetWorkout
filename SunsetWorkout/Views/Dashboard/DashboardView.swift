@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DashboardView: View {
-    var columns: [GridItem] = Array(repeating: .init(.fixed(UIScreen.main.bounds.width / 2 - 15)), count: 2)
     var body: some View {
         VStack(alignment: .leading) {
             Text("Title")
@@ -46,7 +45,7 @@ struct DashboardView: View {
                 }
             }
 
-            LazyVGrid(columns: columns, spacing: 8) {
+            HStack {
                 DashboardCardView(
                     icon: Image(systemName: "bed.double"),
                     title: "Sleep",
@@ -55,6 +54,9 @@ struct DashboardView: View {
                     icon: Image(systemName: "leaf"),
                     title: "Feeling",
                     value: Feeling.happy.relatedEmoji)
+            }
+
+            HStack {
                 DashboardCardView(
                     icon: Image(systemName: "figure.walk"),
                     title: "Move",
