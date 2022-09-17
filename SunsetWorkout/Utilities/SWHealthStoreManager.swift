@@ -40,11 +40,9 @@ class SWHealthStoreManager: ObservableObject {
 
     private func setToShare() {
         let workoutType = HKSampleType.workoutType()
-        let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height)
-        let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass)
 
-        if let heightQuantityType,
-           let bodyMassQuantityType {
+        if let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height),
+           let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass) {
             toShare = [
                 workoutType,
                 heightQuantityType,
@@ -54,28 +52,19 @@ class SWHealthStoreManager: ObservableObject {
     }
 
     private func setRead() {
-        let activitySummaryType = HKActivitySummaryType.activitySummaryType()
-        let heartRateQuantityType = HKQuantityType.quantityType(forIdentifier: .heartRate)
-        let activeEnergyBurnedQuantityType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)
-        let basalEnergyBurnedQuantityType = HKQuantityType.quantityType(forIdentifier: .basalEnergyBurned)
-        let restingHeartRateQuantityType = HKQuantityType.quantityType(forIdentifier: .restingHeartRate)
-        let standUpQuantityType = HKQuantityType.quantityType(forIdentifier: .appleStandTime)
-        let exerciceQuantityType = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime)
-        let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height)
-        let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass)
-        let userDateOfBirth = HKObjectType.characteristicType(forIdentifier: .dateOfBirth)
-        let userBiologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex)
+        let activitySummaryType = HKObjectType.activitySummaryType()
 
-        if let heartRateQuantityType,
-           let activeEnergyBurnedQuantityType,
-           let basalEnergyBurnedQuantityType,
-           let restingHeartRateQuantityType,
-           let standUpQuantityType,
-           let exerciceQuantityType,
-           let heightQuantityType,
-           let bodyMassQuantityType,
-           let userDateOfBirth,
-           let userBiologicalSex {
+        if let heartRateQuantityType = HKObjectType.quantityType(forIdentifier: .heartRate),
+           let activeEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
+           let basalEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .basalEnergyBurned),
+           let restingHeartRateQuantityType = HKObjectType.quantityType(forIdentifier: .restingHeartRate),
+           let standUpQuantityType = HKObjectType.quantityType(forIdentifier: .appleStandTime),
+           let exerciceQuantityType = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
+           let heightQuantityType = HKObjectType.quantityType(forIdentifier: .height),
+           let bodyMassQuantityType = HKObjectType.quantityType(forIdentifier: .bodyMass),
+           let userDateOfBirth = HKObjectType.characteristicType(forIdentifier: .dateOfBirth),
+           let userBiologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex),
+           let sleepAnalysisType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) {
             read = [
                 activitySummaryType,
                 heartRateQuantityType,
@@ -88,8 +77,15 @@ class SWHealthStoreManager: ObservableObject {
                 heightQuantityType,
                 bodyMassQuantityType,
                 userDateOfBirth,
-                userBiologicalSex
+                userBiologicalSex,
+                sleepAnalysisType
             ]
+        }
+    }
+
+    func dispatchedMainQueue(_ completion: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            completion()
         }
     }
 }
