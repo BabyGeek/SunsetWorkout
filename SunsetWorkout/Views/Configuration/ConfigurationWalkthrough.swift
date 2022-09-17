@@ -15,7 +15,7 @@ struct WalkthroughConfigurationSettings {
 }
 
 struct ConfigurationWalkthroughView: View {
-    @State var SWHealthStoreManager: SWHealthStoreManager
+    @StateObject var SWHealthStoreManager: SWHealthStoreManager
     @AppStorage("currentPage") var currentPage = 1
 
     var body: some View {
@@ -38,8 +38,15 @@ struct ConfigurationWalkthroughView: View {
         .overlay(
             Button {
                 withAnimation(.easeInOut) {
-                    if currentPage <= WalkthroughConfigurationSettings.totalPages {
-                        currentPage += 1
+                    if currentPage <= WalkthroughConfigurationSettings.totalPages
+                        && SWHealthStoreManager.isWaiting == false {
+                                SWHealthStoreManager.askForPermission { success in
+                                    if success {
+                                        currentPage += 1
+                                    } else {
+                                        print("error")
+                                    }
+                                }
                     } else {
                         // only for test
                         currentPage = 1

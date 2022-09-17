@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileConfigurationView: View {
-    @State var profileConfigurationViewModel = ProfileConfigurationViewModel()
+    @StateObject var profileConfigurationViewModel = ProfileConfigurationViewModel()
     @AppStorage("currentPage") var currenPage = 1
 
     var body: some View {
@@ -47,19 +47,19 @@ struct ProfileConfigurationView: View {
                 FloatingTextField(
                     placeHolder: "Age",
                     text: $profileConfigurationViewModel.age, bgColor:
-                        .blue)
+                        .purple)
                 .keyboardType(.numberPad)
 
                 FloatingTextField(
                     placeHolder: "Height (\(profileConfigurationViewModel.getUserLocaleHeightUnit()))",
                     text: $profileConfigurationViewModel.height, bgColor:
-                        .blue)
+                        .purple)
                 .keyboardType(.decimalPad)
 
                 FloatingTextField(
                     placeHolder: "Weight (\(profileConfigurationViewModel.getUserLocaleWeightUnit()))",
                     text: $profileConfigurationViewModel.weight, bgColor:
-                        .blue)
+                        .purple)
                 .keyboardType(.decimalPad)
             }
 
@@ -67,7 +67,7 @@ struct ProfileConfigurationView: View {
 
         }
         .padding()
-        .background(Color.blue.ignoresSafeArea())
+        .background(Color.purple.ignoresSafeArea())
         .onAppear {
             profileConfigurationViewModel.refreshValues()
         }
@@ -116,6 +116,16 @@ struct FloatingTextField: View {
                 .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
                 .animation(.linear)
         }
+    }
+}
+
+public extension UIViewController {
+    @objc func tapAction() { self.view.endEditing(true) }
+
+    @objc func addTapToDismissKeyBoard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        tap.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(tap)
     }
 }
 

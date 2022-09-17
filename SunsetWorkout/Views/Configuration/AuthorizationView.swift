@@ -32,12 +32,8 @@ Duis semper.
 
             Spacer(minLength: 100)
         }
-        .background(Color.orange.ignoresSafeArea())
-        .onAppear {
-            SWHealthStoreManager.askForPermission { result in
-                dump(result)
-            }
-        }
+        .padding()
+        .background(Color.purple.ignoresSafeArea())
     }
 }
 

@@ -102,6 +102,7 @@ struct FeelingListingView: View {
                     }
                 }
                 .shadow(color: .white.opacity(selected == feeling ? 1 : 0), radius: 10)
+
     }
 }
 
