@@ -11,9 +11,9 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     typealias QueryType = HKSampleQuery
     var query: HKSampleQuery?
 
-    var height: String = ""
-    var weight: String = ""
-    var age: String = ""
+    @Published var height: String = ""
+    @Published var weight: String = ""
+    @Published var age: String = ""
 
     init(query: HKSampleQuery? = nil) {
         super.init()
@@ -42,34 +42,6 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
         }
     }
 
-    private func determineAge() {
-        let dateOfBirthComponent = try? store?.dateOfBirthComponents()
-        age = String(format: "%d", Calendar.current.component(.year, from: Date()) - (dateOfBirthComponent?.year ?? 0))
-    }
-
-    private func getHeight() {
-        let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height)
-
-        if let heightQuantityType {
-            query = HKSampleQuery(
-                sampleType: heightQuantityType,
-                predicate: nil,
-                limit: 0,
-                sortDescriptors: nil,
-                resultsHandler: { _, samples, _ in
-                    if let userHeightSample = samples?.last as? HKQuantitySample {
-                        var unit = HKUnit.foot()
-                        if Locale.current.usesMetricSystem {
-                            unit = .meter()
-                        }
-
-                        self.height = String(format: "%.2f", userHeightSample.quantity.doubleValue(for: unit))
-                    }
-            })
-        }
-        executeQuery()
-    }
-
     func getUserLocaleHeightUnit() -> String {
         var unitHeight = "feet"
 
@@ -90,10 +62,41 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
         return unitWeight
     }
 
-    private func getWeight() {
-        let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass)
+    private func determineAge() {
+        let dateOfBirthComponent = try? store?.dateOfBirthComponents()
 
-        if let bodyMassQuantityType {
+        DispatchQueue.main.async {
+            self.age = String(
+                format: "%d",
+                Calendar.current.component(.year, from: Date()) - (dateOfBirthComponent?.year ?? 0))
+        }
+    }
+
+    private func getHeight() {
+        if let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height) {
+            query = HKSampleQuery(
+                sampleType: heightQuantityType,
+                predicate: nil,
+                limit: 0,
+                sortDescriptors: nil,
+                resultsHandler: { _, samples, _ in
+                    if let userHeightSample = samples?.last as? HKQuantitySample {
+                        var unit = HKUnit.foot()
+                        if Locale.current.usesMetricSystem {
+                            unit = .meter()
+                        }
+
+                        DispatchQueue.main.async {
+                            self.height = String(format: "%.2f", userHeightSample.quantity.doubleValue(for: unit))
+                        }
+                    }
+                })
+        }
+        executeQuery()
+    }
+
+    private func getWeight() {
+        if let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass) {
             query = HKSampleQuery(
                 sampleType: bodyMassQuantityType,
                 predicate: nil,
@@ -106,17 +109,17 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
                             unit = .gramUnit(with: .kilo)
                         }
 
-                        self.weight = String(format: "%.2f", userWeightSample.quantity.doubleValue(for: unit))
+                        DispatchQueue.main.async {
+                            self.weight = String(format: "%.2f", userWeightSample.quantity.doubleValue(for: unit))
+                        }
                     }
-            })
+                })
         }
         executeQuery()
     }
 
     private func saveHeight() {
-        let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height)
-
-        if let heightQuantityType,
+        if let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height),
            let value = Double(height) {
 
             var unit = HKUnit.foot()
