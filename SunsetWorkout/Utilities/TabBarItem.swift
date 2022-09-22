@@ -8,14 +8,16 @@
 import SwiftUI
 
 enum TabBarItem {
-    case dashboard, statistics, add, workouts, profile
+    case dashboard, launch, create, add, workouts, profile
 
     var symbol: Image {
         switch self {
         case .dashboard:
             return Image(systemName: "house")
-        case .statistics:
-            return Image(systemName: "chart.pie")
+        case .launch:
+            return Image(systemName: "play")
+        case .create:
+            return Image(systemName: "plus.circle")
         case .add:
             return Image(systemName: "plus")
         case .workouts:
@@ -29,8 +31,10 @@ enum TabBarItem {
         switch self {
         case .dashboard:
             return "Dashboard"
-        case .statistics:
-            return "Stats"
+        case .launch:
+            return "Launch"
+        case .create:
+            return "Create"
         case .add:
             return ""
         case .workouts:

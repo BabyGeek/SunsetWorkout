@@ -37,10 +37,8 @@ struct TabBarContainerView<Content: View>: View {
 struct TabBarContainerView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
             .dashboard,
-            .statistics,
             .add,
-            .workouts,
-            .profile
+            .workouts
     ]
 
     static var previews: some View {

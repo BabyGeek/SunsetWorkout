@@ -25,10 +25,8 @@ struct TabBarView: View {
 struct TabBarView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
         .dashboard,
-        .statistics,
         .add,
-        .workouts,
-        .profile
+        .workouts
     ]
 
     static var previews: some View {
