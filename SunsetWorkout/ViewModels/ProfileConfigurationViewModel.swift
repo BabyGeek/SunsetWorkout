@@ -15,6 +15,9 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     @Published var weight: String = ""
     @Published var age: String = ""
 
+    private var currentWeight: String = ""
+    private var currentHeight: String = ""
+
     init(query: HKSampleQuery? = nil) {
         super.init()
         self.query = query
@@ -24,9 +27,9 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     func refreshValues() {
         self.askForPermission { success in
             if success {
-                self.determineAge()
                 self.getHeight()
                 self.getWeight()
+                self.getGender()
             }
         }
     }
@@ -63,12 +66,19 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     }
 
     private func determineAge() {
-        let dateOfBirthComponent = try? store?.dateOfBirthComponents()
+        if let dateOfBirthComponent = try? store?.dateOfBirthComponents() {
+            DispatchQueue.main.async {
+                self.age = String(
+                    format: "%d",
+                    Calendar.current.component(.year, from: Date()) - (dateOfBirthComponent.year ?? 0))
+            }
+        }
+    }
 
-        DispatchQueue.main.async {
-            self.age = String(
-                format: "%d",
-                Calendar.current.component(.year, from: Date()) - (dateOfBirthComponent?.year ?? 0))
+    private func getGender() {
+        if let sexe = try? store?.biologicalSex().biologicalSex.rawValue {
+            dump(HKBiologicalSex(rawValue: sexe))
+
         }
     }
 
@@ -88,6 +98,7 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
 
                         DispatchQueue.main.async {
                             self.height = String(format: "%.2f", userHeightSample.quantity.doubleValue(for: unit))
+                            self.currentHeight = self.height
                         }
                     }
                 })
@@ -111,6 +122,7 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
 
                         DispatchQueue.main.async {
                             self.weight = String(format: "%.2f", userWeightSample.quantity.doubleValue(for: unit))
+                            self.currentWeight = self.weight
                         }
                     }
                 })
@@ -119,6 +131,10 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     }
 
     private func saveHeight() {
+        if self.height == self.currentHeight {
+            return
+        }
+
         if let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height),
            let value = Double(height) {
 
@@ -142,6 +158,10 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     }
 
     private func saveWeight() {
+        if self.weight == self.currentWeight {
+            return
+        }
+
         let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass)
 
         if let bodyMassQuantityType,

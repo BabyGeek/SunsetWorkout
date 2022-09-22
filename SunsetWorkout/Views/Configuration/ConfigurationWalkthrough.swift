@@ -77,6 +77,7 @@ struct ConfigurationWalkthroughView: View {
             .padding(.bottom, 20)
 
             , alignment: .bottom)
+        .preferredColorScheme(.dark)
     }
 }
 

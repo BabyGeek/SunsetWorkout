@@ -45,12 +45,6 @@ struct ProfileConfigurationView: View {
             VStack(spacing: 50) {
 
                 FloatingTextField(
-                    placeHolder: "Age",
-                    text: $profileConfigurationViewModel.age, bgColor:
-                        .purple)
-                .keyboardType(.numberPad)
-
-                FloatingTextField(
                     placeHolder: "Height (\(profileConfigurationViewModel.getUserLocaleHeightUnit()))",
                     text: $profileConfigurationViewModel.height, bgColor:
                         .purple)
@@ -58,6 +52,12 @@ struct ProfileConfigurationView: View {
 
                 FloatingTextField(
                     placeHolder: "Weight (\(profileConfigurationViewModel.getUserLocaleWeightUnit()))",
+                    text: $profileConfigurationViewModel.weight, bgColor:
+                        .purple)
+                .keyboardType(.decimalPad)
+
+                FloatingTextField(
+                    placeHolder: "Gender",
                     text: $profileConfigurationViewModel.weight, bgColor:
                         .purple)
                 .keyboardType(.decimalPad)

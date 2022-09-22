@@ -15,10 +15,17 @@ struct MainView: View {
     var body: some View {
         if currenPage <= WalkthroughConfigurationSettings.totalPages {
             ConfigurationWalkthroughView(SWHealthStoreManager: SWHealthStoreManager())
+                .preferredColorScheme(.dark)
         } else {
             TabBarContainerView(selection: $selectedTab) {
                 DashboardView()
                     .tabBarItem(tab: .dashboard, selection: $selectedTab)
+                
+                DashboardView()
+                    .tabBarItem(tab: .add, selection: $selectedTab)
+                
+                DashboardView()
+                    .tabBarItem(tab: .workouts, selection: $selectedTab)
             }
         }
     }

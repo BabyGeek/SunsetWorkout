@@ -8,66 +8,93 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @StateObject var dashboardViewModel = DashboardViewModel()
+    @State private var lastHostingView: UIView!
+
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Title")
-                .font(.largeTitle)
+        NavigationView {
+            VStack(alignment: .leading) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(LinearGradient(
+                            gradient: .init(colors: [
+                                Colors.cardGradientStart,
+                                Colors.cardGradientMiddle,
+                                Colors.cardGradientEnd
+                            ]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        ))
+                        .frame(height: 180)
 
-            ZStack {
-                RoundedRectangle(cornerRadius: 25)
-                    .fill(LinearGradient(
-                        gradient: .init(colors: [
-                            Colors.cardGradientStart,
-                            Colors.cardGradientMiddle,
-                            Colors.cardGradientEnd
-                        ]),
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ))
-                    .frame(height: 180)
+                    VStack {
+                        if let quote = dashboardViewModel.quote {
+                            Text("\(quote.author) said:")
+                            HStack(alignment: .top) {
+                                Image(systemName: "quote.opening")
+                                    .frame(maxHeight: 100, alignment: .top)
 
-                VStack {
-                    Text("Carl Lewis said:")
-                    HStack(alignment: .top) {
-                        Image(systemName: "quote.opening")
-                            .frame(maxHeight: 100, alignment: .top)
+                                Text(quote.content)
+                                .font(.italic(.body)())
+                                .frame(maxHeight: 100)
 
-                        Text("Life is about timing.")
-                        .font(.italic(.body)())
-                        .frame(maxHeight: 100)
-
-                        Image(systemName: "quote.closing")
-                            .frame(maxHeight: 100, alignment: .bottom)
+                                Image(systemName: "quote.closing")
+                                    .frame(maxHeight: 100, alignment: .bottom)
+                            }
+                            .padding(.horizontal)
+                            Text(quote.getTagsFormatted())
+                                .font(.italic(.caption)())
+                        }
                     }
-                    .padding(.horizontal)
-                    Text("Sports, competition")
-                        .font(.italic(.caption)())
+                }
+
+                HStack {
+                    DashboardCardView(
+                        icon: Image(systemName: "bed.double"),
+                        title: "Sleep",
+                        value: dashboardViewModel.getSleptLabel())
+                    DashboardCardView(
+                        icon: Image(systemName: "leaf"),
+                        title: "Feeling",
+                        value: Feeling.happy.relatedEmoji)
+                }
+
+                HStack {
+                    DashboardCardView(
+                        icon: Image(systemName: "figure.walk"),
+                        title: "Move",
+                        value: dashboardViewModel.dailyKilocalories.description)
+                    DashboardCardView(
+                        icon: Image(systemName: "bolt"),
+                        title: "Training",
+                        value: dashboardViewModel.dailyTrainedTime.description)
                 }
             }
-
-            HStack {
-                DashboardCardView(
-                    icon: Image(systemName: "bed.double"),
-                    title: "Sleep",
-                    value: "8 h")
-                DashboardCardView(
-                    icon: Image(systemName: "leaf"),
-                    title: "Feeling",
-                    value: Feeling.happy.relatedEmoji)
-            }
-
-            HStack {
-                DashboardCardView(
-                    icon: Image(systemName: "figure.walk"),
-                    title: "Move",
-                    value: "558 kcal")
-                DashboardCardView(
-                    icon: Image(systemName: "bolt"),
-                    title: "Training",
-                    value: "45 min")
+            .padding()
+            .overlay(
+                Button(action: {
+                    print("profile tapped")
+                }, label: {
+                    ProfileView()
+                })
+            , alignment: .topTrailing)
+            .navigationTitle("Title")
+            .onAppear {
+                dashboardViewModel.getUpdatedValues()
             }
         }
-        .padding()
+    }
+}
+
+struct ProfileView: View {
+    var body: some View {
+        Image("Profile")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 40, height: 40)
+            .clipShape(Circle())
+            .padding(.trailing, 20)
+            .offset(y: -50)
     }
 }
 
