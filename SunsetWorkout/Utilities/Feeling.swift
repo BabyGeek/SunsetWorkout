@@ -10,6 +10,23 @@ import Foundation
 enum Feeling: CaseIterable {
     case happy, sad, annoyed, excited, tired, stressed
 
+    var shortName: String {
+        switch self {
+        case .happy:
+            return "Happy"
+        case .sad:
+            return "Sad"
+        case .annoyed:
+            return "Annoyed"
+        case .excited:
+            return "Excited"
+        case .tired:
+            return "Tired"
+        case .stressed:
+            return "Stressed"
+        }
+    }
+
     var relatedEmoji: String {
         switch self {
         case .happy:

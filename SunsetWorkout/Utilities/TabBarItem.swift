@@ -17,7 +17,7 @@ enum TabBarItem {
         case .launch:
             return Image(systemName: "play")
         case .create:
-            return Image(systemName: "plus.circle")
+            return Image(systemName: "plus")
         case .add:
             return Image(systemName: "plus")
         case .workouts:
@@ -36,7 +36,7 @@ enum TabBarItem {
         case .create:
             return "Create"
         case .add:
-            return ""
+            return "New workout"
         case .workouts:
             return "Workouts"
         case .profile:

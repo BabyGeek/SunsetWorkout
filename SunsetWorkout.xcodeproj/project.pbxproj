@@ -21,6 +21,9 @@
 		2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */; };
 		2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6608DB28D02D4F00361C0F /* HealthKit.framework */; };
 		2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */; };
+		2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */; };
+		2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */; };
+		2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7F28DD38B800C3B1C0 /* FeelingViewModel.swift */; };
 		2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
 		2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */; };
@@ -68,6 +71,9 @@
 		2B6608DB28D02D4F00361C0F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2B83FA7428D8A19A00C3B1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
+		2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySelectingView.swift; sourceTree = "<group>"; };
+		2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNewWorkoutView.swift; sourceTree = "<group>"; };
+		2B83FA7F28DD38B800C3B1C0 /* FeelingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingViewModel.swift; sourceTree = "<group>"; };
 		2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutApp.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 			children = (
 				2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */,
 				2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */,
+				2B83FA7F28DD38B800C3B1C0 /* FeelingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */,
+				2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -268,6 +276,7 @@
 				2BFF29B028C59BD40041841F /* TabBarContainerView.swift */,
 				2BFF29B228C5FFF00041841F /* TabBarView.swift */,
 				2B6608C128CB5A4E00361C0F /* MainView.swift */,
+				2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -437,6 +446,7 @@
 			files = (
 				2BFF29AD28C55C3B0041841F /* TabBarItem.swift in Sources */,
 				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
+				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
 				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,
 				2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */,
@@ -444,12 +454,14 @@
 				2BFF29AA28C4F55E0041841F /* Feeling.swift in Sources */,
 				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
 				2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */,
+				2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */,
 				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
 				2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */,
 				2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */,
 				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
 				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
 				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
+				2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */,
 				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
 				2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */,

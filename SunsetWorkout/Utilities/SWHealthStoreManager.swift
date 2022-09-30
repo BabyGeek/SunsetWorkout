@@ -33,10 +33,33 @@ class SWHealthStoreManager: ObservableObject {
 
         store?.requestAuthorization(toShare: toShare, read: read, completion: { success, _ in
             completion(success)
+//            let result = self.checkPermissions()
+//
+//            switch result {
+//            case .success(let success):
+//                completion(success)
+//            case .failure(let failure):
+//                dump(failure)
+//                break
+//                // Handle auth error
+//            }
         })
 
         self.isWaiting = false
     }
+
+//    func checkPermissions() -> Result<Bool, Error> {
+//        No error when not authorized, but if queries have result count to 0 we may say that it is no data or not authorized
+//        return .success(true)
+//    }
+//
+//    func sendToAuthorizationSettings() {
+//            if let url = URL(string: "App-Prefs:HEALTH&path=SOURCES") {
+//                self.dispatchedMainQueue {
+//                    UIApplication.shared.open(url)
+//                }
+//            }
+//    }
 
     private func setToShare() {
         let workoutType = HKSampleType.workoutType()

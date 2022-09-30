@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct TabBarContainerView<Content: View>: View {
+struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     @State private var tabs: [TabBarItem] = [TabBarItem]()
+    @State private var isKeyboardVisible = false
     @Binding var selection: TabBarItem
 
     let content: Content
@@ -22,23 +23,29 @@ struct TabBarContainerView<Content: View>: View {
         GeometryReader { geometry in
             ZStack(alignment: .bottom) {
                 content
-                    .padding(.bottom, geometry.size.height/8)
+                    .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
+                    .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
 
-                TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-                     .frame(width: geometry.size.width)
-             }
+                if !isKeyboardVisible {
+                    TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+                        .frame(width: geometry.size.width)
+                }
+            }
             .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
                 self.tabs = value
             }
-         }
+        }
+        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+            isKeyboardVisible = newIsKeyboardVisible
+        }
     }
 }
 
 struct TabBarContainerView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
-            .dashboard,
-            .add,
-            .workouts
+        .dashboard,
+        .add,
+        .workouts
     ]
 
     static var previews: some View {

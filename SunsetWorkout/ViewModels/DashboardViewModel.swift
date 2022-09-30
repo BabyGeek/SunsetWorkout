@@ -115,7 +115,8 @@ class DashboardViewModel: SWHealthStoreManager {
         self.dispatchedMainQueue {
             self.quote = Quote(
                 author: "Jhon Doe",
-                content: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
+                content: "Lorem ipsum dolor sit amet, " +
+                "consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
                 "Aenean massa. Cum sociis natoq",
                 tags: ["sports", "competition"])
         }

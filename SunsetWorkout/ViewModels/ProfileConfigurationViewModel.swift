@@ -37,8 +37,6 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
     func saveValues() {
         self.askForPermission { success in
             if success {
-                // TODO ONLY IF VALUES CHANGED TO AVOID MANY SAVINGS IF USER NAVIGATES
-                // SHOULD WE SAVE AGE? AS WE DETERMINE IT FROM BIRTHDATE?
                 self.saveWeight()
                 self.saveHeight()
             }

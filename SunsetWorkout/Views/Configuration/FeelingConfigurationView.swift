@@ -10,6 +10,7 @@ import SwiftUI
 struct FeelingConfigurationView: View {
     @AppStorage("currentPage") var currenPage = 1
     @State var selected: Feeling = .happy
+    @StateObject var feelingViewModel = FeelingViewModel()
 
     var body: some View {
         VStack(spacing: 20) {
@@ -47,6 +48,9 @@ struct FeelingConfigurationView: View {
         }
         .padding()
         .background(Color.purple.ignoresSafeArea())
+        .onDisappear {
+            feelingViewModel.saveFeeling(selected)
+        }
     }
 }
 
@@ -90,7 +94,8 @@ struct FeelingListingView: View {
                 ))
                 .frame(height: 150)
                 .overlay(
-                    VStack(alignment: .center, spacing: 20) {
+                    VStack(alignment: .center) {
+                        Text(feeling.shortName)
                         Text(feeling.relatedEmoji)
                             .font(.system(size: 64))
                         Text(feeling.relatedDescription)

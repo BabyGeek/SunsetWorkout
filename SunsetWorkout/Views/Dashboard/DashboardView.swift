@@ -71,13 +71,12 @@ struct DashboardView: View {
                 }
             }
             .padding()
-            .overlay(
-                Button(action: {
-                    print("profile tapped")
-                }, label: {
-                    ProfileView()
-                })
-            , alignment: .topTrailing)
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                        print("profile tapped")
+                                    }, label: {
+                                        ProfileView()
+                                    }))
             .navigationTitle("Title")
             .onAppear {
                 dashboardViewModel.getUpdatedValues()
@@ -93,8 +92,6 @@ struct ProfileView: View {
             .scaledToFit()
             .frame(width: 40, height: 40)
             .clipShape(Circle())
-            .padding(.trailing, 20)
-            .offset(y: -50)
     }
 }
 
