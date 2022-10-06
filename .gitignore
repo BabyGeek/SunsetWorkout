@@ -68,4 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # GoogleService-Info 
-/Users/mrsniikyz/Documents/Development/Professional/Formations/Formation OpenClassRoom/Projets/Projet_12/SunsetWorkout/SunsetWorkout/GoogleService-Info.plist
+SunsetWorkout/GoogleService-Info.plist
