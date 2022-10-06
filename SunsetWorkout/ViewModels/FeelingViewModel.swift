@@ -27,17 +27,17 @@ class FeelingViewModel: ObservableObject {
     }
 
     func getFeelings() -> Results<FeelingModel>? {
-        var feelings: Results<FeelingModel>? = nil
-        
+        var feelings: Results<FeelingModel>?
+
         do {
             feelings = try realmManager.getObjects(FeelingModel.self)
         } catch {
             self.error = SWError(error: error)
         }
-        
+
         return feelings
     }
-    
+
     func getLastFeeling() -> FeelingModel? {
         guard let feelings = getFeelings() else { return nil }
         return feelings.last

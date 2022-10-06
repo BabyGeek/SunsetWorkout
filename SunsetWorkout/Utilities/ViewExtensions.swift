@@ -21,7 +21,7 @@ extension View {
     }
 }
 
-// MARK: - <#Section Heading#>
+// MARK: - View extension - detect and send action when click on the screen depending on priority included
 extension View {
     /// Add extention to dismiss keyboard display on view click
     func endTextEditing(including: GestureMask = .all) -> some View {
@@ -32,6 +32,8 @@ extension View {
             }), including: including)
     }
 }
+
+// MARK: - Keyboard Readable
 
 /// Publisher to read keyboard changes.
 protocol KeyboardReadable {

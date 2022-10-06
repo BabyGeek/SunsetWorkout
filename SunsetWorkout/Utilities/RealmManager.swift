@@ -25,10 +25,10 @@ class RealmManager {
             throw error
         }
     }
-    
+
     func getObjects<Element: RealmFetchable>(_ type: Element.Type) throws -> Results<Element> {
         guard let realm else { throw RealmError.noRealm }
-        
+
         return realm.objects(type)
     }
 }

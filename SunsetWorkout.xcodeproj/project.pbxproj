@@ -13,6 +13,7 @@
 		2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26328EEE31C002FDA9F /* DateExtension.swift */; };
 		2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26528EEE3C3002FDA9F /* Quote.swift */; };
 		2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */; };
+		2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26928EEE80A002FDA9F /* HKQueriable.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1558EA28B780B50013987F /* SnapshotHelper.swift */; };
 		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
@@ -73,6 +74,7 @@
 		2B00C26328EEE31C002FDA9F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		2B00C26528EEE3C3002FDA9F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTag.swift; sourceTree = "<group>"; };
+		2B00C26928EEE80A002FDA9F /* HKQueriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueriable.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1558EA28B780B50013987F /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				2B00C25F28EED907002FDA9F /* SWError.swift */,
 				2B00C26128EED97D002FDA9F /* ErrorEnums.swift */,
 				2B00C26328EEE31C002FDA9F /* DateExtension.swift */,
+				2B00C26928EEE80A002FDA9F /* HKQueriable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				2BFF29AA28C4F55E0041841F /* Feeling.swift in Sources */,
 				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
 				2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */,
+				2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */,
 				2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */,
 				2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */,
 				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
