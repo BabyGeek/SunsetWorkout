@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C25D28EEC637002FDA9F /* RealmManager.swift */; };
+		2B00C26028EED907002FDA9F /* SWError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C25F28EED907002FDA9F /* SWError.swift */; };
+		2B00C26228EED97D002FDA9F /* ErrorEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26128EED97D002FDA9F /* ErrorEnums.swift */; };
+		2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26328EEE31C002FDA9F /* DateExtension.swift */; };
+		2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26528EEE3C3002FDA9F /* Quote.swift */; };
+		2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1558EA28B780B50013987F /* SnapshotHelper.swift */; };
+		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
 		2B64BA2128D5B8D500E95514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */; };
 		2B64BA2628D5BD4700E95514 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */; };
 		2B64BA2828D5BD4700E95514 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */; };
@@ -20,6 +27,8 @@
 		2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */; };
 		2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */; };
 		2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6608DB28D02D4F00361C0F /* HealthKit.framework */; };
+		2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7FDFEB28E7F640009FFAF5 /* Realm */; };
+		2B7FDFEE28E7F640009FFAF5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7FDFED28E7F640009FFAF5 /* RealmSwift */; };
 		2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */; };
 		2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */; };
 		2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */; };
@@ -58,8 +67,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B00C25D28EEC637002FDA9F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		2B00C25F28EED907002FDA9F /* SWError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWError.swift; sourceTree = "<group>"; };
+		2B00C26128EED97D002FDA9F /* ErrorEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnums.swift; sourceTree = "<group>"; };
+		2B00C26328EEE31C002FDA9F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		2B00C26528EEE3C3002FDA9F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTag.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1558EA28B780B50013987F /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
 		2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B6608C128CB5A4E00361C0F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B6608C428CB63D400361C0F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -98,10 +114,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7FDFEE28E7F640009FFAF5 /* RealmSwift in Frameworks */,
 				2B64BA2828D5BD4700E95514 /* FirebaseCrashlytics in Frameworks */,
 				2B64BA2628D5BD4700E95514 /* FirebaseAnalytics in Frameworks */,
 				2B64BA2A28D5BD4700E95514 /* FirebasePerformance in Frameworks */,
 				2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */,
+				2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +166,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2B7FDFEF28E7F6A8009FFAF5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */,
+				2B00C26528EEE3C3002FDA9F /* Quote.swift */,
+				2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2BD1D7EE28B626FE006A3848 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +203,7 @@
 				2B83FA7428D8A19A00C3B1C0 /* Info.plist */,
 				2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */,
 				2BFF29A828C4F54B0041841F /* Utilities */,
+				2B7FDFEF28E7F6A8009FFAF5 /* Models */,
 				2BFF299E28C350A50041841F /* Views */,
 				2B6608C828CCC56A00361C0F /* ViewModels */,
 				2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */,
@@ -266,6 +295,10 @@
 				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
 				2B6608C628CC9F6300361C0F /* Colors.swift */,
 				2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */,
+				2B00C25D28EEC637002FDA9F /* RealmManager.swift */,
+				2B00C25F28EED907002FDA9F /* SWError.swift */,
+				2B00C26128EED97D002FDA9F /* ErrorEnums.swift */,
+				2B00C26328EEE31C002FDA9F /* DateExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -302,6 +335,8 @@
 				2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */,
 				2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */,
 				2B64BA2928D5BD4700E95514 /* FirebasePerformance */,
+				2B7FDFEB28E7F640009FFAF5 /* Realm */,
+				2B7FDFED28E7F640009FFAF5 /* RealmSwift */,
 			);
 			productName = SunsetWorkout;
 			productReference = 2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */;
@@ -378,6 +413,7 @@
 			mainGroup = 2BD1D7EE28B626FE006A3848;
 			packageReferences = (
 				2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 2BD1D7F828B626FE006A3848 /* Products */;
 			projectDirPath = "";
@@ -448,12 +484,16 @@
 				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
 				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
+				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
+				2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */,
 				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,
+				2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */,
 				2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */,
 				2BFF29AF28C59AD90041841F /* TabBarItemsPreferenceKey.swift in Sources */,
 				2BFF29AA28C4F55E0041841F /* Feeling.swift in Sources */,
 				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
 				2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */,
+				2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */,
 				2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */,
 				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
 				2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */,
@@ -462,8 +502,11 @@
 				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
 				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
 				2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */,
+				2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */,
+				2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */,
 				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
+				2B00C26228EED97D002FDA9F /* ErrorEnums.swift in Sources */,
 				2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,6 +878,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.30.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -852,6 +903,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebasePerformance;
+		};
+		2B7FDFEB28E7F640009FFAF5 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		2B7FDFED28E7F640009FFAF5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

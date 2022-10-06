@@ -6,18 +6,40 @@
 //
 
 import SwiftUI
-import CloudKit
+import Realm
+import RealmSwift
 
 class FeelingViewModel: ObservableObject {
+    @Published var error: SWError?
+    let realmManager = RealmManager()
 
     func saveFeeling(_ feeling: Feeling) {
-        let json: [String: Any] = [
-            "created_at": Date(),
-            "feeling": feeling
-        ]
-        
-        
+        let feelingModel: FeelingModel = FeelingModel(
+            createdAt: Date(),
+            rawFeeling: feeling.rawValue
+        )
 
-        dump(json)
+        do {
+            try realmManager.saveObject(feelingModel)
+        } catch {
+            self.error = SWError(error: error)
+        }
+    }
+
+    func getFeelings() -> Results<FeelingModel>? {
+        var feelings: Results<FeelingModel>? = nil
+        
+        do {
+            feelings = try realmManager.getObjects(FeelingModel.self)
+        } catch {
+            self.error = SWError(error: error)
+        }
+        
+        return feelings
+    }
+    
+    func getLastFeeling() -> FeelingModel? {
+        guard let feelings = getFeelings() else { return nil }
+        return feelings.last
     }
 }

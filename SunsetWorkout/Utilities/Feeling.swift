@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Feeling: CaseIterable {
+enum Feeling: String, CaseIterable {
     case happy, sad, annoyed, excited, tired, stressed
 
     var shortName: String {
