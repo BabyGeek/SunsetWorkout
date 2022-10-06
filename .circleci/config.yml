@@ -20,7 +20,7 @@ jobs:
 
   build-and-test:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -39,7 +39,7 @@ jobs:
 
   screenshots:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -58,7 +58,7 @@ jobs:
 
   adhoc:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -78,7 +78,7 @@ jobs:
 
   beta:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
