@@ -20,7 +20,7 @@ jobs:
 
   build-and-test:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
@@ -30,7 +30,26 @@ jobs:
       - checkout
       - run: bundle install
       - run:
-          name: Fastlane
+          name: Fastlane tests
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+
+  screenshots:
+    macos:
+      xcode: "14.0.1"
+    working_directory: /Users/distiller/project
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: screenshots
+    shell: /bin/bash --login -o pipefail
+    steps:
+      - checkout
+      - run: bundle install
+      - run:
+          name: Fastlane screenshots
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
@@ -39,30 +58,36 @@ jobs:
 
   adhoc:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: adhoc
     shell: /bin/bash --login -o pipefail
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - 99:aa:a2:0d:88:e0:53:31:5f:73:39:a4:26:3a:b6:ad
       - checkout
       - run: bundle install
       - run:
-          name: Fastlane
+          name: Fastlane adhoc build
           command: bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output/SunsetWorkout.ipa
 
   beta:
     macos:
-      xcode: "13.4.1"
+      xcode: "14.0.1"
     working_directory: /Users/distiller/project
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: beta
     shell: /bin/bash --login -o pipefail
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - 99:aa:a2:0d:88:e0:53:31:5f:73:39:a4:26:3a:b6:ad
       - checkout
       - run: bundle install
       - run:
@@ -76,12 +101,15 @@ workflows:
     jobs:
       - swiftlint
       - build-and-test
-      - adhoc:
-          filters:
-            branches:
-              only: development
-          requires:
-            - build-and-test
+      # - screenshots:
+      #     requires:
+      #       - build-and-test
+      # - adhoc:
+      #     filters:
+      #       branches:
+      #         only: develop
+      #     requires:
+      #       - build-and-test
       #- beta:
           #filters:
             #branches:

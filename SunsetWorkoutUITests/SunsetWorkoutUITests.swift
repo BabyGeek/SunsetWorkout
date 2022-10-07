@@ -32,7 +32,7 @@ class SunsetWorkoutUITests: XCTestCase {
 
     func testExample() throws {
         // UI tests must launch the application that they test.
-        snapshot("0_Launch")
+        snapshot("0_Launch_Portrait")
         let app = XCUIApplication()
         app.launch()
 

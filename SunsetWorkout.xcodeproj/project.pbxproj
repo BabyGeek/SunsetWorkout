@@ -7,14 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C25D28EEC637002FDA9F /* RealmManager.swift */; };
+		2B00C26028EED907002FDA9F /* SWError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C25F28EED907002FDA9F /* SWError.swift */; };
+		2B00C26228EED97D002FDA9F /* ErrorEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26128EED97D002FDA9F /* ErrorEnums.swift */; };
+		2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26328EEE31C002FDA9F /* DateExtension.swift */; };
+		2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26528EEE3C3002FDA9F /* Quote.swift */; };
+		2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */; };
+		2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26928EEE80A002FDA9F /* HKQueriable.swift */; };
+		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1558EA28B780B50013987F /* SnapshotHelper.swift */; };
+		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
+		2B64BA2128D5B8D500E95514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */; };
+		2B64BA2628D5BD4700E95514 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */; };
+		2B64BA2828D5BD4700E95514 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */; };
+		2B64BA2A28D5BD4700E95514 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2928D5BD4700E95514 /* FirebasePerformance */; };
+		2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C128CB5A4E00361C0F /* MainView.swift */; };
+		2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C428CB63D400361C0F /* DashboardView.swift */; };
+		2B6608C728CC9F6300361C0F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C628CC9F6300361C0F /* Colors.swift */; };
+		2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608CB28CCC84600361C0F /* ViewExtensions.swift */; };
+		2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */; };
+		2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */; };
+		2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6608DB28D02D4F00361C0F /* HealthKit.framework */; };
+		2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7FDFEB28E7F640009FFAF5 /* Realm */; };
+		2B7FDFEE28E7F640009FFAF5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7FDFED28E7F640009FFAF5 /* RealmSwift */; };
+		2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */; };
+		2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */; };
+		2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */; };
+		2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B83FA7F28DD38B800C3B1C0 /* FeelingViewModel.swift */; };
+		2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
-		2BD1D7FD28B626FE006A3848 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* ContentView.swift */; };
+		2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */; };
 		2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FE28B626FF006A3848 /* Assets.xcassets */; };
 		2BD1D80228B626FF006A3848 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D80128B626FF006A3848 /* Preview Assets.xcassets */; };
 		2BD1D80C28B626FF006A3848 /* SunsetWorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */; };
 		2BD1D81628B626FF006A3848 /* SunsetWorkoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D81528B626FF006A3848 /* SunsetWorkoutUITests.swift */; };
-		2BD1D81828B626FF006A3848 /* SunsetWorkoutUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D81728B626FF006A3848 /* SunsetWorkoutUITestsLaunchTests.swift */; };
+		2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */; };
+		2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */; };
+		2BFF29AA28C4F55E0041841F /* Feeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A928C4F55E0041841F /* Feeling.swift */; };
+		2BFF29AD28C55C3B0041841F /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29AC28C55C3B0041841F /* TabBarItem.swift */; };
+		2BFF29AF28C59AD90041841F /* TabBarItemsPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29AE28C59AD90041841F /* TabBarItemsPreferenceKey.swift */; };
+		2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29B028C59BD40041841F /* TabBarContainerView.swift */; };
+		2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29B228C5FFF00041841F /* TabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,17 +68,47 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B00C25D28EEC637002FDA9F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		2B00C25F28EED907002FDA9F /* SWError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWError.swift; sourceTree = "<group>"; };
+		2B00C26128EED97D002FDA9F /* ErrorEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnums.swift; sourceTree = "<group>"; };
+		2B00C26328EEE31C002FDA9F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		2B00C26528EEE3C3002FDA9F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTag.swift; sourceTree = "<group>"; };
+		2B00C26928EEE80A002FDA9F /* HKQueriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueriable.swift; sourceTree = "<group>"; };
+		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1558EA28B780B50013987F /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
+		2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2B6608C128CB5A4E00361C0F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2B6608C428CB63D400361C0F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		2B6608C628CC9F6300361C0F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2B6608CB28CCC84600361C0F /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWalkthrough.swift; sourceTree = "<group>"; };
+		2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWHealthStoreManager.swift; sourceTree = "<group>"; };
+		2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunsetWorkout.entitlements; sourceTree = "<group>"; };
+		2B6608DB28D02D4F00361C0F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		2B83FA7428D8A19A00C3B1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormView.swift; sourceTree = "<group>"; };
+		2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySelectingView.swift; sourceTree = "<group>"; };
+		2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchNewWorkoutView.swift; sourceTree = "<group>"; };
+		2B83FA7F28DD38B800C3B1C0 /* FeelingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingViewModel.swift; sourceTree = "<group>"; };
+		2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutApp.swift; sourceTree = "<group>"; };
-		2BD1D7FC28B626FE006A3848 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		2BD1D7FE28B626FF006A3848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BD1D80128B626FF006A3848 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2BD1D80728B626FF006A3848 /* SunsetWorkoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunsetWorkoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutTests.swift; sourceTree = "<group>"; };
 		2BD1D81128B626FF006A3848 /* SunsetWorkoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunsetWorkoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D81528B626FF006A3848 /* SunsetWorkoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutUITests.swift; sourceTree = "<group>"; };
-		2BD1D81728B626FF006A3848 /* SunsetWorkoutUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationView.swift; sourceTree = "<group>"; };
+		2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingConfigurationView.swift; sourceTree = "<group>"; };
+		2BFF29A928C4F55E0041841F /* Feeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feeling.swift; sourceTree = "<group>"; };
+		2BFF29AC28C55C3B0041841F /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		2BFF29AE28C59AD90041841F /* TabBarItemsPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemsPreferenceKey.swift; sourceTree = "<group>"; };
+		2BFF29B028C59BD40041841F /* TabBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarContainerView.swift; sourceTree = "<group>"; };
+		2BFF29B228C5FFF00041841F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +116,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7FDFEE28E7F640009FFAF5 /* RealmSwift in Frameworks */,
+				2B64BA2828D5BD4700E95514 /* FirebaseCrashlytics in Frameworks */,
+				2B64BA2628D5BD4700E95514 /* FirebaseAnalytics in Frameworks */,
+				2B64BA2A28D5BD4700E95514 /* FirebasePerformance in Frameworks */,
+				2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */,
+				2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +142,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B6608C328CB63C800361C0F /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				2B6608C428CB63D400361C0F /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		2B6608C828CCC56A00361C0F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */,
+				2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */,
+				2B83FA7F28DD38B800C3B1C0 /* FeelingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2B6608DA28D02D4F00361C0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2B6608DB28D02D4F00361C0F /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B7FDFEF28E7F6A8009FFAF5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */,
+				2B00C26528EEE3C3002FDA9F /* Quote.swift */,
+				2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2BD1D7EE28B626FE006A3848 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +185,7 @@
 				2BD1D80A28B626FF006A3848 /* SunsetWorkoutTests */,
 				2BD1D81428B626FF006A3848 /* SunsetWorkoutUITests */,
 				2BD1D7F828B626FE006A3848 /* Products */,
+				2B6608DA28D02D4F00361C0F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,8 +202,14 @@
 		2BD1D7F928B626FE006A3848 /* SunsetWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				2B83FA7428D8A19A00C3B1C0 /* Info.plist */,
+				2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */,
+				2BFF29A828C4F54B0041841F /* Utilities */,
+				2B7FDFEF28E7F6A8009FFAF5 /* Models */,
+				2BFF299E28C350A50041841F /* Views */,
+				2B6608C828CCC56A00361C0F /* ViewModels */,
 				2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */,
-				2BD1D7FC28B626FE006A3848 /* ContentView.swift */,
+				2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */,
 				2BD1D7FE28B626FF006A3848 /* Assets.xcassets */,
 				2BD1D80028B626FF006A3848 /* Preview Content */,
 			);
@@ -124,10 +236,85 @@
 			isa = PBXGroup;
 			children = (
 				2BD1D81528B626FF006A3848 /* SunsetWorkoutUITests.swift */,
-				2BD1D81728B626FF006A3848 /* SunsetWorkoutUITestsLaunchTests.swift */,
 				2B1558EA28B780B50013987F /* SnapshotHelper.swift */,
 			);
 			path = SunsetWorkoutUITests;
+			sourceTree = "<group>";
+		};
+		2BFF299E28C350A50041841F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2B6608C328CB63C800361C0F /* Dashboard */,
+				2BFF29AB28C55BC70041841F /* TabBar */,
+				2BFF29A228C350D30041841F /* Profile */,
+				2BFF29A128C350C00041841F /* Exercise */,
+				2BFF29A028C350B70041841F /* Workout */,
+				2BFF299F28C350AD0041841F /* Configuration */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2BFF299F28C350AD0041841F /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */,
+				2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */,
+				2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */,
+				2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		2BFF29A028C350B70041841F /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */,
+				2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		2BFF29A128C350C00041841F /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Exercise;
+			sourceTree = "<group>";
+		};
+		2BFF29A228C350D30041841F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		2BFF29A828C4F54B0041841F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2BFF29A928C4F55E0041841F /* Feeling.swift */,
+				2BFF29AC28C55C3B0041841F /* TabBarItem.swift */,
+				2BFF29AE28C59AD90041841F /* TabBarItemsPreferenceKey.swift */,
+				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
+				2B6608C628CC9F6300361C0F /* Colors.swift */,
+				2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */,
+				2B00C25D28EEC637002FDA9F /* RealmManager.swift */,
+				2B00C25F28EED907002FDA9F /* SWError.swift */,
+				2B00C26128EED97D002FDA9F /* ErrorEnums.swift */,
+				2B00C26328EEE31C002FDA9F /* DateExtension.swift */,
+				2B00C26928EEE80A002FDA9F /* HKQueriable.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2BFF29AB28C55BC70041841F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2BFF29B028C59BD40041841F /* TabBarContainerView.swift */,
+				2BFF29B228C5FFF00041841F /* TabBarView.swift */,
+				2B6608C128CB5A4E00361C0F /* MainView.swift */,
+				2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,6 +334,13 @@
 			dependencies = (
 			);
 			name = SunsetWorkout;
+			packageProductDependencies = (
+				2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */,
+				2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */,
+				2B64BA2928D5BD4700E95514 /* FirebasePerformance */,
+				2B7FDFEB28E7F640009FFAF5 /* Realm */,
+				2B7FDFED28E7F640009FFAF5 /* RealmSwift */,
+			);
 			productName = SunsetWorkout;
 			productReference = 2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */;
 			productType = "com.apple.product-type.application";
@@ -195,7 +389,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					2BD1D7F628B626FE006A3848 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -217,8 +411,13 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 2BD1D7EE28B626FE006A3848;
+			packageReferences = (
+				2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 2BD1D7F828B626FE006A3848 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -237,6 +436,7 @@
 			files = (
 				2BD1D80228B626FF006A3848 /* Preview Assets.xcassets in Resources */,
 				2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */,
+				2B64BA2128D5B8D500E95514 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +459,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		2BC729D228B690DE00FD0B04 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -273,7 +474,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n    swiftlint --fix & swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -282,7 +483,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BD1D7FD28B626FE006A3848 /* ContentView.swift in Sources */,
+				2BFF29AD28C55C3B0041841F /* TabBarItem.swift in Sources */,
+				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
+				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
+				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
+				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
+				2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */,
+				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,
+				2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */,
+				2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */,
+				2BFF29AF28C59AD90041841F /* TabBarItemsPreferenceKey.swift in Sources */,
+				2BFF29AA28C4F55E0041841F /* Feeling.swift in Sources */,
+				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
+				2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */,
+				2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */,
+				2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */,
+				2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */,
+				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
+				2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */,
+				2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */,
+				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
+				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
+				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
+				2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */,
+				2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */,
+				2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */,
+				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
+				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
+				2B00C26228EED97D002FDA9F /* ErrorEnums.swift in Sources */,
 				2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +527,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BD1D81828B626FF006A3848 /* SunsetWorkoutUITestsLaunchTests.swift in Sources */,
 				2BD1D81628B626FF006A3848 /* SunsetWorkoutUITests.swift in Sources */,
 				2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */,
 			);
@@ -325,6 +552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -386,6 +614,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -442,17 +671,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SunsetWorkout/SunsetWorkout.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SunsetWorkout/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sunset Workout";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Synchronize your workouts to the Apple's Health app";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout data will be used to show histories";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your health records will be used to make workouts sessions follow.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,9 +697,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,17 +711,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SunsetWorkout/SunsetWorkout.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SunsetWorkout/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sunset Workout";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Synchronize your workouts to the Apple's Health app";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout data will be used to show histories";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your health records will be used to make workouts sessions follow.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -491,9 +737,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -506,13 +755,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunsetWorkout.app/SunsetWorkout";
 			};
 			name = Debug;
@@ -526,13 +778,16 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunsetWorkout.app/SunsetWorkout";
 			};
 			name = Release;
@@ -548,9 +803,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = SunsetWorkout;
 			};
 			name = Debug;
@@ -566,9 +824,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = SunsetWorkout;
 			};
 			name = Release;
@@ -613,6 +874,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.30.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		2B64BA2928D5BD4700E95514 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		2B7FDFEB28E7F640009FFAF5 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		2B7FDFED28E7F640009FFAF5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2BD1D7EF28B626FE006A3848 /* Project object */;
 }
