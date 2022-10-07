@@ -8,7 +8,9 @@
 import HealthKit
 
 class DashboardViewModel: SWHealthStoreManager {
+    var feelingViewModel = FeelingViewModel()
     @Published var quote: Quote?
+    @Published var feeling: FeelingModel?
     @Published var sleptHours: HKQuantity = HKQuantity(unit: .second(), doubleValue: 0)
     @Published var dailyKilocalories: HKQuantity = HKQuantity(unit: .kilocalorie(), doubleValue: 0)
     @Published var dailyTrainedTime: HKQuantity = HKQuantity(unit: .minute(), doubleValue: 0)
@@ -20,6 +22,7 @@ class DashboardViewModel: SWHealthStoreManager {
                 self.getSleptHours()
                 self.getMovedCalories()
                 self.getTrainedTime()
+                self.getFeeling()
             }
         }
     }
@@ -172,6 +175,12 @@ class DashboardViewModel: SWHealthStoreManager {
         }
 
         return sleptLabel
+    }
+
+    func getFeeling() {
+        dispatchedMainQueue {
+            self.feeling = self.feelingViewModel.getLastFeeling()
+        }
     }
 
     private func getHoursAndMinutesSlept() -> (Int, Int) {

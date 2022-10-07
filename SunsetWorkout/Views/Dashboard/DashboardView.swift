@@ -56,7 +56,9 @@ struct DashboardView: View {
                     DashboardCardView(
                         icon: Image(systemName: "leaf"),
                         title: "Feeling",
-                        value: Feeling.happy.relatedEmoji)
+                        value: (
+                            dashboardViewModel.feeling != nil) ?
+                        dashboardViewModel.feeling!.feeling.relatedEmoji : "N/A")
                 }
 
                 HStack {
@@ -76,7 +78,8 @@ struct DashboardView: View {
                                         print("profile tapped")
                                     }, label: {
                                         ProfileView()
-                                    }))
+                                    })
+            )
             .navigationTitle("Title")
             .onAppear {
                 dashboardViewModel.getUpdatedValues()
