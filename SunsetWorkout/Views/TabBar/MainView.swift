@@ -7,18 +7,37 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct MainView: View, KeyboardReadable {
     @AppStorage("currentPage") var currenPage = 1
     @State private var selection: String = "dashboard"
     @State private var selectedTab: TabBarItem = .dashboard
+    @State private var isKeyboardVisible = false
 
     var body: some View {
-        if currenPage < WalkthroughConfigurationSettings.totalPages {
-            ConfigurationWalkthroughView()
+        if currenPage <= WalkthroughConfigurationSettings.totalPages {
+            ConfigurationWalkthroughView(SWHealthStoreManager: SWHealthStoreManager())
+                .preferredColorScheme(.dark)
+                .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+                .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+                    isKeyboardVisible = newIsKeyboardVisible
+                }
+
         } else {
             TabBarContainerView(selection: $selectedTab) {
-                DashboardView()
-                    .tabBarItem(tab: .dashboard, selection: $selectedTab)
+                    DashboardView()
+                        .tabBarItem(tab: .dashboard, selection: $selectedTab)
+
+                    EmptySelectingView()
+                        .tabBarItem(tab: .add, selection: $selectedTab)
+
+                    LaunchNewWorkoutView()
+                        .tabBarItem(tab: .launch, selection: $selectedTab)
+
+                    CreateFormView()
+                        .tabBarItem(tab: .create, selection: $selectedTab)
+
+                    DashboardView()
+                        .tabBarItem(tab: .workouts, selection: $selectedTab)
             }
         }
     }

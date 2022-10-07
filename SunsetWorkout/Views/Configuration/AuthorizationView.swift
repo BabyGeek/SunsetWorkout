@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct AuthorizationView: View {
+    @EnvironmentObject var SWHealthStoreManager: SWHealthStoreManager
     @AppStorage("currentPage") var currenPage = 1
+    var withButton: Bool = false
+
     var body: some View {
         VStack(spacing: 20) {
             Text("Sunset Workout")
@@ -30,13 +33,22 @@ Duis semper.
             .multilineTextAlignment(.center)
 
             Spacer(minLength: 100)
+
+            if withButton {
+                Button("Authorize") {
+                    SWHealthStoreManager.askForPermission { (success) in
+                        print(success)
+                    }
+                }
+            }
         }
-        .background(Color.yellow.ignoresSafeArea())
+        .padding()
+        .background(Color.purple.ignoresSafeArea())
     }
 }
 
 struct AuthorizationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthorizationView()
+        AuthorizationView(withButton: true)
     }
 }

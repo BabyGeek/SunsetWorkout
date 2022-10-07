@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct ProfileConfigurationView: View {
+    @StateObject var profileConfigurationViewModel = ProfileConfigurationViewModel()
     @AppStorage("currentPage") var currenPage = 1
-    @State var age = ""
-    @State var height = ""
-    @State var weight = ""
 
     var body: some View {
         VStack(spacing: 20) {
@@ -45,28 +43,89 @@ struct ProfileConfigurationView: View {
                 .fontWeight(.semibold)
 
             VStack(spacing: 50) {
-                TextField("Your age", text: $age)
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .overlay(Capsule()
-                        .stroke(lineWidth: 1))
-                TextField("Your height", text: $height)
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .overlay(Capsule()
-                        .stroke(lineWidth: 1))
-                TextField("Your weight", text: $weight)
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .overlay(Capsule()
-                        .stroke(lineWidth: 1))
+
+                FloatingTextField(
+                    placeHolder: "Height (\(profileConfigurationViewModel.getUserLocaleHeightUnit()))",
+                    text: $profileConfigurationViewModel.height, bgColor:
+                        .purple)
+                .keyboardType(.decimalPad)
+
+                FloatingTextField(
+                    placeHolder: "Weight (\(profileConfigurationViewModel.getUserLocaleWeightUnit()))",
+                    text: $profileConfigurationViewModel.weight, bgColor:
+                        .purple)
+                .keyboardType(.decimalPad)
+
+                FloatingTextField(
+                    placeHolder: "Gender",
+                    text: $profileConfigurationViewModel.weight, bgColor:
+                        .purple)
+                .keyboardType(.decimalPad)
             }
 
             Spacer(minLength: 100)
 
         }
         .padding()
-        .background(Color.blue.ignoresSafeArea())
+        .background(Color.purple.ignoresSafeArea())
+        .onAppear {
+            profileConfigurationViewModel.refreshValues()
+        }
+        .onDisappear {
+            profileConfigurationViewModel.saveValues()
+        }
+    }
+}
+
+struct FloatingTextField: View {
+    let textFieldHeight: CGFloat = 50
+    private let placeHolderText: String
+    @Binding var text: String
+    private let bgColor: Color
+    @State private var isEditing = false
+
+    public init(placeHolder: String,
+                text: Binding<String>, bgColor: Color) {
+        self._text = text
+        self.placeHolderText = placeHolder
+        self.bgColor = bgColor
+    }
+
+    var shouldPlaceHolderMove: Bool {
+        isEditing || (text.count != 0)
+    }
+
+    var body: some View {
+        ZStack(alignment: .leading) {
+            TextField("", text: $text, onEditingChanged: { (edit) in
+                isEditing = edit
+            })
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.secondary, lineWidth: 1)
+                .frame(height: textFieldHeight))
+            .foregroundColor(Color.primary)
+            .accentColor(Color.secondary)
+            .animation(.linear)
+            Text(placeHolderText)
+                .foregroundColor(Color.secondary)
+                .background(bgColor)
+                .padding(shouldPlaceHolderMove ?
+                         EdgeInsets(top: 0, leading: 15, bottom: textFieldHeight, trailing: 0) :
+                            EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
+                .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
+                .animation(.linear)
+        }
+    }
+}
+
+public extension UIViewController {
+    @objc func tapAction() { self.view.endEditing(true) }
+
+    @objc func addTapToDismissKeyBoard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        tap.cancelsTouchesInView = true
+        self.view.addGestureRecognizer(tap)
     }
 }
 
