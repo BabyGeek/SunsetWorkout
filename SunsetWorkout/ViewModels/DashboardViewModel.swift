@@ -45,7 +45,11 @@ class DashboardViewModel: SWHealthStoreManager {
             // predicate
             let predicate = HKSampleQuery.predicateForSamples(
                 withStart: Date().getDay(order: .before, type: .evening),
-                end: Date())
+                end: Date(),
+                options: [.strictStartDate, .strictEndDate])
+
+            print("Start at: \(Date().getDay(order: .before, type: .evening))")
+            print("End at: \(Date())")
 
             // the block completion to execute
             let query = HKSampleQuery(
@@ -65,6 +69,7 @@ class DashboardViewModel: SWHealthStoreManager {
                     for item in result {
 
                         if let sample = item as? HKCategorySample {
+                            print("start at: \(sample.startDate), end at: \(sample.endDate), time difference: \(sample.endDate.timeIntervalSince(sample.startDate))")
                             sleptTimeTotal += sample.endDate.timeIntervalSince(sample.startDate)
                         }
                     }

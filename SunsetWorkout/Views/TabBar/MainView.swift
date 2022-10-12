@@ -36,7 +36,7 @@ struct MainView: View, KeyboardReadable {
                     CreateFormView()
                         .tabBarItem(tab: .create, selection: $selectedTab)
 
-                    DashboardView()
+                    EmptySelectingView()
                         .tabBarItem(tab: .workouts, selection: $selectedTab)
             }
         }
