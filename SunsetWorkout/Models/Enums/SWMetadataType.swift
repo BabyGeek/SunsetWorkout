@@ -6,5 +6,10 @@
 //
 
 enum SWMetadataType: String {
-    case exerciseBreak, roundBreak, roundNumber, serieBreak, serieNumber, repetitionGoal
+    case exerciseBreak,
+         roundBreak,
+         roundNumber,
+         serieBreak,
+         serieNumber,
+         repetitionGoal
 }

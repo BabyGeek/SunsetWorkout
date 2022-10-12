@@ -11,6 +11,7 @@ import RealmSwift
 class WorkoutViewModel: ObservableObject {
     @Published var error: SWError?
     @Published var workout: SWWorkout?
+    @Published var saved: Bool = false
 
     let realmManager = RealmManager()
 
@@ -18,7 +19,7 @@ class WorkoutViewModel: ObservableObject {
         workout?.cleanMetadata()
 
         if let workout {
-            save(model: workout, with: SWWorkoutMetadataModel.init)
+            save(model: workout, with: SWWorkoutModel.init)
         }
     }
 
@@ -27,7 +28,7 @@ class WorkoutViewModel: ObservableObject {
 
         do {
             try realmManager.saveObject(object)
-            print("done")
+            saved = true
         } catch {
             self.error = SWError(error: error)
         }

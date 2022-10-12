@@ -29,6 +29,7 @@ class SWWorkoutModel: Object {
 
         self.name = workout.name
         self.rawType = workout.type.rawValue
+        dump(workout.metadata.map({ SWWorkoutMetadataModel(metadata: $0) }))
         self.metadata.append(objectsIn: workout.metadata.map({ SWWorkoutMetadataModel(metadata: $0) }))
     }
 }

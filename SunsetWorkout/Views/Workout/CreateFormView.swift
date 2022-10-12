@@ -28,13 +28,22 @@ struct TraditionalFormView: View {
     @Binding var repetitionGoal: String
 
     var body: some View {
-        FloatingTextField(placeHolder: "Series break (secs)", text: $seriesBreak, bgColor: Color(.systemBackground))
+        FloatingTextField(
+            placeHolder: "Series break (secs)",
+            text: $seriesBreak,
+            bgColor: Color(.systemBackground))
             .keyboardType(.numberPad)
 
-        FloatingTextField(placeHolder: "Series number", text: $seriesNumber, bgColor: Color(.systemBackground))
+        FloatingTextField(
+            placeHolder: "Series number",
+            text: $seriesNumber,
+            bgColor: Color(.systemBackground))
             .keyboardType(.numberPad)
 
-        FloatingTextField(placeHolder: "Series repetition goal", text: $repetitionGoal, bgColor: Color(.systemBackground))
+        FloatingTextField(
+            placeHolder: "Series repetition goal",
+            text: $repetitionGoal,
+            bgColor: Color(.systemBackground))
             .keyboardType(.numberPad)
     }
 }
@@ -66,17 +75,28 @@ struct CreateFormView: View {
                 }
                 .pickerStyle(.segmented)
 
-                FloatingTextField(placeHolder: "Name", text: $name, bgColor: Color(.systemBackground))
+                FloatingTextField(
+                    placeHolder: "Name",
+                    text: $name,
+                    bgColor: Color(.systemBackground))
 
-                FloatingTextField(placeHolder: "Exercice break (secs)", text: $exerciseBreak, bgColor: Color(.systemBackground))
+                FloatingTextField(
+                    placeHolder: "Exercice break (secs)",
+                    text: $exerciseBreak,
+                    bgColor: Color(.systemBackground))
                     .keyboardType(.numberPad)
 
                 if type == .highIntensityIntervalTraining {
-                    HIITFormView(roundBreak: $roundBreak, roundNumber: $roundNumber)
+                    HIITFormView(
+                        roundBreak: $roundBreak,
+                        roundNumber: $roundNumber)
                 }
 
                 if type == .traditionalStrengthTraining {
-                    TraditionalFormView(seriesBreak: $seriesBreak, seriesNumber: $seriesNumber, repetitionGoal: $repetitionGoal)
+                    TraditionalFormView(
+                        seriesBreak: $seriesBreak,
+                        seriesNumber: $seriesNumber,
+                        repetitionGoal: $repetitionGoal)
                 }
 
                 Spacer()
@@ -91,6 +111,18 @@ struct CreateFormView: View {
                         SWMetadata(type: .repetitionGoal, value: repetitionGoal)
                     ])
                     workoutViewModel.saveWorkout()
+                    
+                    if workoutViewModel.saved {
+                        name = ""
+                        roundBreak = ""
+                        roundNumber = ""
+                        exerciseBreak = ""
+                        seriesBreak = ""
+                        seriesNumber = ""
+                        repetitionGoal = ""
+                        
+                        workoutViewModel.saved = false
+                    }
                 } label: {
                     RoundedRectangle(cornerRadius: 25)
                         .frame(height: 50)

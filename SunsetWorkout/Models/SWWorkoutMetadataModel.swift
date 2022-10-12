@@ -19,6 +19,10 @@ class SWWorkoutMetadataModel: Object {
     convenience init(metadata: SWMetadata) {
         self.init()
 
+        dump(metadata)
+        dump(metadata.type)
+        dump(metadata.type.rawValue)
+
         self.rawType = metadata.type.rawValue
         self.value = metadata.value
     }
