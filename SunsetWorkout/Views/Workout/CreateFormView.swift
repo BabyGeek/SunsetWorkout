@@ -8,48 +8,51 @@
 import SwiftUI
 import HealthKit
 
-enum SWWorkoutType: String {
-    case highIntensityIntervalTraining = "HIIT"
-    case traditionalStrengthTraining = "Strenght"
-
-    var HKWorkoutActivityType: HKWorkoutActivityType {
-        switch self {
-        case .highIntensityIntervalTraining:
-            return .highIntensityIntervalTraining
-        case .traditionalStrengthTraining:
-            return .traditionalStrengthTraining
-        }
-    }
-}
-
-struct SWWorkout {
-    let type: SWWorkoutType
-}
-
 struct HIITFormView: View {
-    @State private var name: String = ""
+    @Binding var roundBreak: String
+    @Binding var roundNumber: String
 
     var body: some View {
-        FloatingTextField(placeHolder: "Round break (secs)", text: $name, bgColor: .white)
+        FloatingTextField(placeHolder: "Round break (secs)", text: $roundBreak, bgColor: Color(.systemBackground))
+            .keyboardType(.numberPad)
 
-        FloatingTextField(placeHolder: "Round number", text: $name, bgColor: .white)
+        FloatingTextField(placeHolder: "Round number", text: $roundNumber, bgColor: Color(.systemBackground))
+            .keyboardType(.numberPad)
 
     }
 }
 
 struct TraditionalFormView: View {
-    @State private var name: String = ""
+    @Binding var seriesBreak: String
+    @Binding var seriesNumber: String
+    @Binding var repetitionGoal: String
 
     var body: some View {
-        FloatingTextField(placeHolder: "Series break (secs)", text: $name, bgColor: .white)
-        FloatingTextField(placeHolder: "Series number", text: $name, bgColor: .white)
-        FloatingTextField(placeHolder: "Series repetition goal", text: $name, bgColor: .white)
+        FloatingTextField(placeHolder: "Series break (secs)", text: $seriesBreak, bgColor: Color(.systemBackground))
+            .keyboardType(.numberPad)
+
+        FloatingTextField(placeHolder: "Series number", text: $seriesNumber, bgColor: Color(.systemBackground))
+            .keyboardType(.numberPad)
+
+        FloatingTextField(placeHolder: "Series repetition goal", text: $repetitionGoal, bgColor: Color(.systemBackground))
+            .keyboardType(.numberPad)
     }
 }
 
 struct CreateFormView: View {
+    @ObservedObject var workoutViewModel: WorkoutViewModel = WorkoutViewModel()
+
     @State private var type: SWWorkoutType = .highIntensityIntervalTraining
+
     @State private var name: String = ""
+    @State private var exerciseBreak: String = ""
+
+    @State var roundBreak: String = ""
+    @State var roundNumber: String = ""
+
+    @State var seriesBreak: String = ""
+    @State var seriesNumber: String = ""
+    @State var repetitionGoal: String = ""
 
     var body: some View {
         NavigationView {
@@ -63,18 +66,40 @@ struct CreateFormView: View {
                 }
                 .pickerStyle(.segmented)
 
-                FloatingTextField(placeHolder: "Name", text: $name, bgColor: .white)
-                FloatingTextField(placeHolder: "Exercice break (secs)", text: $name, bgColor: .white)
+                FloatingTextField(placeHolder: "Name", text: $name, bgColor: Color(.systemBackground))
+
+                FloatingTextField(placeHolder: "Exercice break (secs)", text: $exerciseBreak, bgColor: Color(.systemBackground))
+                    .keyboardType(.numberPad)
 
                 if type == .highIntensityIntervalTraining {
-                    HIITFormView()
+                    HIITFormView(roundBreak: $roundBreak, roundNumber: $roundNumber)
                 }
 
                 if type == .traditionalStrengthTraining {
-                    TraditionalFormView()
+                    TraditionalFormView(seriesBreak: $seriesBreak, seriesNumber: $seriesNumber, repetitionGoal: $repetitionGoal)
                 }
 
                 Spacer()
+
+                Button {
+                    workoutViewModel.workout = SWWorkout(name: name, type: type, metadata: [
+                        SWMetadata(type: .roundBreak, value: roundBreak),
+                        SWMetadata(type: .roundNumber, value: roundNumber),
+                        SWMetadata(type: .exerciseBreak, value: exerciseBreak),
+                        SWMetadata(type: .serieBreak, value: seriesBreak),
+                        SWMetadata(type: .serieNumber, value: seriesNumber),
+                        SWMetadata(type: .repetitionGoal, value: repetitionGoal)
+                    ])
+                    workoutViewModel.saveWorkout()
+                } label: {
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 50)
+                        .overlay(
+                            Text("Save")
+                                .foregroundColor(Color(.label))
+                        )
+                }
+
             }
             .navigationTitle("New workout")
             .padding()
