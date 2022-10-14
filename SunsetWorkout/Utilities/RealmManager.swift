@@ -7,15 +7,17 @@
 
 import RealmSwift
 
-class RealmManager {
+struct RealmManager {
     let realm: Realm?
 
     init() {
         realm = try? Realm()
     }
 
-    func saveObject<C: Object>(_ object: C) throws {
+    func save<Model, RealmObject: Object>(model: Model, with reverseTransformer: (Model) -> RealmObject) throws {
         guard let realm else { throw RealmError.noRealm }
+
+        let object = reverseTransformer(model)
 
         do {
             try realm.write {
@@ -26,9 +28,19 @@ class RealmManager {
         }
     }
 
-    func getObjects<Element: RealmFetchable>(_ type: Element.Type) throws -> Results<Element> {
+    func fetch<Model, RealmObject>(with request: FetchRequest<Model, RealmObject>) throws -> Model {
         guard let realm else { throw RealmError.noRealm }
 
-        return realm.objects(type)
+        var results = realm.objects(RealmObject.self)
+
+        if let predicate = request.predicate {
+            results = results.filter(predicate)
+        }
+
+        if request.sortDescriptors.count > 0 {
+            results = results.sorted(by: request.sortDescriptors)
+        }
+
+        return request.transformer(results)
     }
 }
