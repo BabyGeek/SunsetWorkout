@@ -55,12 +55,6 @@ struct ProfileConfigurationView: View {
                     text: $profileConfigurationViewModel.weight, bgColor:
                         .purple)
                 .keyboardType(.decimalPad)
-
-                FloatingTextField(
-                    placeHolder: "Gender",
-                    text: $profileConfigurationViewModel.weight, bgColor:
-                        .purple)
-                .keyboardType(.decimalPad)
             }
 
             Spacer(minLength: 100)
