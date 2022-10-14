@@ -10,7 +10,7 @@ import HealthKit
 class DashboardViewModel: SWHealthStoreManager {
     var feelingViewModel = FeelingViewModel()
     @Published var quote: Quote?
-    @Published var feeling: FeelingModel?
+    @Published var feeling: Feeling?
     @Published var sleptHours: HKQuantity = HKQuantity(unit: .second(), doubleValue: 0)
     @Published var dailyKilocalories: HKQuantity = HKQuantity(unit: .kilocalorie(), doubleValue: 0)
     @Published var dailyTrainedTime: HKQuantity = HKQuantity(unit: .minute(), doubleValue: 0)
@@ -69,7 +69,11 @@ class DashboardViewModel: SWHealthStoreManager {
                     for item in result {
 
                         if let sample = item as? HKCategorySample {
-                            print("start at: \(sample.startDate), end at: \(sample.endDate), time difference: \(sample.endDate.timeIntervalSince(sample.startDate))")
+                            print(
+                                "start at: \(sample.startDate),"
+                                + " end at: \(sample.endDate),"
+                                + " time difference: \(sample.endDate.timeIntervalSince(sample.startDate))"
+                            )
                             sleptTimeTotal += sample.endDate.timeIntervalSince(sample.startDate)
                         }
                     }
