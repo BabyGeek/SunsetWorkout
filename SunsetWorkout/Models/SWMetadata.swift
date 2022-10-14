@@ -10,6 +10,7 @@ struct SWMetadata {
     let value: String
 }
 
+// MARK: - init from RealmObject
 extension SWMetadata {
     init(object: SWWorkoutMetadataModel) {
         guard let type = SWMetadataType(rawValue: object.rawType) else {

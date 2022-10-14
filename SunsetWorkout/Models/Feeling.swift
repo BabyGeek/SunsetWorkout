@@ -12,6 +12,7 @@ struct Feeling {
     var type: FeelingType
 }
 
+// MARK: - init from RealmObject
 extension Feeling {
     init(object: FeelingModel) {
         guard let type = FeelingType(rawValue: object.rawType) else {

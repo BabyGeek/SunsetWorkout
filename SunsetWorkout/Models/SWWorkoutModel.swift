@@ -14,12 +14,10 @@ class SWWorkoutModel: Object {
     @Persisted var rawType: String
     @Persisted var name: String
     @Persisted var metadata = RealmSwift.List<SWWorkoutMetadataModel>()
+}
 
-    var type: SWWorkoutType {
-        get { return SWWorkoutType(rawValue: rawType) ?? SWWorkoutType.highIntensityIntervalTraining }
-        set { rawType = newValue.rawValue }
-    }
-
+// MARK: - init from Model
+extension SWWorkoutModel {
     convenience init(workout: SWWorkout) {
         self.init()
 
@@ -30,5 +28,6 @@ class SWWorkoutModel: Object {
         self.name = workout.name
         self.rawType = workout.type.rawValue
         self.metadata.append(objectsIn: workout.metadata.map({ SWWorkoutMetadataModel(metadata: $0) }))
+        self.created_at = workout.createdAt
     }
 }

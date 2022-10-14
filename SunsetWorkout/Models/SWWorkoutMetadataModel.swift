@@ -10,12 +10,10 @@ import RealmSwift
 class SWWorkoutMetadataModel: Object {
     @Persisted var rawType: String
     @Persisted var value: String
+}
 
-    var type: SWMetadataType {
-        get { return SWMetadataType(rawValue: rawType) ?? SWMetadataType.exerciseBreak }
-        set { rawType = newValue.rawValue }
-    }
-
+// MARK: - init from Model
+extension SWWorkoutMetadataModel {
     convenience init(metadata: SWMetadata) {
         self.init()
 

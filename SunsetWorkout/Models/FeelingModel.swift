@@ -14,6 +14,7 @@ class FeelingModel: Object {
     @Persisted var rawType: String
 }
 
+// MARK: - init from Model
 extension FeelingModel {
     convenience init(feeling: Feeling) {
         self.init()
