@@ -110,8 +110,9 @@ struct CreateFormView: View {
                         SWMetadata(type: .serieNumber, value: seriesNumber),
                         SWMetadata(type: .repetitionGoal, value: repetitionGoal)
                     ])
+
                     workoutViewModel.saveWorkout()
-                    
+
                     if workoutViewModel.saved {
                         name = ""
                         roundBreak = ""
@@ -120,7 +121,7 @@ struct CreateFormView: View {
                         seriesBreak = ""
                         seriesNumber = ""
                         repetitionGoal = ""
-                        
+
                         workoutViewModel.saved = false
                     }
                 } label: {
