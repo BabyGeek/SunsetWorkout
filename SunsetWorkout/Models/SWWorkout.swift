@@ -8,17 +8,37 @@
 import Foundation
 
 struct SWWorkout {
-    var id: String = UUID().uuidString
+    var id: String
     let name: String
     let type: SWWorkoutType
+    let createdAt: Date
 
     var metadata: [SWMetadata]
+
+    init(id: String = UUID().uuidString, name: String, type: SWWorkoutType, createdAt: Date = Date(), metadata: [SWMetadata]) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.createdAt = createdAt
+        self.metadata = metadata
+    }
 
     mutating func cleanMetadata() {
         metadata = metadata.filter { type.SWMetadataTypes.contains($0.type) }
     }
 }
 
+// MARK: - Identifiable
+extension SWWorkout: Identifiable { }
+
+// MARK: - Equatable
+extension SWWorkout: Equatable {
+    static func == (lhs: SWWorkout, rhs: SWWorkout) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+// MARK: - init from RealmObject
 extension SWWorkout {
     init(object: SWWorkoutModel) {
         guard let type = SWWorkoutType(rawValue: object.rawType) else {
@@ -29,5 +49,6 @@ extension SWWorkout {
         self.type = type
         self.name = object.name
         self.metadata = object.metadata.map { SWMetadata(object: $0) }
+        self.createdAt = object.created_at
     }
 }
