@@ -23,11 +23,9 @@ class WorkoutViewModel: ObservableObject {
         }
     }
 
-    func save<Model, RealmObject: Object>(model: Model, with reverseTransformer: (Model) -> RealmObject) {
-        let object = reverseTransformer(model)
-
+    func save(model: SWWorkout, with reverseTransformer: (SWWorkout) -> SWWorkoutModel) {
         do {
-            try realmManager.saveObject(object)
+            try realmManager.save(model: model, with: reverseTransformer)
             saved = true
         } catch {
             self.error = SWError(error: error)
