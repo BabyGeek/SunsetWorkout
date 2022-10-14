@@ -16,6 +16,7 @@ struct FetchRequest<Model, RealmObject: Object> {
 
 extension RealmSwift.SortDescriptor {
     static let name = SortDescriptor(keyPath: "name", ascending: true)
+
     static let type = SortDescriptor(keyPath: "rawType", ascending: true)
 
     static let createdAtASC = SortDescriptor(keyPath: "created_at", ascending: true)
@@ -23,17 +24,35 @@ extension RealmSwift.SortDescriptor {
 }
 
 extension SWWorkout {
-    static let all = FetchRequest<[SWWorkout], SWWorkoutModel>(
+    static let allByNameASC = FetchRequest<[SWWorkout], SWWorkoutModel>(
         predicate: nil,
         sortDescriptors: [RealmSwift.SortDescriptor.name],
+        transformer: { $0.map(SWWorkout.init) }
+    )
+
+    static let allByDateASC = FetchRequest<[SWWorkout], SWWorkoutModel>(
+        predicate: nil,
+        sortDescriptors: [RealmSwift.SortDescriptor.createdAtASC],
+        transformer: { $0.map(SWWorkout.init) }
+    )
+
+    static let allByDateDESC = FetchRequest<[SWWorkout], SWWorkoutModel>(
+        predicate: nil,
+        sortDescriptors: [RealmSwift.SortDescriptor.createdAtDESC],
         transformer: { $0.map(SWWorkout.init) }
     )
 }
 
 extension Feeling {
-    static let all = FetchRequest<[Feeling], FeelingModel>(
+    static let allByTypeASC = FetchRequest<[Feeling], FeelingModel>(
         predicate: nil,
         sortDescriptors: [RealmSwift.SortDescriptor.type],
+        transformer: { $0.map(Feeling.init) }
+    )
+
+    static let allByDateASC = FetchRequest<[Feeling], FeelingModel>(
+        predicate: nil,
+        sortDescriptors: [RealmSwift.SortDescriptor.createdAtASC],
         transformer: { $0.map(Feeling.init) }
     )
 

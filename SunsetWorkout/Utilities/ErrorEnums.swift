@@ -6,8 +6,34 @@
 //
 import Foundation
 
+// MARK: - Errors
+public enum GlobalError: Error {
+    case unknown
+}
+
 public enum RealmError: Error {
-    case noRealm, failure, unknown
+    case noRealm, failure
+}
+
+public enum SWWorkoutError: Error {
+    case noName
+}
+
+// MARK: - Localised Errors
+extension GlobalError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .unknown:
+            return "Unknown error"
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+        case .unknown:
+            return "An unknown error occured."
+        }
+    }
 }
 
 extension RealmError: LocalizedError {
@@ -17,8 +43,6 @@ extension RealmError: LocalizedError {
             return "Realm error"
         case .failure:
             return "Fail"
-        case .unknown:
-            return "Unknown error"
         }
     }
 
@@ -28,8 +52,22 @@ extension RealmError: LocalizedError {
             return "Realm was not able to be found."
         case .failure:
             return "A failure occured while saving or fetching data."
-        case .unknown:
-            return "An unknown error occured"
+        }
+    }
+}
+
+extension SWWorkoutError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .noName:
+            return "Workout error"
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+        case .noName:
+            return "You need to specify a name for the workout."
         }
     }
 }
