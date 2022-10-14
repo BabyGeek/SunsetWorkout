@@ -58,7 +58,7 @@ struct DashboardView: View {
                         title: "Feeling",
                         value: (
                             dashboardViewModel.feeling != nil) ?
-                        dashboardViewModel.feeling!.feeling.relatedEmoji : "N/A")
+                        dashboardViewModel.feeling!.type.relatedEmoji : "N/A")
                 }
 
                 HStack {

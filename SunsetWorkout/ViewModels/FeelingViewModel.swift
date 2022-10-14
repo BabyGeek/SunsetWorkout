@@ -10,35 +10,30 @@ import RealmSwift
 
 class FeelingViewModel: ObservableObject {
     @Published var error: SWError?
+    @Published var feelings: [Feeling]?
+
     let realmManager = RealmManager()
 
-    func saveFeeling(_ feeling: Feeling) {
-        let feelingModel: FeelingModel = FeelingModel(
-            createdAt: Date(),
-            rawFeeling: feeling.rawValue
-        )
-
+    func save(model: Feeling, with reverseTransformer: (Feeling) -> FeelingModel) {
         do {
-            try realmManager.saveObject(feelingModel)
+            try realmManager.save(model: model, with: reverseTransformer)
         } catch {
             self.error = SWError(error: error)
         }
     }
 
-    func getFeelings() -> Results<FeelingModel>? {
-        var feelings: Results<FeelingModel>?
-
+    func fetch(with request: FetchRequest<[Feeling], FeelingModel>) {
         do {
-            feelings = try realmManager.getObjects(FeelingModel.self)
+            self.feelings = try realmManager.fetch(with: request)
         } catch {
             self.error = SWError(error: error)
         }
-
-        return feelings
     }
 
-    func getLastFeeling() -> FeelingModel? {
-        guard let feelings = getFeelings() else { return nil }
+    func getLastFeeling() -> Feeling? {
+        self.fetch(with: Feeling.allByDateDESC)
+        guard let feelings else { return nil }
+
         return feelings.last
     }
 }

@@ -11,16 +11,17 @@ import RealmSwift
 class FeelingModel: Object {
     @Persisted(primaryKey: true) var _id: String
     @Persisted var created_at: Date
-    @Persisted var rawFeeling: String
+    @Persisted var rawType: String
+}
 
-    var feeling: Feeling {
-        get { return Feeling(rawValue: rawFeeling) ?? Feeling.happy }
-        set { rawFeeling = newValue.rawValue }
-    }
-
-    convenience init(createdAt: Date, rawFeeling: String) {
+extension FeelingModel {
+    convenience init(feeling: Feeling) {
         self.init()
-        self.created_at = createdAt
-        self.rawFeeling = rawFeeling
+
+        if feeling.id.count > 0 {
+            self._id = feeling.id
+        }
+
+        self.rawType = feeling.type.rawValue
     }
 }

@@ -9,8 +9,13 @@ import SwiftUI
 
 struct FeelingConfigurationView: View {
     @AppStorage("currentPage") var currenPage = 1
-    @State var selected: Feeling = .happy
+    @State var selected: FeelingType = .happy
+
     @StateObject var feelingViewModel = FeelingViewModel()
+
+    var feeling: Feeling {
+        Feeling(type: selected)
+    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -49,7 +54,7 @@ struct FeelingConfigurationView: View {
         .padding()
         .background(Color.purple.ignoresSafeArea())
         .onDisappear {
-            feelingViewModel.saveFeeling(selected)
+            feelingViewModel.save(model: feeling, with: FeelingModel.init)
         }
     }
 }
@@ -58,24 +63,24 @@ extension FeelingConfigurationView {
     var feelingsList: some View {
         VStack {
             HStack {
-                FeelingListingView(selected: $selected, feeling: Feeling.happy)
-                FeelingListingView(selected: $selected, feeling: Feeling.sad)
+                FeelingListingView(selected: $selected, feeling: FeelingType.happy)
+                FeelingListingView(selected: $selected, feeling: FeelingType.sad)
             }
             HStack {
-                FeelingListingView(selected: $selected, feeling: Feeling.excited)
-                FeelingListingView(selected: $selected, feeling: Feeling.annoyed)
+                FeelingListingView(selected: $selected, feeling: FeelingType.excited)
+                FeelingListingView(selected: $selected, feeling: FeelingType.annoyed)
             }
             HStack {
-                FeelingListingView(selected: $selected, feeling: Feeling.tired)
-                FeelingListingView(selected: $selected, feeling: Feeling.stressed)
+                FeelingListingView(selected: $selected, feeling: FeelingType.tired)
+                FeelingListingView(selected: $selected, feeling: FeelingType.stressed)
             }
         }
     }
 }
 
 struct FeelingListingView: View {
-    @Binding var selected: Feeling
-    var feeling: Feeling
+    @Binding var selected: FeelingType
+    var feeling: FeelingType
     var columns: [GridItem] = [
         .init(.fixed(64), spacing: 20, alignment: .trailing),
         .init(.flexible(), alignment: .leading),

@@ -1,5 +1,5 @@
 //
-//  Feeling.swift
+//  FeelingType.swift
 //  SunsetWorkout
 //
 //  Created by Paul Oggero on 04/09/2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Feeling: String, CaseIterable {
+enum FeelingType: String, CaseIterable {
     case happy, sad, annoyed, excited, tired, stressed
 
     var shortName: String {
