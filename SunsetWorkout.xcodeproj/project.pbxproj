@@ -14,6 +14,8 @@
 		2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26528EEE3C3002FDA9F /* Quote.swift */; };
 		2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */; };
 		2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26928EEE80A002FDA9F /* HKQueriable.swift */; };
+		2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */; };
+		2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1558EA28B780B50013987F /* SnapshotHelper.swift */; };
 		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
@@ -86,6 +88,8 @@
 		2B00C26528EEE3C3002FDA9F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTag.swift; sourceTree = "<group>"; };
 		2B00C26928EEE80A002FDA9F /* HKQueriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueriable.swift; sourceTree = "<group>"; };
+		2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalFormView.swift; sourceTree = "<group>"; };
+		2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITFormView.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1558EA28B780B50013987F /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
@@ -311,6 +315,8 @@
 				2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */,
 				2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */,
 				2B39EACD28F96C6E00752742 /* WorkoutsView.swift */,
+				2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */,
+				2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -530,9 +536,11 @@
 				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
 				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
+				2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */,
 				2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */,
 				2B94AD7228F75C7A00F3C71B /* WorkoutViewModel.swift in Sources */,
 				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
+				2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */,
 				2B94AD7B28F7609100F3C71B /* SWWorkout.swift in Sources */,
 				2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */,
 				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,

@@ -8,46 +8,6 @@
 import SwiftUI
 import HealthKit
 
-struct HIITFormView: View {
-    @Binding var roundBreak: String
-    @Binding var roundNumber: String
-
-    var body: some View {
-        FloatingTextField(placeHolder: "Round break (secs)", text: $roundBreak, bgColor: Color(.systemBackground))
-            .keyboardType(.numberPad)
-
-        FloatingTextField(placeHolder: "Round number", text: $roundNumber, bgColor: Color(.systemBackground))
-            .keyboardType(.numberPad)
-
-    }
-}
-
-struct TraditionalFormView: View {
-    @Binding var seriesBreak: String
-    @Binding var seriesNumber: String
-    @Binding var repetitionGoal: String
-
-    var body: some View {
-        FloatingTextField(
-            placeHolder: "Series break (secs)",
-            text: $seriesBreak,
-            bgColor: Color(.systemBackground))
-            .keyboardType(.numberPad)
-
-        FloatingTextField(
-            placeHolder: "Series number",
-            text: $seriesNumber,
-            bgColor: Color(.systemBackground))
-            .keyboardType(.numberPad)
-
-        FloatingTextField(
-            placeHolder: "Series repetition goal",
-            text: $repetitionGoal,
-            bgColor: Color(.systemBackground))
-            .keyboardType(.numberPad)
-    }
-}
-
 struct CreateFormView: View {
     @ObservedObject var workoutViewModel: WorkoutViewModel = WorkoutViewModel()
 

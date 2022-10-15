@@ -1,0 +1,42 @@
+//
+//  TraditionalFormView.swift
+//  SunsetWorkout
+//
+//  Created by Paul Oggero on 15/10/2022.
+//
+
+import SwiftUI
+
+struct TraditionalFormView: View {
+    @Binding var seriesBreak: String
+    @Binding var seriesNumber: String
+    @Binding var repetitionGoal: String
+
+    var body: some View {
+        VStack {
+            FloatingTextField(
+                placeHolder: "Series break (secs)",
+                text: $seriesBreak,
+                bgColor: Color(.systemBackground))
+                .keyboardType(.numberPad)
+
+            FloatingTextField(
+                placeHolder: "Series number",
+                text: $seriesNumber,
+                bgColor: Color(.systemBackground))
+                .keyboardType(.numberPad)
+
+            FloatingTextField(
+                placeHolder: "Series repetition goal",
+                text: $repetitionGoal,
+                bgColor: Color(.systemBackground))
+                .keyboardType(.numberPad)
+        }
+    }
+}
+
+struct TraditionalFormView_Previews: PreviewProvider {
+    static var previews: some View {
+        TraditionalFormView(seriesBreak: .constant("60"), seriesNumber: .constant("6"), repetitionGoal: .constant("12"))
+    }
+}
