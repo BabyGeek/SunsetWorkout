@@ -17,7 +17,6 @@
 		2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */; };
 		2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
-		2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1558EA28B780B50013987F /* SnapshotHelper.swift */; };
 		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
 		2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACD28F96C6E00752742 /* WorkoutsView.swift */; };
 		2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACF28F96EE000752742 /* WorkoutsViewModel.swift */; };
@@ -53,7 +52,6 @@
 		2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FE28B626FF006A3848 /* Assets.xcassets */; };
 		2BD1D80228B626FF006A3848 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D80128B626FF006A3848 /* Preview Assets.xcassets */; };
 		2BD1D80C28B626FF006A3848 /* SunsetWorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */; };
-		2BD1D81628B626FF006A3848 /* SunsetWorkoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D81528B626FF006A3848 /* SunsetWorkoutUITests.swift */; };
 		2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */; };
 		2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */; };
 		2BFF29AA28C4F55E0041841F /* FeelingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A928C4F55E0041841F /* FeelingType.swift */; };
@@ -65,13 +63,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		2BD1D80828B626FF006A3848 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2BD1D7EF28B626FE006A3848 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2BD1D7F628B626FE006A3848;
-			remoteInfo = SunsetWorkout;
-		};
-		2BD1D81228B626FF006A3848 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2BD1D7EF28B626FE006A3848 /* Project object */;
 			proxyType = 1;
@@ -91,7 +82,6 @@
 		2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalFormView.swift; sourceTree = "<group>"; };
 		2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITFormView.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
-		2B1558EA28B780B50013987F /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
 		2B39EACD28F96C6E00752742 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
 		2B39EACF28F96EE000752742 /* WorkoutsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewModel.swift; sourceTree = "<group>"; };
@@ -126,8 +116,6 @@
 		2BD1D80128B626FF006A3848 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2BD1D80728B626FF006A3848 /* SunsetWorkoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunsetWorkoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutTests.swift; sourceTree = "<group>"; };
-		2BD1D81128B626FF006A3848 /* SunsetWorkoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunsetWorkoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BD1D81528B626FF006A3848 /* SunsetWorkoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutUITests.swift; sourceTree = "<group>"; };
 		2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationView.swift; sourceTree = "<group>"; };
 		2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingConfigurationView.swift; sourceTree = "<group>"; };
 		2BFF29A928C4F55E0041841F /* FeelingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingType.swift; sourceTree = "<group>"; };
@@ -152,13 +140,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2BD1D80428B626FF006A3848 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2BD1D80E28B626FF006A3848 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -227,7 +208,6 @@
 			children = (
 				2BD1D7F928B626FE006A3848 /* SunsetWorkout */,
 				2BD1D80A28B626FF006A3848 /* SunsetWorkoutTests */,
-				2BD1D81428B626FF006A3848 /* SunsetWorkoutUITests */,
 				2BD1D7F828B626FE006A3848 /* Products */,
 				2B6608DA28D02D4F00361C0F /* Frameworks */,
 			);
@@ -238,7 +218,6 @@
 			children = (
 				2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */,
 				2BD1D80728B626FF006A3848 /* SunsetWorkoutTests.xctest */,
-				2BD1D81128B626FF006A3848 /* SunsetWorkoutUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,15 +253,6 @@
 				2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */,
 			);
 			path = SunsetWorkoutTests;
-			sourceTree = "<group>";
-		};
-		2BD1D81428B626FF006A3848 /* SunsetWorkoutUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2BD1D81528B626FF006A3848 /* SunsetWorkoutUITests.swift */,
-				2B1558EA28B780B50013987F /* SnapshotHelper.swift */,
-			);
-			path = SunsetWorkoutUITests;
 			sourceTree = "<group>";
 		};
 		2BFF299E28C350A50041841F /* Views */ = {
@@ -410,24 +380,6 @@
 			productReference = 2BD1D80728B626FF006A3848 /* SunsetWorkoutTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2BD1D81028B626FF006A3848 /* SunsetWorkoutUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2BD1D82128B626FF006A3848 /* Build configuration list for PBXNativeTarget "SunsetWorkoutUITests" */;
-			buildPhases = (
-				2BD1D80D28B626FF006A3848 /* Sources */,
-				2BD1D80E28B626FF006A3848 /* Frameworks */,
-				2BD1D80F28B626FF006A3848 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2BD1D81328B626FF006A3848 /* PBXTargetDependency */,
-			);
-			name = SunsetWorkoutUITests;
-			productName = SunsetWorkoutUITests;
-			productReference = 2BD1D81128B626FF006A3848 /* SunsetWorkoutUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -442,10 +394,6 @@
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					2BD1D80628B626FF006A3848 = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 2BD1D7F628B626FE006A3848;
-					};
-					2BD1D81028B626FF006A3848 = {
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = 2BD1D7F628B626FE006A3848;
 					};
@@ -471,7 +419,6 @@
 			targets = (
 				2BD1D7F628B626FE006A3848 /* SunsetWorkout */,
 				2BD1D80628B626FF006A3848 /* SunsetWorkoutTests */,
-				2BD1D81028B626FF006A3848 /* SunsetWorkoutUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -488,13 +435,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2BD1D80528B626FF006A3848 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2BD1D80F28B626FF006A3848 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -583,15 +523,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2BD1D80D28B626FF006A3848 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2BD1D81628B626FF006A3848 /* SunsetWorkoutUITests.swift in Sources */,
-				2B1558EB28B780B50013987F /* SnapshotHelper.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -599,11 +530,6 @@
 			isa = PBXTargetDependency;
 			target = 2BD1D7F628B626FE006A3848 /* SunsetWorkout */;
 			targetProxy = 2BD1D80828B626FF006A3848 /* PBXContainerItemProxy */;
-		};
-		2BD1D81328B626FF006A3848 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2BD1D7F628B626FE006A3848 /* SunsetWorkout */;
-			targetProxy = 2BD1D81228B626FF006A3848 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -852,48 +778,6 @@
 			};
 			name = Release;
 		};
-		2BD1D82228B626FF006A3848 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6268FDJSTY;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = SunsetWorkout;
-			};
-			name = Debug;
-		};
-		2BD1D82328B626FF006A3848 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6268FDJSTY;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				TEST_TARGET_NAME = SunsetWorkout;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -920,15 +804,6 @@
 			buildConfigurations = (
 				2BD1D81F28B626FF006A3848 /* Debug */,
 				2BD1D82028B626FF006A3848 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2BD1D82128B626FF006A3848 /* Build configuration list for PBXNativeTarget "SunsetWorkoutUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2BD1D82228B626FF006A3848 /* Debug */,
-				2BD1D82328B626FF006A3848 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
