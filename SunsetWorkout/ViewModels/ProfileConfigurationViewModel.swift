@@ -43,7 +43,7 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
         }
     }
 
-    func getUserLocaleHeightUnit() -> String {
+    func heightUnit() -> String {
         var unitHeight = "feet"
 
         if Locale.current.usesMetricSystem {
@@ -53,7 +53,7 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
         return unitHeight
     }
 
-    func getUserLocaleWeightUnit() -> String {
+    func weightUnit() -> String {
         var unitWeight = "pounds"
 
         if Locale.current.usesMetricSystem {

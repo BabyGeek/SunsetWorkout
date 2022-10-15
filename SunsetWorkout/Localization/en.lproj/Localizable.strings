@@ -1,0 +1,77 @@
+/* 
+  Localizable.strings
+  SunsetWorkout
+
+  Created by Paul Oggero on 15/10/2022.
+  
+*/
+
+// DASHBOARD
+"dashboard.title" = "Welcome";
+"dashboard.sleep" = "Sleep";
+"dashboard.feeling" = "Feeling";
+"dashboard.move" = "Move";
+"dashboard.training" = "Training";
+
+// WALKTHROUGHT
+"walkthrought.healthkit.information" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
+Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
+Duis semper.";
+"walkthrought.healthkit.authorize" = "Authorize";
+"walkthrought.profile.title" = "Configure your profile";
+"walkthrought.skip" = "Skip";
+"walkthrought.feeling.title" = "How are you feeling today?";
+
+// FEELINGS
+"feeling.name.happy" = "Happy";
+"feeling.name.sad" = "Sad";
+"feeling.name.annoyed" = "Annoyed";
+"feeling.name.excited" = "Excited";
+"feeling.name.tired" = "Tired";
+"feeling.name.stressed" = "Stressed";
+
+"feeling.description.happy" = "I'm feeling happy!";
+"feeling.description.sad" = "I'm sad :(";
+"feeling.description.annoyed" = "I'm annoyed.";
+"feeling.description.excited" = "I'm feeling so excited!";
+"feeling.description.tired" = "I'm tired.";
+"feeling.description.stressed" = "I'm feeling so stressed.";
+
+// WORKOUT TYPE
+"workout.type.name.hiit" = "HIIT";
+"workout.type.name.strenght" = "Strenght";
+
+// METADATA TYPE
+"metadate.label.exercise.break" = "Exercice break";
+"metadate.label.round.break" = "Round break";
+"metadate.label.round.number" = "Round number";
+"metadate.label.serie.break" = "Serie break";
+"metadate.label.serie.number" = "Serie number";
+"metadate.label.repetition.goal" = "Repetition goal";
+
+//WORKOUT
+"workout.name" = "Name";
+
+// PROFILE
+"profile.height" = "Height";
+"profile.weight" = "Weight";
+
+// COMMON
+"app.title" = "Sunset Workout";
+
+// ERRORS
+"error.global.unknown.description" = "Unknown error";
+"error.global.unknown.failure.reason" = "An unknown error occured.";
+
+"error.realm.no.realm.description" = "Realm error";
+"error.realm.no.realm.failure.reason" = "Realm was not able to be found.";
+"error.realm.failure.description" = "Realm failure error";
+"error.realm.failure.failure.reason" = "A failure occured while saving or fetching data.";
+
+"error.workout.no.name.description" = "Workout error";
+"error.workout.no.name.failure.reason" = "You need to specify a name for the workout.";
+"error.workout.wrong.data.description" = "Workout saving error";
+"error.workout.wrong.data.failure.reason" = "Error while saving your workout, please check your data.";
+

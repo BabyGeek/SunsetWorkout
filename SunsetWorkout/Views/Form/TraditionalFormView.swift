@@ -15,19 +15,19 @@ struct TraditionalFormView: View {
     var body: some View {
         VStack {
             FloatingTextField(
-                placeHolder: "Series break (secs)",
+                placeHolder: "\(SWMetadataType.serieBreak.label) (secs)",
                 text: $seriesBreak,
                 bgColor: Color(.systemBackground))
                 .keyboardType(.numberPad)
 
             FloatingTextField(
-                placeHolder: "Series number",
+                placeHolder: "\(SWMetadataType.serieNumber.label)",
                 text: $seriesNumber,
                 bgColor: Color(.systemBackground))
                 .keyboardType(.numberPad)
 
             FloatingTextField(
-                placeHolder: "Series repetition goal",
+                placeHolder: "\(SWMetadataType.repetitionGoal.label)",
                 text: $repetitionGoal,
                 bgColor: Color(.systemBackground))
                 .keyboardType(.numberPad)

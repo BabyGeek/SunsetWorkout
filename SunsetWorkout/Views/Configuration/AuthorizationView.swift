@@ -14,20 +14,17 @@ struct AuthorizationView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Sunset Workout")
+            Text("app.title")
                 .kerning(1.5)
                 .font(.title)
                 .fontWeight(.semibold)
 
             Spacer(minLength: 50)
 
-            Text("""
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
-Duis semper.
-""")
+            Text(NSLocalizedString(
+                "walkthrought.healthkit.information",
+                comment: "Description of why the app needs HealthKit authorization"))
+
             .kerning(1.3)
             .font(.body)
             .multilineTextAlignment(.center)
@@ -35,10 +32,19 @@ Duis semper.
             Spacer(minLength: 100)
 
             if withButton {
-                Button("Authorize") {
+                Button {
                     SWHealthStoreManager.askForPermission { (success) in
                         print(success)
                     }
+                } label: {
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(height: 50)
+                        .overlay(
+                            Text(NSLocalizedString(
+                                "walkthrought.healthkit.authorize"
+                                , comment: "Authorize button title"))
+                            .foregroundColor(Color(.label))
+                        )
                 }
             }
         }
@@ -50,5 +56,6 @@ Duis semper.
 struct AuthorizationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthorizationView(withButton: true)
+            .preferredColorScheme(.dark)
     }
 }

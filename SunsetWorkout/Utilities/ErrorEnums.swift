@@ -24,14 +24,14 @@ extension GlobalError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .unknown:
-            return "Unknown error"
+            return NSLocalizedString("error.global.unknown.description", comment: "Error description")
         }
     }
 
     public var failureReason: String? {
         switch self {
         case .unknown:
-            return "An unknown error occured."
+            return NSLocalizedString("error.global.unknown.failure.reason", comment: "Error failure reason")
         }
     }
 }
@@ -40,18 +40,18 @@ extension RealmError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .noRealm:
-            return "Realm error"
+            return NSLocalizedString("error.realm.no.realm.description", comment: "Error description")
         case .failure:
-            return "Fail"
+            return NSLocalizedString("error.realm.failure.description", comment: "Error description")
         }
     }
 
     public var failureReason: String? {
         switch self {
         case .noRealm:
-            return "Realm was not able to be found."
+            return NSLocalizedString("error.realm.no.realm.failure.reason", comment: "Error failure reason")
         case .failure:
-            return "A failure occured while saving or fetching data."
+            return NSLocalizedString("error.realm.failure.failure.reason", comment: "Error failure reason")
         }
     }
 }
@@ -60,14 +60,14 @@ extension SWWorkoutError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .noName:
-            return "Workout error"
+            return NSLocalizedString("error.workout.no.name.description", comment: "Error description")
         }
     }
 
     public var failureReason: String? {
         switch self {
         case .noName:
-            return "You need to specify a name for the workout."
+            return NSLocalizedString("error.workout.no.name.failure.reason", comment: "Error failure reason")
         }
     }
 }

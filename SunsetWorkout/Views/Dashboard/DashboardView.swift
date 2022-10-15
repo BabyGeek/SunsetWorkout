@@ -51,11 +51,11 @@ struct DashboardView: View {
                 HStack {
                     DashboardCardView(
                         icon: Image(systemName: "bed.double"),
-                        title: "Sleep",
+                        title: NSLocalizedString("dashboard.sleep", comment: "Sleep title"),
                         value: dashboardViewModel.getSleptLabel())
                     DashboardCardView(
                         icon: Image(systemName: "leaf"),
-                        title: "Feeling",
+                        title: NSLocalizedString("dashboard.feeling", comment: "Feeling title"),
                         value: (
                             dashboardViewModel.feeling != nil) ?
                         dashboardViewModel.feeling!.type.relatedEmoji : "N/A")
@@ -64,11 +64,11 @@ struct DashboardView: View {
                 HStack {
                     DashboardCardView(
                         icon: Image(systemName: "figure.walk"),
-                        title: "Move",
+                        title: NSLocalizedString("dashboard.move", comment: "Move title"),
                         value: dashboardViewModel.dailyKilocalories.description)
                     DashboardCardView(
                         icon: Image(systemName: "bolt"),
-                        title: "Training",
+                        title: NSLocalizedString("dashboard.training", comment: "Training title"),
                         value: dashboardViewModel.dailyTrainedTime.description)
                 }
             }
@@ -80,7 +80,7 @@ struct DashboardView: View {
                                         ProfileView()
                                     })
             )
-            .navigationTitle("Title")
+            .navigationTitle(NSLocalizedString("dashboard.title", comment: "Dashboard title"))
             .onAppear {
                 dashboardViewModel.getUpdatedValues()
             }

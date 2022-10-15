@@ -43,7 +43,7 @@ struct FeelingConfigurationView: View {
                 }
             }
 
-            Text("How are you feeling today?")
+            Text(NSLocalizedString("walkthrought.feeling.title", comment: "Feeling walkthrought title"))
                 .kerning(1.3)
                 .font(.title3)
 

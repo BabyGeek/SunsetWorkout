@@ -16,6 +16,11 @@
 		2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26928EEE80A002FDA9F /* HKQueriable.swift */; };
 		2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */; };
 		2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */; };
+		2B03968328FAEBC6000D7B26 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */; };
+		2B03968E28FAEDB1000D7B26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B03969028FAEDB1000D7B26 /* Localizable.strings */; };
+		2B03969428FB4A93000D7B26 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969328FB4A93000D7B26 /* FloatingTextField.swift */; };
+		2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */; };
+		2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969728FB514E000D7B26 /* UserProfileFormView.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
 		2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACD28F96C6E00752742 /* WorkoutsView.swift */; };
@@ -81,6 +86,12 @@
 		2B00C26928EEE80A002FDA9F /* HKQueriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueriable.swift; sourceTree = "<group>"; };
 		2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalFormView.swift; sourceTree = "<group>"; };
 		2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITFormView.swift; sourceTree = "<group>"; };
+		2B03968428FAEBC6000D7B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2B03968628FAEBDE000D7B26 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
+		2B03968F28FAEDB1000D7B26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2B03969328FB4A93000D7B26 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
+		2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWorkoutFormView.swift; sourceTree = "<group>"; };
+		2B03969728FB514E000D7B26 /* UserProfileFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFormView.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
 		2B39EACD28F96C6E00752742 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
@@ -149,6 +160,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B03964F28FAE211000D7B26 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				2B03969028FAEDB1000D7B26 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		2B03968028FAEBA7000D7B26 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		2B03969228FB4A88000D7B26 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				2B03969328FB4A93000D7B26 /* FloatingTextField.swift */,
+				2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */,
+				2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */,
+				2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */,
+				2B03969728FB514E000D7B26 /* UserProfileFormView.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
 		2B6608C328CB63C800361C0F /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +264,7 @@
 		2BD1D7F928B626FE006A3848 /* SunsetWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				2B03964F28FAE211000D7B26 /* Localization */,
 				2B83FA7428D8A19A00C3B1C0 /* Info.plist */,
 				2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */,
 				2BFF29A828C4F54B0041841F /* Utilities */,
@@ -258,6 +298,8 @@
 		2BFF299E28C350A50041841F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B03969228FB4A88000D7B26 /* Form */,
+				2B03968028FAEBA7000D7B26 /* LaunchScreen */,
 				2B6608C328CB63C800361C0F /* Dashboard */,
 				2BFF29AB28C55BC70041841F /* TabBar */,
 				2BFF29A228C350D30041841F /* Profile */,
@@ -285,8 +327,6 @@
 				2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */,
 				2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */,
 				2B39EACD28F96C6E00752742 /* WorkoutsView.swift */,
-				2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */,
-				2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -428,8 +468,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B03968E28FAEDB1000D7B26 /* Localizable.strings in Resources */,
 				2BD1D80228B626FF006A3848 /* Preview Assets.xcassets in Resources */,
 				2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */,
+				2B03968328FAEBC6000D7B26 /* Launch Screen.storyboard in Resources */,
 				2B64BA2128D5B8D500E95514 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,13 +517,16 @@
 				2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */,
 				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
 				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
+				2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
 				2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */,
 				2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */,
 				2B94AD7228F75C7A00F3C71B /* WorkoutViewModel.swift in Sources */,
+				2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */,
 				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
 				2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */,
 				2B94AD7B28F7609100F3C71B /* SWWorkout.swift in Sources */,
+				2B03969428FB4A93000D7B26 /* FloatingTextField.swift in Sources */,
 				2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */,
 				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,
 				2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */,
@@ -532,6 +577,26 @@
 			targetProxy = 2BD1D80828B626FF006A3848 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B03968428FAEBC6000D7B26 /* Base */,
+				2B03968628FAEBDE000D7B26 /* fr */,
+			);
+			name = "Launch Screen.storyboard";
+			sourceTree = "<group>";
+		};
+		2B03969028FAEDB1000D7B26 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B03968F28FAEDB1000D7B26 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2BD1D81928B626FF006A3848 /* Debug */ = {

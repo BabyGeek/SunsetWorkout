@@ -1,0 +1,13 @@
+/* 
+  dashboard.strings
+  SunsetWorkout
+
+  Created by Paul Oggero on 15/10/2022.
+  
+*/
+
+"title" = "Bienvenue";
+"sleep" = "Sommeil";
+"feeling" = "Emotion";
+"move" = "Exercice";
+"training" = "Entrainement";

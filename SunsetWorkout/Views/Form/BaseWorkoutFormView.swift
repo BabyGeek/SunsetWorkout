@@ -15,21 +15,21 @@ struct BaseWorkoutFormView: View {
     var body: some View {
         VStack {
                 Picker("Type", selection: $type) {
-                    Text(SWWorkoutType.highIntensityIntervalTraining.rawValue)
+                    Text(SWWorkoutType.highIntensityIntervalTraining.name)
                         .tag(SWWorkoutType.highIntensityIntervalTraining)
 
-                    Text(SWWorkoutType.traditionalStrengthTraining.rawValue)
+                    Text(SWWorkoutType.traditionalStrengthTraining.name)
                         .tag(SWWorkoutType.traditionalStrengthTraining)
                 }
                 .pickerStyle(.segmented)
 
                 FloatingTextField(
-                    placeHolder: "Name",
+                    placeHolder: NSLocalizedString("workout.name", comment: "Workout name label"),
                     text: $name,
                     bgColor: Color(.systemBackground))
 
                 FloatingTextField(
-                    placeHolder: "Exercice break (secs)",
+                    placeHolder: "\(SWMetadataType.exerciseBreak.label) (secs)",
                     text: $exerciseBreak,
                     bgColor: Color(.systemBackground))
                     .keyboardType(.numberPad)

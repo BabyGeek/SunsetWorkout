@@ -13,17 +13,17 @@ enum FeelingType: String, CaseIterable {
     var shortName: String {
         switch self {
         case .happy:
-            return "Happy"
+            return NSLocalizedString("feeling.name.happy", comment: "Happy feeling short name")
         case .sad:
-            return "Sad"
+            return NSLocalizedString("feeling.name.sad", comment: "Sad feeling short name")
         case .annoyed:
-            return "Annoyed"
+            return NSLocalizedString("feeling.name.annoyed", comment: "Annoyed feeling short name")
         case .excited:
-            return "Excited"
+            return NSLocalizedString("feeling.name.excited", comment: "Excited feeling short name")
         case .tired:
-            return "Tired"
+            return NSLocalizedString("feeling.name.tired", comment: "Tired feeling short name")
         case .stressed:
-            return "Stressed"
+            return NSLocalizedString("feeling.name.stressed", comment: "Stressed feeling short name")
         }
     }
 
@@ -47,17 +47,17 @@ enum FeelingType: String, CaseIterable {
     var relatedDescription: String {
         switch self {
         case .happy:
-            return "I'm feeling happy!"
+            return NSLocalizedString("feeling.description.happy", comment: "Happy feeling description")
         case .sad:
-            return "I'm sad :("
+            return NSLocalizedString("feeling.description.sad", comment: "Sad feeling description")
         case .annoyed:
-            return "I'm annoyed."
+            return NSLocalizedString("feeling.description.annoyed", comment: "Annoyed feeling description")
         case .excited:
-            return "I'm feeling so excited!"
+            return NSLocalizedString("feeling.description.excited", comment: "Excited feeling description")
         case .tired:
-            return "I'm tired."
+            return NSLocalizedString("feeling.description.tired", comment: "Tired feeling description")
         case .stressed:
-            return "I'm feeling so stressed."
+            return NSLocalizedString("feeling.description.stressed", comment: "Stressed feeling description")
         }
     }
 }
