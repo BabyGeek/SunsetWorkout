@@ -6,21 +6,21 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct WorkoutsView: View {
-    @StateObject var viewModel = WorkoutsViewModel()
+    @ObservedObject var viewModel = WorkoutsViewModel()
+
     var body: some View {
-        VStack {
-            ForEach(viewModel.workouts, id: \.id) { workout in
+        List {
+            ForEach(viewModel.workouts) { workout in
                 Text(workout.name)
             }
         }
         .onAppear {
-            viewModel.fetch(with: SWWorkout.all)
+            viewModel.fetch(with: SWWorkout.allByDateASC)
         }
-
     }
-
 }
 
 struct WorkoutsView_Previews: PreviewProvider {
