@@ -26,25 +26,10 @@ struct CreateFormView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("Type", selection: $type) {
-                    Text(SWWorkoutType.highIntensityIntervalTraining.rawValue)
-                        .tag(SWWorkoutType.highIntensityIntervalTraining)
-
-                    Text(SWWorkoutType.traditionalStrengthTraining.rawValue)
-                        .tag(SWWorkoutType.traditionalStrengthTraining)
-                }
-                .pickerStyle(.segmented)
-
-                FloatingTextField(
-                    placeHolder: "Name",
-                    text: $name,
-                    bgColor: Color(.systemBackground))
-
-                FloatingTextField(
-                    placeHolder: "Exercice break (secs)",
-                    text: $exerciseBreak,
-                    bgColor: Color(.systemBackground))
-                    .keyboardType(.numberPad)
+                BaseWorkoutFormView(
+                    type: $type,
+                    name: $name,
+                    exerciseBreak: $exerciseBreak)
 
                 if type == .highIntensityIntervalTraining {
                     HIITFormView(
