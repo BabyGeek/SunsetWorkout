@@ -12,42 +12,32 @@ struct DashboardView: View {
     @State private var lastHostingView: UIView!
 
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [
-                                Colors.cardGradientStart,
-                                Colors.cardGradientMiddle,
-                                Colors.cardGradientEnd
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ))
-                        .frame(height: 180)
+        VStack(alignment: .leading) {
+            GlassMorphicCard(content: {
+                VStack {
+                    if let quote = dashboardViewModel.quote {
+                        Text("\(quote.author) said:")
+                        HStack(alignment: .top) {
+                            Image(systemName: "quote.opening")
+                                .frame(maxHeight: 100, alignment: .top)
 
-                    VStack {
-                        if let quote = dashboardViewModel.quote {
-                            Text("\(quote.author) said:")
-                            HStack(alignment: .top) {
-                                Image(systemName: "quote.opening")
-                                    .frame(maxHeight: 100, alignment: .top)
-
-                                Text(quote.content)
+                            Text(quote.content)
                                 .font(.italic(.body)())
                                 .frame(maxHeight: 100)
 
-                                Image(systemName: "quote.closing")
-                                    .frame(maxHeight: 100, alignment: .bottom)
-                            }
-                            .padding(.horizontal)
-                            Text(quote.getTagsFormatted())
-                                .font(.italic(.caption)())
+                            Image(systemName: "quote.closing")
+                                .frame(maxHeight: 100, alignment: .bottom)
                         }
+                        .padding(.horizontal)
+                        Text(quote.getTagsFormatted())
+                            .font(.italic(.caption)())
                     }
                 }
+            }, height: 180)
 
+            Spacer()
+
+            VStack(spacing: 20) {
                 HStack {
                     DashboardCardView(
                         icon: Image(systemName: "bed.double"),
@@ -72,18 +62,9 @@ struct DashboardView: View {
                         value: dashboardViewModel.dailyTrainedTime.description)
                 }
             }
-            .padding()
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        print("profile tapped")
-                                    }, label: {
-                                        ProfileView()
-                                    })
-            )
-            .navigationTitle(NSLocalizedString("dashboard.title", comment: "Dashboard title"))
-            .onAppear {
-                dashboardViewModel.getUpdatedValues()
-            }
+        }
+        .onAppear {
+            dashboardViewModel.getUpdatedValues()
         }
     }
 }
@@ -95,38 +76,6 @@ struct ProfileView: View {
             .scaledToFit()
             .frame(width: 40, height: 40)
             .clipShape(Circle())
-    }
-}
-
-struct DashboardCardView: View {
-    var icon: Image = Image(systemName: "bed.double")
-    var title: String = ""
-    var value: String = ""
-
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(LinearGradient(
-                    gradient: .init(colors: [
-                        Colors.cardGradientStart,
-                        Colors.cardGradientMiddle,
-                        Colors.cardGradientEnd
-                    ]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ))
-                .frame(height: 180)
-
-            VStack {
-                HStack {
-                    icon
-                    Text(title)
-                }
-                .padding()
-
-                Text(value)
-            }
-        }
     }
 }
 

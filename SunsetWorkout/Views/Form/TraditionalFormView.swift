@@ -17,19 +17,19 @@ struct TraditionalFormView: View {
             FloatingTextField(
                 placeHolder: "\(SWMetadataType.serieBreak.label) (secs)",
                 text: $seriesBreak,
-                bgColor: Color(.systemBackground))
+                bgColor: Color(.clear))
                 .keyboardType(.numberPad)
 
             FloatingTextField(
                 placeHolder: "\(SWMetadataType.serieNumber.label)",
                 text: $seriesNumber,
-                bgColor: Color(.systemBackground))
+                bgColor: Color(.clear))
                 .keyboardType(.numberPad)
 
             FloatingTextField(
                 placeHolder: "\(SWMetadataType.repetitionGoal.label)",
                 text: $repetitionGoal,
-                bgColor: Color(.systemBackground))
+                bgColor: Color(.clear))
                 .keyboardType(.numberPad)
         }
     }

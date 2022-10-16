@@ -23,6 +23,13 @@
 		2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969728FB514E000D7B26 /* UserProfileFormView.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B28C59C28E7F6F6008CBB83 /* FeelingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */; };
+		2B2EB19928FC9EE400F4FEDB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB19828FC9EE400F4FEDB /* BackgroundView.swift */; };
+		2B2EB19E28FC9FD500F4FEDB /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */; };
+		2B2EB1A028FCA02200F4FEDB /* GlassMorphicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB19F28FCA02200F4FEDB /* GlassMorphicCard.swift */; };
+		2B2EB1A228FCA76D00F4FEDB /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB1A128FCA76D00F4FEDB /* WorkoutView.swift */; };
+		2B2EB1A428FCA91F00F4FEDB /* DashboardCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB1A328FCA91F00F4FEDB /* DashboardCardView.swift */; };
+		2B2EB1A628FCB5B500F4FEDB /* WorkoutExerciceFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB1A528FCB5B500F4FEDB /* WorkoutExerciceFormView.swift */; };
+		2B37B66E28FC0F57005302D7 /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B37B66D28FC0F57005302D7 /* WorkoutCardView.swift */; };
 		2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACD28F96C6E00752742 /* WorkoutsView.swift */; };
 		2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACF28F96EE000752742 /* WorkoutsViewModel.swift */; };
 		2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EAD128F96FF700752742 /* FetchRequest.swift */; };
@@ -94,6 +101,13 @@
 		2B03969728FB514E000D7B26 /* UserProfileFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFormView.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B28C59B28E7F6F6008CBB83 /* FeelingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingModel.swift; sourceTree = "<group>"; };
+		2B2EB19828FC9EE400F4FEDB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
+		2B2EB19F28FCA02200F4FEDB /* GlassMorphicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassMorphicCard.swift; sourceTree = "<group>"; };
+		2B2EB1A128FCA76D00F4FEDB /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		2B2EB1A328FCA91F00F4FEDB /* DashboardCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardView.swift; sourceTree = "<group>"; };
+		2B2EB1A528FCB5B500F4FEDB /* WorkoutExerciceFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciceFormView.swift; sourceTree = "<group>"; };
+		2B37B66D28FC0F57005302D7 /* WorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCardView.swift; sourceTree = "<group>"; };
 		2B39EACD28F96C6E00752742 /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
 		2B39EACF28F96EE000752742 /* WorkoutsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewModel.swift; sourceTree = "<group>"; };
 		2B39EAD128F96FF700752742 /* FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequest.swift; sourceTree = "<group>"; };
@@ -184,14 +198,34 @@
 				2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */,
 				2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */,
 				2B03969728FB514E000D7B26 /* UserProfileFormView.swift */,
+				2B2EB1A528FCB5B500F4FEDB /* WorkoutExerciceFormView.swift */,
 			);
 			path = Form;
+			sourceTree = "<group>";
+		};
+		2B2EB19728FC9E1100F4FEDB /* General */ = {
+			isa = PBXGroup;
+			children = (
+				2B2EB19828FC9EE400F4FEDB /* BackgroundView.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		2B2EB19A28FC9F4A00F4FEDB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
+				2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */,
+				2B2EB19F28FCA02200F4FEDB /* GlassMorphicCard.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		2B6608C328CB63C800361C0F /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				2B6608C428CB63D400361C0F /* DashboardView.swift */,
+				2B2EB1A328FCA91F00F4FEDB /* DashboardCardView.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -235,6 +269,7 @@
 		2B94AD7328F7604F00F3C71B /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				2BFF29AC28C55C3B0041841F /* TabBarItem.swift */,
 				2BFF29A928C4F55E0041841F /* FeelingType.swift */,
 				2B94AD7428F7605A00F3C71B /* SWWorkoutType.swift */,
 				2B94AD7628F7607500F3C71B /* SWMetadataType.swift */,
@@ -298,6 +333,8 @@
 		2BFF299E28C350A50041841F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B2EB19A28FC9F4A00F4FEDB /* Utilities */,
+				2B2EB19728FC9E1100F4FEDB /* General */,
 				2B03969228FB4A88000D7B26 /* Form */,
 				2B03968028FAEBA7000D7B26 /* LaunchScreen */,
 				2B6608C328CB63C800361C0F /* Dashboard */,
@@ -327,6 +364,8 @@
 				2B83FA7528DC799400C3B1C0 /* CreateFormView.swift */,
 				2B83FA7D28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift */,
 				2B39EACD28F96C6E00752742 /* WorkoutsView.swift */,
+				2B37B66D28FC0F57005302D7 /* WorkoutCardView.swift */,
+				2B2EB1A128FCA76D00F4FEDB /* WorkoutView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -348,9 +387,7 @@
 		2BFF29A828C4F54B0041841F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2BFF29AC28C55C3B0041841F /* TabBarItem.swift */,
 				2BFF29AE28C59AD90041841F /* TabBarItemsPreferenceKey.swift */,
-				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
 				2B6608C628CC9F6300361C0F /* Colors.swift */,
 				2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */,
 				2B00C25D28EEC637002FDA9F /* RealmManager.swift */,
@@ -521,16 +558,20 @@
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
 				2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */,
 				2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */,
+				2B2EB1A028FCA02200F4FEDB /* GlassMorphicCard.swift in Sources */,
 				2B94AD7228F75C7A00F3C71B /* WorkoutViewModel.swift in Sources */,
 				2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */,
 				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
 				2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */,
+				2B2EB1A228FCA76D00F4FEDB /* WorkoutView.swift in Sources */,
 				2B94AD7B28F7609100F3C71B /* SWWorkout.swift in Sources */,
 				2B03969428FB4A93000D7B26 /* FloatingTextField.swift in Sources */,
 				2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */,
 				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,
 				2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */,
+				2B2EB1A428FCA91F00F4FEDB /* DashboardCardView.swift in Sources */,
 				2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */,
+				2B2EB1A628FCB5B500F4FEDB /* WorkoutExerciceFormView.swift in Sources */,
 				2BFF29AF28C59AD90041841F /* TabBarItemsPreferenceKey.swift in Sources */,
 				2BFF29AA28C4F55E0041841F /* FeelingType.swift in Sources */,
 				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
@@ -543,7 +584,9 @@
 				2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */,
 				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
 				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
+				2B2EB19928FC9EE400F4FEDB /* BackgroundView.swift in Sources */,
 				2B8EE32028F9F52D00206F9C /* Feeling.swift in Sources */,
+				2B37B66E28FC0F57005302D7 /* WorkoutCardView.swift in Sources */,
 				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
 				2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */,
 				2B94AD7928F7608B00F3C71B /* SWMetadata.swift in Sources */,
@@ -552,6 +595,7 @@
 				2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */,
 				2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */,
 				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
+				2B2EB19E28FC9FD500F4FEDB /* CustomBlurView.swift in Sources */,
 				2B94AD7728F7607500F3C71B /* SWMetadataType.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
 				2B94AD7D28F7677E00F3C71B /* SWWorkoutModel.swift in Sources */,
@@ -738,6 +782,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -778,6 +823,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

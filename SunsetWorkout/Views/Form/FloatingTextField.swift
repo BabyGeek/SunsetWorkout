@@ -41,7 +41,7 @@ struct FloatingTextField: View {
                 .foregroundColor(Color.secondary)
                 .background(bgColor)
                 .padding(shouldPlaceHolderMove ?
-                         EdgeInsets(top: 0, leading: 15, bottom: textFieldHeight, trailing: 0) :
+                         EdgeInsets(top: 0, leading: 15, bottom: textFieldHeight + 25, trailing: 0) :
                             EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
                 .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
                 .animation(.linear)

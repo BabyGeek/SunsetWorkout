@@ -15,8 +15,8 @@ struct SWWorkout {
 
     var metadata: [SWMetadata]
 
-    init(id: String = UUID().uuidString, name: String, type: SWWorkoutType, createdAt: Date = Date(), metadata: [SWMetadata]) {
-        self.id = id
+    init(id: UUID = UUID(), name: String, type: SWWorkoutType, createdAt: Date = Date(), metadata: [SWMetadata]) {
+        self.id = id.uuidString
         self.name = name
         self.type = type
         self.createdAt = createdAt
@@ -42,7 +42,7 @@ extension SWWorkout: Equatable {
 extension SWWorkout {
     init(object: SWWorkoutModel) {
         guard let type = SWWorkoutType(rawValue: object.rawType) else {
-            fatalError("Rating is invalid")
+            fatalError("Workout type is invalid")
         }
 
         self.id = object._id

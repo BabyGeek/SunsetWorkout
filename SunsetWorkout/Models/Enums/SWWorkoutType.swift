@@ -9,8 +9,7 @@ import Foundation
 import HealthKit
 
 enum SWWorkoutType: String {
-    case highIntensityIntervalTraining = "HIIT"
-    case traditionalStrengthTraining = "strenght"
+    case highIntensityIntervalTraining, traditionalStrengthTraining
 
     var name: String {
         switch self {
