@@ -21,15 +21,28 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
 
     var body: some View {
         GeometryReader { geometry in
-            ZStack(alignment: .bottom) {
-                content
-                    .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
-                    .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+            NavigationView {
+                ZStack(alignment: .bottom) {
+                    BackgroundView()
 
-                if !isKeyboardVisible {
-                    TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-                        .frame(width: geometry.size.width)
+                    content
+                        .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
+                        .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+
+                    if !isKeyboardVisible {
+                        Spacer()
+                        TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+                            .frame(width: geometry.size.width, height: geometry.size.height/8)
+                    }
                 }
+                .navigationBarItems(trailing:
+                                        Button(action: {
+                    print("profile tapped")
+                }, label: {
+                    ProfileView()
+                })
+                )
+                .navigationTitle(selection.navigationTitle)
             }
             .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
                 self.tabs = value

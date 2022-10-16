@@ -35,6 +35,7 @@ struct TabBarView_Previews: PreviewProvider {
         VStack {
             Spacer()
             TabBarView(tabs: tabs, selection: .constant(tabs.first!), localSelection: tabs.first!)
+                .preferredColorScheme(.dark)
         }
     }
 }
@@ -88,7 +89,7 @@ extension TabBarView {
                 }
             }
         }
-        }
+    }
 
     /// Allow swicthing between each tabs
     /// - Parameter tab: the tab to switch to

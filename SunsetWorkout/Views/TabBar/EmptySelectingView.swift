@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmptySelectingView: View {
     var body: some View {
-        Color.white
+        Text("In construction")
     }
 }
 
