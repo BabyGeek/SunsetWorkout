@@ -5,9 +5,19 @@
   Created by Paul Oggero on 15/10/2022.
   
 */
+// TAB BAR
+"dashboard.tab.title" = "Home";
+"add.tab.title" = "New workout";
+"launch.tab.title" = "Launch";
+"create.tab.title" = "Create";
+"workouts.tab.title" = "Workouts";
+
+// NAVIGATION
+"dashboard.navigation.title" = "Welcome";
+"workouts.navigation.title" = "Workouts";
+
 
 // DASHBOARD
-"dashboard.title" = "Welcome";
 "dashboard.sleep" = "Sleep";
 "dashboard.feeling" = "Feeling";
 "dashboard.move" = "Move";
@@ -51,7 +61,7 @@ Duis semper.";
 "metadate.label.serie.number" = "Serie number";
 "metadate.label.repetition.goal" = "Repetition goal";
 
-//WORKOUT
+//WORKOUTS
 "workout.name" = "Name";
 
 // PROFILE
