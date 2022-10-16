@@ -54,3 +54,21 @@ extension KeyboardReadable {
         .eraseToAnyPublisher()
     }
 }
+
+// MARK: - View builders
+
+extension View {
+    /// ViewBuilder designed for conditional modifiers
+    /// - Parameters:
+    ///   - condition: condition to check to add the modifier
+    ///   - transform: the transformation to apply on the view
+    /// - Returns: the view modified if condition is set to true, else the view itself
+    @ViewBuilder
+    func conditional<Content: View>(_ condition: Bool, _ transform: @escaping (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}

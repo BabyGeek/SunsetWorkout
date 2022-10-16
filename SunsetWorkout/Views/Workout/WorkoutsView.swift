@@ -12,9 +12,14 @@ struct WorkoutsView: View {
     @ObservedObject var viewModel = WorkoutsViewModel()
 
     var body: some View {
-        List {
+        ScrollView {
             ForEach(viewModel.workouts) { workout in
-                Text(workout.name)
+                NavigationLink {
+                    WorkoutView(workout: workout)
+                } label: {
+                    WorkoutCardView(workout: workout)
+                        .foregroundColor(Color(.label))
+                }
             }
         }
         .onAppear {
