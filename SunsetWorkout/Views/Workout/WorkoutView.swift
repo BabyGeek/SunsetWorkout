@@ -19,31 +19,12 @@ struct WorkoutView: View {
         .navigationTitle(workout.name)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing:
-                                Button(action: {
-                                    presentExerciceModal = true
-                                }, label: {
-                                    Image(systemName: "plus")
-                                })
+                                NavigationLink(
+                                    destination: CreateWorkoutExerciceView(workout: workout),
+                                    label: {
+                                        Image(systemName: "plus")
+                                    })
         )
-        .sheet(isPresented: $presentExerciceModal) {
-            ZStack {
-                BackgroundView()
-
-                VStack {
-                    HStack {
-                        Spacer()
-                        Button {
-                            presentExerciceModal = false
-                        } label: {
-                            Image(systemName: "xmark")
-                        }
-                    }
-                    .padding()
-                    Spacer()
-
-                }
-            }
-        }
     }
 }
 
