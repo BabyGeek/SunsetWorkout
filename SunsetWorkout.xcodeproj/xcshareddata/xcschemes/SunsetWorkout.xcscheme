@@ -26,7 +26,18 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2BD1D7F628B626FE006A3848"
+            BuildableName = "SunsetWorkout.app"
+            BlueprintName = "SunsetWorkout"
+            ReferencedContainer = "container:SunsetWorkout.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,16 +46,6 @@
                BlueprintIdentifier = "2BD1D80628B626FF006A3848"
                BuildableName = "SunsetWorkoutTests.xctest"
                BlueprintName = "SunsetWorkoutTests"
-               ReferencedContainer = "container:SunsetWorkout.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2BD1D81028B626FF006A3848"
-               BuildableName = "SunsetWorkoutUITests.xctest"
-               BlueprintName = "SunsetWorkoutUITests"
                ReferencedContainer = "container:SunsetWorkout.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -74,6 +75,11 @@
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"
             value = "disable"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "ENABLE_PREVIEWS"
+            value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
