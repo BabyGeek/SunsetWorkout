@@ -35,12 +35,12 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
                             .frame(width: geometry.size.width, height: geometry.size.height/8)
                     }
                 }
-                .navigationBarItems(trailing:
-                                        Button(action: {
-                    print("profile tapped")
-                }, label: {
-                    ProfileView()
-                })
+                .navigationBarItems(trailing: Button(
+                    action: {
+                        print("profile tapped")
+                    }, label: {
+                        ProfileButtonView()
+                    })
                 )
                 .navigationTitle(selection.navigationTitle)
             }

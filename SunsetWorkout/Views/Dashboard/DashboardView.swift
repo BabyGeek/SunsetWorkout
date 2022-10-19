@@ -69,7 +69,7 @@ struct DashboardView: View {
     }
 }
 
-struct ProfileView: View {
+struct ProfileButtonView: View {
     var body: some View {
         Image("Profile")
             .resizable()
