@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 extension URLSession {
-    func publisher<K, R>(
+    func WGERPublisher<K, R>(
             on APIHost: APIHost,
             for endpoint: Endpoint<K, R>,
             using requestData: K.RequestData,
@@ -22,8 +22,9 @@ extension URLSession {
             }
 
             return dataTaskPublisher(for: request)
+                .delay(for: 0.5, scheduler: DispatchQueue.main)
                 .map(\.data)
-                .decode(type: NetworkResponse<R>.self, decoder: decoder)
+                .decode(type: WGERNetworkResponse<R>.self, decoder: decoder)
                 .map(\.suggestions)
                 .eraseToAnyPublisher()
         }

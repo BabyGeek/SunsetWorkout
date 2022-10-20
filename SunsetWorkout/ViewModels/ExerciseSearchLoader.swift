@@ -15,7 +15,7 @@ struct ExerciseSearchLoader {
     func loadResults(
         matching query: String
     ) -> AnyPublisher<[ExerciseSearch], Error> {
-        urlSession.publisher(
+        urlSession.WGERPublisher(
             on: .WGERAPIHost,
             for: .search(for: query),
             using: userSession.accessTokenWGER

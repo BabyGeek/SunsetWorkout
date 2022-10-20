@@ -68,7 +68,7 @@
 		2BD1D80C28B626FF006A3848 /* SunsetWorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */; };
 		2BF5759628FF4EF000F21605 /* ExerciseSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759528FF4EF000F21605 /* ExerciseSearch.swift */; };
 		2BF5759828FF529A00F21605 /* ExerciseSearchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759728FF529A00F21605 /* ExerciseSearchLoader.swift */; };
-		2BF5759A28FF53A200F21605 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759928FF53A200F21605 /* NetworkResponse.swift */; };
+		2BF5759A28FF53A200F21605 /* WGERNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759928FF53A200F21605 /* WGERNetworkResponse.swift */; };
 		2BF5759C28FF540500F21605 /* URLSessionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759B28FF540500F21605 /* URLSessionExtensions.swift */; };
 		2BF575A028FF54C300F21605 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759F28FF54C300F21605 /* Endpoint.swift */; };
 		2BF575A228FF54F900F21605 /* EndpointKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF575A128FF54F900F21605 /* EndpointKind.swift */; };
@@ -160,7 +160,7 @@
 		2BD1D80B28B626FF006A3848 /* SunsetWorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutTests.swift; sourceTree = "<group>"; };
 		2BF5759528FF4EF000F21605 /* ExerciseSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSearch.swift; sourceTree = "<group>"; };
 		2BF5759728FF529A00F21605 /* ExerciseSearchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSearchLoader.swift; sourceTree = "<group>"; };
-		2BF5759928FF53A200F21605 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		2BF5759928FF53A200F21605 /* WGERNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WGERNetworkResponse.swift; sourceTree = "<group>"; };
 		2BF5759B28FF540500F21605 /* URLSessionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtensions.swift; sourceTree = "<group>"; };
 		2BF5759F28FF54C300F21605 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		2BF575A128FF54F900F21605 /* EndpointKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointKind.swift; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 				2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataModel.swift */,
 				2B8EE31F28F9F52D00206F9C /* Feeling.swift */,
 				2BF5759528FF4EF000F21605 /* ExerciseSearch.swift */,
-				2BF5759928FF53A200F21605 /* NetworkResponse.swift */,
+				2BF5759928FF53A200F21605 /* WGERNetworkResponse.swift */,
 				2BF5759F28FF54C300F21605 /* Endpoint.swift */,
 				2BF575A528FF571E00F21605 /* UserSession.swift */,
 				2BF575A728FF585100F21605 /* APIHost.swift */,
@@ -655,7 +655,7 @@
 				2BF5759C28FF540500F21605 /* URLSessionExtensions.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
 				2BF575AC28FF59D000F21605 /* InvalidEndpointError.swift in Sources */,
-				2BF5759A28FF53A200F21605 /* NetworkResponse.swift in Sources */,
+				2BF5759A28FF53A200F21605 /* WGERNetworkResponse.swift in Sources */,
 				2B94AD7D28F7677E00F3C71B /* SWWorkoutModel.swift in Sources */,
 				2B00C26228EED97D002FDA9F /* ErrorEnums.swift in Sources */,
 				2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */,
