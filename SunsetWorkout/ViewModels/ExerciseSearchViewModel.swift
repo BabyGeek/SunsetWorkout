@@ -11,11 +11,20 @@ import Foundation
 class ExerciseSearchViewModel: ObservableObject {
     @Published var error: SWError?
     @Published private(set) var results: [ExerciseSearch] = []
+    @Published var searchEmpty: Bool = false
 
     let exerciseSearchLoader = ExerciseSearchLoader(userSession: UserSession())
+    var cancellable: AnyCancellable?
 
     func search(for search: String) {
-        exerciseSearchLoader.loadResults(matching: search)
+        cancellable?.cancel()
+
+        if search.isEmpty {
+            results = []
+            return
+        }
+
+        cancellable = exerciseSearchLoader.loadResults(matching: search)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -28,8 +37,8 @@ class ExerciseSearchViewModel: ObservableObject {
             } receiveValue: { [weak self] in
                 guard let self else { return }
                 self.results = $0
+                self.searchEmpty = self.results.isEmpty
             }
-            .cancel()
 
     }
 }

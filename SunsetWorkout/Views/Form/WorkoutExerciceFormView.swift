@@ -12,6 +12,7 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
 
     @State var searchExerciceText: String = ""
     @State var isSearching: Bool = false
+    @State var selectedSearch: ExerciseSearch?
 
     @State private var exerciseBreak: String
 
@@ -50,18 +51,25 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
             .simultaneousGesture(
                 TapGesture()
                     .onEnded({ _ in
-                        isSearching.toggle()
+                        isSearching = true
                     })
             )
 
             if !isSearching {
                 formView
             } else {
-
+                WorkoutExerciceSearchView(
+                    search: $searchExerciceText,
+                    selected: $selectedSearch,
+                    isSearching: $isSearching)
+                Spacer()
             }
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
+        }
+        .onChange(of: selectedSearch) { _ in
+            isSearching = false
         }
     }
 }
