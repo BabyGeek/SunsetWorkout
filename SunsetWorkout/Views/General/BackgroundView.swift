@@ -76,8 +76,10 @@ struct BackgroundView: View {
     }
 }
 
+#if DEBUG
 struct BackgroundView_Previews: PreviewProvider {
     static var previews: some View {
         BackgroundView()
     }
 }
+#endif

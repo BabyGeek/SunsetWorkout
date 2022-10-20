@@ -26,8 +26,10 @@ struct HIITFormView: View {
     }
 }
 
+#if DEBUG
 struct HIITFormView_Previews: PreviewProvider {
     static var previews: some View {
         HIITFormView(roundBreak: .constant("10"), roundNumber: .constant("5"))
     }
 }
+#endif

@@ -115,6 +115,7 @@ extension WorkoutExerciceFormView {
     }
 }
 
+#if DEBUG
 struct WorkoutExerciceFormView_Previews: PreviewProvider {
     static let HIITExample = SWWorkout(name: "Test HIIT", type: .highIntensityIntervalTraining, metadata: [
         SWMetadata(type: .exerciseBreak, value: "20"),
@@ -133,3 +134,4 @@ struct WorkoutExerciceFormView_Previews: PreviewProvider {
         WorkoutExerciceFormView(HIITExample)
     }
 }
+#endif

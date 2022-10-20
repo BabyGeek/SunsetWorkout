@@ -35,8 +35,10 @@ struct TraditionalFormView: View {
     }
 }
 
+#if DEBUG
 struct TraditionalFormView_Previews: PreviewProvider {
     static var previews: some View {
         TraditionalFormView(seriesBreak: .constant("60"), seriesNumber: .constant("6"), repetitionGoal: .constant("12"))
     }
 }
+#endif

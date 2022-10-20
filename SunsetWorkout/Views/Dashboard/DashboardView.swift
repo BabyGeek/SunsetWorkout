@@ -79,8 +79,10 @@ struct ProfileButtonView: View {
     }
 }
 
+#if DEBUG
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardView()
     }
 }
+#endif

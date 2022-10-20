@@ -13,8 +13,10 @@ struct EmptySelectingView: View {
     }
 }
 
+#if DEBUG
 struct EmptySelectingView_Previews: PreviewProvider {
     static var previews: some View {
         EmptySelectingView()
     }
 }
+#endif

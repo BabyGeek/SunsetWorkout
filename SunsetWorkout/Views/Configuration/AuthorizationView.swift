@@ -53,9 +53,11 @@ struct AuthorizationView: View {
     }
 }
 
+#if DEBUG
 struct AuthorizationView_Previews: PreviewProvider {
     static var previews: some View {
         AuthorizationView(withButton: true)
             .preferredColorScheme(.dark)
     }
 }
+#endif

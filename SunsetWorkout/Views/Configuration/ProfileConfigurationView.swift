@@ -63,18 +63,10 @@ struct ProfileConfigurationView: View {
     }
 }
 
-// public extension UIViewController {
-//    @objc func tapAction() { self.view.endEditing(true) }
-//
-//    @objc func addTapToDismissKeyBoard() {
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
-//        tap.cancelsTouchesInView = true
-//        self.view.addGestureRecognizer(tap)
-//    }
-// }
-
+#if DEBUG
 struct ProfileConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileConfigurationView()
     }
 }
+#endif

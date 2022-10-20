@@ -31,8 +31,10 @@ struct UserProfileFormView: View {
     }
 }
 
+#if DEBUG
 struct UserProfileFormView_Previews: PreviewProvider {
     static var previews: some View {
         UserProfileFormView(height: .constant(""), weight: .constant(""), heightUnit: "meters", weightUnit: "kg")
     }
 }
+#endif

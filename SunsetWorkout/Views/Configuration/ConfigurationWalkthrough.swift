@@ -81,8 +81,10 @@ struct ConfigurationWalkthroughView: View {
     }
 }
 
+#if DEBUG
 struct ConfigurationWalkthroughView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigurationWalkthroughView(SWHealthStoreManager: SWHealthStoreManager())
     }
 }
+#endif

@@ -49,8 +49,10 @@ struct FloatingTextField: View {
     }
 }
 
+#if DEBUG
 struct FloatingTextField_Previews: PreviewProvider {
     static var previews: some View {
         FloatingTextField(placeHolder: "Preview", text: .constant(""), bgColor: .white)
     }
 }
+#endif

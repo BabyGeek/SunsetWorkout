@@ -54,6 +54,7 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     }
 }
 
+#if DEBUG
 struct TabBarContainerView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
         .dashboard,
@@ -67,3 +68,4 @@ struct TabBarContainerView_Previews: PreviewProvider {
         }
     }
 }
+#endif

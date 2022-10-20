@@ -39,6 +39,7 @@ struct WorkoutCardView: View {
     }
 }
 
+#if DEBUG
 struct WorkoutCardView_Previews: PreviewProvider {
     static let HIITExample = SWWorkout(name: "Test HIIT", type: .highIntensityIntervalTraining, metadata: [
         SWMetadata(type: .exerciseBreak, value: "20"),
@@ -72,3 +73,4 @@ struct WorkoutCardView_Previews: PreviewProvider {
         }
     }
 }
+#endif

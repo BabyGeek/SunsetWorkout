@@ -13,8 +13,10 @@ struct LaunchNewWorkoutView: View {
     }
 }
 
+#if DEBUG
 struct LaunchNewWorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchNewWorkoutView()
     }
 }
+#endif

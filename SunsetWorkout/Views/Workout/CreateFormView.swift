@@ -95,8 +95,10 @@ extension CreateFormView {
     }
 }
 
+#if DEBUG
 struct CreateFormView_Previews: PreviewProvider {
     static var previews: some View {
         CreateFormView()
     }
 }
+#endif

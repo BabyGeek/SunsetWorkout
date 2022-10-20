@@ -64,11 +64,13 @@ struct WorkoutExerciceSearchView: View {
     }
 }
 
+#if DEBUG
 struct WorkoutExerciceSearchView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutExerciceSearchView(search: .constant("Squats"), selected: .constant(nil), isSearching: .constant(true))
     }
 }
+#endif
 
 struct SearchItem: View {
     var value: String

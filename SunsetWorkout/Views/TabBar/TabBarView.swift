@@ -24,6 +24,7 @@ struct TabBarView: View {
     }
 }
 
+#if DEBUG
 struct TabBarView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
         .dashboard,
@@ -39,6 +40,7 @@ struct TabBarView_Previews: PreviewProvider {
         }
     }
 }
+#endif
 
 extension TabBarView {
     /// Tab bar item view

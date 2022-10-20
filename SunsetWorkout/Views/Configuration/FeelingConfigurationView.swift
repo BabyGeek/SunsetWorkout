@@ -116,8 +116,10 @@ struct FeelingListingView: View {
     }
 }
 
+#if DEBUG
 struct FeelingConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         FeelingConfigurationView()
     }
 }
+#endif

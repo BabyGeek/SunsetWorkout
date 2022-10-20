@@ -37,6 +37,7 @@ struct BaseWorkoutFormView: View {
     }
 }
 
+#if DEBUG
 struct BaseWorkoutFormView_Previews: PreviewProvider {
     static var previews: some View {
         BaseWorkoutFormView(
@@ -45,3 +46,4 @@ struct BaseWorkoutFormView_Previews: PreviewProvider {
             exerciseBreak: .constant("30"))
     }
 }
+#endif

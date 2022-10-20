@@ -27,8 +27,10 @@ struct DashboardCardView: View {
     }
 }
 
+#if DEBUG
 struct DashboardCardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardCardView()
     }
 }
+#endif
