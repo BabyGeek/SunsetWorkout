@@ -50,32 +50,16 @@ class SWHealthStoreManager: ObservableObject {
     }
 
     private func setRead() {
-        let activitySummaryType = HKObjectType.activitySummaryType()
-
-        if let heartRateQuantityType = HKObjectType.quantityType(forIdentifier: .heartRate),
-           let activeEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
-           let basalEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .basalEnergyBurned),
-           let restingHeartRateQuantityType = HKObjectType.quantityType(forIdentifier: .restingHeartRate),
-           let standUpQuantityType = HKObjectType.quantityType(forIdentifier: .appleStandTime),
+        if let activeEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
            let exerciceQuantityType = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
            let heightQuantityType = HKObjectType.quantityType(forIdentifier: .height),
            let bodyMassQuantityType = HKObjectType.quantityType(forIdentifier: .bodyMass),
-           let userDateOfBirth = HKObjectType.characteristicType(forIdentifier: .dateOfBirth),
-           let userBiologicalSex = HKObjectType.characteristicType(forIdentifier: .biologicalSex),
            let sleepAnalysisType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) {
             read = [
-                activitySummaryType,
-                heartRateQuantityType,
                 activeEnergyBurnedQuantityType,
-                activitySummaryType,
-                basalEnergyBurnedQuantityType,
-                restingHeartRateQuantityType,
-                standUpQuantityType,
                 exerciceQuantityType,
                 heightQuantityType,
                 bodyMassQuantityType,
-                userDateOfBirth,
-                userBiologicalSex,
                 sleepAnalysisType
             ]
         }
