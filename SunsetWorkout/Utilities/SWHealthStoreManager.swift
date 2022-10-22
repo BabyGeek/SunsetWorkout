@@ -51,13 +51,13 @@ class SWHealthStoreManager: ObservableObject {
 
     private func setRead() {
         if let activeEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
-           let exerciceQuantityType = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
+           let exerciseQuantityType = HKObjectType.quantityType(forIdentifier: .appleExerciseTime),
            let heightQuantityType = HKObjectType.quantityType(forIdentifier: .height),
            let bodyMassQuantityType = HKObjectType.quantityType(forIdentifier: .bodyMass),
            let sleepAnalysisType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) {
             read = [
                 activeEnergyBurnedQuantityType,
-                exerciceQuantityType,
+                exerciseQuantityType,
                 heightQuantityType,
                 bodyMassQuantityType,
                 sleepAnalysisType

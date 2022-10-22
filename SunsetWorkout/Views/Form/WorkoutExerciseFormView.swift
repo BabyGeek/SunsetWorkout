@@ -1,5 +1,5 @@
 //
-//  WorkoutExerciceFormView.swift
+//  WorkoutExerciseFormView.swift
 //  SunsetWorkout
 //
 //  Created by Paul Oggero on 16/10/2022.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct WorkoutExerciceFormView: View, KeyboardReadable {
+struct WorkoutExerciseFormView: View, KeyboardReadable {
     @Environment(\.presentationMode) var presentationMode
     var workoutViewModel: WorkoutViewModel
 
-    @State var searchExerciceText: String = ""
+    @State var searchExerciseText: String = ""
     @State var isSearching: Bool = false
     @State var selectedSearch: ExerciseSearch?
 
@@ -50,7 +50,7 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
         VStack {
             FloatingTextField(
                 placeHolder: "Name",
-                text: $searchExerciceText,
+                text: $searchExerciseText,
                 bgColor: .clear)
             .simultaneousGesture(
                 TapGesture()
@@ -62,8 +62,8 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
             if !isSearching {
                 formView
             } else {
-                WorkoutExerciceSearchView(
-                    search: $searchExerciceText,
+                WorkoutExerciseSearchView(
+                    search: $searchExerciseText,
                     selected: $selectedSearch,
                     isSearching: $isSearching)
                 Spacer()
@@ -79,11 +79,11 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
 }
 
 // MARK: - Form view
-extension WorkoutExerciceFormView {
+extension WorkoutExerciseFormView {
     var formView: some View {
         VStack {
             FloatingTextField(
-                placeHolder: "Exercice break",
+                placeHolder: "Exercise break",
                 text: $exerciseBreak,
                 bgColor: .clear)
             .keyboardType(.numberPad)
@@ -118,7 +118,7 @@ extension WorkoutExerciceFormView {
 
                     if let workout = workoutViewModel.workout {
                         let exercise = SWExercise(
-                            name: searchExerciceText,
+                            name: searchExerciseText,
                             order: workout.exercises.count + 1,
                             metadata: metadata.filter({ workout.type.SWMetadataTypes.contains($0.type) }))
 
@@ -146,7 +146,7 @@ extension WorkoutExerciceFormView {
 }
 
 #if DEBUG
-struct WorkoutExerciceFormView_Previews: PreviewProvider {
+struct WorkoutExerciseFormView_Previews: PreviewProvider {
     static let HIITExample = SWWorkout(name: "Test HIIT", type: .highIntensityIntervalTraining, metadata: [
         SWMetadata(type: .exerciseBreak, value: "20"),
         SWMetadata(type: .roundBreak, value: "10"),
@@ -161,7 +161,7 @@ struct WorkoutExerciceFormView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        WorkoutExerciceFormView(WorkoutViewModel(workout: HIITExample))
+        WorkoutExerciseFormView(WorkoutViewModel(workout: HIITExample))
     }
 }
 #endif

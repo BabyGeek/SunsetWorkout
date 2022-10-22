@@ -9,7 +9,6 @@ import SwiftUI
 
 struct WorkoutView: View {
     var viewModel: WorkoutViewModel
-    @State var presentExerciceModal: Bool = false
 
     var body: some View {
         ZStack {
@@ -31,7 +30,7 @@ struct WorkoutView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing:
                                 NavigationLink(
-                                    destination: CreateWorkoutExerciceView(viewModel: viewModel),
+                                    destination: CreateWorkoutExerciseView(viewModel: viewModel),
                                     label: {
                                         Image(systemName: "plus")
                                     })

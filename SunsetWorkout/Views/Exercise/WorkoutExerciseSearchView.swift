@@ -1,5 +1,5 @@
 //
-//  WorkoutExerciceSearchView.swift
+//  WorkoutExerciseSearchView.swift
 //  SunsetWorkout
 //
 //  Created by Paul Oggero on 17/10/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutExerciceSearchView: View {
+struct WorkoutExerciseSearchView: View {
     @StateObject var viewModel = ExerciseSearchViewModel()
     @Binding var search: String
     @Binding var selected: ExerciseSearch?
@@ -65,9 +65,9 @@ struct WorkoutExerciceSearchView: View {
 }
 
 #if DEBUG
-struct WorkoutExerciceSearchView_Previews: PreviewProvider {
+struct WorkoutExerciseSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutExerciceSearchView(search: .constant("Squats"), selected: .constant(nil), isSearching: .constant(true))
+        WorkoutExerciseSearchView(search: .constant("Squats"), selected: .constant(nil), isSearching: .constant(true))
     }
 }
 #endif

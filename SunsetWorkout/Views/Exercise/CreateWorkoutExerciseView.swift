@@ -1,5 +1,5 @@
 //
-//  CreateWorkoutExerciceView.swift
+//  CreateWorkoutExerciseView.swift
 //  SunsetWorkout
 //
 //  Created by Paul Oggero on 17/10/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateWorkoutExerciceView: View, KeyboardReadable {
+struct CreateWorkoutExerciseView: View, KeyboardReadable {
     var viewModel: WorkoutViewModel
 
     @State var isKeyboardVisible: Bool = false
@@ -20,7 +20,7 @@ struct CreateWorkoutExerciceView: View, KeyboardReadable {
                 VStack {
                     Spacer()
 
-                    WorkoutExerciceFormView(viewModel)
+                    WorkoutExerciseFormView(viewModel)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
@@ -30,13 +30,13 @@ struct CreateWorkoutExerciceView: View, KeyboardReadable {
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }
-        .navigationTitle(NSLocalizedString("exercice.add", comment: "Add exercice title"))
+        .navigationTitle(NSLocalizedString("exercise.add", comment: "Add exercise title"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #if DEBUG
-struct CreateWorkoutExerciceView_Previews: PreviewProvider {
+struct CreateWorkoutExerciseView_Previews: PreviewProvider {
     static let HIITExample = SWWorkout(name: "Test HIIT", type: .highIntensityIntervalTraining, metadata: [
         SWMetadata(type: .exerciseBreak, value: "20"),
         SWMetadata(type: .roundBreak, value: "10"),
@@ -44,7 +44,7 @@ struct CreateWorkoutExerciceView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        CreateWorkoutExerciceView(viewModel: WorkoutViewModel(workout: HIITExample))
+        CreateWorkoutExerciseView(viewModel: WorkoutViewModel(workout: HIITExample))
     }
 }
 #endif
