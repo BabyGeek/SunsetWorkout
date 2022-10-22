@@ -65,3 +65,23 @@ extension SWWorkout {
         self.createdAt = object.created_at
     }
 }
+
+// MARK: - Mock data
+extension SWWorkout {
+    static func getMockWithName(_ name: String, and type: SWWorkoutType) -> SWWorkout {
+        let metadata = [
+            SWMetadata(type: .exerciseBreak, value: "120"),
+            SWMetadata(type: .roundBreak, value: "10"),
+            SWMetadata(type: .serieBreak, value: "20"),
+            SWMetadata(type: .roundNumber, value: "5"),
+            SWMetadata(type: .serieNumber, value: "6"),
+            SWMetadata(type: .repetitionGoal, value: "12"),
+            SWMetadata(type: .roundDuration, value: "20")
+        ]
+
+        return SWWorkout(
+            name: name,
+            type: type,
+            metadata: metadata)
+    }
+}
