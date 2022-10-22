@@ -14,7 +14,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         super.setUp()
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealm"
     }
-    
+
     func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataModel {
         return SWWorkoutMetadataModel(value: [
             "_id": UUID().uuidString,
@@ -22,7 +22,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             "value": value
         ])
     }
-    
+
     func getStrengthMockWorkoutModel() -> SWWorkoutModel {
         return SWWorkoutModel(value: [
             "_id": UUID().uuidString,
@@ -37,7 +37,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             "exercises": getExercisesStrengthMockModel()
         ])
     }
-    
+
     func getHIITMockWorkoutModel() -> SWWorkoutModel {
         return SWWorkoutModel(value: [
             "_id": UUID().uuidString,
@@ -52,7 +52,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             "exercises": getExercisesHIITMockModel()
         ])
     }
-    
+
     func getExercisesHIITMockModel() -> [SWExerciseModel] {
         return [
             SWExerciseModel(value: [
@@ -90,7 +90,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             ])
         ]
     }
-    
+
     func getExercisesStrengthMockModel() -> [SWExerciseModel] {
         return [
             SWExerciseModel(value: [
@@ -128,112 +128,112 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             ])
         ]
     }
-    
+
     func testAddStrengthWorkoutWithExercisesWithProjection() throws {
         guard let realm = try? Realm() else { return XCTFail("Failed to instanciate Realm") }
-        
+
         try? realm.write {
             realm.add(getStrengthMockWorkoutModel(), update: .modified)
         }
-        
+
         guard let workoutModel = realm.objects(SWWorkoutModel.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
-        
+
         XCTAssert(workoutModel.name == "Test Strength")
         XCTAssert(workoutModel.rawType == SWWorkoutType.traditionalStrengthTraining.rawValue)
-        
+
         try? realm.write {
             workoutModel.name = "Update Strength"
         }
-        
+
         XCTAssert(workoutModel.name == "Update Strength")
     }
-    
+
     func testAddHIITWorkoutWithExercisesWithProjection() throws {
         guard let realm = try? Realm() else { return XCTFail("Failed to instanciate Realm") }
-        
+
         try? realm.write {
             realm.add(getHIITMockWorkoutModel(), update: .modified)
         }
-        
+
         guard let workoutModel = realm.objects(SWWorkoutModel.self)
             .first(where: { $0.name == "Test HIIT" }) else { return XCTFail("Failed to retrieve first object") }
-        
+
         XCTAssert(workoutModel.name == "Test HIIT")
         XCTAssert(workoutModel.rawType == SWWorkoutType.highIntensityIntervalTraining.rawValue)
-        
+
         try? realm.write {
             workoutModel.name = "Update HIIT"
         }
-        
+
         XCTAssert(workoutModel.name == "Update HIIT")
     }
-    
+
     func testAddStrengthWithExercisesWithViewModel() throws {
         let viewModel = WorkoutViewModel()
         viewModel.workout = SWWorkout.getMockWithName("Test Strength", type: .traditionalStrengthTraining)
-        
+
         let exercises = [
             SWExercise.getMockWithName("Push ups", for: viewModel.workout, order: 1),
             SWExercise.getMockWithName("Pull ups", for: viewModel.workout, order: 2),
             SWExercise.getMockWithName("Squats", for: viewModel.workout, order: 3)
         ]
-        
+
         viewModel.workout?.exercises.append(contentsOf: exercises)
         viewModel.saveWorkout()
-        
+
         XCTAssertTrue(viewModel.saved)
     }
-    
+
     func testAddHIITWithExercisesWithViewModel() throws {
         let viewModel = WorkoutViewModel()
         viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
-        
+
         let exercises = [
             SWExercise.getMockWithName("Burpees", for: viewModel.workout, order: 1),
             SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout, order: 2),
             SWExercise.getMockWithName("Push ups", for: viewModel.workout, order: 3)
         ]
-        
+
         viewModel.workout?.exercises.append(contentsOf: exercises)
         viewModel.saveWorkout()
-        
+
         XCTAssertTrue(viewModel.saved)
     }
-    
+
     func testAddHIITThenAddExerciseThenSaveWithViewModel() throws {
         let viewModel = WorkoutViewModel()
         viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
-        
+
         viewModel.addExercise(SWExercise.getMockWithName("Burpees", for: viewModel.workout))
         viewModel.addExercise(SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout))
         viewModel.addExercise(SWExercise.getMockWithName("Push ups", for: viewModel.workout))
-        
+
         XCTAssertNil(viewModel.error)
     }
-    
+
     func testAddHIITWithExercisesSameOrderWithViewModel() throws {
         let viewModel = WorkoutViewModel()
         viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
-        
+
         viewModel.addExercise(SWExercise.getMockWithName("Burpees", for: viewModel.workout))
         viewModel.addExercise(SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout, order: 1))
-        
+
         viewModel.saveWorkout()
         XCTAssertNotNil(viewModel.error)
     }
-    
+
     func testAddHIITWithExerciseEmptyNameWithViewModel() throws {
         let viewModel = WorkoutViewModel()
         viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
         viewModel.addExercise(SWExercise.getMockWithName("", for: viewModel.workout))
-        
+
         XCTAssertNotNil(viewModel.error)
     }
-    
+
     func testAddStrengthWithExerciseWithViewModel() throws {
         guard let realm = try? Realm() else { return XCTFail("Failed to instanciate Realm") }
-        
+
         let viewModel = WorkoutViewModel()
         let exercises = [
             SWExercise(name: "Push ups", order: 1, metadata: [
@@ -255,22 +255,22 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                 SWMetadata(type: .repetitionGoal, value: "12")
             ])
         ]
-        
+
         viewModel.workout = SWWorkout.getMockWithName("Test Strength",
                                                       type: .traditionalStrengthTraining,
                                                       exercises: exercises)
         viewModel.saveWorkout()
         XCTAssertTrue(viewModel.saved)
-        
+
         guard let workoutModel = realm.objects(SWWorkoutModel.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
-        
+
         XCTAssertEqual(workoutModel.exercises.count, 3)
     }
-    
+
     func testAddHIITWithExerciseWithViewModel() throws {
         guard let realm = try? Realm() else { return XCTFail("Failed to instanciate Realm") }
-        
+
         let viewModel = WorkoutViewModel()
         let exercises = [
             SWExercise(name: "Burpees", order: 1, metadata: [
@@ -292,14 +292,14 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                 SWMetadata(type: .roundDuration, value: "30")
             ])
         ]
-        
+
         viewModel.workout = SWWorkout.getMockWithName("Test Strength",
                                                       type: .traditionalStrengthTraining,
                                                       exercises: exercises)
         viewModel.saveWorkout()
-        
+
         XCTAssertTrue(viewModel.saved)
-        
+
         guard let workoutModel = realm.objects(SWWorkoutModel.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
         XCTAssertEqual(workoutModel.exercises.count, 3)
