@@ -59,6 +59,10 @@
 		2B94AD7D28F7677E00F3C71B /* SWWorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94AD7C28F7677E00F3C71B /* SWWorkoutModel.swift */; };
 		2B94AD7F28F7686100F3C71B /* SWWorkoutMetadataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataModel.swift */; };
 		2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */; };
+		2BB3273C29034D43008A4B81 /* SWExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3273B29034D43008A4B81 /* SWExercise.swift */; };
+		2BB3273E29034E13008A4B81 /* SWExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3273D29034E13008A4B81 /* SWExerciseModel.swift */; };
+		2BB327422903642F008A4B81 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB327412903642F008A4B81 /* ArrayExtensions.swift */; };
+		2BB3274429036768008A4B81 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274329036768008A4B81 /* CollectionExtensions.swift */; };
 		2BC1126828FDF1A400898C80 /* CreateWorkoutExerciceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126728FDF1A400898C80 /* CreateWorkoutExerciceView.swift */; };
 		2BC1126A28FDF80500898C80 /* WorkoutExerciceSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126928FDF80500898C80 /* WorkoutExerciceSearchView.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
@@ -149,6 +153,10 @@
 		2B94AD7C28F7677E00F3C71B /* SWWorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWorkoutModel.swift; sourceTree = "<group>"; };
 		2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWorkoutMetadataModel.swift; sourceTree = "<group>"; };
 		2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		2BB3273B29034D43008A4B81 /* SWExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWExercise.swift; sourceTree = "<group>"; };
+		2BB3273D29034E13008A4B81 /* SWExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWExerciseModel.swift; sourceTree = "<group>"; };
+		2BB327412903642F008A4B81 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		2BB3274329036768008A4B81 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		2BC1126728FDF1A400898C80 /* CreateWorkoutExerciceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutExerciceView.swift; sourceTree = "<group>"; };
 		2BC1126928FDF80500898C80 /* WorkoutExerciceSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciceSearchView.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +298,7 @@
 				2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */,
 				2B94AD7828F7608B00F3C71B /* SWMetadata.swift */,
 				2B94AD7A28F7609100F3C71B /* SWWorkout.swift */,
+				2BB3273D29034E13008A4B81 /* SWExerciseModel.swift */,
 				2B94AD7C28F7677E00F3C71B /* SWWorkoutModel.swift */,
 				2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataModel.swift */,
 				2B8EE31F28F9F52D00206F9C /* Feeling.swift */,
@@ -298,6 +307,7 @@
 				2BF5759F28FF54C300F21605 /* Endpoint.swift */,
 				2BF575A528FF571E00F21605 /* UserSession.swift */,
 				2BF575A728FF585100F21605 /* APIHost.swift */,
+				2BB3273B29034D43008A4B81 /* SWExercise.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -440,6 +450,8 @@
 				2BF5759B28FF540500F21605 /* URLSessionExtensions.swift */,
 				2BF575A128FF54F900F21605 /* EndpointKind.swift */,
 				2BF575AB28FF59D000F21605 /* InvalidEndpointError.swift */,
+				2BB327412903642F008A4B81 /* ArrayExtensions.swift */,
+				2BB3274329036768008A4B81 /* CollectionExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -597,15 +609,18 @@
 				2B94AD7528F7605A00F3C71B /* SWWorkoutType.swift in Sources */,
 				2BF5759828FF529A00F21605 /* ExerciseSearchLoader.swift in Sources */,
 				2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */,
+				2BB327422903642F008A4B81 /* ArrayExtensions.swift in Sources */,
 				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
 				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
 				2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */,
+				2BB3273E29034E13008A4B81 /* SWExerciseModel.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
 				2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */,
 				2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */,
 				2B2EB1A028FCA02200F4FEDB /* GlassMorphicCard.swift in Sources */,
 				2B94AD7228F75C7A00F3C71B /* WorkoutViewModel.swift in Sources */,
 				2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */,
+				2BB3274429036768008A4B81 /* CollectionExtensions.swift in Sources */,
 				2BF575A228FF54F900F21605 /* EndpointKind.swift in Sources */,
 				2BF575AA28FF596800F21605 /* AccessToken.swift in Sources */,
 				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
@@ -653,6 +668,7 @@
 				2B94AD7728F7607500F3C71B /* SWMetadataType.swift in Sources */,
 				2BF5759628FF4EF000F21605 /* ExerciseSearch.swift in Sources */,
 				2BF5759C28FF540500F21605 /* URLSessionExtensions.swift in Sources */,
+				2BB3273C29034D43008A4B81 /* SWExercise.swift in Sources */,
 				2BFF29B128C59BD40041841F /* TabBarContainerView.swift in Sources */,
 				2BF575AC28FF59D000F21605 /* InvalidEndpointError.swift in Sources */,
 				2BF5759A28FF53A200F21605 /* WGERNetworkResponse.swift in Sources */,
@@ -701,6 +717,132 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2B80A37D2901FC2A008C541F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TESTING;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Testing;
+		};
+		2B80A37E2901FC2A008C541F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SunsetWorkout/SunsetWorkout.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
+				DEVELOPMENT_TEAM = 6268FDJSTY;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SunsetWorkout/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sunset Workout";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Synchronize your workouts to the Apple's Health app";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout data will be used to show histories";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Your health records will be used to make workouts sessions follow.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkout;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Testing;
+		};
+		2B80A37F2901FC2A008C541F /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6268FDJSTY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunsetWorkout.app/SunsetWorkout";
+			};
+			name = Testing;
+		};
 		2BD1D81928B626FF006A3848 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -954,6 +1096,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2BD1D81928B626FF006A3848 /* Debug */,
+				2B80A37D2901FC2A008C541F /* Testing */,
 				2BD1D81A28B626FF006A3848 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -963,6 +1106,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2BD1D81C28B626FF006A3848 /* Debug */,
+				2B80A37E2901FC2A008C541F /* Testing */,
 				2BD1D81D28B626FF006A3848 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -972,6 +1116,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2BD1D81F28B626FF006A3848 /* Debug */,
+				2B80A37F2901FC2A008C541F /* Testing */,
 				2BD1D82028B626FF006A3848 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

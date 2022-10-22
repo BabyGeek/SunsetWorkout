@@ -8,19 +8,30 @@
 import SwiftUI
 
 struct WorkoutView: View {
-    var workout: SWWorkout
+    var viewModel: WorkoutViewModel
     @State var presentExerciceModal: Bool = false
 
     var body: some View {
         ZStack {
             BackgroundView()
-            Text(workout.name)
+            if let workout = viewModel.workout {
+                if workout.exercises.isEmpty {
+                    Text(NSLocalizedString("workout.exercises.empty", comment: "Empty exercises label"))
+                }
+
+                List {
+                    ForEach(workout.exercises) { exercise in
+                        Text(exercise.name)
+                    }
+                }
+            }
         }
-        .navigationTitle(workout.name)
+        .navigationTitle(viewModel.workout?.name ??
+                         NSLocalizedString("workout.name.not.found", comment: "Label workout name not found"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing:
                                 NavigationLink(
-                                    destination: CreateWorkoutExerciceView(workout: workout),
+                                    destination: CreateWorkoutExerciceView(viewModel: viewModel),
                                     label: {
                                         Image(systemName: "plus")
                                     })
@@ -44,7 +55,7 @@ struct WorkoutView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        WorkoutView(workout: HIITExample)
+        WorkoutView(viewModel: WorkoutViewModel(workout: HIITExample))
     }
 }
 #endif

@@ -5,7 +5,7 @@
 //  Created by Paul Oggero on 12/10/2022.
 //
 
-import SwiftUI
+import Foundation
 import RealmSwift
 
 class SWWorkoutModel: Object {
@@ -13,7 +13,8 @@ class SWWorkoutModel: Object {
     @Persisted var created_at = Date()
     @Persisted var rawType: String
     @Persisted var name: String
-    @Persisted var metadata = RealmSwift.List<SWWorkoutMetadataModel>()
+    @Persisted var metadata = List<SWWorkoutMetadataModel>()
+    @Persisted var exercises = List<SWExerciseModel>()
 }
 
 // MARK: - init from Model
@@ -28,6 +29,7 @@ extension SWWorkoutModel {
         self.name = workout.name
         self.rawType = workout.type.rawValue
         self.metadata.append(objectsIn: workout.metadata.map({ SWWorkoutMetadataModel(metadata: $0) }))
+        self.exercises.append(objectsIn: workout.exercises.map({ SWExerciseModel(exercise: $0) }))
         self.created_at = workout.createdAt
     }
 }

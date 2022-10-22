@@ -14,17 +14,29 @@ struct SWWorkout {
     let createdAt: Date
 
     var metadata: [SWMetadata]
+    var exercises: [SWExercise]
 
-    init(id: UUID = UUID(), name: String, type: SWWorkoutType, createdAt: Date = Date(), metadata: [SWMetadata]) {
+    init(
+        id: UUID = UUID(),
+        name: String,
+        type: SWWorkoutType,
+        createdAt: Date = Date(),
+        metadata: [SWMetadata],
+        exercises: [SWExercise]? = nil) {
         self.id = id.uuidString
         self.name = name
         self.type = type
         self.createdAt = createdAt
         self.metadata = metadata
+        self.exercises = exercises ?? []
     }
 
     mutating func cleanMetadata() {
         metadata = metadata.filter { type.SWMetadataTypes.contains($0.type) }
+    }
+
+    func exerciseOrderIsGood() -> Bool {
+        return exercises.allEqual(by: \.order)
     }
 }
 
@@ -49,6 +61,7 @@ extension SWWorkout {
         self.type = type
         self.name = object.name
         self.metadata = object.metadata.map { SWMetadata(object: $0) }
+        self.exercises = object.exercises.map { SWExercise(object: $0) }
         self.createdAt = object.created_at
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateWorkoutExerciceView: View, KeyboardReadable {
-    var workout: SWWorkout
+    var viewModel: WorkoutViewModel
 
     @State var isKeyboardVisible: Bool = false
 
@@ -20,7 +20,7 @@ struct CreateWorkoutExerciceView: View, KeyboardReadable {
                 VStack {
                     Spacer()
 
-                    WorkoutExerciceFormView(workout)
+                    WorkoutExerciceFormView(viewModel)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
@@ -44,7 +44,7 @@ struct CreateWorkoutExerciceView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        CreateWorkoutExerciceView(workout: HIITExample)
+        CreateWorkoutExerciceView(viewModel: WorkoutViewModel(workout: HIITExample))
     }
 }
 #endif

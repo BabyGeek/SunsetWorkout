@@ -15,7 +15,7 @@ struct WorkoutsView: View {
         ScrollView {
             ForEach(viewModel.workouts) { workout in
                 NavigationLink {
-                    WorkoutView(workout: workout)
+                    WorkoutView(viewModel: WorkoutViewModel(workout: workout))
                 } label: {
                     WorkoutCardView(workout: workout)
                         .foregroundColor(Color(.label))

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct WorkoutExerciceFormView: View, KeyboardReadable {
-    var workout: SWWorkout
+    @Environment(\.presentationMode) var presentationMode
+    var workoutViewModel: WorkoutViewModel
 
     @State var searchExerciceText: String = ""
     @State var isSearching: Bool = false
@@ -18,6 +19,7 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
 
     @State var roundBreak: String
     @State var roundNumber: String
+    @State var roundDuration: String
 
     @State var seriesBreak: String
     @State var seriesNumber: String
@@ -25,21 +27,23 @@ struct WorkoutExerciceFormView: View, KeyboardReadable {
 
     @State var isKeyboardVisible: Bool = false
 
-    init(_ workout: SWWorkout) {
-        self.workout = workout
+    init(_ viewModel: WorkoutViewModel) {
+        self.workoutViewModel = viewModel
 
-        _exerciseBreak = State(
-            initialValue: workout.metadata.first(where: { $0.type == .exerciseBreak })?.value ?? "")
-        _roundBreak = State(
-            initialValue: workout.metadata.first(where: { $0.type == .roundBreak })?.value ?? "")
-        _roundNumber = State(
-            initialValue: workout.metadata.first(where: { $0.type == .roundNumber })?.value ?? "")
-        _seriesBreak = State(
-            initialValue: workout.metadata.first(where: { $0.type == .serieBreak })?.value ?? "")
-        _seriesNumber = State(
-            initialValue: workout.metadata.first(where: { $0.type == .serieNumber })?.value ?? "")
-        _repetitionGoal = State(
-            initialValue: workout.metadata.first(where: { $0.type == .repetitionGoal })?.value ?? "")
+            _exerciseBreak = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .exerciseBreak })?.value ?? "")
+            _roundBreak = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .roundBreak })?.value ?? "")
+            _roundNumber = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .roundNumber })?.value ?? "")
+            _roundDuration = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .roundDuration })?.value ?? "")
+            _seriesBreak = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .serieBreak })?.value ?? "")
+            _seriesNumber = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .serieNumber })?.value ?? "")
+            _repetitionGoal = State(
+                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .repetitionGoal })?.value ?? "")
     }
 
     var body: some View {
@@ -84,13 +88,14 @@ extension WorkoutExerciceFormView {
                 bgColor: .clear)
             .keyboardType(.numberPad)
 
-            if workout.type == .highIntensityIntervalTraining {
+            if workoutViewModel.workout?.type == .highIntensityIntervalTraining {
                 HIITFormView(
                     roundBreak: $roundBreak,
+                    roundDuration: $roundDuration,
                     roundNumber: $roundNumber)
             }
 
-            if workout.type == .traditionalStrengthTraining {
+            if workoutViewModel.workout?.type == .traditionalStrengthTraining {
                 TraditionalFormView(
                     seriesBreak: $seriesBreak,
                     seriesNumber: $seriesNumber,
@@ -101,7 +106,32 @@ extension WorkoutExerciceFormView {
 
             if !isKeyboardVisible {
                 Button {
-                    dump(workout)
+                    let metadata = [
+                        SWMetadata(type: .roundDuration, value: roundDuration),
+                        SWMetadata(type: .roundBreak, value: roundBreak),
+                        SWMetadata(type: .roundNumber, value: roundNumber),
+                        SWMetadata(type: .serieBreak, value: seriesBreak),
+                        SWMetadata(type: .serieNumber, value: seriesNumber),
+                        SWMetadata(type: .exerciseBreak, value: exerciseBreak),
+                        SWMetadata(type: .repetitionGoal, value: repetitionGoal)
+                    ]
+
+                    if let workout = workoutViewModel.workout {
+                        let exercise = SWExercise(
+                            name: searchExerciceText,
+                            order: workout.exercises.count + 1,
+                            metadata: metadata.filter({ workout.type.SWMetadataTypes.contains($0.type) }))
+
+                        workoutViewModel.addExercise(exercise)
+                        workoutViewModel.saveWorkout()
+                    }
+
+                    if workoutViewModel.saved {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } else {
+                        workoutViewModel.error = SWError(error: SWExerciseError.notSaved)
+                    }
+
                 } label: {
                     RoundedRectangle(cornerRadius: 25)
                         .frame(height: 50)
@@ -131,7 +161,7 @@ struct WorkoutExerciceFormView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        WorkoutExerciceFormView(HIITExample)
+        WorkoutExerciceFormView(WorkoutViewModel(workout: HIITExample))
     }
 }
 #endif
