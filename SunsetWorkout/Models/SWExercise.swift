@@ -50,7 +50,7 @@ extension SWExercise {
     static func getMockWithName(_ name: String, for workout: SWWorkout?, order: Int? = nil) -> SWExercise {
         var metadata: [SWMetadata] = []
         var exerciseOrder: Int = 1
-        
+
         if let workout {
             metadata = [
                 SWMetadata(type: .exerciseBreak, value: "30"),
@@ -61,10 +61,10 @@ extension SWExercise {
                 SWMetadata(type: .serieNumber, value: "6"),
                 SWMetadata(type: .repetitionGoal, value: "12")
             ].filter({ workout.type.SWMetadataTypes.contains($0.type) })
-            
+
             exerciseOrder = order ?? workout.exercises.count + 1
         }
-        
+
         return SWExercise(name: name, order: exerciseOrder, metadata: metadata)
     }
 }

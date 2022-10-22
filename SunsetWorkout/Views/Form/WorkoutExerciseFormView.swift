@@ -30,20 +30,31 @@ struct WorkoutExerciseFormView: View, KeyboardReadable {
     init(_ viewModel: WorkoutViewModel) {
         self.workoutViewModel = viewModel
 
-            _exerciseBreak = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .exerciseBreak })?.value ?? "")
-            _roundBreak = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .roundBreak })?.value ?? "")
-            _roundNumber = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .roundNumber })?.value ?? "")
-            _roundDuration = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .roundDuration })?.value ?? "")
-            _seriesBreak = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .serieBreak })?.value ?? "")
-            _seriesNumber = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .serieNumber })?.value ?? "")
-            _repetitionGoal = State(
-                initialValue: workoutViewModel.workout?.metadata.first(where: { $0.type == .repetitionGoal })?.value ?? "")
+        guard let workout = viewModel.workout else {
+            _exerciseBreak = State(initialValue: "")
+            _roundBreak = State(initialValue: "")
+            _roundNumber = State(initialValue: "")
+            _roundDuration = State(initialValue: "")
+            _seriesBreak = State(initialValue: "")
+            _seriesNumber = State(initialValue: "")
+            _repetitionGoal = State(initialValue: "")
+            return
+        }
+
+        _exerciseBreak = State(
+            initialValue: workout.metadata.first(where: { $0.type == .exerciseBreak })?.value ?? "")
+        _roundBreak = State(
+            initialValue: workout.metadata.first(where: { $0.type == .roundBreak })?.value ?? "")
+        _roundNumber = State(
+            initialValue: workout.metadata.first(where: { $0.type == .roundNumber })?.value ?? "")
+        _roundDuration = State(
+            initialValue: workout.metadata.first(where: { $0.type == .roundDuration })?.value ?? "")
+        _seriesBreak = State(
+            initialValue: workout.metadata.first(where: { $0.type == .serieBreak })?.value ?? "")
+        _seriesNumber = State(
+            initialValue: workout.metadata.first(where: { $0.type == .serieNumber })?.value ?? "")
+        _repetitionGoal = State(
+            initialValue: workout.metadata.first(where: { $0.type == .repetitionGoal })?.value ?? "")
     }
 
     var body: some View {
