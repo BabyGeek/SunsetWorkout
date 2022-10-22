@@ -24,13 +24,16 @@ class WorkoutViewModel: ObservableObject {
     public func saveWorkout() {
         workout?.cleanMetadata()
 
-        if let workout {
-            if workout.exerciseOrderIsGood() {
-                self.error = SWError(error: SWExerciseError.severalOrders)
-            }
-
-            save(model: workout, with: SWWorkoutModel.init)
+        guard let workout else {
+            self.error = SWError(error: SWWorkoutError.isNil)
+            return
         }
+
+        if workout.exerciseOrderIsGood() {
+            self.error = SWError(error: SWExerciseError.severalOrders)
+        }
+
+        save(model: workout, with: SWWorkoutModel.init)
     }
 
     public func addExercise(_ exercise: SWExercise) {

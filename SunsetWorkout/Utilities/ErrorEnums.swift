@@ -16,7 +16,7 @@ public enum RealmError: Error {
 }
 
 public enum SWWorkoutError: Error {
-    case noName
+    case noName, isNil
 }
 
 public enum SWExerciseError: Error {
@@ -65,6 +65,8 @@ extension SWWorkoutError: LocalizedError {
         switch self {
         case .noName:
             return NSLocalizedString("error.workout.no.name.description", comment: "Error description")
+        case .isNil:
+            return NSLocalizedString("error.workout.is.nil.description", comment: "Error description")
         }
     }
 
@@ -72,6 +74,8 @@ extension SWWorkoutError: LocalizedError {
         switch self {
         case .noName:
             return NSLocalizedString("error.workout.no.name.failure.reason", comment: "Error failure reason")
+        case .isNil:
+            return NSLocalizedString("error.workout.is.nil.failure.reason", comment: "Error failure reason")
         }
     }
 }
