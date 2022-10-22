@@ -32,7 +32,7 @@ enum SWWorkoutType: String {
     var SWMetadataTypes: [SWMetadataType] {
         switch self {
         case .highIntensityIntervalTraining:
-            return [.exerciseBreak, .roundBreak, .roundNumber]
+            return [.exerciseBreak, .roundBreak, .roundNumber, .roundDuration]
         case .traditionalStrengthTraining:
             return [.exerciseBreak, .serieBreak, .serieNumber, .repetitionGoal]
         }

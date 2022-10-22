@@ -11,6 +11,7 @@ enum SWMetadataType: String {
     case exerciseBreak,
          roundBreak,
          roundNumber,
+         roundDuration,
          serieBreak,
          serieNumber,
          repetitionGoal
@@ -23,6 +24,8 @@ enum SWMetadataType: String {
             return NSLocalizedString("metadate.label.round.break", comment: "Metadata label")
         case .roundNumber:
             return NSLocalizedString("metadate.label.round.number", comment: "Metadata label")
+        case .roundDuration:
+            return NSLocalizedString("metadate.label.round.duration", comment: "Metadata label")
         case .serieBreak:
             return NSLocalizedString("metadate.label.serie.break", comment: "Metadata label")
         case .serieNumber:

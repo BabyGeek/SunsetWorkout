@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HIITFormView: View {
     @Binding var roundBreak: String
+    @Binding var roundDuration: String
     @Binding var roundNumber: String
 
     var body: some View {
@@ -17,6 +18,11 @@ struct HIITFormView: View {
                               text: $roundBreak,
                               bgColor: Color(.clear))
                 .keyboardType(.numberPad)
+
+            FloatingTextField(placeHolder: "\(SWMetadataType.roundDuration.label) (secs)",
+                              text: $roundDuration,
+                              bgColor: Color(.clear))
+            .keyboardType(.numberPad)
 
             FloatingTextField(placeHolder: "\(SWMetadataType.roundNumber.label)",
                               text: $roundNumber,
@@ -29,7 +35,7 @@ struct HIITFormView: View {
 #if DEBUG
 struct HIITFormView_Previews: PreviewProvider {
     static var previews: some View {
-        HIITFormView(roundBreak: .constant("10"), roundNumber: .constant("5"))
+        HIITFormView(roundBreak: .constant("10"), roundDuration: .constant("30"), roundNumber: .constant("5"))
     }
 }
 #endif

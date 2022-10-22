@@ -18,6 +18,7 @@ struct CreateFormView: View, KeyboardReadable {
 
     @State var roundBreak: String = ""
     @State var roundNumber: String = ""
+    @State var roundDuration: String = ""
 
     @State var seriesBreak: String = ""
     @State var seriesNumber: String = ""
@@ -35,6 +36,7 @@ struct CreateFormView: View, KeyboardReadable {
             if type == .highIntensityIntervalTraining {
                 HIITFormView(
                     roundBreak: $roundBreak,
+                    roundDuration: $roundDuration,
                     roundNumber: $roundNumber)
             }
 
@@ -63,6 +65,7 @@ extension CreateFormView {
         Button {
             workoutViewModel.workout = SWWorkout(name: name, type: type, metadata: [
                 SWMetadata(type: .roundBreak, value: roundBreak),
+                SWMetadata(type: .roundDuration, value: roundDuration),
                 SWMetadata(type: .roundNumber, value: roundNumber),
                 SWMetadata(type: .exerciseBreak, value: exerciseBreak),
                 SWMetadata(type: .serieBreak, value: seriesBreak),
@@ -76,6 +79,7 @@ extension CreateFormView {
                 name = ""
                 roundBreak = ""
                 roundNumber = ""
+                roundDuration = ""
                 exerciseBreak = ""
                 seriesBreak = ""
                 seriesNumber = ""
