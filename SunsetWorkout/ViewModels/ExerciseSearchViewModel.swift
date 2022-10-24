@@ -12,17 +12,23 @@ class ExerciseSearchViewModel: ObservableObject {
     @Published var error: SWError?
     @Published private(set) var results: [ExerciseSearch] = []
     @Published var searchEmpty: Bool = false
+    @Published var isLoading: Bool = false
 
     let exerciseSearchLoader = ExerciseSearchLoader(userSession: UserSession())
     var cancellable: AnyCancellable?
 
     func search(for search: String) {
+        self.isLoading = false
+        if search.isEmpty { return }
+
         cancellable?.cancel()
 
         if search.isEmpty {
             results = []
             return
         }
+
+        self.isLoading = true
 
         cancellable = exerciseSearchLoader.loadResults(matching: search)
             .subscribe(on: DispatchQueue.global())
@@ -34,10 +40,12 @@ class ExerciseSearchViewModel: ObservableObject {
                 case .finished:
                     debugPrint("Publisher is finished")
                 }
+                self.isLoading = false
             } receiveValue: { [weak self] in
                 guard let self else { return }
                 self.results = $0
                 self.searchEmpty = self.results.isEmpty
+                self.isLoading = false
             }
 
     }

@@ -51,6 +51,16 @@ struct WorkoutExerciseSearchView: View {
                     }
                 }
             }
+
+            if viewModel.isLoading {
+                HStack {
+                    Spacer()
+                    ProgressView {
+                        Text(NSLocalizedString("exercise.search.loading", comment: "Search placeholder"))
+                    }
+                    Spacer()
+                }
+            }
         }
         .onChange(of: search, perform: { newValue in
             viewModel.search(for: newValue)
@@ -78,6 +88,7 @@ struct SearchItem: View {
     var body: some View {
         HStack {
             Text(value)
+                .multilineTextAlignment(.leading)
             Spacer()
             Image(systemName: "chevron.right")
         }
