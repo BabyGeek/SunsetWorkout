@@ -54,9 +54,10 @@ Duis semper.";
 "workout.type.name.strenght" = "Strenght";
 
 // METADATA TYPE
-"metadate.label.exercise.break" = "Exercice break";
+"metadate.label.exercise.break" = "Exercise break";
 "metadate.label.round.break" = "Round break";
 "metadate.label.round.number" = "Round number";
+"metadate.label.round.duration" = "Round duration";
 "metadate.label.serie.break" = "Serie break";
 "metadate.label.serie.number" = "Serie number";
 "metadate.label.repetition.goal" = "Repetition goal";

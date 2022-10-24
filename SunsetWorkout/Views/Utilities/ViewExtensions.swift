@@ -5,8 +5,9 @@
 //  Created by Paul Oggero on 10/09/2022.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
+import UIKit
 
 // MARK: - TabBar
 extension View {
@@ -69,6 +70,23 @@ extension View {
             transform(self)
         } else {
             self
+        }
+    }
+}
+
+extension View {
+    func asImage() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+
+        let targetSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
 }
