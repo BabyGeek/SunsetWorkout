@@ -794,6 +794,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SunsetWorkout/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunset Workout";
@@ -976,6 +977,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SunsetWorkout/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunset Workout";
@@ -1017,6 +1019,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"SunsetWorkout/Preview Content\"";
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SunsetWorkout/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunset Workout";
