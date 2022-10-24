@@ -11,9 +11,6 @@ struct GlassMorphicCard<Content: View>: View {
     // MARK: - Card content
     @ViewBuilder var content: Content
 
-    // MARK: - Environment Properties
-    @Environment(\.colorScheme) var colorScheme
-
     // MARK: - Frame properties
     var width: CGFloat?
     var height: CGFloat? = 220
@@ -28,8 +25,8 @@ struct GlassMorphicCard<Content: View>: View {
                 .fill(
                     .linearGradient(
                         colors: [
-                            colorScheme == .dark ? .white.opacity(0.25) : .black.opacity(0.25),
-                            colorScheme == .dark ? .white.opacity(0.05) : .black.opacity(0.05),
+                            .black.opacity(0.25),
+                            .black.opacity(0.05),
                             .clear
                         ],
                         startPoint: .topLeading, endPoint: .bottomTrailing)
