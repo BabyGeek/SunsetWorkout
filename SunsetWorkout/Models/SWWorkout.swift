@@ -68,7 +68,11 @@ extension SWWorkout {
 
 // MARK: - Mock data
 extension SWWorkout {
-    static func getMockWithName(_ name: String, type: SWWorkoutType, metadata: [SWMetadata]? = nil, exercises: [SWExercise]? = nil) -> SWWorkout {
+    static func getMockWithName(
+        _ name: String,
+        type: SWWorkoutType,
+        metadata: [SWMetadata]? = nil,
+        exercises: [SWExercise]? = nil) -> SWWorkout {
         let metadata = metadata ?? [
             SWMetadata(type: .exerciseBreak, value: "120"),
             SWMetadata(type: .roundBreak, value: "10"),

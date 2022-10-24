@@ -175,8 +175,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
 
         let exercises = [
             SWExercise.getMockWithName("Push ups", for: viewModel.workout, order: 1),
-            SWExercise.getMockWithName("Pull ups", for: viewModel.workout, order: 2),
-            SWExercise.getMockWithName("Squats", for: viewModel.workout, order: 3)
+            SWExercise.getMockWithName("Pull ups", for: viewModel.workout, order: 2)
         ]
 
         viewModel.workout?.exercises.append(contentsOf: exercises)
@@ -191,8 +190,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
 
         let exercises = [
             SWExercise.getMockWithName("Burpees", for: viewModel.workout, order: 1),
-            SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout, order: 2),
-            SWExercise.getMockWithName("Push ups", for: viewModel.workout, order: 3)
+            SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout, order: 2)
         ]
 
         viewModel.workout?.exercises.append(contentsOf: exercises)
@@ -207,7 +205,6 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
 
         viewModel.addExercise(SWExercise.getMockWithName("Burpees", for: viewModel.workout))
         viewModel.addExercise(SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout))
-        viewModel.addExercise(SWExercise.getMockWithName("Push ups", for: viewModel.workout))
 
         XCTAssertNil(viewModel.error)
     }
@@ -247,12 +244,6 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                 SWMetadata(type: .serieBreak, value: "20"),
                 SWMetadata(type: .serieNumber, value: "6"),
                 SWMetadata(type: .repetitionGoal, value: "12")
-            ]),
-            SWExercise(name: "Squats", order: 3, metadata: [
-                SWMetadata(type: .exerciseBreak, value: "120"),
-                SWMetadata(type: .serieBreak, value: "20"),
-                SWMetadata(type: .serieNumber, value: "6"),
-                SWMetadata(type: .repetitionGoal, value: "12")
             ])
         ]
 
@@ -265,7 +256,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         guard let workoutModel = realm.objects(SWWorkoutModel.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
 
-        XCTAssertEqual(workoutModel.exercises.count, 3)
+        XCTAssertEqual(workoutModel.exercises.count, 2)
     }
 
     func testAddHIITWithExerciseWithViewModel() throws {
@@ -284,12 +275,6 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                 SWMetadata(type: .roundBreak, value: "20"),
                 SWMetadata(type: .roundNumber, value: "6"),
                 SWMetadata(type: .roundDuration, value: "30")
-            ]),
-            SWExercise(name: "Push ups", order: 3, metadata: [
-                SWMetadata(type: .exerciseBreak, value: "30"),
-                SWMetadata(type: .roundBreak, value: "20"),
-                SWMetadata(type: .roundNumber, value: "6"),
-                SWMetadata(type: .roundDuration, value: "30")
             ])
         ]
 
@@ -302,6 +287,6 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
 
         guard let workoutModel = realm.objects(SWWorkoutModel.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
-        XCTAssertEqual(workoutModel.exercises.count, 3)
+        XCTAssertEqual(workoutModel.exercises.count, 2)
     }
 }
