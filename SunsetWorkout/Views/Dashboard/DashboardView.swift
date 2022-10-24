@@ -69,16 +69,6 @@ struct DashboardView: View {
     }
 }
 
-struct ProfileButtonView: View {
-    var body: some View {
-        Image("Profile")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 40, height: 40)
-            .clipShape(Circle())
-    }
-}
-
 #if DEBUG
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
