@@ -10,12 +10,19 @@ import SwiftUI
 struct WorkoutView: View {
     var viewModel: WorkoutViewModel
 
+    init(viewModel: WorkoutViewModel) {
+        self.viewModel = viewModel
+        UICollectionView.appearance().backgroundColor = .clear
+    }
+
     var body: some View {
         ZStack {
             BackgroundView()
             if let workout = viewModel.workout {
                 if workout.exercises.isEmpty {
+                    Spacer()
                     Text(NSLocalizedString("workout.exercises.empty", comment: "Empty exercises label"))
+                    Spacer()
                 }
 
                 List {

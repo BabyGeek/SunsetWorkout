@@ -20,6 +20,15 @@ struct WorkoutsView: View {
                     WorkoutCardView(workout: workout)
                         .foregroundColor(Color(.label))
                 }
+                .padding(.bottom)
+
+                    NavigationLink {
+                        WorkoutView(viewModel: WorkoutViewModel(workout: workout))
+                    } label: {
+                        WorkoutCardView(workout: workout)
+                            .foregroundColor(Color(.label))
+                    }
+                    .padding(.bottom)
             }
         }
         .onAppear {

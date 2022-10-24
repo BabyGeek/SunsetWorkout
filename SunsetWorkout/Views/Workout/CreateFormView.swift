@@ -50,7 +50,11 @@ struct CreateFormView: View, KeyboardReadable {
             Spacer()
 
             if !isKeyboardVisible {
-                saveButton
+                NavigationLink(destination: WorkoutView(viewModel: workoutViewModel)) {
+                    saveButton
+                }.simultaneousGesture(TapGesture().onEnded {
+                    saveWorkout()
+                })
             }
         }
         .padding()
@@ -62,40 +66,37 @@ struct CreateFormView: View, KeyboardReadable {
 
 extension CreateFormView {
     var saveButton: some View {
-        Button {
-            workoutViewModel.workout = SWWorkout(name: name, type: type, metadata: [
-                SWMetadata(type: .roundBreak, value: roundBreak),
-                SWMetadata(type: .roundDuration, value: roundDuration),
-                SWMetadata(type: .roundNumber, value: roundNumber),
-                SWMetadata(type: .exerciseBreak, value: exerciseBreak),
-                SWMetadata(type: .serieBreak, value: seriesBreak),
-                SWMetadata(type: .serieNumber, value: seriesNumber),
-                SWMetadata(type: .repetitionGoal, value: repetitionGoal)
-            ])
+        RoundedRectangle(cornerRadius: 25)
+            .frame(height: 50)
+            .overlay(
+                Text("Save")
+                    .foregroundColor(Color(.label))
+            )
+    }
 
-            workoutViewModel.saveWorkout()
+    func saveWorkout() {
+        workoutViewModel.workout = SWWorkout(name: name, type: type, metadata: [
+            SWMetadata(type: .roundBreak, value: roundBreak),
+            SWMetadata(type: .roundDuration, value: roundDuration),
+            SWMetadata(type: .roundNumber, value: roundNumber),
+            SWMetadata(type: .exerciseBreak, value: exerciseBreak),
+            SWMetadata(type: .serieBreak, value: seriesBreak),
+            SWMetadata(type: .serieNumber, value: seriesNumber),
+            SWMetadata(type: .repetitionGoal, value: repetitionGoal)
+        ])
 
-            if workoutViewModel.saved {
-                name = ""
-                roundBreak = ""
-                roundNumber = ""
-                roundDuration = ""
-                exerciseBreak = ""
-                seriesBreak = ""
-                seriesNumber = ""
-                repetitionGoal = ""
+        workoutViewModel.saveWorkout()
 
-                workoutViewModel.saved = false
-            }
-        } label: {
-            RoundedRectangle(cornerRadius: 25)
-                .frame(height: 50)
-                .overlay(
-                    Text("Save")
-                        .foregroundColor(Color(.label))
-                )
+        if workoutViewModel.saved {
+            name = ""
+            roundBreak = ""
+            roundNumber = ""
+            roundDuration = ""
+            exerciseBreak = ""
+            seriesBreak = ""
+            seriesNumber = ""
+            repetitionGoal = ""
         }
-
     }
 }
 
