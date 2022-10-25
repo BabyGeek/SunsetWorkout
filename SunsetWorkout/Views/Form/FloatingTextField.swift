@@ -38,10 +38,10 @@ struct FloatingTextField: View {
             .accentColor(Color.secondary)
             .animation(.linear)
             Text(placeHolderText)
-                .foregroundColor(Color.secondary)
+                .foregroundColor(Color(.secondaryLabel))
                 .background(bgColor)
                 .padding(shouldPlaceHolderMove ?
-                         EdgeInsets(top: 0, leading: 15, bottom: textFieldHeight + 25, trailing: 0) :
+                         EdgeInsets(top: 0, leading: 15, bottom: textFieldHeight + 20, trailing: 0) :
                             EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
                 .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
                 .animation(.linear)
@@ -52,7 +52,7 @@ struct FloatingTextField: View {
 #if DEBUG
 struct FloatingTextField_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTextField(placeHolder: "Preview", text: .constant(""), bgColor: .white)
+        FloatingTextField(placeHolder: "Preview", text: .constant(""), bgColor: Color(.systemBackground))
     }
 }
 #endif
