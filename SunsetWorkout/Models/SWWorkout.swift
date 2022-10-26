@@ -28,7 +28,7 @@ struct SWWorkout {
         self.type = type
         self.createdAt = createdAt
         self.metadata = metadata
-        self.exercises = exercises ?? []
+        self.exercises = exercises?.sorted(by: { $0.order < $1.order }) ?? []
     }
 
     mutating func cleanMetadata() {
@@ -36,7 +36,83 @@ struct SWWorkout {
     }
 
     func exerciseOrderIsGood() -> Bool {
-        return exercises.allEqual(by: \.order)
+        if exercises.isEmpty {
+            return true
+        }
+
+        for index in 0..<exercises.count - 1 where exercises[index].order == exercises[index + 1].order {
+            return false
+        }
+
+        return true
+    }
+
+    func estimatedTime() -> Int {
+        var estimatedTime = 0
+
+        if exercises.isEmpty {
+            return estimatedTime
+        }
+
+        if self.type == .highIntensityIntervalTraining {
+            estimatedTime = estimatedTimeForHIIT()
+        }
+
+        if self.type == .traditionalStrengthTraining {
+            estimatedTime = estimatedTimeForStrength()
+        }
+
+        return estimatedTime / 60
+    }
+
+    func estimatedTimeForHIIT() -> Int {
+        var estimatedTime = 0
+
+        for exercise in exercises {
+            if let roundNumber = exercise.metadata.first(where: { $0.type == .roundNumber }),
+               let roundBreak = exercise.metadata.first(where: { $0.type == .roundBreak }),
+               let roundDuration = exercise.metadata.first(where: { $0.type == .roundDuration }),
+               let exerciseBreak = exercise.metadata.first(where: { $0.type == .exerciseBreak }) {
+                estimatedTime += ((roundNumber.intValue - 1) * roundDuration.intValue)
+
+                if exercise != exercises.last {
+                    estimatedTime += roundBreak.intValue
+                    if let mainExerciseBreak = metadata.first(where: { $0.type == .exerciseBreak }) {
+                        if mainExerciseBreak.intValue != exerciseBreak.intValue {
+                            estimatedTime += exerciseBreak.intValue
+                        } else {
+                            estimatedTime += mainExerciseBreak.intValue
+                        }
+                    }
+                }
+            }
+        }
+
+        return estimatedTime
+    }
+
+    func estimatedTimeForStrength() -> Int {
+        var estimatedTime = 0
+
+        for exercise in exercises {
+            if let serieNumber = exercise.metadata.first(where: { $0.type == .serieNumber }),
+               let serieBreak = exercise.metadata.first(where: { $0.type == .serieBreak }),
+               let exerciseBreak = exercise.metadata.first(where: { $0.type == .exerciseBreak }) {
+                estimatedTime += ((serieNumber.intValue - 1) * serieBreak.intValue)
+
+                if exercise != exercises.last {
+                    if let mainExerciseBreak = metadata.first(where: { $0.type == .exerciseBreak }) {
+                        if mainExerciseBreak.intValue != exerciseBreak.intValue {
+                            estimatedTime += exerciseBreak.intValue
+                        } else {
+                            estimatedTime += mainExerciseBreak.intValue
+                        }
+                    }
+                }
+            }
+        }
+
+        return estimatedTime
     }
 }
 
@@ -61,7 +137,7 @@ extension SWWorkout {
         self.type = type
         self.name = object.name
         self.metadata = object.metadata.map { SWMetadata(object: $0) }
-        self.exercises = object.exercises.map { SWExercise(object: $0) }
+        self.exercises = object.exercises.map { SWExercise(object: $0) }.sorted(by: { $0.order < $1.order })
         self.createdAt = object.created_at
     }
 }
