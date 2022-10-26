@@ -36,6 +36,7 @@ struct DashboardView: View {
             }, height: 180)
 
             Spacer()
+                .frame(maxHeight: 80)
 
             VStack(spacing: 20) {
                 HStack {

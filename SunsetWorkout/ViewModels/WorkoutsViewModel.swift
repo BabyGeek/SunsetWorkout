@@ -17,11 +17,13 @@ import RealmSwift
     let realmManager = RealmManager()
 
     init() {
+        self.fetch(with: SWWorkout.allByDateDESC)
+
         if let realm = try? Realm() {
             self.notificationToken = realm.observe { [weak self] (_, _) in
                 guard let self else { return }
 
-                self.fetch(with: SWWorkout.allByDateASC)
+                self.fetch(with: SWWorkout.allByDateDESC)
             }
         }
     }

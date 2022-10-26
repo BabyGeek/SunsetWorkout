@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct WorkoutsView: View {
-    @ObservedObject var viewModel = WorkoutsViewModel()
+    @StateObject var viewModel = WorkoutsViewModel()
 
     var body: some View {
         ScrollView {
@@ -21,18 +21,7 @@ struct WorkoutsView: View {
                         .foregroundColor(Color(.label))
                 }
                 .padding(.bottom)
-
-                    NavigationLink {
-                        WorkoutView(viewModel: WorkoutViewModel(workout: workout))
-                    } label: {
-                        WorkoutCardView(workout: workout)
-                            .foregroundColor(Color(.label))
-                    }
-                    .padding(.bottom)
             }
-        }
-        .onAppear {
-            viewModel.fetch(with: SWWorkout.allByDateASC)
         }
     }
 }

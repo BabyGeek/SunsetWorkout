@@ -11,6 +11,9 @@ struct SWMetadata {
     var id: String = UUID().uuidString
     let type: SWMetadataType
     let value: String
+    var intValue: Int {
+        Int(value) ?? 0
+    }
 }
 
 // MARK: - init from RealmObject

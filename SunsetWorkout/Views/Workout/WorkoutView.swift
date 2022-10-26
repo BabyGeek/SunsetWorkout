@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct WorkoutView: View {
-    var viewModel: WorkoutViewModel
+    @StateObject var viewModel: WorkoutViewModel
 
     init(viewModel: WorkoutViewModel) {
-        self.viewModel = viewModel
+        _viewModel = StateObject(wrappedValue: viewModel)
         UICollectionView.appearance().backgroundColor = .clear
     }
 
@@ -27,9 +27,22 @@ struct WorkoutView: View {
 
                 List {
                     ForEach(workout.exercises) { exercise in
-                        Text(exercise.name)
+                        VStack(spacing: 0) {
+                            Text(exercise.name)
+
+                            if exercise != workout.exercises.last {
+                                Rectangle()
+                                    .fill(.purple)
+                                    .blur(radius: 1.5)
+                                    .frame(maxWidth: .infinity, maxHeight: 0.5, alignment: .center)
+                                    .padding(.horizontal)
+                                    .padding(.top)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
                     }
                 }
+
             }
         }
         .navigationTitle(viewModel.workout?.name ??
@@ -45,7 +58,6 @@ struct WorkoutView: View {
     }
 }
 
-#if DEBUG
 struct WorkoutView_Previews: PreviewProvider {
     static let HIITExample = SWWorkout(name: "Test HIIT", type: .highIntensityIntervalTraining, metadata: [
         SWMetadata(type: .exerciseBreak, value: "20"),
@@ -64,4 +76,3 @@ struct WorkoutView_Previews: PreviewProvider {
         WorkoutView(viewModel: WorkoutViewModel(workout: HIITExample))
     }
 }
-#endif

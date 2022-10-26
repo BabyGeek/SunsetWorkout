@@ -128,7 +128,7 @@ class SunsetWorkoutTests: XCTestCase {
         viewModel.saveWorkout()
 
         let workoutsViewModel = WorkoutsViewModel()
-        workoutsViewModel.fetch(with: SWWorkout.allByDateASC)
+        workoutsViewModel.fetch(with: SWWorkout.allByDateDESC)
 
         XCTAssertNotNil(workoutsViewModel.notificationToken)
         XCTAssertEqual(workoutsViewModel.workouts.count, 1)

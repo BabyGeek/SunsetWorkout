@@ -9,54 +9,50 @@ import SwiftUI
 import HealthKit
 
 struct CreateFormView: View, KeyboardReadable {
-    @ObservedObject var workoutViewModel: WorkoutViewModel = WorkoutViewModel()
-
-    @State private var type: SWWorkoutType = .highIntensityIntervalTraining
-
-    @State private var name: String = ""
-    @State private var exerciseBreak: String = ""
-
-    @State var roundBreak: String = ""
-    @State var roundNumber: String = ""
-    @State var roundDuration: String = ""
-
-    @State var seriesBreak: String = ""
-    @State var seriesNumber: String = ""
-    @State var repetitionGoal: String = ""
+    @StateObject var workoutViewModel: WorkoutViewModel = WorkoutViewModel()
 
     @State var isKeyboardVisible: Bool = false
+    @State var goToWorkoutView: Bool = false
 
     var body: some View {
         VStack {
+            Spacer()
             BaseWorkoutFormView(
-                type: $type,
-                name: $name,
-                exerciseBreak: $exerciseBreak)
+                type: $workoutViewModel.type,
+                name: $workoutViewModel.name,
+                exerciseBreak: $workoutViewModel.exerciseBreak)
 
-            if type == .highIntensityIntervalTraining {
+            if workoutViewModel.type == .highIntensityIntervalTraining {
                 HIITFormView(
-                    roundBreak: $roundBreak,
-                    roundDuration: $roundDuration,
-                    roundNumber: $roundNumber)
+                    roundBreak: $workoutViewModel.roundBreak,
+                    roundDuration: $workoutViewModel.roundDuration,
+                    roundNumber: $workoutViewModel.roundNumber)
             }
 
-            if type == .traditionalStrengthTraining {
+            if workoutViewModel.type == .traditionalStrengthTraining {
                 TraditionalFormView(
-                    seriesBreak: $seriesBreak,
-                    seriesNumber: $seriesNumber,
-                    repetitionGoal: $repetitionGoal)
+                    seriesBreak: $workoutViewModel.seriesBreak,
+                    seriesNumber: $workoutViewModel.seriesNumber,
+                    repetitionGoal: $workoutViewModel.repetitionGoal)
             }
 
             Spacer()
 
             if !isKeyboardVisible {
-                NavigationLink(destination: WorkoutView(viewModel: workoutViewModel)) {
-                    saveButton
-                }.simultaneousGesture(TapGesture().onEnded {
+                Button {
                     saveWorkout()
-                })
+                } label: {
+                    saveButton
+                }
+
+                NavigationLink(isActive: $goToWorkoutView) {
+                    WorkoutView(viewModel: workoutViewModel)
+                } label: {
+                    EmptyView()
+                }
             }
         }
+        .ignoresSafeArea(.keyboard)
         .padding()
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
@@ -69,33 +65,15 @@ extension CreateFormView {
         RoundedRectangle(cornerRadius: 25)
             .frame(height: 50)
             .overlay(
-                Text("Save")
+                Text(NSLocalizedString("button.save", comment: "Button save title"))
                     .foregroundColor(Color(.label))
             )
     }
 
     func saveWorkout() {
-        workoutViewModel.workout = SWWorkout(name: name, type: type, metadata: [
-            SWMetadata(type: .roundBreak, value: roundBreak),
-            SWMetadata(type: .roundDuration, value: roundDuration),
-            SWMetadata(type: .roundNumber, value: roundNumber),
-            SWMetadata(type: .exerciseBreak, value: exerciseBreak),
-            SWMetadata(type: .serieBreak, value: seriesBreak),
-            SWMetadata(type: .serieNumber, value: seriesNumber),
-            SWMetadata(type: .repetitionGoal, value: repetitionGoal)
-        ])
-
         workoutViewModel.saveWorkout()
-
-        if workoutViewModel.saved {
-            name = ""
-            roundBreak = ""
-            roundNumber = ""
-            roundDuration = ""
-            exerciseBreak = ""
-            seriesBreak = ""
-            seriesNumber = ""
-            repetitionGoal = ""
+        if workoutViewModel.error == nil {
+            goToWorkoutView = true
         }
     }
 }

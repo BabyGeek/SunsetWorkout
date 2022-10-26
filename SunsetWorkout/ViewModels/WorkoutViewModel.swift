@@ -13,24 +13,43 @@ class WorkoutViewModel: ObservableObject {
     @Published var workout: SWWorkout?
     @Published var saved: Bool = false
 
+    @Published var type: SWWorkoutType = .highIntensityIntervalTraining
+
+    @Published var name: String = ""
+    @Published var exerciseBreak: String = ""
+
+    @Published var roundBreak: String = ""
+    @Published var roundNumber: String = ""
+    @Published var roundDuration: String = ""
+
+    @Published var seriesBreak: String = ""
+    @Published var seriesNumber: String = ""
+    @Published var repetitionGoal: String = ""
+
     let realmManager = RealmManager()
 
-    init(error: SWError? = nil, workout: SWWorkout? = nil, saved: Bool = false) {
-        self.error = error
+    init(workout: SWWorkout? = nil, error: SWError? = nil) {
         self.workout = workout
-        self.saved = saved
+        self.error = error
+        self.saved = false
     }
 
     public func saveWorkout() {
-        workout?.cleanMetadata()
+        saved = false
+
+        if workout == nil {
+            self.createWorkout()
+            workout?.cleanMetadata()
+        }
 
         guard let workout else {
             self.error = SWError(error: SWWorkoutError.isNil)
             return
         }
 
-        if workout.exerciseOrderIsGood() {
+        if !workout.exerciseOrderIsGood() {
             self.error = SWError(error: SWExerciseError.severalOrders)
+            return
         }
 
         save(model: workout, with: SWWorkoutModel.init)
@@ -42,9 +61,18 @@ class WorkoutViewModel: ObservableObject {
     }
 
     func save(model: SWWorkout, with reverseTransformer: (SWWorkout) -> SWWorkoutModel) {
-        saved = false
         do {
             try realmManager.save(model: model, with: reverseTransformer)
+
+            name = ""
+            roundBreak = ""
+            roundNumber = ""
+            roundDuration = ""
+            exerciseBreak = ""
+            seriesBreak = ""
+            seriesNumber = ""
+            repetitionGoal = ""
+
             saved = true
         } catch {
             self.error = SWError(error: error)
@@ -58,5 +86,21 @@ class WorkoutViewModel: ObservableObject {
         }
 
         return exercise
+    }
+
+    private func createWorkout() {
+        self.workout = SWWorkout(name: self.name, type: self.type, metadata: self.getMetadata())
+    }
+
+    private func getMetadata() -> [SWMetadata] {
+        return [
+            SWMetadata(type: .roundBreak, value: roundBreak),
+            SWMetadata(type: .roundDuration, value: roundDuration),
+            SWMetadata(type: .roundNumber, value: roundNumber),
+            SWMetadata(type: .exerciseBreak, value: exerciseBreak),
+            SWMetadata(type: .serieBreak, value: seriesBreak),
+            SWMetadata(type: .serieNumber, value: seriesNumber),
+            SWMetadata(type: .repetitionGoal, value: repetitionGoal)
+        ]
     }
 }
