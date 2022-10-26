@@ -7,6 +7,9 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAnalytics
+import FirebaseCrashlytics
+import FirebasePerformance
 
 @main
 struct SunsetWorkoutApp: App {
