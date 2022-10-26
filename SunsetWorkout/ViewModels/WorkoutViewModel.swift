@@ -41,7 +41,7 @@ class WorkoutViewModel: ObservableObject {
             self.createWorkout()
             workout?.cleanMetadata()
         }
-        
+
         if self.error != nil {
             return
         }
