@@ -41,6 +41,10 @@ class WorkoutViewModel: ObservableObject {
             self.createWorkout()
             workout?.cleanMetadata()
         }
+        
+        if self.error != nil {
+            return
+        }
 
         guard let workout else {
             self.error = SWError(error: SWWorkoutError.isNil)
@@ -89,6 +93,11 @@ class WorkoutViewModel: ObservableObject {
     }
 
     private func createWorkout() {
+        if self.name.isEmpty {
+            self.error = SWError(error: SWWorkoutError.noName)
+            return
+        }
+
         self.workout = SWWorkout(name: self.name, type: self.type, metadata: self.getMetadata())
     }
 
