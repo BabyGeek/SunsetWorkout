@@ -100,11 +100,12 @@ workflows:
   lint-build-test:
     jobs:
       - swiftlint
-      - build-and-test
-      branches:
-        only:
-          - master
-          - develop
+      - build-and-test:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
       # - screenshots:
       #     requires:
       #       - build-and-test
