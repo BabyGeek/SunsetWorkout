@@ -102,8 +102,9 @@ workflows:
       - swiftlint
       - build-and-test
         branches:
-          - master
-          - develop
+          only:
+            - master
+            - develop
       # - screenshots:
       #     requires:
       #       - build-and-test
