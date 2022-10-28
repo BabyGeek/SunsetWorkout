@@ -99,13 +99,19 @@ jobs:
 workflows:
   lint-build-test:
     jobs:
-      - swiftlint
+      - swiftlint:
+        filters:
+          branches:
+            only:
+              -develop
       - build-and-test:
           filters:
             branches:
-              only:
+              ignore:
                 - master
+              only:
                 - develop
+                - feature/*
       # - screenshots:
       #     requires:
       #       - build-and-test
