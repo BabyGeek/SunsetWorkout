@@ -103,7 +103,7 @@ workflows:
         filters:
           branches:
             only:
-              -develop
+              - develop
       - build-and-test:
           filters:
             branches:
