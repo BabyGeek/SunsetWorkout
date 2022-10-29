@@ -28,7 +28,7 @@ struct SWWorkout {
         self.type = type
         self.createdAt = createdAt
         self.metadata = metadata
-        self.exercises = exercises?.sorted(by: { $0.order < $1.order }) ?? []
+        self.exercises = exercises?.sorted(by: \.order) ?? []
     }
 
     mutating func cleanMetadata() {

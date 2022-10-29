@@ -14,6 +14,7 @@
 		2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26528EEE3C3002FDA9F /* Quote.swift */; };
 		2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */; };
 		2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00C26928EEE80A002FDA9F /* HKQueriable.swift */; };
+		2B02707F290D5DB900477305 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02707E290D5DB900477305 /* Order.swift */; };
 		2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */; };
 		2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */; };
 		2B03968328FAEBC6000D7B26 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */; };
@@ -117,6 +118,7 @@
 		2B00C26528EEE3C3002FDA9F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		2B00C26728EEE3C9002FDA9F /* QuoteTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTag.swift; sourceTree = "<group>"; };
 		2B00C26928EEE80A002FDA9F /* HKQueriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKQueriable.swift; sourceTree = "<group>"; };
+		2B02707E290D5DB900477305 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalFormView.swift; sourceTree = "<group>"; };
 		2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITFormView.swift; sourceTree = "<group>"; };
 		2B03968428FAEBC6000D7B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				2BF575A328FF552000F21605 /* EndpointKinds.swift */,
 				2BF575A928FF596800F21605 /* AccessToken.swift */,
 				2BD25A59290B137F003ABF5F /* SWActivityType.swift */,
+				2B02707E290D5DB900477305 /* Order.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				2BFF29AA28C4F55E0041841F /* FeelingType.swift in Sources */,
 				2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */,
 				2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */,
+				2B02707F290D5DB900477305 /* Order.swift in Sources */,
 				2BD25A56290B12C3003ABF5F /* ActivityViewModel.swift in Sources */,
 				2B00C26A28EEE80A002FDA9F /* HKQueriable.swift in Sources */,
 				2BC1126828FDF1A400898C80 /* CreateWorkoutExerciseView.swift in Sources */,
