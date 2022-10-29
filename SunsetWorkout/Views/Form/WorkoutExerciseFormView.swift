@@ -134,7 +134,7 @@ extension WorkoutExerciseFormView {
                             metadata: metadata.filter({ workout.type.SWMetadataTypes.contains($0.type) }))
 
                         workoutViewModel.addExercise(exercise)
-                        workoutViewModel.saveWorkout(update: true)
+                        workoutViewModel.saveWorkout()
                     }
 
                     if workoutViewModel.saved {

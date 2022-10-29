@@ -34,17 +34,18 @@ class WorkoutViewModel: ObservableObject {
         self.saved = false
     }
 
-    public func saveWorkout(update: Bool = false) {
+    public func saveWorkout() {
         saved = false
 
-        if !update {
+        if !self.find() {
             self.createWorkout()
-            workout?.cleanMetadata()
         }
 
         if self.error != nil {
             return
         }
+
+        workout?.cleanMetadata()
 
         guard let workout else {
             self.error = SWError(error: SWWorkoutError.isNil)
@@ -62,6 +63,24 @@ class WorkoutViewModel: ObservableObject {
     public func addExercise(_ exercise: SWExercise) {
         guard let exercise = validateExercise(exercise) else { return }
         workout?.exercises.replaceOrAppend(exercise, whereFirstIndex: { exercise.id == $0.id })
+    }
+
+    func find(_ id: String? = nil) -> Bool {
+        if let id {
+            do {
+                if let workout = try realmManager.fetch(with: SWWorkout.find(id, with: nil)).first {
+                    self.workout = workout
+                    return true
+                }
+            } catch {
+                self.error = SWError(error: error)
+            }
+        } else {
+            guard workout != nil else { return false }
+            return true
+        }
+
+        return false
     }
 
     func save(model: SWWorkout, with reverseTransformer: (SWWorkout) -> SWWorkoutModel) {
