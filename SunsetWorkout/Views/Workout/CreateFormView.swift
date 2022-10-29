@@ -17,6 +17,8 @@ struct CreateFormView: View, KeyboardReadable {
     var body: some View {
         VStack {
             Spacer()
+                .frame(height: 20)
+
             BaseWorkoutFormView(
                 type: $workoutViewModel.type,
                 name: $workoutViewModel.name,
@@ -38,25 +40,20 @@ struct CreateFormView: View, KeyboardReadable {
 
             Spacer()
 
-            if !isKeyboardVisible {
-                Button {
-                    saveWorkout()
-                } label: {
-                    saveButton
-                }
+            Button {
+                saveWorkout()
+            } label: {
+                saveButton
+            }
+            .ignoresSafeArea(.keyboard)
 
-                NavigationLink(isActive: $goToWorkoutView) {
-                    WorkoutView(viewModel: workoutViewModel)
-                } label: {
-                    EmptyView()
-                }
+            NavigationLink(isActive: $goToWorkoutView) {
+                WorkoutView(viewModel: workoutViewModel)
+            } label: {
+                EmptyView()
             }
         }
-        .ignoresSafeArea(.keyboard)
         .padding()
-        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            isKeyboardVisible = newIsKeyboardVisible
-        }
     }
 }
 
@@ -72,7 +69,7 @@ extension CreateFormView {
 
     func saveWorkout() {
         workoutViewModel.saveWorkout()
-        if workoutViewModel.error == nil {
+        if workoutViewModel.error == nil && workoutViewModel.saved {
             goToWorkoutView = true
         }
     }

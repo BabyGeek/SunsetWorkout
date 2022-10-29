@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct CreateWorkoutExerciseView: View, KeyboardReadable {
-    var viewModel: WorkoutViewModel
+    @StateObject var viewModel: WorkoutViewModel
 
     @State var isKeyboardVisible: Bool = false
 
     var body: some View {
-        GeometryReader { geometry in
             ZStack {
                 BackgroundView()
 
@@ -23,10 +22,8 @@ struct CreateWorkoutExerciseView: View, KeyboardReadable {
                     WorkoutExerciseFormView(viewModel)
                 }
                 .padding(.horizontal)
-                .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
                 .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
             }
-        }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }

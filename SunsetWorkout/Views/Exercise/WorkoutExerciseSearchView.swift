@@ -65,12 +65,6 @@ struct WorkoutExerciseSearchView: View {
         .onChange(of: search, perform: { newValue in
             viewModel.search(for: newValue)
         })
-        .navigationBarBackButtonHidden()
-        .navigationBarItems(leading: Button(action: {
-            isSearching = false
-        }, label: {
-            Image(systemName: "chevron.left")
-        }))
     }
 }
 

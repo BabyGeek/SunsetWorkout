@@ -34,10 +34,10 @@ class WorkoutViewModel: ObservableObject {
         self.saved = false
     }
 
-    public func saveWorkout() {
+    public func saveWorkout(update: Bool = false) {
         saved = false
 
-        if workout == nil {
+        if !update {
             self.createWorkout()
             workout?.cleanMetadata()
         }
@@ -76,6 +76,14 @@ class WorkoutViewModel: ObservableObject {
             seriesBreak = ""
             seriesNumber = ""
             repetitionGoal = ""
+
+            // dump(workout)
+
+//            if let workout {
+//                self.workout = try realmManager.fetch(with: SWWorkout.find(workout.id, with: SWWorkout.allByDateASC)).first
+//            }
+//
+//            dump(workout)
 
             saved = true
         } catch {
