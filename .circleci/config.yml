@@ -102,16 +102,11 @@ workflows:
       - swiftlint:
         filters:
           branches:
-            only:
-              - develop
+            only: develop
       - build-and-test:
           filters:
             branches:
-              ignore:
-                - master
-              only:
-                - develop
-                - feature/*
+              ignore: master
       # - screenshots:
       #     requires:
       #       - build-and-test
