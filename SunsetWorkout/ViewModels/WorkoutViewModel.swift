@@ -77,14 +77,6 @@ class WorkoutViewModel: ObservableObject {
             seriesNumber = ""
             repetitionGoal = ""
 
-            // dump(workout)
-
-//            if let workout {
-//                self.workout = try realmManager.fetch(with: SWWorkout.find(workout.id, with: SWWorkout.allByDateASC)).first
-//            }
-//
-//            dump(workout)
-
             saved = true
         } catch {
             self.error = SWError(error: error)
