@@ -34,12 +34,13 @@ class WorkoutViewModel: ObservableObject {
         self.saved = false
     }
 
-    public func saveWorkout() {
+    public func saveWorkout(isNew: Bool = false) {
         saved = false
 
-        if !self.find() {
+        if !self.find() || isNew {
             self.createWorkout()
         }
+        dump(workout)
 
         if self.error != nil {
             return

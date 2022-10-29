@@ -68,7 +68,7 @@ extension CreateFormView {
     }
 
     func saveWorkout() {
-        workoutViewModel.saveWorkout()
+        workoutViewModel.saveWorkout(isNew: true)
         if workoutViewModel.error == nil && workoutViewModel.saved {
             goToWorkoutView = true
         }
