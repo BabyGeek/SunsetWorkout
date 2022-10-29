@@ -20,16 +20,11 @@ class SWHealthStoreManager: ObservableObject {
     }
 
     func askForPermission(completion: @escaping (Bool) -> Void) {
-        guard let store else {
-            completion(false)
-            return
-        }
-
         self.isWaiting = true
         self.setToShare()
         self.setRead()
 
-        store.requestAuthorization(toShare: toShare, read: read, completion: { success, _ in
+        store?.requestAuthorization(toShare: toShare, read: read, completion: { success, _ in
             completion(success)
         })
 
