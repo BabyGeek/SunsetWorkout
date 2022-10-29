@@ -22,8 +22,7 @@ struct BaseWorkoutFormView: View {
                         .tag(SWWorkoutType.traditionalStrengthTraining)
                 }
                 .pickerStyle(.segmented)
-                .padding(.bottom, 35)
-                .ignoresSafeArea(.keyboard)
+                .padding(.bottom, 70)
 
                 FloatingTextField(
                     placeHolder: NSLocalizedString("workout.name", comment: "Workout name label"),

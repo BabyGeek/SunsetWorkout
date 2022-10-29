@@ -20,32 +20,35 @@ struct ActivityView: View {
         ZStack {
             BackgroundView()
             VStack {
+                Spacer()
                 ProgressBar(
                     progress: $viewModel.timePassedPercentage,
                     progressShow: $viewModel.timeRemaining)
+                    .padding()
                     .frame(maxWidth: .infinity, maxHeight: 350)
 
                 Spacer()
 
                 HStack {
                     Button {
-                        viewModel.launchBreak()
+                        viewModel.pause()
                     } label: {
-                        Text("Run")
+                        ActivityPauseButton()
                     }
 
                     Button {
-                        viewModel.pause()
+                        viewModel.launchBreak()
                     } label: {
-                        Text("Pause")
+                        ActivityPlayButton()
                     }
 
                     Button {
                         viewModel.launchBreak(reset: true)
                     } label: {
-                        Text("Reset")
+                        ActivityStopButton()
                     }
                 }
+                .padding(.horizontal)
             }
             .onReceive(timer) { _ in
                 viewModel.updateTimer()

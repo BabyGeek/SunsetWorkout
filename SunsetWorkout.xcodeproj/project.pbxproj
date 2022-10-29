@@ -60,6 +60,7 @@
 		2B94AD7D28F7677E00F3C71B /* SWWorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94AD7C28F7677E00F3C71B /* SWWorkoutModel.swift */; };
 		2B94AD7F28F7686100F3C71B /* SWWorkoutMetadataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataModel.swift */; };
 		2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */; };
+		2BA37C45290C7A8200826266 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA37C44290C7A8200826266 /* ActivityButton.swift */; };
 		2BB3273C29034D43008A4B81 /* SWExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3273B29034D43008A4B81 /* SWExercise.swift */; };
 		2BB3273E29034E13008A4B81 /* SWExerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3273D29034E13008A4B81 /* SWExerciseModel.swift */; };
 		2BB327422903642F008A4B81 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB327412903642F008A4B81 /* ArrayExtensions.swift */; };
@@ -160,6 +161,7 @@
 		2B94AD7C28F7677E00F3C71B /* SWWorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWorkoutModel.swift; sourceTree = "<group>"; };
 		2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWorkoutMetadataModel.swift; sourceTree = "<group>"; };
 		2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		2BA37C44290C7A8200826266 /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
 		2BB3273B29034D43008A4B81 /* SWExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWExercise.swift; sourceTree = "<group>"; };
 		2BB3273D29034E13008A4B81 /* SWExerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWExerciseModel.swift; sourceTree = "<group>"; };
 		2BB327412903642F008A4B81 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
@@ -256,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				2B1480832909E2CB009E91B8 /* ActivityView.swift */,
-				2BD25A5B290B1918003ABF5F /* ProgressBar.swift */,
+				2BA37C44290C7A8200826266 /* ActivityButton.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -272,6 +274,7 @@
 		2B2EB19A28FC9F4A00F4FEDB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2BD25A5B290B1918003ABF5F /* ProgressBar.swift */,
 				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
 				2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */,
 				2B2EB19F28FCA02200F4FEDB /* GlassMorphicCard.swift */,
@@ -686,6 +689,7 @@
 				2BD25A5A290B137F003ABF5F /* SWActivityType.swift in Sources */,
 				2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */,
 				2B94AD7928F7608B00F3C71B /* SWMetadata.swift in Sources */,
+				2BA37C45290C7A8200826266 /* ActivityButton.swift in Sources */,
 				2B94AD7F28F7686100F3C71B /* SWWorkoutMetadataModel.swift in Sources */,
 				2B83FA7E28DC876B00C3B1C0 /* LaunchNewWorkoutView.swift in Sources */,
 				2BF575A428FF552000F21605 /* EndpointKinds.swift in Sources */,
