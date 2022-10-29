@@ -39,8 +39,8 @@ class WorkoutViewModel: ObservableObject {
 
         if !self.find() || isNew {
             self.createWorkout()
+            AnalyticsManager.logCreatingWorkout(type: workout?.type)
         }
-        dump(workout)
 
         if self.error != nil {
             return
@@ -63,6 +63,7 @@ class WorkoutViewModel: ObservableObject {
 
     public func addExercise(_ exercise: SWExercise) {
         guard let exercise = validateExercise(exercise) else { return }
+        AnalyticsManager.logAddExercise(type: workout?.type)
         workout?.exercises.replaceOrAppend(exercise, whereFirstIndex: { exercise.id == $0.id })
     }
 

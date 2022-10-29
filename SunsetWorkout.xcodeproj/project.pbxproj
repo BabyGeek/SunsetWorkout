@@ -68,6 +68,7 @@
 		2BB3274629036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */; };
 		2BC1126828FDF1A400898C80 /* CreateWorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */; };
 		2BC1126A28FDF80500898C80 /* WorkoutExerciseSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */; };
+		2BC7DD59290D33E800D71CA8 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7DD58290D33E800D71CA8 /* AnalyticsManager.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
 		2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */; };
 		2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FE28B626FF006A3848 /* Assets.xcassets */; };
@@ -169,6 +170,7 @@
 		2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutExerciseTests.swift; sourceTree = "<group>"; };
 		2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutExerciseView.swift; sourceTree = "<group>"; };
 		2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSearchView.swift; sourceTree = "<group>"; };
+		2BC7DD58290D33E800D71CA8 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutApp.swift; sourceTree = "<group>"; };
 		2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				2BF575AB28FF59D000F21605 /* InvalidEndpointError.swift */,
 				2BB327412903642F008A4B81 /* ArrayExtensions.swift */,
 				2BB3274329036768008A4B81 /* CollectionExtensions.swift */,
+				2BC7DD58290D33E800D71CA8 /* AnalyticsManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				2B6608C728CC9F6300361C0F /* Colors.swift in Sources */,
 				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
 				2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */,
+				2BC7DD59290D33E800D71CA8 /* AnalyticsManager.swift in Sources */,
 				2BB3273E29034E13008A4B81 /* SWExerciseModel.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
 				2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */,

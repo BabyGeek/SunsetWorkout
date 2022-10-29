@@ -16,14 +16,17 @@ class ActivityViewModel: ObservableObject {
 
     init(workout: SWWorkout) {
         self.activity = SWActivity(workout: workout, type: .initialized)
+        AnalyticsManager.logInitializeActivity()
     }
 
     func run() {
         activity.run()
+        AnalyticsManager.logRunActivity()
     }
 
     func pause() {
         activity.pause()
+        AnalyticsManager.logPausedActivity()
     }
 
     func launchBreak(reset: Bool = false) {

@@ -70,6 +70,7 @@ extension CreateFormView {
     func saveWorkout() {
         workoutViewModel.saveWorkout(isNew: true)
         if workoutViewModel.error == nil && workoutViewModel.saved {
+            AnalyticsManager.logCreatedWorkout(type: workoutViewModel.workout?.type)
             goToWorkoutView = true
         }
     }
