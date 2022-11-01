@@ -68,3 +68,26 @@ extension SWExercise {
         return SWExercise(name: name, order: exerciseOrder, metadata: metadata)
     }
 }
+
+// MARK: - Activity method
+extension SWExercise {
+    func getMetadataFor(_ type: SWWorkoutType, completion: @escaping ((Float?, Float?, Int?, Float?) -> Void)) {
+        let exerciseBreakHIIT = metadata.first(where: { $0.type == .roundBreak })?.floatValue
+        let exerciseRepetitionHIIT = metadata.first(where: { $0.type == .roundNumber })?.intValue
+        let goalHIIT = metadata.first(where: { $0.type == .roundDuration })?.floatValue
+
+        let exerciseBreakStrength = metadata.first(where: { $0.type == .serieBreak })?.floatValue
+        let exerciseRepetitionStrength = metadata.first(where: { $0.type == .serieNumber })?.intValue
+        let goalStrength = metadata.first(where: { $0.type == .repetitionGoal })?.floatValue
+
+        let exerciceEndBreak = metadata.first(where: { $0.type == .exerciseBreak })?.floatValue
+
+        if type == .highIntensityIntervalTraining {
+            completion(exerciceEndBreak, exerciseBreakHIIT, exerciseRepetitionHIIT, goalHIIT)
+        }
+
+        if type == .traditionalStrengthTraining {
+            completion(exerciceEndBreak, exerciseBreakStrength, exerciseRepetitionStrength, goalStrength)
+        }
+    }
+}

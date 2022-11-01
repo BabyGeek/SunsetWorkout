@@ -5,6 +5,7 @@
   Created by Paul Oggero on 15/10/2022.
   
 */
+
 // TAB BAR
 "dashboard.tab.title" = "Home";
 "add.tab.title" = "New workout";
@@ -52,6 +53,8 @@ Duis semper.";
 // WORKOUT TYPE
 "workout.type.name.hiit" = "HIIT";
 "workout.type.name.strenght" = "Strenght";
+"workout.hiit.repetition" = "Round";
+"workout.stregth.repetition" = "Serie";
 
 // METADATA TYPE
 "metadate.label.exercise.break" = "Exercise break";
@@ -86,3 +89,13 @@ Duis semper.";
 "error.workout.wrong.data.description" = "Workout saving error";
 "error.workout.wrong.data.failure.reason" = "Error while saving your workout, please check your data.";
 
+// ACTIVITY
+"activity.exercise.repetition" = "%@: %d/%d";
+"activity.exercise.next" = "Incoming: %@";
+"activity.exercise.next.last" = "Incoming: %@, this is your last exercise, let's do it!";
+"activity.in.break" = "Break time";
+"activity.starting" = "Your activity is going to start";
+"activity.be.ready" = "Be ready!";
+
+// GLOBAL
+"not.found" = "Not found";

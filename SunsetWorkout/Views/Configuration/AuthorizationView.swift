@@ -19,7 +19,9 @@ struct AuthorizationView: View {
                 .font(.title)
                 .fontWeight(.semibold)
 
-            Spacer(minLength: 50)
+            Image("tracker_blue")
+                .resizable()
+                .scaledToFit()
 
             Text(NSLocalizedString(
                 "walkthrought.healthkit.information",

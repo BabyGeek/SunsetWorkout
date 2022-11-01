@@ -30,6 +30,7 @@ struct ProfileConfigurationView: View {
                     currenPage = WalkthroughConfigurationSettings.totalPages + 1
                 } label: {
                     Text(NSLocalizedString("walkthrought.skip", comment: "Profile height"))
+                        .foregroundColor(.white)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                         .padding(.vertical, 10)
@@ -42,14 +43,19 @@ struct ProfileConfigurationView: View {
                 .font(.title3)
                 .fontWeight(.semibold)
 
+            Spacer()
+
             UserProfileFormView(
                 height: $viewModel.height,
                 weight: $viewModel.weight,
                 heightUnit: viewModel.heightUnit(),
                 weightUnit: viewModel.weightUnit())
-            .padding(.top, 140)
 
-            Spacer(minLength: 100)
+            Image("personal_blue")
+                .resizable()
+                .scaledToFit()
+
+            Spacer()
 
         }
         .padding()

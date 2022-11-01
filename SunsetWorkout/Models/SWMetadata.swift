@@ -11,8 +11,13 @@ struct SWMetadata {
     var id: String = UUID().uuidString
     let type: SWMetadataType
     let value: String
+
     var intValue: Int {
         Int(value) ?? 0
+    }
+
+    var floatValue: Float {
+        Float(value) ?? 0
     }
 }
 

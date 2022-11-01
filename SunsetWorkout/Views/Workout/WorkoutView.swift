@@ -42,7 +42,9 @@ struct WorkoutView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                     }
                 }
-
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
+                }
             }
         }
         .navigationTitle(viewModel.workout?.name ??

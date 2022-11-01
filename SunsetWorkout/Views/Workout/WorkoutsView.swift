@@ -12,15 +12,19 @@ struct WorkoutsView: View {
     @StateObject var viewModel = WorkoutsViewModel()
 
     var body: some View {
-        ScrollView {
-            ForEach(viewModel.workouts) { workout in
-                NavigationLink {
-                    WorkoutView(viewModel: WorkoutViewModel(workout: workout))
-                } label: {
-                    WorkoutCardView(workout: workout)
-                        .foregroundColor(Color(.label))
+        if viewModel.workouts.isEmpty {
+            EmptyWorkoutView()
+        } else {
+            ScrollView {
+                ForEach(viewModel.workouts) { workout in
+                    NavigationLink {
+                        WorkoutView(viewModel: WorkoutViewModel(workout: workout))
+                    } label: {
+                        WorkoutCardView(workout: workout)
+                            .foregroundColor(Color(.label))
+                    }
+                    .padding(.bottom)
                 }
-                .padding(.bottom)
             }
         }
     }

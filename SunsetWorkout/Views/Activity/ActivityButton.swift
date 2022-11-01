@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+struct ActivityButton<Content: View>: View {
+    @ViewBuilder var content: Content
+    var action: () -> Void
+
+    init(@ViewBuilder label: @escaping () -> Content, action: @escaping () -> Void) {
+        self.content = label()
+        self.action = action
+    }
+
+    var body: some View {
+        Button {
+            action()
+        } label: {
+            content
+        }
+
+    }
+}
+
 struct ActivityPlayButton: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
@@ -15,6 +34,8 @@ struct ActivityPlayButton: View {
             .frame(height: 50)
             .overlay(
                 Image(systemName: "play.fill")
+                    .resizable()
+                    .frame(width: 24, height: 24)
             )
             .foregroundColor(Color(.label))
     }
@@ -28,6 +49,8 @@ struct ActivityPauseButton: View {
             .frame(height: 50)
             .overlay(
                 Image(systemName: "pause.fill")
+                    .resizable()
+                    .frame(width: 24, height: 24)
             )
             .foregroundColor(Color(.label))
     }
@@ -41,6 +64,8 @@ struct ActivityStopButton: View {
             .frame(height: 50)
             .overlay(
                 Image(systemName: "stop.fill")
+                    .resizable()
+                    .frame(width: 24, height: 24)
             )
             .foregroundColor(Color(.label))
     }
@@ -54,9 +79,15 @@ struct ActivityBeganButton: View {
             .frame(height: 50)
             .overlay(
                 HStack {
+                    Spacer()
                     Text(NSLocalizedString("activity.start", comment: "Start"))
-                    Image(systemName: "play.fill")
+                        .font(.system(.callout))
+                    Spacer()
+                    Image(systemName: "play.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
                 }
+                    .padding(.horizontal)
             )
             .foregroundColor(Color(.label))
     }
@@ -68,11 +99,8 @@ struct ActivityButton_Previews: PreviewProvider {
             ActivityBeganButton()
             HStack {
                 ActivityPauseButton()
-                    .frame(width: 70)
                 ActivityPlayButton()
-                    .frame(width: 70)
                 ActivityStopButton()
-                    .frame(width: 70)
             }
         }
     }

@@ -73,7 +73,7 @@ struct SWWorkout {
                let roundBreak = exercise.metadata.first(where: { $0.type == .roundBreak }),
                let roundDuration = exercise.metadata.first(where: { $0.type == .roundDuration }),
                let exerciseBreak = exercise.metadata.first(where: { $0.type == .exerciseBreak }) {
-                estimatedTime += ((roundNumber.intValue - 1) * roundDuration.intValue)
+                estimatedTime += roundNumber.intValue * roundDuration.intValue
 
                 if exercise != exercises.last {
                     estimatedTime += roundBreak.intValue
@@ -164,5 +164,22 @@ extension SWWorkout {
             type: type,
             metadata: metadata,
             exercises: exercises)
+    }
+}
+
+// MARK: - Activity methods
+extension SWWorkout {
+    func getFirstExercise() -> SWExercise? {
+        exercises.first
+    }
+
+    func getExerciseOrder(_ order: Int) -> SWExercise? {
+        exercises.first(where: { $0.order == order })
+    }
+
+    func isLastExercise(_ exercise: SWExercise?) -> Bool {
+        guard let last = exercises.last else { return false }
+        dump(last == exercise)
+        return last == exercise
     }
 }

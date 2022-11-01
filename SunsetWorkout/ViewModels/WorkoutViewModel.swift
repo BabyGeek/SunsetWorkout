@@ -28,14 +28,15 @@ class WorkoutViewModel: ObservableObject {
 
     let realmManager = RealmManager()
 
-    init(workout: SWWorkout? = nil, error: SWError? = nil) {
+    init(workout: SWWorkout? = nil) {
         self.workout = workout
-        self.error = error
+        self.error = nil
         self.saved = false
     }
 
     public func saveWorkout(isNew: Bool = false) {
         saved = false
+        error = nil
 
         if !self.find() || isNew {
             self.createWorkout()

@@ -26,6 +26,7 @@ struct ConfigurationWalkthroughView: View {
             }
             if currentPage == 2 {
                 ProfileConfigurationView()
+                    .ignoresSafeArea(.keyboard)
                     .transition(.scale)
             }
 

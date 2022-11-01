@@ -35,7 +35,8 @@ struct FeelingConfigurationView: View {
                 Button {
                     currenPage = WalkthroughConfigurationSettings.totalPages + 1
                 } label: {
-                    Text("Skip")
+                    Text(NSLocalizedString("walkthrought.skip", comment: "Profile height"))
+                        .foregroundColor(.white)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                         .padding(.vertical, 10)

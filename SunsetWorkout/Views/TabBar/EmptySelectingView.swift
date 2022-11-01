@@ -9,7 +9,13 @@ import SwiftUI
 
 struct EmptySelectingView: View {
     var body: some View {
-        Text("In construction")
+        VStack {
+            Spacer()
+            Image("activity_blue")
+                .resizable()
+                .scaledToFit()
+            Spacer()
+        }
     }
 }
 
