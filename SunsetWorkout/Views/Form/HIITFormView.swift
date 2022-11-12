@@ -14,17 +14,19 @@ struct HIITFormView: View {
 
     var body: some View {
         VStack {
-            FloatingTextField(placeHolder: "\(SWMetadataType.roundBreak.label) (secs)",
+            FloatingTextField(placeHolder: SWMetadataType.roundBreak.label,
+                              placeHolderSuffix: "secs",
                               text: $roundBreak,
                               bgColor: Color(.clear))
                 .keyboardType(.numberPad)
 
-            FloatingTextField(placeHolder: "\(SWMetadataType.roundDuration.label) (secs)",
+            FloatingTextField(placeHolder: SWMetadataType.roundDuration.label,
+                              placeHolderSuffix: "secs",
                               text: $roundDuration,
                               bgColor: Color(.clear))
             .keyboardType(.numberPad)
 
-            FloatingTextField(placeHolder: "\(SWMetadataType.roundNumber.label)",
+            FloatingTextField(placeHolder: SWMetadataType.roundNumber.label,
                               text: $roundNumber,
                               bgColor: Color(.clear))
                 .keyboardType(.numberPad)

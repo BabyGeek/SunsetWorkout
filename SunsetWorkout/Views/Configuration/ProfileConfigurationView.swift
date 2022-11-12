@@ -29,7 +29,7 @@ struct ProfileConfigurationView: View {
                 Button {
                     currenPage = WalkthroughConfigurationSettings.totalPages + 1
                 } label: {
-                    Text(NSLocalizedString("walkthrought.skip", comment: "Profile height"))
+                    Text("walkthrought.skip")
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
@@ -37,8 +37,8 @@ struct ProfileConfigurationView: View {
                         .padding(.horizontal)
                 }
             }
-
-            Text(NSLocalizedString("walkthrought.profile.title", comment: "Walkthrought profile title"))
+            
+                Text("walkthrought.profile.title")
                 .kerning(1.3)
                 .font(.title3)
                 .fontWeight(.semibold)

@@ -22,10 +22,8 @@ struct AuthorizationView: View {
             Image("tracker_blue")
                 .resizable()
                 .scaledToFit()
-
-            Text(NSLocalizedString(
-                "walkthrought.healthkit.information",
-                comment: "Description of why the app needs HealthKit authorization"))
+            
+            Text("walkthrought.healthkit.information")
 
             .kerning(1.3)
             .font(.body)
@@ -42,10 +40,8 @@ struct AuthorizationView: View {
                     RoundedRectangle(cornerRadius: 25)
                         .frame(height: 50)
                         .overlay(
-                            Text(NSLocalizedString(
-                                "walkthrought.healthkit.authorize"
-                                , comment: "Authorize button title"))
-                            .foregroundColor(Color(.label))
+                            Text("walkthrought.healthkit.authorize")
+                                .foregroundColor(Color(.label))
                         )
                 }
             }

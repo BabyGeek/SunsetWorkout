@@ -6,38 +6,50 @@
 //
 
 import Foundation
+import HealthKit
 
-class SWActivity {
+class SWActivity: ObservableObject {
+    // MARK: - Constants
     static let START_TIMER_DURATION: Float = 5
-    let cantStepOverState: [SWActivityState] = [.initialized, .starting, .paused, .canceled, .finished]
-    var exerciseHasChanged: Bool = false
-    var shouldSetUpTimer: Bool = false
-    let workout: SWWorkout
-    var state: SWActivityState {
-        willSet(newState) {
-            if state != .finished && state != .canceled {
-                self.state = newState
-            }
-        }
-    }
-    var startDate: Date?
-    var endDate: Date?
-    var pauses: [TimeInterval]?
 
-    var currentExercise: SWExercise?
-    var nextExercise: SWExercise?
+    // MARK: - Properties
+    let cantStepOverState: [SWActivityState] = [.initialized, .starting, .paused, .canceled, .finished]
+    let workout: SWWorkout
+    var shouldSetUpTimer: Bool = false
+    var startDate: Date = Date()
+    var endDate: Date = Date()
+    var events: [HKWorkoutEvent] = []
     var nextExerciseOrder: Int = 0
-    var currentExerciseRepetition: Int = 0
-    var totalExerciseRepetition: Int = 0
-    var currentExerciseEndBreak: Float = 0
-    var nextExerciseEndBreak: Float = 0
-    var currentExerciseBreak: Float = 0
-    var goal: Float = 0
+    var lastState: SWActivityState
+    var workoutInputs: [String: [[String: Any]]] = [:]
+    
+
+    // MARK: - Published properties
+    @Published var exerciseHasChanged: Bool = false
+    @Published var state: SWActivityState
+    @Published var currentExercise: SWExercise?
+    @Published var nextExercise: SWExercise?
+    @Published var currentExerciseRepetition: Int = 0
+    @Published var totalExerciseRepetition: Int = 0
+    @Published var currentExerciseEndBreak: Float = 0
+    @Published var nextExerciseEndBreak: Float = 0
+    @Published var currentExerciseBreak: Float = 0
+    @Published var goal: Float = 0
+    
+    // MARK: - Computed properties
+    var duration: Double {
+        endDate.timeIntervalSinceReferenceDate - startDate.timeIntervalSinceReferenceDate
+    }
+    
+    var totalEnergyBurned: Double {
+        850
+    }
 
     init(workout: SWWorkout,
-         state: SWActivityState) {
+         state: SWActivityState? = nil) {
         self.workout = workout
-        self.state = state
+        self.state = state ?? .initialized
+        self.lastState = state ?? .initialized
     }
 
     func inBreak() {
@@ -55,16 +67,28 @@ class SWActivity {
     }
 
     func pause() {
+        lastState = state
         state = .paused
+//        events.append(HKWorkoutEvent(
+//            type: .pause,
+//            dateInterval: DateInterval(start: startDate, end: Date()),
+//            metadata: nil))
     }
 
     func run() {
-        state = .running
+        if state == .paused {
+            state = lastState
+//            events.append(HKWorkoutEvent(
+//                type: .resume,
+//                dateInterval: DateInterval(start: startDate, end: Date()),
+//                metadata: nil))
+        } else {
+            state = .running
+        }
     }
 
     func cancel() {
         state = .canceled
-        endActivity(canceled: true)
     }
 
     func finish() {
@@ -79,12 +103,10 @@ class SWActivity {
         currentExercise = nil
         endDate = Date()
 
-        DispatchQueue.main.async {
-            if !canceled {
-                self.finish()
-            } else {
-                self.cancel()
-            }
+        if !canceled {
+            self.finish()
+        } else {
+            self.cancel()
         }
     }
 
@@ -166,5 +188,39 @@ class SWActivity {
         default:
             return false
         }
+    }
+
+    func isWaitingForInput() -> Bool {
+        switch state {
+        case .running:
+            return workout.type == .traditionalStrengthTraining
+        default:
+            return false
+        }
+    }
+    
+    func addInput(_ inputPrepared: [String: Any]) {
+        guard let exerciseID = inputPrepared["exerciseID"] as? String, exerciseID != "0" else { return }
+        var inputMutable = inputPrepared
+        inputMutable.removeValue(forKey: "exerciseID")
+        
+        if let _ = workoutInputs[exerciseID] {
+            workoutInputs[exerciseID]!.append(inputMutable)
+        } else {
+            workoutInputs[exerciseID] = [inputMutable]
+        }
+    }
+    
+    func getSummary() -> SWActivitySummary {
+        SWActivitySummary(
+            workout: workout,
+            type: workout.type,
+            inputs: workoutInputs,
+            startDate: startDate,
+            endDate: endDate,
+            duration: duration,
+            totalEnergyBurned: totalEnergyBurned,
+            events: events
+        )
     }
 }

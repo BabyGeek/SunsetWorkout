@@ -1,28 +1,28 @@
 //
-//  WorkoutsViewModel.swift
+//  HistoriesViewModel.swift
 //  SunsetWorkout
 //
-//  Created by Paul Oggero on 14/10/2022.
+//  Created by Paul Oggero on 09/11/2022.
 //
 
 import SwiftUI
 import RealmSwift
 
-@MainActor class WorkoutsViewModel: ObservableObject {
+@MainActor class HistoriesViewModel: ObservableObject {
     @Published var error: SWError?
-    @Published var workouts: [SWWorkout] = [SWWorkout]()
+    @Published var summaries: [SWActivitySummary] = [SWActivitySummary]()
 
     var notificationToken: NotificationToken?
 
     let realmManager = RealmManager()
 
     init() {
-        self.fetch(with: SWWorkout.allByDateDESC)
+        self.fetch(with: SWActivitySummary.allByDateDESC)
 
         if let realm = try? Realm() {
             self.notificationToken = realm.observe { [weak self] (_, _) in
                 if let self {
-                    self.fetch(with: SWWorkout.allByDateDESC)
+                    self.fetch(with: SWActivitySummary.allByDateDESC)
                 }
             }
         }
@@ -32,9 +32,9 @@ import RealmSwift
         notificationToken?.invalidate()
     }
 
-    func fetch(with request: FetchRequest<[SWWorkout], SWWorkoutEntity>) {
+    func fetch(with request: FetchRequest<[SWActivitySummary], SWActivitySummaryEntity>) {
         do {
-            self.workouts = try realmManager.fetch(with: request)
+            self.summaries = try realmManager.fetch(with: request)
         } catch {
             self.error = SWError(error: error)
         }

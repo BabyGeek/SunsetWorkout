@@ -14,7 +14,7 @@ class FeelingViewModel: ObservableObject {
 
     let realmManager = RealmManager()
 
-    func save(model: Feeling, with reverseTransformer: (Feeling) -> FeelingModel) {
+    func save(model: Feeling, with reverseTransformer: (Feeling) -> FeelingEntity) {
         do {
             try realmManager.save(model: model, with: reverseTransformer)
         } catch {
@@ -22,7 +22,7 @@ class FeelingViewModel: ObservableObject {
         }
     }
 
-    func fetch(with request: FetchRequest<[Feeling], FeelingModel>) {
+    func fetch(with request: FetchRequest<[Feeling], FeelingEntity>) {
         do {
             self.feelings = try realmManager.fetch(with: request)
         } catch {

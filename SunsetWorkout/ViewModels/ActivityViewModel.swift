@@ -9,78 +9,140 @@ import Combine
 import SwiftUI
 
 class ActivityViewModel: ObservableObject {
-    private var timer: Timer?
-
-    @Published var activity: SWActivity {
-        willSet {
-            dump("did set activity")
-        }
-    }
-
+    @Published var error: SWError?
+    @Published var activity: SWActivity
     @Published var timePassed: Float = 0
     @Published var timePassedPercentage: Float = 0
     @Published var timeRemaining: Float = 0
+    @Published var presentSerieAlert: Bool  = false
+    @Published var saved: Bool = false
+    
+    private var inputPrepared: [String: Any] = [:]
+    let realmManager = RealmManager()
+
+    var cancellable: AnyCancellable?
 
     var shouldShowTimer: Bool {
-        activity.shouldHaveTimer()
+        activity.shouldHaveTimer() ||
+        (activityStateIs(.paused) &&
+         (activityLastStateIs(.inBreak) || activity.workout.type == .highIntensityIntervalTraining))
+    }
+    
+    var exerciseHasChanged: Bool {
+        withAnimation {
+            activity.exerciseHasChanged
+        }
+    }
+    
+    var canSkip: Bool {
+        withAnimation {
+            activityStateIs(.running) || activityStateIs(.inBreak)
+        }
+    }
+    
+    var waitForInput: Bool {
+        withAnimation {
+            !shouldShowTimer && activity.isWaitingForInput()
+        }
+    }
+    
+    var canAskForPause: Bool {
+        withAnimation {
+            activityStateIs(.running) || activityStateIs(.inBreak)
+        }
+    }
+    
+    var canAskForReplay: Bool {
+        withAnimation {
+            activityStateIs(.paused)
+        }
+    }
+    
+    var isFinished: Bool {
+        withAnimation {
+            activityStateIs(.finished) || activityStateIs(.canceled)
+        }
+    }
+    
+    var canStart: Bool {
+        withAnimation {
+            !activity.workout.exercises.isEmpty
+        }
     }
 
     init(workout: SWWorkout) {
         self.activity = SWActivity(workout: workout, state: .initialized)
         AnalyticsManager.logInitializeActivity()
-    }
 
-    func launchTimer() {
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-                self.updateTimer()
-            })
+        cancellable = activity.objectWillChange.sink { [weak self] _ in
+            if let self {
+                self.objectWillChange.send()
+            }
+        }
     }
-
-    func stopTimer() {
-            self.timer = nil
+    
+    @MainActor func save() {
+        if !activityStateIs(.initialized) && !activityStateIs(.starting) && !saved && isFinished {
+            do {
+                let activitySummary = self.activity.getSummary()
+                try self.save(model: activitySummary, with: SWActivitySummaryEntity.init)
+            } catch  {
+                dump(error)
+            }
+        }
+    }
+    
+    func skip() {
+        prepareAddInput()
+        inputPrepared["skipped"] = true
+        
+        if activity.workout.type == .traditionalStrengthTraining {
+            timeRemaining = 0
+            saveInputSerie("0")
+            getNext()
+            setupTimer()
+        } else if activity.workout.type == .highIntensityIntervalTraining {
+            saveInputRound()
+            timeRemaining = 0
+        }
     }
 
     func pause() {
-        activity.pause()
+        if !isFinished {
+            activity.pause()
+        }
     }
 
     func play() {
-        activity.run()
+        if !isFinished {
+            activity.run()
+        }
     }
 
     func cancel() {
-        activity.state = .canceled
+        activity.endActivity(canceled: true)
     }
 
     func activityStateIs(_ state: SWActivityState) -> Bool {
         activity.state == state
     }
 
-    func isFinished() -> Bool {
-        dump("finished: \(activityStateIs(.finished) || activityStateIs(.canceled))")
-        dump("finished state: \(activity.state)")
-        return activityStateIs(.finished) || activityStateIs(.canceled)
+    func activityLastStateIs(_ state: SWActivityState) -> Bool {
+        activity.lastState == state
     }
-
-    func canAskForPause() -> Bool {
-        activityStateIs(.running) || activityStateIs(.inBreak)
-    }
-
-    func canAskForReplay() -> Bool {
-        activityStateIs(.paused)
-    }
-
+    
     func getNext() {
         activity.getNext()
     }
-
+    
+    /// Setup the timer depending on workout type and activity state
     func setupTimer() {
-        if activityStateIs(.finished) || activityStateIs(.canceled) {
+        if activityStateIs(.finished) || activityStateIs(.canceled) || activityStateIs(.paused) {
             return
         } else if activityStateIs(.starting) {
             resetTimerWithRemaining(SWActivity.START_TIMER_DURATION)
         } else if activityStateIs(.inBreak) {
-            if activity.exerciseHasChanged {
+            if exerciseHasChanged {
                 resetTimerWithRemaining(activity.currentExerciseEndBreak)
             } else {
                 resetTimerWithRemaining(activity.currentExerciseBreak)
@@ -93,39 +155,84 @@ class ActivityViewModel: ObservableObject {
             }
         }
     }
-
+    
+    /// Reset the timer an set the remaining time
+    /// - Parameter remaining: `Float`
     func resetTimerWithRemaining(_ remaining: Float) {
         timePassed = 0
         timePassedPercentage = 0
         timeRemaining = remaining
     }
-
+    
+    /// Update the timer, if timer has ended setup the next step
     func updateTimer() {
-        if timeRemaining > 0 && shouldShowTimer {
+        if timeRemaining > 0 && shouldShowTimer && !activityStateIs(.paused) {
             timeRemaining -= 1
             timePassed += 1
             updateTimePassedPercentage()
-        } else if activityStateIs(.starting) || activityStateIs(.inBreak) {
-            play()
+        } else {
+            if activityStateIs(.starting) {
+                play()
+            } else if !activityStateIs(.initialized) {
+                if activityStateIs(.inBreak) {
+                    play()
+                } else {
+                    if activity.workout.type != .traditionalStrengthTraining {
+                        if activity.workout.type == .highIntensityIntervalTraining {
+                            prepareAddInput()
+                            saveInputRound()
+                        }
+                        getNext()
+                    }
+                }
+            }
 
             if shouldShowTimer {
                 setupTimer()
             }
-        } else if !activityStateIs(.initialized) {
-            getNext()
-
-            if activity.shouldSetUpTimer {
-                setupTimer()
-            }
         }
-
     }
-
+    
+    /// Save an input for a Strength serie
+    /// - Parameter input: `String`
+    func saveInputSerie(_ input: String) {
+        if activity.workout.type == .highIntensityIntervalTraining {
+            return
+        }
+        
+        inputPrepared["value"] = input
+        addInput()
+    }
+    
+    /// Save an input of the time passed for HIIT round
+    func saveInputRound() {
+        if activity.workout.type == .traditionalStrengthTraining {
+            return
+        }
+        
+        inputPrepared["value"] = timePassed
+        addInput()
+    }
+    
+    /// Add the prepared input to the activity
+    func addInput() {
+        activity.addInput(inputPrepared)
+    }
+    
+    /// Prepare the next input with current exercise ID and current repetition number
+    func prepareAddInput() {
+        guard let currenExerciseID = activity.currentExercise?.id else { return }
+        
+        inputPrepared["exerciseID"] = currenExerciseID
+        inputPrepared["currentRepetition"] = activity.currentExerciseRepetition
+    }
+    
+    /// Update the timePassed value to the equivalent percentage depending on state and type
     func updateTimePassedPercentage() {
         if activityStateIs(.starting) {
             timePassedPercentage = timePassed / SWActivity.START_TIMER_DURATION
         } else if activityStateIs(.inBreak) {
-            if activity.exerciseHasChanged {
+            if exerciseHasChanged {
                 timePassedPercentage = timePassed / activity.currentExerciseEndBreak
             } else {
                 timePassedPercentage = timePassed / activity.currentExerciseBreak
@@ -133,19 +240,25 @@ class ActivityViewModel: ObservableObject {
         } else {
             if activity.workout.type == .highIntensityIntervalTraining {
                 timePassedPercentage = timePassed / activity.goal
-            } else if activity.workout.type == .traditionalStrengthTraining {
-                timePassedPercentage = 0
             }
         }
     }
-
+    
+    func getCurrentExerciseName() -> String {
+        activity.currentExercise?.name ?? NSLocalizedString("not.found", comment: "Not found")
+    }
+    
+    /// Get the repetition text to display
+    /// - Returns: `String`
     func getCurrentRepetitionLocalizedString() -> String {
         return String(format: NSLocalizedString("activity.exercise.repetition", comment: "Repetitions"),
                       getCurrentRepetitionString(),
-                      getCurentRepetition(),
+                      getCurrentRepetition(),
                       getTotalRepetition())
     }
-
+    
+    /// Get the next exercise text to display
+    /// - Returns: `String`
     func getNextExerciseLocalizedString() -> String {
         if activity.workout.getExerciseOrder(activity.nextExerciseOrder) == nil {
             return String(
@@ -156,11 +269,15 @@ class ActivityViewModel: ObservableObject {
             format: NSLocalizedString("activity.exercise.next", comment: "Next exercise label"),
             getNextExerciseString())
     }
-
+    
+    /// Get next exercise name
+    /// - Returns: `String`
     private func getNextExerciseString() -> String {
         activity.currentExercise?.name ?? NSLocalizedString("not.found", comment: "Not found label")
     }
-
+    
+    /// Get the current repetition string text, `round` for HIIT, `serie` for Strength
+    /// - Returns: `String`
     private func getCurrentRepetitionString() -> String {
         switch activity.workout.type {
         case .highIntensityIntervalTraining:
@@ -169,12 +286,51 @@ class ActivityViewModel: ObservableObject {
             return NSLocalizedString("workout.stregth.repetition", comment: "Workout Strength repetition name")
         }
     }
-
-    private func getCurentRepetition() -> Int {
-        return activity.currentExerciseRepetition
+    
+    /// Get the current repetition number
+    /// - Returns: `Int`
+    private func getCurrentRepetition() -> Int {
+        activity.currentExerciseRepetition
     }
-
+    
+    /// Get the total number of repetition for current exercise
+    /// - Returns: `Int`
     private func getTotalRepetition() -> Int {
-        return activity.totalExerciseRepetition
+        activity.totalExerciseRepetition
+    }
+}
+
+// MARK: - Realm and HealthKit save
+extension ActivityViewModel {
+    /// Save activitty to realm
+    /// - Parameters:
+    ///   - model: `SWActivitySummary`
+    ///   - reverseTransformer: `(SWActivitySummary) -> SWActivitySummaryEntity`
+    func save(model: SWActivitySummary, with reverseTransformer: (SWActivitySummary) -> SWActivitySummaryEntity) throws {
+        do {
+            try realmManager.save(model: model, with: reverseTransformer)
+            save(model: model)
+        } catch {
+            self.error = SWError(error: error)
+        }
+    }
+    
+    /// Save activity to HealthKit
+    /// - Parameter model: `SWActivitySummary`
+    func save(model: SWActivitySummary) {
+        SWHealthStoreManager.shared.saveObject(model.workoutHK, completion: { (inner: ThrowableCallback) -> Void in
+            do {
+                let success = try inner()
+                if !success {
+                    self.error = SWError(error: SWHealthKitError.notSaved)
+                } else {
+                    DispatchQueue.main.async {
+                        self.saved = true
+                    }
+                }
+            } catch {
+                self.error = SWError(error: error)
+            }
+        })
     }
 }

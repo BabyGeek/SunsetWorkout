@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeelingConfigurationView: View {
-    @AppStorage("currentPage") var currenPage = 1
+    @AppStorage("currentPage") var currentPage = 1
     @State var selected: FeelingType = .happy
 
     @StateObject var feelingViewModel = FeelingViewModel()
@@ -21,7 +21,7 @@ struct FeelingConfigurationView: View {
         VStack(spacing: 20) {
             HStack {
                 Button {
-                    currenPage -= 1
+                    currentPage -= 1
                 } label: {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.white)
@@ -33,9 +33,9 @@ struct FeelingConfigurationView: View {
 
                 Spacer()
                 Button {
-                    currenPage = WalkthroughConfigurationSettings.totalPages + 1
+                    currentPage = WalkthroughConfigurationSettings.totalPages + 1
                 } label: {
-                    Text(NSLocalizedString("walkthrought.skip", comment: "Profile height"))
+                    Text("walkthrought.skip")
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
@@ -44,7 +44,7 @@ struct FeelingConfigurationView: View {
                 }
             }
 
-            Text(NSLocalizedString("walkthrought.feeling.title", comment: "Feeling walkthrought title"))
+            Text("walkthrought.feeling.title")
                 .kerning(1.3)
                 .font(.title3)
 
@@ -55,7 +55,7 @@ struct FeelingConfigurationView: View {
         .padding()
         .background(Color.purple.ignoresSafeArea())
         .onDisappear {
-            feelingViewModel.save(model: feeling, with: FeelingModel.init)
+            feelingViewModel.save(model: feeling, with: FeelingEntity.init)
         }
     }
 }

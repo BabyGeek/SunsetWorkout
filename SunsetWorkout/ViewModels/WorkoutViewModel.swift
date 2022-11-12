@@ -59,7 +59,7 @@ class WorkoutViewModel: ObservableObject {
             return
         }
 
-        save(model: workout, with: SWWorkoutModel.init)
+        save(model: workout, with: SWWorkoutEntity.init)
     }
 
     public func addExercise(_ exercise: SWExercise) {
@@ -86,7 +86,7 @@ class WorkoutViewModel: ObservableObject {
         return false
     }
 
-    func save(model: SWWorkout, with reverseTransformer: (SWWorkout) -> SWWorkoutModel) {
+    func save(model: SWWorkout, with reverseTransformer: (SWWorkout) -> SWWorkoutEntity) {
         do {
             try realmManager.save(model: model, with: reverseTransformer)
 

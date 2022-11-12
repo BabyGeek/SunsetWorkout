@@ -23,6 +23,10 @@ public enum SWExerciseError: Error {
     case noName, notSaved, severalOrders
 }
 
+public enum SWHealthKitError: Error {
+    case notSaved
+}
+
 // MARK: - Localised Errors
 extension GlobalError: LocalizedError {
     public var errorDescription: String? {
@@ -100,6 +104,22 @@ extension SWExerciseError: LocalizedError {
             return NSLocalizedString("error.exercise.not.saved.failure.reason", comment: "Error failure reason")
         case .severalOrders:
             return NSLocalizedString("error.exercise.several.orders.failure.reason", comment: "Error failure reason")
+        }
+    }
+}
+
+extension SWHealthKitError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .notSaved:
+            return NSLocalizedString("error.healthkit.not.saved.description", comment: "Error description")
+        }
+    }
+
+    public var failureReason: String? {
+        switch self {
+        case .notSaved:
+            return NSLocalizedString("error.healthkit.not.saved.failure.reason", comment: "Error failure reason")
         }
     }
 }

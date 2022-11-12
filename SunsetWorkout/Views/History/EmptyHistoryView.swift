@@ -1,30 +1,31 @@
 //
-//  EmptyWorkoutView.swift
+//  EmptyHistoryView.swift
 //  SunsetWorkout
 //
-//  Created by Paul Oggero on 30/10/2022.
+//  Created by Paul Oggero on 11/11/2022.
 //
 
 import SwiftUI
 
-struct EmptyWorkoutView: View {
+struct EmptyHistoryView: View {
     var body: some View {
         VStack {
             Spacer()
             
-            Text("workout.add.first")
+            Text("history.empty")
                 .foregroundColor(Color(.label))
 
             Spacer()
 
-            Image("goal_blue")
+            Image("happy_blue")
                 .resizable()
                 .scaledToFit()
         }
     }
 }
-struct EmptyWorkoutView_Previews: PreviewProvider {
+
+struct EmptyHistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyWorkoutView()
+        EmptyHistoryView()
     }
 }

@@ -15,16 +15,16 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealm"
     }
 
-    func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataModel {
-        return SWWorkoutMetadataModel(value: [
+    func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataEntity {
+        return SWWorkoutMetadataEntity(value: [
             "_id": UUID().uuidString,
             "rawType": type.rawValue,
             "value": value
         ])
     }
 
-    func getStrengthMockWorkoutModel() -> SWWorkoutModel {
-        return SWWorkoutModel(value: [
+    func getStrengthMockWorkoutModel() -> SWWorkoutEntity {
+        return SWWorkoutEntity(value: [
             "_id": UUID().uuidString,
             "name": "Test Strength",
             "rawType": SWWorkoutType.traditionalStrengthTraining.rawValue,
@@ -38,8 +38,8 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         ])
     }
 
-    func getHIITMockWorkoutModel() -> SWWorkoutModel {
-        return SWWorkoutModel(value: [
+    func getHIITMockWorkoutModel() -> SWWorkoutEntity {
+        return SWWorkoutEntity(value: [
             "_id": UUID().uuidString,
             "name": "Test HIIT",
             "rawType": SWWorkoutType.highIntensityIntervalTraining.rawValue,
@@ -53,9 +53,9 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         ])
     }
 
-    func getExercisesHIITMockModel() -> [SWExerciseModel] {
+    func getExercisesHIITMockModel() -> [SWExerciseEntity] {
         return [
-            SWExerciseModel(value: [
+            SWExerciseEntity(value: [
                 "_id": UUID().uuidString,
                 "name": "Burpees",
                 "order": 1,
@@ -66,7 +66,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                     getMetadataModelFrom(type: .roundNumber, value: "5")
                 ]
             ]),
-            SWExerciseModel(value: [
+            SWExerciseEntity(value: [
                 "_id": UUID().uuidString,
                 "name": "Jumping Jacks",
                 "order": 2,
@@ -77,7 +77,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                     getMetadataModelFrom(type: .roundNumber, value: "5")
                 ]
             ]),
-            SWExerciseModel(value: [
+            SWExerciseEntity(value: [
                 "_id": UUID().uuidString,
                 "name": "Push Ups",
                 "order": 3,
@@ -91,9 +91,9 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         ]
     }
 
-    func getExercisesStrengthMockModel() -> [SWExerciseModel] {
+    func getExercisesStrengthMockModel() -> [SWExerciseEntity] {
         return [
-            SWExerciseModel(value: [
+            SWExerciseEntity(value: [
                 "_id": UUID().uuidString,
                 "name": "Burpees",
                 "order": 1,
@@ -104,7 +104,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                     getMetadataModelFrom(type: .repetitionGoal, value: "12")
                 ]
             ]),
-            SWExerciseModel(value: [
+            SWExerciseEntity(value: [
                 "_id": UUID().uuidString,
                 "name": "Jumping Jacks",
                 "order": 2,
@@ -115,7 +115,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
                     getMetadataModelFrom(type: .repetitionGoal, value: "12")
                 ]
             ]),
-            SWExerciseModel(value: [
+            SWExerciseEntity(value: [
                 "_id": UUID().uuidString,
                 "name": "Push Ups",
                 "order": 3,
@@ -136,7 +136,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             realm.add(getStrengthMockWorkoutModel(), update: .modified)
         }
 
-        guard let workoutModel = realm.objects(SWWorkoutModel.self)
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
 
         XCTAssert(workoutModel.name == "Test Strength")
@@ -156,7 +156,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
             realm.add(getHIITMockWorkoutModel(), update: .modified)
         }
 
-        guard let workoutModel = realm.objects(SWWorkoutModel.self)
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
             .first(where: { $0.name == "Test HIIT" }) else { return XCTFail("Failed to retrieve first object") }
 
         XCTAssert(workoutModel.name == "Test HIIT")
@@ -253,7 +253,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         viewModel.saveWorkout()
         XCTAssertTrue(viewModel.saved)
 
-        guard let workoutModel = realm.objects(SWWorkoutModel.self)
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
 
         XCTAssertEqual(workoutModel.exercises.count, 2)
@@ -285,7 +285,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
 
         XCTAssertTrue(viewModel.saved)
 
-        guard let workoutModel = realm.objects(SWWorkoutModel.self)
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
         XCTAssertEqual(workoutModel.exercises.count, 2)
     }

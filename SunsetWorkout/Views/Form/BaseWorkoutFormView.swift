@@ -25,12 +25,13 @@ struct BaseWorkoutFormView: View {
                 .padding(.bottom, 70)
 
                 FloatingTextField(
-                    placeHolder: NSLocalizedString("workout.name", comment: "Workout name label"),
+                    placeHolder: "workout.name",
                     text: $name,
                     bgColor: Color(.clear))
 
                 FloatingTextField(
-                    placeHolder: "\(SWMetadataType.exerciseBreak.label) (secs)",
+                    placeHolder: SWMetadataType.exerciseBreak.label,
+                    placeHolderSuffix: "secs",
                     text: $exerciseBreak,
                     bgColor: Color(.clear))
                     .keyboardType(.numberPad)

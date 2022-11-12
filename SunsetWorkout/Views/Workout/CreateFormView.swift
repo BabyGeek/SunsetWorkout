@@ -35,9 +35,6 @@ struct CreateFormView: View, KeyboardReadable {
 extension CreateFormView {
     var form: some View {
             VStack {
-                Spacer()
-                    .frame(height: 20)
-
                 BaseWorkoutFormView(
                     type: $workoutViewModel.type,
                     name: $workoutViewModel.name,
@@ -56,15 +53,16 @@ extension CreateFormView {
                         seriesNumber: $workoutViewModel.seriesNumber,
                         repetitionGoal: $workoutViewModel.repetitionGoal)
                 }
-
+                
                 Spacer()
 
-                Button {
-                    saveWorkout()
-                } label: {
-                    saveButton
+                if !isKeyboardVisible {
+                    Button {
+                        saveWorkout()
+                    } label: {
+                        saveButton
+                    }
                 }
-                .ignoresSafeArea(.keyboard)
 
                 NavigationLink(isActive: $goToWorkoutView) {
                     WorkoutView(viewModel: workoutViewModel)
@@ -76,12 +74,13 @@ extension CreateFormView {
                 isKeyboardVisible = newIsKeyboardVisible
             }
             .padding()
+            .ignoresSafeArea(.keyboard)
     }
     var saveButton: some View {
         RoundedRectangle(cornerRadius: 25)
             .frame(height: 50)
             .overlay(
-                Text(NSLocalizedString("button.save", comment: "Button save title"))
+                Text("button.save")
                     .foregroundColor(Color(.label))
             )
     }

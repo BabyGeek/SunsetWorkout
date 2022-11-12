@@ -23,7 +23,7 @@ struct SWMetadata {
 
 // MARK: - init from RealmObject
 extension SWMetadata {
-    init(object: SWWorkoutMetadataModel) {
+    init(object: SWWorkoutMetadataEntity) {
         guard let type = SWMetadataType(rawValue: object.rawType) else {
             fatalError("Metadata type is invalid")
         }

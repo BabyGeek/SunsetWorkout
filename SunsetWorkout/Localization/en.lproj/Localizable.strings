@@ -12,10 +12,13 @@
 "launch.tab.title" = "Launch";
 "create.tab.title" = "Create";
 "workouts.tab.title" = "Workouts";
+"history.tab.title" = "History";
+"activities.tab.title" = "Workouts";
 
 // NAVIGATION
 "dashboard.navigation.title" = "Welcome";
-"workouts.navigation.title" = "Workouts";
+"history.navigation.title" = "History";
+"activities.navigation.title" = "Workouts";
 
 
 // DASHBOARD
@@ -25,11 +28,7 @@
 "dashboard.training" = "Training";
 
 // WALKTHROUGHT
-"walkthrought.healthkit.information" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
-Duis semper.";
+"walkthrought.healthkit.information" = "Welcome in Sunset Workout, this app will use your data for working purposes only, no commercial use will be done with it. You need to authorize HealthKit access to these data. Data are stored on your device only using Realm, no data will be sent outside of the application.";
 "walkthrought.healthkit.authorize" = "Authorize";
 "walkthrought.profile.title" = "Configure your profile";
 "walkthrought.skip" = "Skip";
@@ -57,7 +56,7 @@ Duis semper.";
 "workout.stregth.repetition" = "Serie";
 
 // METADATA TYPE
-"metadate.label.exercise.break" = "Exercise break";
+"metadate.label.exercise.break" = "Exercise end break";
 "metadate.label.round.break" = "Round break";
 "metadate.label.round.number" = "Round number";
 "metadate.label.round.duration" = "Round duration";
@@ -66,7 +65,17 @@ Duis semper.";
 "metadate.label.repetition.goal" = "Repetition goal";
 
 //WORKOUTS
+"workout.add.first" = "No workout created yet.";
 "workout.name" = "Name";
+
+// WORKOUT EXERCISE
+"workout.exercises.empty" = "No exercise added to the workout yet.";
+"exercise.name" = "Exercise name";
+"exercise.break" = "Exercise end break";
+"exercise.search.field.placeholder" = "Search for an exercise";
+"exercise.search.empty" = "Please enter something to began searching.";
+"exercise.search.loading" = "Searching...";
+"exercise.add" = "Add an exercise";
 
 // PROFILE
 "profile.height" = "Height";
@@ -89,13 +98,21 @@ Duis semper.";
 "error.workout.wrong.data.description" = "Workout saving error";
 "error.workout.wrong.data.failure.reason" = "Error while saving your workout, please check your data.";
 
+"error.healthkit.not.saved.description" = "HeathKit saving error";
+"error.healthkit.not.saved.failure.reason" = "Was not able to save the workout in HealthKit.";
+
 // ACTIVITY
+"activity.start.preface" = "Press start when you feel ready!";
+"activity.start" = "Began workout";
+"activity.selected" = "Selected workout: %@";
 "activity.exercise.repetition" = "%@: %d/%d";
 "activity.exercise.next" = "Incoming: %@";
 "activity.exercise.next.last" = "Incoming: %@, this is your last exercise, let's do it!";
 "activity.in.break" = "Break time";
 "activity.starting" = "Your activity is going to start";
 "activity.be.ready" = "Be ready!";
+"activity.cant.start" = "This workout can't be launched.";
 
 // GLOBAL
 "not.found" = "Not found";
+"button.save" = "Save";

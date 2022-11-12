@@ -21,16 +21,16 @@ class SunsetWorkoutTests: XCTestCase {
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealm"
     }
 
-    func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataModel {
-        return SWWorkoutMetadataModel(value: [
+    func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataEntity {
+        return SWWorkoutMetadataEntity(value: [
             "_id": UUID().uuidString,
             "rawType": type.rawValue,
             "value": value
         ])
     }
 
-    func getStrengthMockWorkoutModel() -> SWWorkoutModel {
-        return SWWorkoutModel(value: [
+    func getStrengthMockWorkoutModel() -> SWWorkoutEntity {
+        return SWWorkoutEntity(value: [
             "_id": UUID().uuidString,
             "name": "Test Strength",
             "rawType": SWWorkoutType.traditionalStrengthTraining.rawValue,
@@ -43,8 +43,8 @@ class SunsetWorkoutTests: XCTestCase {
         ])
     }
 
-    func getHIITMockWorkoutModel() -> SWWorkoutModel {
-        return SWWorkoutModel(value: [
+    func getHIITMockWorkoutModel() -> SWWorkoutEntity {
+        return SWWorkoutEntity(value: [
             "_id": UUID().uuidString,
             "name": "Test HIIT",
             "rawType": SWWorkoutType.highIntensityIntervalTraining.rawValue,
@@ -64,7 +64,7 @@ class SunsetWorkoutTests: XCTestCase {
             realm.add(getStrengthMockWorkoutModel(), update: .modified)
         }
 
-        guard let workoutModel = realm.objects(SWWorkoutModel.self)
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
             .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
 
         XCTAssert(workoutModel.name == "Test Strength")
@@ -84,7 +84,7 @@ class SunsetWorkoutTests: XCTestCase {
             realm.add(getHIITMockWorkoutModel(), update: .modified)
         }
 
-        guard let workoutModel = realm.objects(SWWorkoutModel.self)
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
             .first(where: { $0.name == "Test HIIT" }) else { return XCTFail("Failed to retrieve first object") }
 
         XCTAssert(workoutModel.name == "Test HIIT")

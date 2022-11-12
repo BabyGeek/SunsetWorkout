@@ -36,6 +36,7 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
                     }
                 }
                 .navigationTitle(selection.navigationTitle)
+                .navigationBarTitleDisplayMode(.inline)
             }
             .navigationViewStyle(.stack)
             .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in

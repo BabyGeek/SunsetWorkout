@@ -22,8 +22,8 @@ struct WorkoutCardView: View {
 
                         VStack(alignment: .leading) {
                             ForEach(workout.metadata) { meta in
-                                HStack {
-                                    Text(meta.type.label + ":")
+                                HStack(spacing: 10) {
+                                    Text(meta.type.label)
                                     Text(meta.value.isEmpty ? "N/A" : meta.value)
                                 }
                             }

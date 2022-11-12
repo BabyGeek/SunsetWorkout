@@ -128,7 +128,7 @@ extension SWWorkout: Equatable {
 
 // MARK: - init from RealmObject
 extension SWWorkout {
-    init(object: SWWorkoutModel) {
+    init(object: SWWorkoutEntity) {
         guard let type = SWWorkoutType(rawValue: object.rawType) else {
             fatalError("Workout type is invalid")
         }

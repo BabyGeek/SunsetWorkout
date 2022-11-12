@@ -60,7 +60,7 @@ struct WorkoutExerciseFormView: View, KeyboardReadable {
     var body: some View {
         VStack {
             FloatingTextField(
-                placeHolder: "Name",
+                placeHolder: "exercise.name",
                 text: $searchExerciseText,
                 bgColor: .clear)
             .simultaneousGesture(
@@ -70,21 +70,19 @@ struct WorkoutExerciseFormView: View, KeyboardReadable {
                     })
             )
 
-            if !isSearching {
-                formView
-            } else {
-                WorkoutExerciseSearchView(
-                    search: $searchExerciseText,
-                    selected: $selectedSearch,
-                    isSearching: $isSearching)
-                Spacer()
-            }
+            formView
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }
         .onChange(of: selectedSearch) { _ in
             isSearching = false
+        }
+        .sheet(isPresented: $isSearching) {
+            WorkoutExerciseSearchView(
+                search: $searchExerciseText,
+                selected: $selectedSearch,
+                isSearching: $isSearching)
         }
     }
 }
@@ -94,7 +92,7 @@ extension WorkoutExerciseFormView {
     var formView: some View {
         VStack {
             FloatingTextField(
-                placeHolder: "Exercise break",
+                placeHolder: "exercise.break",
                 text: $exerciseBreak,
                 bgColor: .clear)
             .keyboardType(.numberPad)
@@ -153,7 +151,7 @@ extension WorkoutExerciseFormView {
                     RoundedRectangle(cornerRadius: 25)
                         .frame(height: 50)
                         .overlay(
-                            Text("Save")
+                            Text("button.save")
                                 .foregroundColor(Color(.label))
                         )
                 }

@@ -21,7 +21,7 @@ struct WorkoutView: View {
             if let workout = viewModel.workout {
                 if workout.exercises.isEmpty {
                     Spacer()
-                    Text(NSLocalizedString("workout.exercises.empty", comment: "Empty exercises label"))
+                    Text("workout.exercises.empty")
                     Spacer()
                 }
 

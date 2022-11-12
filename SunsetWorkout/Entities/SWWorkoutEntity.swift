@@ -1,5 +1,5 @@
 //
-//  SWWorkoutModel.swift
+//  SWWorkoutEntity.swift
 //  SunsetWorkout
 //
 //  Created by Paul Oggero on 12/10/2022.
@@ -8,17 +8,17 @@
 import Foundation
 import RealmSwift
 
-class SWWorkoutModel: Object {
+class SWWorkoutEntity: Object {
     @Persisted(primaryKey: true) var _id: String = UUID().uuidString
     @Persisted var created_at = Date()
     @Persisted var rawType: String
     @Persisted var name: String
-    @Persisted var metadata = List<SWWorkoutMetadataModel>()
-    @Persisted var exercises = List<SWExerciseModel>()
+    @Persisted var metadata = List<SWWorkoutMetadataEntity>()
+    @Persisted var exercises = List<SWExerciseEntity>()
 }
 
 // MARK: - init from Model
-extension SWWorkoutModel {
+extension SWWorkoutEntity {
     convenience init(workout: SWWorkout) {
         self.init()
 
@@ -28,8 +28,8 @@ extension SWWorkoutModel {
 
         self.name = workout.name
         self.rawType = workout.type.rawValue
-        self.metadata.append(objectsIn: workout.metadata.map({ SWWorkoutMetadataModel(metadata: $0) }))
-        self.exercises.append(objectsIn: workout.exercises.map({ SWExerciseModel(exercise: $0) }))
+        self.metadata.append(objectsIn: workout.metadata.map({ SWWorkoutMetadataEntity(metadata: $0) }))
+        self.exercises.append(objectsIn: workout.exercises.map({ SWExerciseEntity(exercise: $0) }))
         self.created_at = workout.createdAt
     }
 }

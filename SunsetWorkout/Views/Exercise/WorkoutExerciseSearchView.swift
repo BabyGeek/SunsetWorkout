@@ -14,68 +14,134 @@ struct WorkoutExerciseSearchView: View {
     @Binding var isSearching: Bool
 
     var body: some View {
-        VStack(alignment: .leading) {
-            if search.isEmpty {
-                VStack {
-                    Spacer()
-                    Text(NSLocalizedString("search.empty.search", comment: "Empty search label"))
-                    Spacer()
-                }
-            } else if viewModel.searchEmpty {
-                VStack {
-                    Button {
-                        self.selected = ExerciseSearch(value: search)
-                    } label: {
-                        SearchItem(value: search)
+        ZStack {
+            BackgroundView()
+            VStack(alignment: .leading) {
+                    HStack {
+                        TextField("exercise.search.field.placeholder", text: $search)
+                            .padding(6)
+                            .foregroundColor(Color(.label))
+                            .background(Color(.systemBackground))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color(.systemGray), lineWidth: 2)
+                            )
+                            .cornerRadius(12)
+                            .overlay(
+                                Button {
+                                    search = ""
+                                } label: {
+                                    Circle()
+                                        .fill(Color(.systemGray))
+                                        .frame(width: 16, height: 16)
+                                        .overlay(
+                                            Image(systemName: "xmark")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 8, height: 8)
+                                                .foregroundColor(Color(.label))
+                                        )
+                                }
+                                    .padding(.trailing)
+                                    .conditional(search.isEmpty, { view in
+                                    view
+                                        .hidden()
+                                }), alignment: .trailing
+                            )
+                            .padding()
+
                     }
-
-                    Spacer()
-                }
-            } else {
-                ScrollView {
-                    Button {
-                        self.selected = ExerciseSearch(value: search)
-                    } label: {
-                        SearchItem(value: search)
-                    }
-
-                    ForEach(viewModel.results) { exercise in
-                        Divider()
-
+                    .padding(6)
+                    .overlay(
                         Button {
-                            self.search = exercise.value
-                            self.selected = exercise
+                            isSearching = false
                         } label: {
-                            SearchItem(value: exercise.value)
+                            Circle()
+                                .fill(Color(.systemGray))
+                                .frame(width: 20, height: 20)
+                                .overlay(
+                                    Image(systemName: "xmark")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 10, height: 10)
+                                        .foregroundColor(Color(.label))
+                                )
+                        }, alignment: .topTrailing)
+                    .padding(6)
+
+                Spacer()
+
+                if search.isEmpty {
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text("exercise.search.empty")
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                } else if viewModel.searchEmpty {
+                    VStack {
+                        Button {
+                            self.selected = ExerciseSearch(value: search)
+                        } label: {
+                            SearchItem(value: search)
+                        }
+
+                        Spacer()
+                    }
+                } else {
+
+                    if viewModel.isLoading {
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                ProgressView {
+                                    Text("exercise.search.loading")
+                                }
+                                Spacer()
+                            }
+                            Spacer()
+                        }
+                    } else {
+                        ScrollView {
+                            Button {
+                                self.selected = ExerciseSearch(value: search)
+                            } label: {
+                                SearchItem(value: search)
+                            }
+
+                            ForEach(viewModel.results) { exercise in
+                                Divider()
+
+                                Button {
+                                    self.search = exercise.value
+                                    self.selected = exercise
+                                } label: {
+                                    SearchItem(value: exercise.value)
+                                }
+                            }
                         }
                     }
                 }
             }
-
-            if viewModel.isLoading {
-                HStack {
-                    Spacer()
-                    ProgressView {
-                        Text(NSLocalizedString("exercise.search.loading", comment: "Search placeholder"))
-                    }
-                    Spacer()
-                }
-            }
-        }
-        .onChange(of: search, perform: { newValue in
-            viewModel.search(for: newValue)
-        })
-        .navigationBarBackButtonHidden()
-        .navigationBarItems(leading:
-                                Button(action: {
-                                    self.isSearching = false
-                                }, label: {
-                                    Image(systemName: "chevron.left")
-                                        .resizable()
-                                        .scaledToFit()
-                                })
-                                .padding(.horizontal)
+            .onChange(of: search, perform: { newValue in
+                viewModel.search(for: newValue)
+            })
+            .navigationBarBackButtonHidden()
+            .navigationBarItems(leading:
+                                    Button(action: {
+                                        self.isSearching = false
+                                    }, label: {
+                                        Image(systemName: "chevron.left")
+                                            .resizable()
+                                            .scaledToFit()
+                                    })
+                                    .padding(.horizontal)
         )
+        }
     }
 }
 

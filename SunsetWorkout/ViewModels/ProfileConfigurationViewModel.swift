@@ -63,16 +63,6 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
         return unitWeight
     }
 
-    private func determineAge() {
-        if let dateOfBirthComponent = try? store?.dateOfBirthComponents() {
-            DispatchQueue.main.async {
-                self.age = String(
-                    format: "%d",
-                    Calendar.current.component(.year, from: Date()) - (dateOfBirthComponent.year ?? 0))
-            }
-        }
-    }
-
     private func getGender() {
         if let sexe = try? store?.biologicalSex().biologicalSex.rawValue {
             dump(HKBiologicalSex(rawValue: sexe))

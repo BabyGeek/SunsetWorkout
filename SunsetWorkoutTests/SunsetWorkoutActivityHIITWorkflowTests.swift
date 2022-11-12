@@ -10,13 +10,17 @@ import XCTest
 
 final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
     func testActivityStartingToRunning() {
-        let workout = SWWorkout.getMockWithName("test", type: .highIntensityIntervalTraining)
+        let workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
+        viewModel.setupTimer()
 
         for _ in 0...Int(SWActivity.START_TIMER_DURATION) {
             viewModel.updateTimer()
         }
+        
+        // Nothing happen went into return part
+        viewModel.saveInputSerie("12")
 
         XCTAssertTrue(viewModel.activityStateIs(.running))
     }
@@ -154,10 +158,10 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
             viewModel.updateTimer()
         }
 
-        DispatchQueue.main.async {
-            XCTAssertTrue(viewModel.activityStateIs(.finished))
-            XCTAssertFalse(viewModel.shouldShowTimer)
-        }
+        viewModel.setupTimer()
+        XCTAssertTrue(viewModel.activityStateIs(.finished))
+        XCTAssertTrue(viewModel.isFinished())
+        XCTAssertFalse(viewModel.shouldShowTimer)
     }
 
     func testActivityIsPaused() {
@@ -167,11 +171,11 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.getNext()
         viewModel.updateTimer()
         viewModel.pause()
-
-        DispatchQueue.main.async {
-            XCTAssertTrue(viewModel.activityStateIs(.paused))
-            XCTAssertFalse(viewModel.shouldShowTimer)
-        }
+        
+        XCTAssertTrue(viewModel.canAskForReplay())
+        XCTAssertFalse(viewModel.canAskForPause())
+        XCTAssertTrue(viewModel.activityStateIs(.paused))
+        XCTAssertTrue(viewModel.shouldShowTimer)
     }
 
     func testActivityIsPausedThenPlayed() {
@@ -182,11 +186,11 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.updateTimer()
         viewModel.pause()
         viewModel.play()
-
-        DispatchQueue.main.async {
-            XCTAssertTrue(viewModel.activityStateIs(.running))
-            XCTAssertTrue(viewModel.shouldShowTimer)
-        }
+        
+        XCTAssertTrue(viewModel.canAskForPause())
+        XCTAssertFalse(viewModel.canAskForReplay())
+        XCTAssertTrue(viewModel.activityStateIs(.running))
+        XCTAssertTrue(viewModel.shouldShowTimer)
     }
 
     func testActivityIsCanceled() {
@@ -196,10 +200,10 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.getNext()
         viewModel.updateTimer()
         viewModel.cancel()
-
-        DispatchQueue.main.async {
-            XCTAssertTrue(viewModel.activityStateIs(.canceled))
-            XCTAssertFalse(viewModel.shouldShowTimer)
-        }
+        
+        viewModel.setupTimer()
+        XCTAssertTrue(viewModel.activityStateIs(.canceled))
+        XCTAssertTrue(viewModel.isFinished())
+        XCTAssertFalse(viewModel.shouldShowTimer)
     }
 }

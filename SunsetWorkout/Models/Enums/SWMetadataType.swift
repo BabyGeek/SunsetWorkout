@@ -5,7 +5,7 @@
 //  Created by Paul Oggero on 12/10/2022.
 //
 
-import Foundation
+import SwiftUI
 
 enum SWMetadataType: String {
     case exerciseBreak,
@@ -16,22 +16,22 @@ enum SWMetadataType: String {
          serieNumber,
          repetitionGoal
 
-    var label: String {
+    var label: LocalizedStringKey {
         switch self {
         case .exerciseBreak:
-            return NSLocalizedString("metadate.label.exercise.break", comment: "Metadata label")
+            return "metadate.label.exercise.break"
         case .roundBreak:
-            return NSLocalizedString("metadate.label.round.break", comment: "Metadata label")
+            return "metadate.label.round.break"
         case .roundNumber:
-            return NSLocalizedString("metadate.label.round.number", comment: "Metadata label")
+            return "metadate.label.round.number"
         case .roundDuration:
-            return NSLocalizedString("metadate.label.round.duration", comment: "Metadata label")
+            return "metadate.label.round.duration"
         case .serieBreak:
-            return NSLocalizedString("metadate.label.serie.break", comment: "Metadata label")
+            return "metadate.label.serie.break"
         case .serieNumber:
-            return NSLocalizedString("metadate.label.serie.number", comment: "Metadata label")
+            return "metadate.label.serie.number"
         case .repetitionGoal:
-            return NSLocalizedString("metadate.label.repetition.goal", comment: "Metadata label")
+            return "metadate.label.repetition.goal"
         }
     }
 }

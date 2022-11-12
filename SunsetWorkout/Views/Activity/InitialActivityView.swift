@@ -14,20 +14,27 @@ struct InitialActivityView: View {
         VStack {
             Spacer()
             VStack(spacing: 20) {
-                Text("Selected workout: \(viewModel.activity.workout.name)")
-            Image("trainer_blue")
-                .resizable()
-                .scaledToFit()
-                Text("Press start when you feel ready!")
+                Text(String(
+                    format: NSLocalizedString("activity.selected", comment: "Selected activity"),
+                    viewModel.activity.workout.name)
+                )
+                Image("trainer_blue")
+                    .resizable()
+                    .scaledToFit()
+                Text("activity.start.preface")
             }
             Spacer()
-            ActivityButton {
-                ActivityBeganButton()
-            } action: {
-                viewModel.getNext()
-                viewModel.setupTimer()
+            if viewModel.canStart {
+                ActivityButton {
+                    ActivityBeganButton()
+                } action: {
+                    viewModel.getNext()
+                    viewModel.setupTimer()
+                }
+                Spacer()
+            } else {
+                Text("activity.cant.start")
             }
-            Spacer()
         }
         .padding(.horizontal)
     }

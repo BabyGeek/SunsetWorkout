@@ -36,7 +36,7 @@ extension SWExercise: Equatable {
 
 // MARK: - init from RealmObject
 extension SWExercise {
-    init(object: SWExerciseModel) {
+    init(object: SWExerciseEntity) {
         self.id = object._id
         self.name = object.name
         self.order = object.order

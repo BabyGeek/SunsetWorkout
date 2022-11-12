@@ -24,8 +24,6 @@ extension RealmSwift.SortDescriptor {
 }
 
 extension SWWorkout {
-    typealias WorkoutRequest = FetchRequest<[SWWorkout], SWWorkoutModel>
-
     static func find(_ id: String, with request: WorkoutRequest?) -> WorkoutRequest {
         let predicate = NSPredicate(format: "_id == %@", id)
         var request = request ?? self.allByDateASC
@@ -53,9 +51,21 @@ extension SWWorkout {
     )
 }
 
-extension Feeling {
-    typealias FeelingRequest = FetchRequest<[Feeling], FeelingModel>
+extension SWActivitySummary {
+    static let allByDateASC = ActivitySummaryRequest(
+        predicate: nil,
+        sortDescriptors: [RealmSwift.SortDescriptor.createdAtASC],
+        transformer: { $0.map(SWActivitySummary.init) }
+    )
+    
+    static let allByDateDESC = ActivitySummaryRequest(
+        predicate: nil,
+        sortDescriptors: [RealmSwift.SortDescriptor.createdAtDESC],
+        transformer: { $0.map(SWActivitySummary.init) }
+    )
+}
 
+extension Feeling {
     static let allByTypeASC = FeelingRequest(
         predicate: nil,
         sortDescriptors: [RealmSwift.SortDescriptor.type],

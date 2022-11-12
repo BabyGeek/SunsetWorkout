@@ -26,14 +26,17 @@ struct ActivityButton<Content: View>: View {
     }
 }
 
-struct ActivityPlayButton: View {
+struct ActivityButtonWithIcon: View {
+    let iconName: String
+    let color: Color
+
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
-            .fill(Color.green)
+            .stroke(color)
             .opacity(0.8)
             .frame(height: 50)
             .overlay(
-                Image(systemName: "play.fill")
+                Image(systemName: iconName)
                     .resizable()
                     .frame(width: 24, height: 24)
             )
@@ -41,31 +44,16 @@ struct ActivityPlayButton: View {
     }
 }
 
-struct ActivityPauseButton: View {
-    var body: some View {
-        RoundedRectangle(cornerRadius: 25)
-            .fill(Color.orange)
-            .opacity(0.8)
-            .frame(height: 50)
-            .overlay(
-                Image(systemName: "pause.fill")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-            )
-            .foregroundColor(Color(.label))
-    }
-}
+struct ActivityButtonWithText: View {
+    let label: LocalizedStringKey
 
-struct ActivityStopButton: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
-            .fill(Color.red)
+            .stroke(Color.yellow)
             .opacity(0.8)
             .frame(height: 50)
             .overlay(
-                Image(systemName: "stop.fill")
-                    .resizable()
-                    .frame(width: 24, height: 24)
+                Text(label)
             )
             .foregroundColor(Color(.label))
     }
@@ -74,13 +62,13 @@ struct ActivityStopButton: View {
 struct ActivityBeganButton: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
-            .fill(Color.green)
+            .stroke(Color.green)
             .opacity(0.8)
             .frame(height: 50)
             .overlay(
                 HStack {
                     Spacer()
-                    Text(NSLocalizedString("activity.start", comment: "Start"))
+                    Text("activity.start")
                         .font(.system(.callout))
                     Spacer()
                     Image(systemName: "play.circle.fill")
@@ -97,11 +85,6 @@ struct ActivityButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             ActivityBeganButton()
-            HStack {
-                ActivityPauseButton()
-                ActivityPlayButton()
-                ActivityStopButton()
-            }
         }
     }
 }

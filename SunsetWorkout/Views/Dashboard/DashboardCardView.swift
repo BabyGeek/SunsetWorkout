@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DashboardCardView: View {
     var icon: Image = Image(systemName: "bed.double")
-    var title: String = ""
+    var title: LocalizedStringKey = ""
     var value: String = ""
 
     var body: some View {

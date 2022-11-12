@@ -1,5 +1,5 @@
 //
-//  SWWorkoutMetadataModel.swift
+//  SWWorkoutMetadataEntity.swift
 //  SunsetWorkout
 //
 //  Created by Paul Oggero on 12/10/2022.
@@ -8,14 +8,14 @@
 import Foundation
 import RealmSwift
 
-class SWWorkoutMetadataModel: Object {
+class SWWorkoutMetadataEntity: Object {
     @Persisted(primaryKey: true) var _id: String = UUID().uuidString
     @Persisted var rawType: String
     @Persisted var value: String
 }
 
 // MARK: - init from Model
-extension SWWorkoutMetadataModel {
+extension SWWorkoutMetadataEntity {
     convenience init(metadata: SWMetadata) {
         self.init()
 

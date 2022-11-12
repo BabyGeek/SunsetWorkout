@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum TabBarItem {
-    case dashboard, launch, create, add, workouts
+    case dashboard, launch, create, add, workouts, history, activities
 
     var symbol: Image {
         switch self {
@@ -22,6 +22,10 @@ enum TabBarItem {
             return Image(systemName: "plus")
         case .workouts:
             return Image(systemName: "bolt.heart")
+        case .history:
+            return Image(systemName: "calendar.badge.clock")
+        case .activities:
+            return Image(systemName: "figure.strengthtraining.traditional")
         }
     }
 
@@ -37,16 +41,10 @@ enum TabBarItem {
             return NSLocalizedString("add.tab.title", comment: "Add tab bar title")
         case .workouts:
             return NSLocalizedString("workouts.tab.title", comment: "Workouts tab bar title")
-//        case .dashboard:
-//            return "Dashboard"
-//        case .launch:
-//            return "Launch"
-//        case .create:
-//            return "Create"
-//        case .add:
-//            return "New workout"
-//        case .workouts:
-//            return "Workouts"
+        case .history:
+            return NSLocalizedString("history.tab.title", comment: "Summaries tab bar title")
+        case .activities:
+            return NSLocalizedString("activities.tab.title", comment: "Summaries tab bar title")
         }
     }
 
@@ -61,7 +59,11 @@ enum TabBarItem {
         case .add:
             return ""
         case .workouts:
-            return NSLocalizedString("workouts.navigation.title", comment: "Workouts navigation title")
+            return ""
+        case .history:
+            return NSLocalizedString("history.navigation.title", comment: "Summaries navigation title")
+        case .activities:
+            return NSLocalizedString("activities.navigation.title", comment: "Summaries navigation title")
         }
     }
 }

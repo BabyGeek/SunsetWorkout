@@ -22,82 +22,32 @@ struct ActivityView: View {
             if viewModel.activityStateIs(.initialized) {
                 InitialActivityView()
             } else {
-                if viewModel.isFinished() {
+                if viewModel.isFinished {
                     VStack {
                         Spacer()
                         Text("finished!")
                         Spacer()
                     }
                 } else {
-                    if let currentExercise = viewModel.activity.currentExercise {
-                        VStack {
-                            VStack {
-                                if viewModel.activityStateIs(.running) {
-                                    Text(currentExercise.name)
-                                        .font(.system(.title3))
-
-                                    Text(viewModel.getCurrentRepetitionLocalizedString())
-                                        .padding(.top, 12)
-                                } else if viewModel.activityStateIs(.inBreak) {
-                                    Text(NSLocalizedString("activity.in.break", comment: "In break label"))
-                                        .font(.title3)
-
-                                    if viewModel.activity.exerciseHasChanged {
-                                        Text(viewModel.getNextExerciseLocalizedString())
-                                            .padding(.top, 12)
-                                    }
-
-                                } else if viewModel.activityStateIs(.starting) {
-                                    Text(NSLocalizedString("activity.starting", comment: "Starting text"))
-                                    Text(NSLocalizedString("activity.be.ready", comment: "Be ready text"))
-                                        .padding(.top, 12)
-                                }
-
-                                Spacer()
-
-                                if viewModel.shouldShowTimer {
-                                    ProgressBar(
-                                        progress: $viewModel.timePassedPercentage,
-                                        progressShow: $viewModel.timeRemaining)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, maxHeight: 350)
-
-                                    Spacer()
-                                }
-
-                                HStack {
-                                    if viewModel.canAskForReplay() {
-                                        ActivityButton {
-                                            ActivityPlayButton()
-                                        } action: {
-                                            viewModel.play()
-                                        }
-                                    }
-
-                                    if viewModel.canAskForPause() {
-                                        ActivityButton {
-                                            ActivityPauseButton()
-                                        } action: {
-                                            viewModel.pause()
-                                        }
-                                    }
-
-                                    ActivityButton {
-                                        ActivityStopButton()
-                                    } action: {
-                                        viewModel.cancel()
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    MainActivityView()
                 }
+            }
+            
+            ActivitySerieInputAlertView { goalValue in
+                viewModel.presentSerieAlert = false
+                viewModel.saveInputSerie(goalValue)
+            }
+            .conditional(!viewModel.presentSerieAlert) { view in
+                    view
+                        .hidden()
             }
         }
         .onReceive(timer) { _ in
-            print("timer")
-            print("state: \(viewModel.activity.state)")
-            print("finished: \(viewModel.isFinished())")
+            if viewModel.isFinished {
+                timer.upstream.connect().cancel()
+                viewModel.save()
+            }
+
             viewModel.updateTimer()
         }
         .environmentObject(viewModel)
@@ -125,6 +75,7 @@ struct ActivityView_Previews: PreviewProvider {
             SWMetadata(type: .roundDuration, value: "10")
         ])
     ])
+    
     static var previews: some View {
         ActivityView(workout: HIITExample)
     }

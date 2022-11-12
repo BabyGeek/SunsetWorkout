@@ -50,7 +50,9 @@ extension TabBarView {
         VStack {
             item.symbol
 
-            if localSelection == item || forceShowText {
+            if (localSelection == item || forceShowText) ||
+                ((localSelection == .create || localSelection == .launch) &&
+                 item == .add) {
                 Text(item.title)
                     .font(.caption)
             }
@@ -74,13 +76,10 @@ extension TabBarView {
                         }
                     Spacer()
                 }
-                .padding()
             }
             HStack {
                 ForEach(tabs, id: \.self) { tab in
-                    if tab == .create || tab == .launch {
-                        EmptyView()
-                    } else {
+                    if tab != .create && tab != .launch {
                         Spacer()
                         tabView(item: tab)
                             .onTapGesture {
