@@ -11,6 +11,7 @@ import Firebase
 @main
 struct SunsetWorkoutApp: App {
     init() {
+        FirebaseConfiguration.shared.setLoggerLevel(.debug)
         FirebaseApp.configure()
     }
 

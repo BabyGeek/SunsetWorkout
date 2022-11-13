@@ -6,35 +6,131 @@
 //
 
 import XCTest
+import RealmSwift
 @testable import SunsetWorkout
 
 class SunsetWorkoutTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override class func setUp() {
+        super.setUp()
+
+        // Use an in-memory Realm identified by the name of the current test.
+        // This ensures that each test can't accidentally access or modify the data
+        // from other tests or the application itself, and because they're in-memory,
+        // there's nothing that needs to be cleaned up.
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealmFetch"
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataEntity {
+        return SWWorkoutMetadataEntity(value: [
+            "_id": UUID().uuidString,
+            "rawType": type.rawValue,
+            "value": value
+        ])
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete.
-        // Check the results with assertions afterwards.
-        let simpleTest = 1
-
-        XCTAssert(simpleTest == 1, "i is supposed to be 0.")
+    func getStrengthMockWorkoutModel() -> SWWorkoutEntity {
+        return SWWorkoutEntity(value: [
+            "_id": UUID().uuidString,
+            "name": "Test Strength",
+            "rawType": SWWorkoutType.traditionalStrengthTraining.rawValue,
+            "metadata": [
+                getMetadataModelFrom(type: .exerciseBreak, value: "120"),
+                getMetadataModelFrom(type: .serieBreak, value: "60"),
+                getMetadataModelFrom(type: .serieNumber, value: "6"),
+                getMetadataModelFrom(type: .repetitionGoal, value: "12")
+            ]
+        ])
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func getHIITMockWorkoutModel() -> SWWorkoutEntity {
+        return SWWorkoutEntity(value: [
+            "_id": UUID().uuidString,
+            "name": "Test HIIT",
+            "rawType": SWWorkoutType.highIntensityIntervalTraining.rawValue,
+            "metadata": [
+                getMetadataModelFrom(type: .exerciseBreak, value: "20"),
+                getMetadataModelFrom(type: .roundDuration, value: "30"),
+                getMetadataModelFrom(type: .roundBreak, value: "10"),
+                getMetadataModelFrom(type: .roundNumber, value: "5")
+            ]
+        ])
+    }
+
+    @MainActor func testWorkoutsViewModelFetch() throws {
+        let viewModel = WorkoutViewModel()
+        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        viewModel.saveWorkout()
+
+        let workoutsViewModel = WorkoutsViewModel()
+        workoutsViewModel.fetch(with: SWWorkout.allByDateDESC)
+
+        XCTAssertNotNil(workoutsViewModel.notificationToken)
+        XCTAssertEqual(workoutsViewModel.workouts.count, 1)
+    }
+
+    func testAddStrengthWorkoutWithProjection() throws {
+        guard let realm = try? Realm() else { return XCTFail("Failed to instanciate Realm") }
+
+        try? realm.write {
+            realm.add(getStrengthMockWorkoutModel(), update: .modified)
         }
+
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
+            .first(where: { $0.name == "Test Strength" }) else { return XCTFail("Failed to retrieve first object") }
+
+        XCTAssert(workoutModel.name == "Test Strength")
+        XCTAssert(workoutModel.rawType == SWWorkoutType.traditionalStrengthTraining.rawValue)
+
+        try? realm.write {
+            workoutModel.name = "Update Strength"
+        }
+
+        XCTAssert(workoutModel.name == "Update Strength")
     }
 
+    func testAddHIITWorkoutWithProjection() throws {
+        guard let realm = try? Realm() else { return XCTFail("Failed to instanciate Realm") }
+
+        try? realm.write {
+            realm.add(getHIITMockWorkoutModel(), update: .modified)
+        }
+
+        guard let workoutModel = realm.objects(SWWorkoutEntity.self)
+            .first(where: { $0.name == "Test HIIT" }) else { return XCTFail("Failed to retrieve first object") }
+
+        XCTAssert(workoutModel.name == "Test HIIT")
+        XCTAssert(workoutModel.rawType == SWWorkoutType.highIntensityIntervalTraining.rawValue)
+
+        try? realm.write {
+            workoutModel.name = "Update HIIT"
+        }
+
+        XCTAssert(workoutModel.name == "Update HIIT")
+    }
+
+    func testAddStrengthWithViewModel() throws {
+        let viewModel = WorkoutViewModel()
+
+        viewModel.workout = SWWorkout.getMockWithName("Test Strength", type: .traditionalStrengthTraining)
+        viewModel.saveWorkout()
+
+        XCTAssertTrue(viewModel.saved)
+    }
+
+    func testAddHIITWithViewModel() throws {
+        let viewModel = WorkoutViewModel()
+
+        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        viewModel.saveWorkout()
+
+        XCTAssertTrue(viewModel.saved)
+    }
+
+    func testNilWorkoutSaveWithViewModel() throws {
+        let viewModel = WorkoutViewModel()
+        viewModel.saveWorkout()
+
+        XCTAssertNotNil(viewModel.error)
+    }
 }

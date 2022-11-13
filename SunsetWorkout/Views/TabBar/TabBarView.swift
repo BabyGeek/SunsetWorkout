@@ -24,6 +24,7 @@ struct TabBarView: View {
     }
 }
 
+#if DEBUG
 struct TabBarView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
         .dashboard,
@@ -35,9 +36,11 @@ struct TabBarView_Previews: PreviewProvider {
         VStack {
             Spacer()
             TabBarView(tabs: tabs, selection: .constant(tabs.first!), localSelection: tabs.first!)
+                .preferredColorScheme(.dark)
         }
     }
 }
+#endif
 
 extension TabBarView {
     /// Tab bar item view
@@ -47,7 +50,9 @@ extension TabBarView {
         VStack {
             item.symbol
 
-            if localSelection == item || forceShowText {
+            if (localSelection == item || forceShowText) ||
+                ((localSelection == .create || localSelection == .launch) &&
+                 item == .add) {
                 Text(item.title)
                     .font(.caption)
             }
@@ -70,14 +75,13 @@ extension TabBarView {
                             switchToTab(tab: TabBarItem.create)
                         }
                     Spacer()
+                    Spacer()
                 }
                 .padding()
             }
             HStack {
                 ForEach(tabs, id: \.self) { tab in
-                    if tab == .create || tab == .launch {
-                        EmptyView()
-                    } else {
+                    if tab != .create && tab != .launch {
                         Spacer()
                         tabView(item: tab)
                             .onTapGesture {
@@ -88,7 +92,7 @@ extension TabBarView {
                 }
             }
         }
-        }
+    }
 
     /// Allow swicthing between each tabs
     /// - Parameter tab: the tab to switch to

@@ -1,0 +1,132 @@
+/* 
+  Localizable.strings
+  SunsetWorkout
+
+  Created by Paul Oggero on 15/10/2022.
+  
+*/
+
+// TAB BAR
+"dashboard.tab.title" = "Home";
+"add.tab.title" = "New workout";
+"launch.tab.title" = "Launch";
+"create.tab.title" = "Create";
+"workouts.tab.title" = "Workouts";
+"history.tab.title" = "History";
+"activities.tab.title" = "Workouts";
+
+// NAVIGATION
+"dashboard.navigation.title" = "Welcome";
+"history.navigation.title" = "History";
+"activities.navigation.title" = "Workouts";
+
+
+// DASHBOARD
+"dashboard.sleep" = "Sleep";
+"dashboard.feeling" = "Feeling";
+"dashboard.move" = "Move";
+"dashboard.training" = "Training";
+"dashboard.said.by" = "%@ said:";
+
+// WALKTHROUGHT
+"walkthrought.healthkit.information" = "Welcome in Sunset Workout, this app will use your data for working purposes only, no commercial use will be done with it. You need to authorize HealthKit access to these data. Data are stored on your device only using Realm, no data will be sent outside of the application.";
+"walkthrought.healthkit.authorize" = "Authorize";
+"walkthrought.profile.title" = "Configure your profile";
+"walkthrought.skip" = "Skip";
+"walkthrought.feeling.title" = "How are you feeling today?";
+
+// FEELINGS
+"feeling.name.happy" = "Happy";
+"feeling.name.sad" = "Sad";
+"feeling.name.annoyed" = "Annoyed";
+"feeling.name.excited" = "Excited";
+"feeling.name.tired" = "Tired";
+"feeling.name.stressed" = "Stressed";
+
+"feeling.description.happy" = "I'm feeling happy!";
+"feeling.description.sad" = "I'm sad :(";
+"feeling.description.annoyed" = "I'm annoyed.";
+"feeling.description.excited" = "I'm feeling so excited!";
+"feeling.description.tired" = "I'm tired.";
+"feeling.description.stressed" = "I'm feeling so stressed.";
+
+// WORKOUT TYPE
+"workout.type.name.hiit" = "HIIT";
+"workout.type.name.strenght" = "Strenght";
+"workout.hiit.repetition" = "Round";
+"workout.stregth.repetition" = "Serie";
+
+// METADATA TYPE
+"metadate.label.exercise.break" = "Exercise end break";
+"metadate.label.round.break" = "Round break";
+"metadate.label.round.number" = "Round number";
+"metadate.label.round.duration" = "Round duration";
+"metadate.label.serie.break" = "Serie break";
+"metadate.label.serie.number" = "Serie number";
+"metadate.label.repetition.goal" = "Repetition goal";
+
+//WORKOUTS
+"workout.add.first" = "No workout created yet.";
+"workout.name" = "Name";
+
+// WORKOUT EXERCISE
+"workout.exercises.empty" = "No exercise added to the workout yet.";
+"exercise.name" = "Exercise name";
+"exercise.break" = "Exercise end break";
+"exercise.search.field.placeholder" = "Search for an exercise";
+"exercise.search.empty" = "Please enter something to began searching.";
+"exercise.search.loading" = "Searching...";
+"exercise.add" = "Add an exercise";
+
+// PROFILE
+"profile.height" = "Height";
+"profile.weight" = "Weight";
+
+// COMMON
+"app.title" = "Sunset Workout";
+
+// ERRORS
+"error.global.unknown.description" = "Unknown error";
+"error.global.unknown.failure.reason" = "An unknown error occured.";
+
+"error.realm.no.realm.description" = "Realm error";
+"error.realm.no.realm.failure.reason" = "Realm was not able to be found.";
+"error.realm.failure.description" = "Realm failure error";
+"error.realm.failure.failure.reason" = "A failure occured while saving or fetching data.";
+
+"error.workout.no.name.description" = "Workout error";
+"error.workout.no.name.failure.reason" = "You need to specify a name for the workout.";
+"error.workout.wrong.data.description" = "Workout saving error";
+"error.workout.wrong.data.failure.reason" = "Error while saving your workout, please check your data.";
+
+"error.healthkit.not.saved.description" = "HeathKit saving error";
+"error.healthkit.not.saved.failure.reason" = "Was not able to save the workout in HealthKit.";
+
+// ACTIVITY
+"activity.start.preface" = "Press start when you feel ready!";
+"activity.start" = "Began workout";
+"activity.selected" = "Selected workout: %@";
+"activity.exercise.repetition" = "%@: %d/%d";
+"activity.exercise.next" = "Incoming: %@";
+"activity.exercise.next.last" = "Incoming: %@, this is your last exercise, let's do it!";
+"activity.in.break" = "Break time";
+"activity.starting" = "Your activity is going to start";
+"activity.be.ready" = "Be ready!";
+"activity.cant.start" = "This workout can't be launched.";
+"button.go.to.summary" = "Workout summary";
+"button.go.to.workout" = "Workout";
+"button.go.to.launch" = "Launch an other workout";
+
+// HISTORY
+"history.empty" = "No workout session done yet. Start one to see the summary in here later";
+"summary.goal" = "Your global repetition goal was %d";
+"input.round" = "Round";
+"input.time" = "Time passed";
+"input.serie" = "Serie";
+"input.repetitions" = "Repetitions";
+"input.goal" = "Goal";
+"input.skipped" = "Skipped?";
+
+// GLOBAL
+"not.found" = "Not found";
+"button.save" = "Save";

@@ -8,82 +8,96 @@
 import SwiftUI
 import HealthKit
 
-enum SWWorkoutType: String {
-    case highIntensityIntervalTraining = "HIIT"
-    case traditionalStrengthTraining = "Strenght"
+struct CreateFormView: View, KeyboardReadable {
+    @StateObject var workoutViewModel: WorkoutViewModel = WorkoutViewModel()
 
-    var HKWorkoutActivityType: HKWorkoutActivityType {
-        switch self {
-        case .highIntensityIntervalTraining:
-            return .highIntensityIntervalTraining
-        case .traditionalStrengthTraining:
-            return .traditionalStrengthTraining
+    @State var isKeyboardVisible: Bool = false
+    @State var goToWorkoutView: Bool = false
+    var shouldHaveBackground: Bool = false
+
+    init(shouldHaveBackground: Bool = false) {
+        self.shouldHaveBackground = shouldHaveBackground
+    }
+
+    var body: some View {
+        if shouldHaveBackground {
+            ZStack {
+                BackgroundView()
+
+                form
+            }
+        } else {
+            form
         }
     }
 }
 
-struct SWWorkout {
-    let type: SWWorkoutType
-}
-
-struct HIITFormView: View {
-    @State private var name: String = ""
-
-    var body: some View {
-        FloatingTextField(placeHolder: "Round break (secs)", text: $name, bgColor: .white)
-
-        FloatingTextField(placeHolder: "Round number", text: $name, bgColor: .white)
-
-    }
-}
-
-struct TraditionalFormView: View {
-    @State private var name: String = ""
-
-    var body: some View {
-        FloatingTextField(placeHolder: "Series break (secs)", text: $name, bgColor: .white)
-        FloatingTextField(placeHolder: "Series number", text: $name, bgColor: .white)
-        FloatingTextField(placeHolder: "Series repetition goal", text: $name, bgColor: .white)
-    }
-}
-
-struct CreateFormView: View {
-    @State private var type: SWWorkoutType = .highIntensityIntervalTraining
-    @State private var name: String = ""
-
-    var body: some View {
-        NavigationView {
+extension CreateFormView {
+    var form: some View {
             VStack {
-                Picker("Type", selection: $type) {
-                    Text(SWWorkoutType.highIntensityIntervalTraining.rawValue)
-                        .tag(SWWorkoutType.highIntensityIntervalTraining)
+                BaseWorkoutFormView(
+                    type: $workoutViewModel.type,
+                    name: $workoutViewModel.name,
+                    exerciseBreak: $workoutViewModel.exerciseBreak)
 
-                    Text(SWWorkoutType.traditionalStrengthTraining.rawValue)
-                        .tag(SWWorkoutType.traditionalStrengthTraining)
-                }
-                .pickerStyle(.segmented)
-
-                FloatingTextField(placeHolder: "Name", text: $name, bgColor: .white)
-                FloatingTextField(placeHolder: "Exercice break (secs)", text: $name, bgColor: .white)
-
-                if type == .highIntensityIntervalTraining {
-                    HIITFormView()
+                if workoutViewModel.type == .highIntensityIntervalTraining {
+                    HIITFormView(
+                        roundBreak: $workoutViewModel.roundBreak,
+                        roundDuration: $workoutViewModel.roundDuration,
+                        roundNumber: $workoutViewModel.roundNumber)
                 }
 
-                if type == .traditionalStrengthTraining {
-                    TraditionalFormView()
+                if workoutViewModel.type == .traditionalStrengthTraining {
+                    TraditionalFormView(
+                        seriesBreak: $workoutViewModel.seriesBreak,
+                        seriesNumber: $workoutViewModel.seriesNumber,
+                        repetitionGoal: $workoutViewModel.repetitionGoal)
                 }
 
                 Spacer()
+
+                if !isKeyboardVisible {
+                    Button {
+                        saveWorkout()
+                    } label: {
+                        saveButton
+                    }
+                }
+
+                NavigationLink(isActive: $goToWorkoutView) {
+                    WorkoutView(viewModel: workoutViewModel)
+                } label: {
+                    EmptyView()
+                }
             }
-            .navigationTitle("New workout")
+            .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+                isKeyboardVisible = newIsKeyboardVisible
+            }
             .padding()
+            .ignoresSafeArea(.keyboard)
+    }
+    var saveButton: some View {
+        RoundedRectangle(cornerRadius: 25)
+            .frame(height: 50)
+            .overlay(
+                Text("button.save")
+                    .foregroundColor(Color(.label))
+            )
+    }
+
+    func saveWorkout() {
+        workoutViewModel.saveWorkout(isNew: true)
+        if workoutViewModel.error == nil && workoutViewModel.saved {
+            AnalyticsManager.logCreatedWorkout(type: workoutViewModel.workout?.type)
+            goToWorkoutView = true
         }
     }
 }
 
+#if DEBUG
 struct CreateFormView_Previews: PreviewProvider {
     static var previews: some View {
         CreateFormView()
     }
 }
+#endif

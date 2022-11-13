@@ -20,27 +20,32 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            ZStack(alignment: .bottom) {
-                content
-                    .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
-                    .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+            NavigationView {
+                VStack {
+                    ZStack {
+                        content
+                            .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+                    }
 
-                if !isKeyboardVisible {
-                    TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-                        .frame(width: geometry.size.width)
+                    if !isKeyboardVisible {
+                        TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+                    }
                 }
+                .background(BackgroundView())
+                .navigationTitle(selection.navigationTitle)
+                .navigationBarTitleDisplayMode(.inline)
             }
+            .navigationViewStyle(.stack)
             .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
                 self.tabs = value
             }
-        }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }
     }
 }
 
+#if DEBUG
 struct TabBarContainerView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
         .dashboard,
@@ -54,3 +59,4 @@ struct TabBarContainerView_Previews: PreviewProvider {
         }
     }
 }
+#endif

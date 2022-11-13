@@ -26,6 +26,7 @@ struct ConfigurationWalkthroughView: View {
             }
             if currentPage == 2 {
                 ProfileConfigurationView()
+                    .ignoresSafeArea(.keyboard)
                     .transition(.scale)
             }
 
@@ -40,16 +41,11 @@ struct ConfigurationWalkthroughView: View {
                 withAnimation(.easeInOut) {
                     if currentPage <= WalkthroughConfigurationSettings.totalPages
                         && SWHealthStoreManager.isWaiting == false {
-                                SWHealthStoreManager.askForPermission { success in
-                                    if success {
-                                        currentPage += 1
-                                    } else {
-                                        print("error")
-                                    }
-                                }
-                    } else {
-                        // only for test
-                        currentPage = 1
+                        SWHealthStoreManager.askForPermission(completion: { success in
+                            if success {
+                                currentPage += 1
+                            }
+                        })
                     }
                 }
             } label: {
@@ -66,7 +62,8 @@ struct ConfigurationWalkthroughView: View {
 
                             Circle()
                                 .trim(from: 0,
-                                      to: CGFloat(currentPage) / CGFloat(WalkthroughConfigurationSettings.totalPages))
+                                      to: CGFloat(currentPage)
+                                      / CGFloat(WalkthroughConfigurationSettings.totalPages))
                                 .stroke(Color.white, lineWidth: 4)
                                 .rotationEffect(.init(degrees: -90))
                         }
@@ -74,15 +71,16 @@ struct ConfigurationWalkthroughView: View {
                     )
                     .opacity(SWHealthStoreManager.isWaiting ? 0 : 1)
             }
-            .padding(.bottom, 20)
-
+                .padding(.bottom, 20)
             , alignment: .bottom)
         .preferredColorScheme(.dark)
     }
 }
 
+#if DEBUG
 struct ConfigurationWalkthroughView_Previews: PreviewProvider {
     static var previews: some View {
         ConfigurationWalkthroughView(SWHealthStoreManager: SWHealthStoreManager())
     }
 }
+#endif

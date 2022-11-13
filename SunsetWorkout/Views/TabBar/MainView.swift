@@ -24,27 +24,32 @@ struct MainView: View, KeyboardReadable {
 
         } else {
             TabBarContainerView(selection: $selectedTab) {
-                    DashboardView()
-                        .tabBarItem(tab: .dashboard, selection: $selectedTab)
+                DashboardView()
+                    .tabBarItem(tab: .dashboard, selection: $selectedTab)
 
-                    EmptySelectingView()
-                        .tabBarItem(tab: .add, selection: $selectedTab)
+                EmptySelectingView()
+                    .tabBarItem(tab: .add, selection: $selectedTab)
 
-                    LaunchNewWorkoutView()
-                        .tabBarItem(tab: .launch, selection: $selectedTab)
+                LaunchNewWorkoutView()
+                    .tabBarItem(tab: .launch, selection: $selectedTab)
 
-                    CreateFormView()
-                        .tabBarItem(tab: .create, selection: $selectedTab)
+                CreateFormView()
+                    .tabBarItem(tab: .create, selection: $selectedTab)
 
-                    DashboardView()
-                        .tabBarItem(tab: .workouts, selection: $selectedTab)
+                WorkoutsView()
+                    .tabBarItem(tab: .activities, selection: $selectedTab)
+
+                HistoriesView()
+                    .tabBarItem(tab: .history, selection: $selectedTab)
             }
         }
     }
 }
 
+#if DEBUG
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
 }
+#endif
