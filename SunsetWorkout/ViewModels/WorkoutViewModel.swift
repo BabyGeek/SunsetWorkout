@@ -43,7 +43,7 @@ class WorkoutViewModel: ObservableObject {
             AnalyticsManager.logCreatingWorkout(type: workout?.type)
         }
 
-        if self.error != nil {
+        if error != nil {
             return
         }
 

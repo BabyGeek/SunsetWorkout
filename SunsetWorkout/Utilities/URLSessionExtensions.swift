@@ -28,4 +28,22 @@ extension URLSession {
                 .map(\.suggestions)
                 .eraseToAnyPublisher()
         }
+
+    func quotablePublisher<K, R>(
+            on APIHost: APIHost,
+            for endpoint: Endpoint<K, R>,
+            using requestData: K.RequestData,
+            decoder: JSONDecoder = .init()
+        ) -> AnyPublisher<R, Error> {
+            guard let request = endpoint.makeRequest(on: APIHost, with: requestData) else {
+                return Fail(
+                    error: InvalidEndpointError(endpoint: endpoint)
+                ).eraseToAnyPublisher()
+            }
+
+            return dataTaskPublisher(for: request)
+                .map(\.data)
+                .decode(type: R.self, decoder: decoder)
+                .eraseToAnyPublisher()
+        }
 }

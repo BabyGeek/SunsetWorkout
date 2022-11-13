@@ -9,7 +9,6 @@
 import XCTest
 
 final class SunsetWorkoutActivityTests: XCTestCase {
-
     func testInitializeActivity() {
         let workout = SWWorkout.getMockWithName("test", type: .highIntensityIntervalTraining)
         let viewModel = ActivityViewModel(workout: workout)
@@ -109,10 +108,10 @@ final class SunsetWorkoutActivityTests: XCTestCase {
         XCTAssertEqual(viewModel.getNextExerciseLocalizedString(),
                        "Incoming: Jumps, this is your last exercise, let's do it!")
     }
-    
+
     func testPreparedInputOnNoExercise() {
         let workout =  SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
-        
+
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
         // Nothing happens guard statement

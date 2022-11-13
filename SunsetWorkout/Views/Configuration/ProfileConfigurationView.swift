@@ -37,7 +37,7 @@ struct ProfileConfigurationView: View {
                         .padding(.horizontal)
                 }
             }
-            
+
                 Text("walkthrought.profile.title")
                 .kerning(1.3)
                 .font(.title3)

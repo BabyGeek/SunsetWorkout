@@ -37,4 +37,13 @@ enum SWWorkoutType: String {
             return [.exerciseBreak, .serieBreak, .serieNumber, .repetitionGoal]
         }
     }
+
+    var MET: Double {
+        switch self {
+        case .highIntensityIntervalTraining:
+            return 8
+        case .traditionalStrengthTraining:
+            return 3.8
+        }
+    }
 }

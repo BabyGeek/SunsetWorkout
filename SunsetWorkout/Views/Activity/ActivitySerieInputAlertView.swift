@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ActivitySerieInputAlertView: View {
     @State var text: String = ""
-    var action: (String) -> ()
-    
-    init(_ action: @escaping (String) -> ()) {
+    var action: (String) -> Void
+
+    init(_ action: @escaping (String) -> Void) {
         self.action = action
     }
-    
+
     var body: some View {
         ZStack {
             CustomBlurView(effect: .prominent, onChange: { _ in })
@@ -22,12 +22,12 @@ struct ActivitySerieInputAlertView: View {
 
             VStack(spacing: 20) {
                 Text("exercise.serie.input.title")
-                
+
                 Text("exercise.serie.goal")
-                
+
                 FloatingTextField(placeHolder: "exercise.serie.goal", text: $text, bgColor: .clear)
                     .keyboardType(.numberPad)
-                                
+
                 Button {
                     action(text)
                 } label: {

@@ -75,7 +75,9 @@ extension TabBarView {
                             switchToTab(tab: TabBarItem.create)
                         }
                     Spacer()
+                    Spacer()
                 }
+                .padding()
             }
             HStack {
                 ForEach(tabs, id: \.self) { tab in

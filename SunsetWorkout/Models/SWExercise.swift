@@ -22,10 +22,25 @@ struct SWExercise {
         self.createdAt = createdAt
         self.metadata = metadata
     }
+
+    /// Get repetition goal if set up
+    /// - Returns: `Int`
+    func getGoal() -> Int {
+        guard let goal = metadata.first(where: { $0.type == .repetitionGoal }) else { return 0 }
+
+        return goal.intValue
+    }
 }
 
 // MARK: - Identifiable
 extension SWExercise: Identifiable { }
+
+// MARK: - Hashable
+extension SWExercise: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        return hasher.combine(id)
+    }
+}
 
 // MARK: - Equatable
 extension SWExercise: Equatable {

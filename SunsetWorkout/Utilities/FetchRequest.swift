@@ -57,7 +57,7 @@ extension SWActivitySummary {
         sortDescriptors: [RealmSwift.SortDescriptor.createdAtASC],
         transformer: { $0.map(SWActivitySummary.init) }
     )
-    
+
     static let allByDateDESC = ActivitySummaryRequest(
         predicate: nil,
         sortDescriptors: [RealmSwift.SortDescriptor.createdAtDESC],

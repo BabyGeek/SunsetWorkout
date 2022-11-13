@@ -23,16 +23,12 @@ struct ActivityView: View {
                 InitialActivityView()
             } else {
                 if viewModel.isFinished {
-                    VStack {
-                        Spacer()
-                        Text("finished!")
-                        Spacer()
-                    }
+                    FinishedActivityView()
                 } else {
                     MainActivityView()
                 }
             }
-            
+
             ActivitySerieInputAlertView { goalValue in
                 viewModel.presentSerieAlert = false
                 viewModel.saveInputSerie(goalValue)
@@ -75,7 +71,7 @@ struct ActivityView_Previews: PreviewProvider {
             SWMetadata(type: .roundDuration, value: "10")
         ])
     ])
-    
+
     static var previews: some View {
         ActivityView(workout: HIITExample)
     }

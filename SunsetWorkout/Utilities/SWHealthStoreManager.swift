@@ -9,10 +9,10 @@ import HealthKit
 
 class SWHealthStoreManager: ObservableObject {
     static var shared = SWHealthStoreManager()
-    
+
     private var toShare: Set<HKSampleType>?
     private var read: Set<HKObjectType>?
-    
+
     var store: HKHealthStore?
     var isWaiting: Bool = false
 
@@ -33,7 +33,7 @@ class SWHealthStoreManager: ObservableObject {
 
         self.isWaiting = false
     }
-    
+
     func saveObject<Object: HKWorkout>(_ object: Object, completion: @escaping (_ inner: ThrowableCallback) -> Void) {
         askForPermission { success in
             if success {
@@ -41,7 +41,7 @@ class SWHealthStoreManager: ObservableObject {
                     if let error {
                         completion({ throw error })
                     }
-                    
+
                     completion({ return success })
                 })
             }
@@ -52,10 +52,12 @@ class SWHealthStoreManager: ObservableObject {
         let workoutType = HKSampleType.workoutType()
 
         if let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height),
+           let activeEnergyBurnedQuantityType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
            let bodyMassQuantityType = HKQuantityType.quantityType(forIdentifier: .bodyMass) {
             toShare = [
                 workoutType,
                 heightQuantityType,
+                activeEnergyBurnedQuantityType,
                 bodyMassQuantityType
             ]
         }

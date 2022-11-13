@@ -18,7 +18,7 @@ class SunsetWorkoutTests: XCTestCase {
         // This ensures that each test can't accidentally access or modify the data
         // from other tests or the application itself, and because they're in-memory,
         // there's nothing that needs to be cleaned up.
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealm"
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealmFetch"
     }
 
     func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataEntity {
@@ -55,6 +55,18 @@ class SunsetWorkoutTests: XCTestCase {
                 getMetadataModelFrom(type: .roundNumber, value: "5")
             ]
         ])
+    }
+
+    @MainActor func testWorkoutsViewModelFetch() throws {
+        let viewModel = WorkoutViewModel()
+        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        viewModel.saveWorkout()
+
+        let workoutsViewModel = WorkoutsViewModel()
+        workoutsViewModel.fetch(with: SWWorkout.allByDateDESC)
+
+        XCTAssertNotNil(workoutsViewModel.notificationToken)
+        XCTAssertEqual(workoutsViewModel.workouts.count, 1)
     }
 
     func testAddStrengthWorkoutWithProjection() throws {
@@ -120,17 +132,5 @@ class SunsetWorkoutTests: XCTestCase {
         viewModel.saveWorkout()
 
         XCTAssertNotNil(viewModel.error)
-    }
-
-    @MainActor func testWorkoutsViewModelFetch() throws {
-        let viewModel = WorkoutViewModel()
-        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
-        viewModel.saveWorkout()
-
-        let workoutsViewModel = WorkoutsViewModel()
-        workoutsViewModel.fetch(with: SWWorkout.allByDateDESC)
-
-        XCTAssertNotNil(workoutsViewModel.notificationToken)
-        XCTAssertEqual(workoutsViewModel.workouts.count, 1)
     }
 }

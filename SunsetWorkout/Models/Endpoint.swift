@@ -17,7 +17,7 @@ extension Endpoint {
         var components = URLComponents()
         components.scheme = api.scheme
         components.host = api.host
-        components.path = "/api/v2/" + path
+        components.path = "/" + path
         components.queryItems = queryItems.isEmpty ? nil : queryItems
 
         // If either the path or the query items passed contained
@@ -37,6 +37,15 @@ extension Endpoint where Kind == EndpointKinds.Private, Response == [ExerciseSea
         Endpoint(path: "exercise/search", queryItems: [
             URLQueryItem(name: "format", value: "json"),
             URLQueryItem(name: "term", value: query)
+        ])
+    }
+}
+
+extension Endpoint where Kind == EndpointKinds.Public, Response == Quote {
+    static func random(maxLength: String, tags: String) -> Self {
+        Endpoint(path: "random", queryItems: [
+            URLQueryItem(name: "maxLength", value: maxLength),
+            URLQueryItem(name: "tags", value: tags)
         ])
     }
 }

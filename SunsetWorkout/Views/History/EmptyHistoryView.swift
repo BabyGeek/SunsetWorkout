@@ -11,7 +11,7 @@ struct EmptyHistoryView: View {
     var body: some View {
         VStack {
             Spacer()
-            
+
             Text("history.empty")
                 .foregroundColor(Color(.label))
 
@@ -21,6 +21,7 @@ struct EmptyHistoryView: View {
                 .resizable()
                 .scaledToFit()
         }
+        .padding(.horizontal)
     }
 }
 

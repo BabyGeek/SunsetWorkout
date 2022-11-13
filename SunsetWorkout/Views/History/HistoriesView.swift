@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HistoriesView: View {
     @StateObject var viewModel: HistoriesViewModel = HistoriesViewModel()
-    
+
     var body: some View {
         if viewModel.summaries.isEmpty {
             EmptyHistoryView()
@@ -19,10 +19,8 @@ struct HistoriesView: View {
                     NavigationLink {
                         HistoryView(summary: summary)
                     } label: {
-                        HStack {
-                            Text(summary.title)
-                            Text("\(summary.duration)")
-                        }
+                        HistoryCardView(summary: summary)
+                            .foregroundColor(Color(.label))
                     }
                     .padding(.bottom)
                 }

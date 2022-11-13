@@ -16,6 +16,7 @@ struct EmptySelectingView: View {
                 .scaledToFit()
             Spacer()
         }
+        .padding(.horizontal)
     }
 }
 

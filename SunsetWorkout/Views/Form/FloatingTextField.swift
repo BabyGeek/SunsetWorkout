@@ -14,7 +14,7 @@ struct FloatingTextField: View {
     @Binding var text: String
     private let bgColor: Color
     @State private var isEditing = false
-    
+
     var test: LocalizedStringKey {
         LocalizedStringKey(self.placeHolderSuffix)
     }
@@ -55,7 +55,7 @@ struct FloatingTextField: View {
                         EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
             .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
             .animation(.linear)
-            
+
         }
     }
 }
@@ -63,7 +63,11 @@ struct FloatingTextField: View {
 #if DEBUG
 struct FloatingTextField_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTextField(placeHolder: "Preview", placeHolderSuffix: "secs", text: .constant(""), bgColor: Color(.systemBackground))
+        FloatingTextField(
+            placeHolder: "Preview",
+            placeHolderSuffix: "secs",
+            text: .constant(""),
+            bgColor: Color(.systemBackground))
     }
 }
 #endif

@@ -23,3 +23,9 @@ extension ActivityHIITInput {
         self.skipped = object.skipped
     }
 }
+
+// MARK: - Identifiable
+extension ActivityHIITInput: Identifiable { }
+
+// MARK: - Hashable
+extension ActivityHIITInput: Hashable { }

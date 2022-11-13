@@ -6,6 +6,7 @@
 //
 
 import Combine
+import HealthKit
 import SwiftUI
 
 class ActivityViewModel: ObservableObject {
@@ -16,9 +17,12 @@ class ActivityViewModel: ObservableObject {
     @Published var timeRemaining: Float = 0
     @Published var presentSerieAlert: Bool  = false
     @Published var saved: Bool = false
-    
+
     private var inputPrepared: [String: Any] = [:]
+    private var query: HKQuery?
+
     let realmManager = RealmManager()
+    let healthStoreManager = SWHealthStoreManager()
 
     var cancellable: AnyCancellable?
 
@@ -27,43 +31,43 @@ class ActivityViewModel: ObservableObject {
         (activityStateIs(.paused) &&
          (activityLastStateIs(.inBreak) || activity.workout.type == .highIntensityIntervalTraining))
     }
-    
+
     var exerciseHasChanged: Bool {
         withAnimation {
             activity.exerciseHasChanged
         }
     }
-    
+
     var canSkip: Bool {
         withAnimation {
             activityStateIs(.running) || activityStateIs(.inBreak)
         }
     }
-    
+
     var waitForInput: Bool {
         withAnimation {
             !shouldShowTimer && activity.isWaitingForInput()
         }
     }
-    
+
     var canAskForPause: Bool {
         withAnimation {
             activityStateIs(.running) || activityStateIs(.inBreak)
         }
     }
-    
+
     var canAskForReplay: Bool {
         withAnimation {
             activityStateIs(.paused)
         }
     }
-    
+
     var isFinished: Bool {
         withAnimation {
             activityStateIs(.finished) || activityStateIs(.canceled)
         }
     }
-    
+
     var canStart: Bool {
         withAnimation {
             !activity.workout.exercises.isEmpty
@@ -76,26 +80,29 @@ class ActivityViewModel: ObservableObject {
 
         cancellable = activity.objectWillChange.sink { [weak self] _ in
             if let self {
-                self.objectWillChange.send()
+                DispatchQueue.main.async {
+                    self.objectWillChange.send()
+                }
             }
         }
     }
-    
+
+    /// Save the workout session
     @MainActor func save() {
         if !activityStateIs(.initialized) && !activityStateIs(.starting) && !saved && isFinished {
             do {
                 let activitySummary = self.activity.getSummary()
                 try self.save(model: activitySummary, with: SWActivitySummaryEntity.init)
-            } catch  {
-                dump(error)
+            } catch {
+                self.error = SWError(error: error)
             }
         }
     }
-    
+
     func skip() {
         prepareAddInput()
         inputPrepared["skipped"] = true
-        
+
         if activity.workout.type == .traditionalStrengthTraining {
             timeRemaining = 0
             saveInputSerie("0")
@@ -104,6 +111,7 @@ class ActivityViewModel: ObservableObject {
         } else if activity.workout.type == .highIntensityIntervalTraining {
             saveInputRound()
             timeRemaining = 0
+            getNext()
         }
     }
 
@@ -130,11 +138,11 @@ class ActivityViewModel: ObservableObject {
     func activityLastStateIs(_ state: SWActivityState) -> Bool {
         activity.lastState == state
     }
-    
+
     func getNext() {
         activity.getNext()
     }
-    
+
     /// Setup the timer depending on workout type and activity state
     func setupTimer() {
         if activityStateIs(.finished) || activityStateIs(.canceled) || activityStateIs(.paused) {
@@ -155,7 +163,7 @@ class ActivityViewModel: ObservableObject {
             }
         }
     }
-    
+
     /// Reset the timer an set the remaining time
     /// - Parameter remaining: `Float`
     func resetTimerWithRemaining(_ remaining: Float) {
@@ -163,7 +171,7 @@ class ActivityViewModel: ObservableObject {
         timePassedPercentage = 0
         timeRemaining = remaining
     }
-    
+
     /// Update the timer, if timer has ended setup the next step
     func updateTimer() {
         if timeRemaining > 0 && shouldShowTimer && !activityStateIs(.paused) {
@@ -176,7 +184,7 @@ class ActivityViewModel: ObservableObject {
             } else if !activityStateIs(.initialized) {
                 if activityStateIs(.inBreak) {
                     play()
-                } else {
+                } else if !activityStateIs(.paused) {
                     if activity.workout.type != .traditionalStrengthTraining {
                         if activity.workout.type == .highIntensityIntervalTraining {
                             prepareAddInput()
@@ -192,41 +200,40 @@ class ActivityViewModel: ObservableObject {
             }
         }
     }
-    
+
     /// Save an input for a Strength serie
     /// - Parameter input: `String`
     func saveInputSerie(_ input: String) {
         if activity.workout.type == .highIntensityIntervalTraining {
             return
         }
-        
+
         inputPrepared["value"] = input
         addInput()
     }
-    
+
     /// Save an input of the time passed for HIIT round
     func saveInputRound() {
         if activity.workout.type == .traditionalStrengthTraining {
             return
         }
-        
+
         inputPrepared["value"] = timePassed
         addInput()
     }
-    
+
     /// Add the prepared input to the activity
     func addInput() {
         activity.addInput(inputPrepared)
     }
-    
+
     /// Prepare the next input with current exercise ID and current repetition number
     func prepareAddInput() {
         guard let currenExerciseID = activity.currentExercise?.id else { return }
-        
         inputPrepared["exerciseID"] = currenExerciseID
         inputPrepared["currentRepetition"] = activity.currentExerciseRepetition
     }
-    
+
     /// Update the timePassed value to the equivalent percentage depending on state and type
     func updateTimePassedPercentage() {
         if activityStateIs(.starting) {
@@ -243,11 +250,11 @@ class ActivityViewModel: ObservableObject {
             }
         }
     }
-    
+
     func getCurrentExerciseName() -> String {
         activity.currentExercise?.name ?? NSLocalizedString("not.found", comment: "Not found")
     }
-    
+
     /// Get the repetition text to display
     /// - Returns: `String`
     func getCurrentRepetitionLocalizedString() -> String {
@@ -256,7 +263,7 @@ class ActivityViewModel: ObservableObject {
                       getCurrentRepetition(),
                       getTotalRepetition())
     }
-    
+
     /// Get the next exercise text to display
     /// - Returns: `String`
     func getNextExerciseLocalizedString() -> String {
@@ -269,13 +276,13 @@ class ActivityViewModel: ObservableObject {
             format: NSLocalizedString("activity.exercise.next", comment: "Next exercise label"),
             getNextExerciseString())
     }
-    
+
     /// Get next exercise name
     /// - Returns: `String`
     private func getNextExerciseString() -> String {
         activity.currentExercise?.name ?? NSLocalizedString("not.found", comment: "Not found label")
     }
-    
+
     /// Get the current repetition string text, `round` for HIIT, `serie` for Strength
     /// - Returns: `String`
     private func getCurrentRepetitionString() -> String {
@@ -286,13 +293,13 @@ class ActivityViewModel: ObservableObject {
             return NSLocalizedString("workout.stregth.repetition", comment: "Workout Strength repetition name")
         }
     }
-    
+
     /// Get the current repetition number
     /// - Returns: `Int`
     private func getCurrentRepetition() -> Int {
         activity.currentExerciseRepetition
     }
-    
+
     /// Get the total number of repetition for current exercise
     /// - Returns: `Int`
     private func getTotalRepetition() -> Int {
@@ -306,15 +313,18 @@ extension ActivityViewModel {
     /// - Parameters:
     ///   - model: `SWActivitySummary`
     ///   - reverseTransformer: `(SWActivitySummary) -> SWActivitySummaryEntity`
-    func save(model: SWActivitySummary, with reverseTransformer: (SWActivitySummary) -> SWActivitySummaryEntity) throws {
+    func save(
+        model: SWActivitySummary,
+        with reverseTransformer: (SWActivitySummary) -> SWActivitySummaryEntity) throws {
         do {
             try realmManager.save(model: model, with: reverseTransformer)
-            save(model: model)
+            saved = true
+            // save(model: model)
         } catch {
             self.error = SWError(error: error)
         }
     }
-    
+
     /// Save activity to HealthKit
     /// - Parameter model: `SWActivitySummary`
     func save(model: SWActivitySummary) {

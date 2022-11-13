@@ -13,5 +13,6 @@ struct APIHost {
 }
 
 extension APIHost {
-    static var WGERAPIHost = APIHost(scheme: "https", host: "wger.de")
+    static var WGERAPIHost = APIHost(scheme: "https", host: "wger.de/api/v2")
+    static var quotableAPIHost = APIHost(scheme: "https", host: "api.quotable.io")
 }

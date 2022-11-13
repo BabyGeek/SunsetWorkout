@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InputsView: View {
     @EnvironmentObject var viewModel: ActivityViewModel
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -26,7 +26,7 @@ struct InputsView: View {
                         viewModel.setupTimer()
                     }
                 }
-                
+
                 if viewModel.canSkip {
                     ActivityButton {
                         ActivityButtonWithIcon(
@@ -38,7 +38,7 @@ struct InputsView: View {
                     }
                 }
             }
-            
+
             HStack {
                 if viewModel.canAskForReplay {
                     ActivityButton {
@@ -50,7 +50,7 @@ struct InputsView: View {
                         viewModel.play()
                     }
                 }
-                
+
                 if viewModel.canAskForPause {
                     ActivityButton {
                         ActivityButtonWithIcon(
@@ -61,7 +61,7 @@ struct InputsView: View {
                         viewModel.pause()
                     }
                 }
-                
+
                 ActivityButton {
                     ActivityButtonWithIcon(
                         iconName: "stop.fill",

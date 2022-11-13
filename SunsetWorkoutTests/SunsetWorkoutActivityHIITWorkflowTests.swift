@@ -18,10 +18,10 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         for _ in 0...Int(SWActivity.START_TIMER_DURATION) {
             viewModel.updateTimer()
         }
-        
+
         // Nothing happen went into return part
         viewModel.saveInputSerie("12")
-
+        XCTAssertFalse(viewModel.canStart)
         XCTAssertTrue(viewModel.activityStateIs(.running))
     }
 
@@ -46,6 +46,7 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
             viewModel.updateTimer()
         }
 
+        XCTAssertTrue(viewModel.canStart)
         XCTAssertTrue(viewModel.activityStateIs(.inBreak))
         XCTAssertFalse(viewModel.activity.exerciseHasChanged)
     }
@@ -160,7 +161,7 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
 
         viewModel.setupTimer()
         XCTAssertTrue(viewModel.activityStateIs(.finished))
-        XCTAssertTrue(viewModel.isFinished())
+        XCTAssertTrue(viewModel.isFinished)
         XCTAssertFalse(viewModel.shouldShowTimer)
     }
 
@@ -171,9 +172,9 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.getNext()
         viewModel.updateTimer()
         viewModel.pause()
-        
-        XCTAssertTrue(viewModel.canAskForReplay())
-        XCTAssertFalse(viewModel.canAskForPause())
+
+        XCTAssertTrue(viewModel.canAskForReplay)
+        XCTAssertFalse(viewModel.canAskForPause)
         XCTAssertTrue(viewModel.activityStateIs(.paused))
         XCTAssertTrue(viewModel.shouldShowTimer)
     }
@@ -186,9 +187,9 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.updateTimer()
         viewModel.pause()
         viewModel.play()
-        
-        XCTAssertTrue(viewModel.canAskForPause())
-        XCTAssertFalse(viewModel.canAskForReplay())
+
+        XCTAssertTrue(viewModel.canAskForPause)
+        XCTAssertFalse(viewModel.canAskForReplay)
         XCTAssertTrue(viewModel.activityStateIs(.running))
         XCTAssertTrue(viewModel.shouldShowTimer)
     }
@@ -200,10 +201,61 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.getNext()
         viewModel.updateTimer()
         viewModel.cancel()
-        
+
         viewModel.setupTimer()
         XCTAssertTrue(viewModel.activityStateIs(.canceled))
-        XCTAssertTrue(viewModel.isFinished())
+        XCTAssertTrue(viewModel.isFinished)
         XCTAssertFalse(viewModel.shouldShowTimer)
+    }
+
+    @MainActor func testActivityIsSaved() {
+        let workout =  SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining, exercises: [
+            SWExercise(name: "Jumps", order: 1, metadata: [
+                SWMetadata(type: .exerciseBreak, value: "20"),
+                SWMetadata(type: .roundBreak, value: "0"),
+                SWMetadata(type: .roundNumber, value: "1"),
+                SWMetadata(type: .roundDuration, value: "5")
+            ])
+        ])
+
+        let viewModel = ActivityViewModel(workout: workout)
+        viewModel.getNext()
+
+        for _ in 0...Int(SWActivity.START_TIMER_DURATION) {
+            viewModel.updateTimer()
+        }
+
+        for _ in 0...5 {
+            viewModel.updateTimer()
+        }
+
+        viewModel.setupTimer()
+        viewModel.save()
+        XCTAssertTrue(viewModel.activityStateIs(.finished))
+        XCTAssertTrue(viewModel.isFinished)
+        XCTAssertTrue(viewModel.saved)
+        XCTAssertFalse(viewModel.shouldShowTimer)
+    }
+
+    func testActivityIsSkippableAndSkip() {
+        let workout =  SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining, exercises: [
+            SWExercise(name: "Jumps", order: 1, metadata: [
+                SWMetadata(type: .exerciseBreak, value: "20"),
+                SWMetadata(type: .roundBreak, value: "0"),
+                SWMetadata(type: .roundNumber, value: "2"),
+                SWMetadata(type: .roundDuration, value: "5")
+            ])
+        ])
+
+        let viewModel = ActivityViewModel(workout: workout)
+        viewModel.getNext()
+
+        for _ in 0...Int(SWActivity.START_TIMER_DURATION) {
+            viewModel.updateTimer()
+        }
+
+        XCTAssertTrue(viewModel.canSkip)
+        viewModel.skip()
+        XCTAssertEqual(viewModel.activity.currentExerciseRepetition, 2)
     }
 }

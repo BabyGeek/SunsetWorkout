@@ -19,11 +19,11 @@ class ActivityStrengthInputEntity: Object {
 extension ActivityStrengthInputEntity {
     convenience init(input: ActivityStrengthInput) {
         self.init()
-        
+
         if input.id.count > 0 {
             self._id = input.id
         }
-        
+
         self.serie = input.serie
         self.repetitions = input.repetitions
         self.skipped = input.skipped

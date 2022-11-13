@@ -11,7 +11,7 @@ struct EmptyWorkoutView: View {
     var body: some View {
         VStack {
             Spacer()
-            
+
             Text("workout.add.first")
                 .foregroundColor(Color(.label))
 
@@ -21,6 +21,7 @@ struct EmptyWorkoutView: View {
                 .resizable()
                 .scaledToFit()
         }
+        .padding(.horizontal)
     }
 }
 struct EmptyWorkoutView_Previews: PreviewProvider {

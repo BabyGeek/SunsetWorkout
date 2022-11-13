@@ -19,11 +19,11 @@ class ActivityHIITInputEntity: Object {
 extension ActivityHIITInputEntity {
     convenience init(input: ActivityHIITInput) {
         self.init()
-        
+
         if input.id.count > 0 {
             self._id = input.id
         }
-        
+
         self.round = input.round
         self.timePassed = input.timePassed
         self.skipped = input.skipped

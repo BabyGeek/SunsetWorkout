@@ -8,12 +8,14 @@
 import HealthKit
 
 class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
+    static let DEFAULT_USER_WEIGHT: Double = 70
     typealias QueryType = HKSampleQuery
     var query: HKSampleQuery?
 
     @Published var height: String = ""
     @Published var weight: String = ""
     @Published var age: String = ""
+    @Published var error: SWError?
 
     private var currentWeight: String = ""
     private var currentHeight: String = ""
@@ -29,7 +31,6 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
             if success {
                 self.getHeight()
                 self.getWeight()
-                self.getGender()
             }
         }
     }
@@ -63,13 +64,6 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
         return unitWeight
     }
 
-    private func getGender() {
-        if let sexe = try? store?.biologicalSex().biologicalSex.rawValue {
-            dump(HKBiologicalSex(rawValue: sexe))
-
-        }
-    }
-
     private func getHeight() {
         if let heightQuantityType = HKQuantityType.quantityType(forIdentifier: .height) {
             query = HKSampleQuery(
@@ -77,7 +71,11 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
                 predicate: nil,
                 limit: 0,
                 sortDescriptors: nil,
-                resultsHandler: { _, samples, _ in
+                resultsHandler: { _, samples, error in
+                    if let error {
+                        self.error = SWError(error: error)
+                        return
+                    }
                     if let userHeightSample = samples?.last as? HKQuantitySample {
                         var unit = HKUnit.foot()
                         if Locale.current.usesMetricSystem {
@@ -138,8 +136,8 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
                 end: Date())
 
             store?.save(heightSample) { _, error in
-                if error != nil {
-                    dump("error")
+                if let error {
+                    self.error = SWError(error: error)
                 }
             }
         }
@@ -167,8 +165,8 @@ class ProfileConfigurationViewModel: SWHealthStoreManager, HKQueriable {
                 end: Date())
 
             store?.save(weightSample) { _, error in
-                if error != nil {
-                    dump("error")
+                if let error {
+                    self.error = SWError(error: error)
                 }
             }
         }

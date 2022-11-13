@@ -44,12 +44,39 @@ struct ActivityButtonWithIcon: View {
     }
 }
 
-struct ActivityButtonWithText: View {
-    let label: LocalizedStringKey
+struct ActivityButtonWithIconAndTitle: View {
+    let titleKey: LocalizedStringKey
+    let iconName: String
+    let color: Color
 
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
-            .stroke(Color.yellow)
+            .stroke(color)
+            .opacity(0.8)
+            .frame(height: 50)
+            .overlay(
+                HStack {
+                    Spacer()
+                    Text(titleKey)
+                        .font(.system(.callout))
+                    Spacer()
+                    Image(systemName: iconName)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                }
+                    .padding(.horizontal)
+            )
+            .foregroundColor(Color(.label))
+    }
+}
+
+struct ActivityButtonWithText: View {
+    let label: LocalizedStringKey
+    let color: Color
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 25)
+            .stroke(color)
             .opacity(0.8)
             .frame(height: 50)
             .overlay(

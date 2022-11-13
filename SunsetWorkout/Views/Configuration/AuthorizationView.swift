@@ -22,7 +22,7 @@ struct AuthorizationView: View {
             Image("tracker_blue")
                 .resizable()
                 .scaledToFit()
-            
+
             Text("walkthrought.healthkit.information")
 
             .kerning(1.3)

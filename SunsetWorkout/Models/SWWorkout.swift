@@ -179,7 +179,6 @@ extension SWWorkout {
 
     func isLastExercise(_ exercise: SWExercise?) -> Bool {
         guard let last = exercises.last else { return false }
-        dump(last == exercise)
         return last == exercise
     }
 }

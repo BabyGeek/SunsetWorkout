@@ -26,19 +26,19 @@ struct MainView: View, KeyboardReadable {
             TabBarContainerView(selection: $selectedTab) {
                 DashboardView()
                     .tabBarItem(tab: .dashboard, selection: $selectedTab)
-                
+
                 EmptySelectingView()
                     .tabBarItem(tab: .add, selection: $selectedTab)
-                
+
                 LaunchNewWorkoutView()
                     .tabBarItem(tab: .launch, selection: $selectedTab)
-                
+
                 CreateFormView()
                     .tabBarItem(tab: .create, selection: $selectedTab)
-                
+
                 WorkoutsView()
                     .tabBarItem(tab: .activities, selection: $selectedTab)
-                
+
                 HistoriesView()
                     .tabBarItem(tab: .history, selection: $selectedTab)
             }

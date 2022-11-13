@@ -20,21 +20,18 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     }
 
     var body: some View {
-        GeometryReader { geometry in
             NavigationView {
-                ZStack(alignment: .bottom) {
-                    BackgroundView()
-
-                    content
-                        .padding(.bottom, isKeyboardVisible ? 0 : geometry.size.height/8)
-                        .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+                VStack {
+                    ZStack {
+                        content
+                            .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+                    }
 
                     if !isKeyboardVisible {
-                        Spacer()
                         TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-                            .frame(width: geometry.size.width, height: geometry.size.height/8)
                     }
                 }
+                .background(BackgroundView())
                 .navigationTitle(selection.navigationTitle)
                 .navigationBarTitleDisplayMode(.inline)
             }
@@ -42,7 +39,6 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
             .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
                 self.tabs = value
             }
-        }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }

@@ -23,3 +23,9 @@ extension ActivityStrengthInput {
         self.skipped = object.skipped
     }
 }
+
+// MARK: - Identifiable
+extension ActivityStrengthInput: Identifiable { }
+
+// MARK: - Hashable
+extension ActivityStrengthInput: Hashable { }

@@ -26,6 +26,7 @@
 "dashboard.feeling" = "Feeling";
 "dashboard.move" = "Move";
 "dashboard.training" = "Training";
+"dashboard.said.by" = "%@ said:";
 
 // WALKTHROUGHT
 "walkthrought.healthkit.information" = "Welcome in Sunset Workout, this app will use your data for working purposes only, no commercial use will be done with it. You need to authorize HealthKit access to these data. Data are stored on your device only using Realm, no data will be sent outside of the application.";
@@ -112,6 +113,19 @@
 "activity.starting" = "Your activity is going to start";
 "activity.be.ready" = "Be ready!";
 "activity.cant.start" = "This workout can't be launched.";
+"button.go.to.summary" = "Workout summary";
+"button.go.to.workout" = "Workout";
+"button.go.to.launch" = "Launch an other workout";
+
+// HISTORY
+"history.empty" = "No workout session done yet. Start one to see the summary in here later";
+"summary.goal" = "Your global repetition goal was %d";
+"input.round" = "Round";
+"input.time" = "Time passed";
+"input.serie" = "Serie";
+"input.repetitions" = "Repetitions";
+"input.goal" = "Goal";
+"input.skipped" = "Skipped?";
 
 // GLOBAL
 "not.found" = "Not found";

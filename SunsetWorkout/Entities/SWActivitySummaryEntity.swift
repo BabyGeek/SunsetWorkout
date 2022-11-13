@@ -17,6 +17,7 @@ class SWActivitySummaryEntity: Object {
     @Persisted var endDate: Date
     @Persisted var duration: Double
     @Persisted var totalEnergyBurned: Double
+    @Persisted var endedWithStateRaw: String
     @Persisted var inputsHIIT = List<ActivityHIITInputsEntity>()
     @Persisted var inputsStrength = List<ActivityStrengthInputsEntity>()
 }
@@ -29,17 +30,18 @@ extension SWActivitySummaryEntity {
         if summary.id.count > 0 {
             self._id = summary.id
         }
-        
+
         self.created_at = summary.startDate
         self.rawType = summary.type.rawValue
         self.workout = SWWorkoutEntity(workout: summary.workout)
         self.startDate = summary.startDate
         self.endDate = summary.endDate
         self.duration = summary.duration
+        self.endedWithStateRaw = summary.endedWithState.rawValue
         self.totalEnergyBurned = summary.totalEnergyBurned
         self.setUpInputs(with: summary)
     }
-    
+
     func setUpInputs(with summary: SWActivitySummary) {
         if summary.type == .highIntensityIntervalTraining {
             self.setUpHIITInputs(with: summary)
@@ -47,73 +49,87 @@ extension SWActivitySummaryEntity {
             self.setUpStrengthInputs(with: summary)
         }
     }
-    
+
     private func setUpHIITInputs(with summary: SWActivitySummary) {
         for (id, values) in summary.inputs {
             let actityInputs = ActivityHIITInputsEntity()
+            let hiitInput = ActivityHIITInputEntity()
+
             actityInputs.exerciseUUID = id
-            
+
             for input in values {
-                let hiitInput = ActivityHIITInputEntity()
                 hiitInput.skipped = false
                 for (key, value) in input {
+                    if key == "exerciseOrder" {
+                        if let value = value as? Int {
+                            actityInputs.exerciseOrder = value
+                        }
+                    }
+
                     if key == "currentRepetition" {
                         if let value = value as? Int {
                             hiitInput.round = value
                         }
                     }
-                    
+
                     if key == "value" {
                         if let value = value as? Int {
                             hiitInput.timePassed = value
                         }
                     }
-                    
+
                     if key == "skipped" {
                         if let value = value as? Bool {
                             hiitInput.skipped = value
                         }
                     }
                 }
-                
+
                 actityInputs.inputs.append(hiitInput)
             }
-            
+
             self.inputsHIIT.append(actityInputs)
         }
     }
-    
+
     private func setUpStrengthInputs(with summary: SWActivitySummary) {
         for (id, values) in summary.inputs {
             let actityInputs = ActivityStrengthInputsEntity()
+            let strengthInput = ActivityStrengthInputEntity()
+
             actityInputs.exerciseUUID = id
-            
+
             for input in values {
-                let strengthInput = ActivityStrengthInputEntity()
                 strengthInput.skipped = false
                 for (key, value) in input {
+                    if key == "exerciseOrder" {
+                        if let value = value as? Int {
+                            actityInputs.exerciseOrder = value
+                        }
+                    }
+
                     if key == "currentRepetition" {
                         if let value = value as? Int {
                             strengthInput.serie = value
                         }
                     }
-                    
+
                     if key == "value" {
                         if let value = value as? String {
                             strengthInput.repetitions = value
                         }
                     }
-                    
+
                     if key == "skipped" {
                         if let value = value as? Bool {
                             strengthInput.skipped = value
                         }
                     }
                 }
-                
+
                 actityInputs.inputs.append(strengthInput)
             }
-            
+
             self.inputsStrength.append(actityInputs)
         }
     }

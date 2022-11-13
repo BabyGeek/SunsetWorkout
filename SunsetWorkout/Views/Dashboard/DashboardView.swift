@@ -5,6 +5,7 @@
 //  Created by Paul Oggero on 09/09/2022.
 //
 
+import HealthKitUI
 import SwiftUI
 
 struct DashboardView: View {
@@ -13,10 +14,13 @@ struct DashboardView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+            Spacer(minLength: 20)
             GlassMorphicCard(content: {
                 VStack {
                     if let quote = dashboardViewModel.quote {
-                        Text("\(quote.author) said:")
+                        Text(dashboardViewModel.getAuthorSaidLabel(
+                            author: quote.author
+                        ))
                         HStack(alignment: .top) {
                             Image(systemName: "quote.opening")
                                 .frame(maxHeight: 100, alignment: .top)
@@ -33,10 +37,10 @@ struct DashboardView: View {
                             .font(.italic(.caption)())
                     }
                 }
-            }, height: 180)
+                .frame(maxWidth: .infinity)
+            }, height: 150)
 
-            Spacer()
-                .frame(maxHeight: 80)
+            Spacer(minLength: 80)
 
             VStack(spacing: 20) {
                 HStack {
@@ -63,6 +67,7 @@ struct DashboardView: View {
                         value: dashboardViewModel.dailyTrainedTime.description)
                 }
             }
+            Spacer(minLength: 20)
         }
         .onAppear {
             dashboardViewModel.getUpdatedValues()

@@ -53,7 +53,7 @@ extension CreateFormView {
                         seriesNumber: $workoutViewModel.seriesNumber,
                         repetitionGoal: $workoutViewModel.repetitionGoal)
                 }
-                
+
                 Spacer()
 
                 if !isKeyboardVisible {
