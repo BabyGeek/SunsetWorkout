@@ -8,15 +8,20 @@
 import SwiftUI
 
 struct FeelingConfigurationView: View {
-    @AppStorage("currentPage") var currenPage = 1
-    @State var selected: Feeling = .happy
+    @AppStorage("currentPage") var currentPage = 1
+    @State var selected: FeelingType = .happy
+
     @StateObject var feelingViewModel = FeelingViewModel()
+
+    var feeling: Feeling {
+        Feeling(type: selected)
+    }
 
     var body: some View {
         VStack(spacing: 20) {
             HStack {
                 Button {
-                    currenPage -= 1
+                    currentPage -= 1
                 } label: {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.white)
@@ -28,9 +33,10 @@ struct FeelingConfigurationView: View {
 
                 Spacer()
                 Button {
-                    currenPage = WalkthroughConfigurationSettings.totalPages + 1
+                    currentPage = WalkthroughConfigurationSettings.totalPages + 1
                 } label: {
-                    Text("Skip")
+                    Text("walkthrought.skip")
+                        .foregroundColor(.white)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                         .padding(.vertical, 10)
@@ -38,7 +44,7 @@ struct FeelingConfigurationView: View {
                 }
             }
 
-            Text("How are you feeling today?")
+            Text("walkthrought.feeling.title")
                 .kerning(1.3)
                 .font(.title3)
 
@@ -49,7 +55,7 @@ struct FeelingConfigurationView: View {
         .padding()
         .background(Color.purple.ignoresSafeArea())
         .onDisappear {
-            feelingViewModel.saveFeeling(selected)
+            feelingViewModel.save(model: feeling, with: FeelingEntity.init)
         }
     }
 }
@@ -58,24 +64,24 @@ extension FeelingConfigurationView {
     var feelingsList: some View {
         VStack {
             HStack {
-                FeelingListingView(selected: $selected, feeling: Feeling.happy)
-                FeelingListingView(selected: $selected, feeling: Feeling.sad)
+                FeelingListingView(selected: $selected, feeling: FeelingType.happy)
+                FeelingListingView(selected: $selected, feeling: FeelingType.sad)
             }
             HStack {
-                FeelingListingView(selected: $selected, feeling: Feeling.excited)
-                FeelingListingView(selected: $selected, feeling: Feeling.annoyed)
+                FeelingListingView(selected: $selected, feeling: FeelingType.excited)
+                FeelingListingView(selected: $selected, feeling: FeelingType.annoyed)
             }
             HStack {
-                FeelingListingView(selected: $selected, feeling: Feeling.tired)
-                FeelingListingView(selected: $selected, feeling: Feeling.stressed)
+                FeelingListingView(selected: $selected, feeling: FeelingType.tired)
+                FeelingListingView(selected: $selected, feeling: FeelingType.stressed)
             }
         }
     }
 }
 
 struct FeelingListingView: View {
-    @Binding var selected: Feeling
-    var feeling: Feeling
+    @Binding var selected: FeelingType
+    var feeling: FeelingType
     var columns: [GridItem] = [
         .init(.fixed(64), spacing: 20, alignment: .trailing),
         .init(.flexible(), alignment: .leading),
@@ -111,8 +117,10 @@ struct FeelingListingView: View {
     }
 }
 
+#if DEBUG
 struct FeelingConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         FeelingConfigurationView()
     }
 }
+#endif

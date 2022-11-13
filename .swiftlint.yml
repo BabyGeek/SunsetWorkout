@@ -5,3 +5,6 @@ identifier_name:
   excluded:
     - id
     - _id
+disabled_rules:
+  - file_length
+  - cyclomatic_complexity

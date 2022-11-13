@@ -9,12 +9,21 @@ import SwiftUI
 
 struct EmptySelectingView: View {
     var body: some View {
-        Color.white
+        VStack {
+            Spacer()
+            Image("activity_blue")
+                .resizable()
+                .scaledToFit()
+            Spacer()
+        }
+        .padding(.horizontal)
     }
 }
 
+#if DEBUG
 struct EmptySelectingView_Previews: PreviewProvider {
     static var previews: some View {
         EmptySelectingView()
     }
 }
+#endif

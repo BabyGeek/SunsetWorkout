@@ -5,6 +5,7 @@
 //  Created by Paul Oggero on 09/09/2022.
 //
 
+import HealthKitUI
 import SwiftUI
 
 struct DashboardView: View {
@@ -12,126 +13,72 @@ struct DashboardView: View {
     @State private var lastHostingView: UIView!
 
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 25)
-                        .fill(LinearGradient(
-                            gradient: .init(colors: [
-                                Colors.cardGradientStart,
-                                Colors.cardGradientMiddle,
-                                Colors.cardGradientEnd
-                            ]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
+        VStack(alignment: .leading) {
+            Spacer(minLength: 20)
+            GlassMorphicCard(content: {
+                VStack {
+                    if let quote = dashboardViewModel.quote {
+                        Text(dashboardViewModel.getAuthorSaidLabel(
+                            author: quote.author
                         ))
-                        .frame(height: 180)
+                        HStack(alignment: .top) {
+                            Image(systemName: "quote.opening")
+                                .frame(maxHeight: 100, alignment: .top)
 
-                    VStack {
-                        if let quote = dashboardViewModel.quote {
-                            Text("\(quote.author) said:")
-                            HStack(alignment: .top) {
-                                Image(systemName: "quote.opening")
-                                    .frame(maxHeight: 100, alignment: .top)
-
-                                Text(quote.content)
+                            Text(quote.content)
                                 .font(.italic(.body)())
                                 .frame(maxHeight: 100)
 
-                                Image(systemName: "quote.closing")
-                                    .frame(maxHeight: 100, alignment: .bottom)
-                            }
-                            .padding(.horizontal)
-                            Text(quote.getTagsFormatted())
-                                .font(.italic(.caption)())
+                            Image(systemName: "quote.closing")
+                                .frame(maxHeight: 100, alignment: .bottom)
                         }
+                        .padding(.horizontal)
+                        Text(quote.getTagsFormatted())
+                            .font(.italic(.caption)())
                     }
                 }
+                .frame(maxWidth: .infinity)
+            }, height: 150)
 
+            Spacer(minLength: 80)
+
+            VStack(spacing: 20) {
                 HStack {
                     DashboardCardView(
                         icon: Image(systemName: "bed.double"),
-                        title: "Sleep",
+                        title: "dashboard.sleep",
                         value: dashboardViewModel.getSleptLabel())
                     DashboardCardView(
                         icon: Image(systemName: "leaf"),
-                        title: "Feeling",
+                        title: "dashboard.feeling",
                         value: (
                             dashboardViewModel.feeling != nil) ?
-                        dashboardViewModel.feeling!.feeling.relatedEmoji : "N/A")
+                        dashboardViewModel.feeling!.type.relatedEmoji : "N/A")
                 }
 
                 HStack {
                     DashboardCardView(
                         icon: Image(systemName: "figure.walk"),
-                        title: "Move",
+                        title: "dashboard.move",
                         value: dashboardViewModel.dailyKilocalories.description)
                     DashboardCardView(
                         icon: Image(systemName: "bolt"),
-                        title: "Training",
+                        title: "dashboard.training",
                         value: dashboardViewModel.dailyTrainedTime.description)
                 }
             }
-            .padding()
-            .navigationBarItems(trailing:
-                                    Button(action: {
-                                        print("profile tapped")
-                                    }, label: {
-                                        ProfileView()
-                                    })
-            )
-            .navigationTitle("Title")
-            .onAppear {
-                dashboardViewModel.getUpdatedValues()
-            }
+            Spacer(minLength: 20)
+        }
+        .onAppear {
+            dashboardViewModel.getUpdatedValues()
         }
     }
 }
 
-struct ProfileView: View {
-    var body: some View {
-        Image("Profile")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 40, height: 40)
-            .clipShape(Circle())
-    }
-}
-
-struct DashboardCardView: View {
-    var icon: Image = Image(systemName: "bed.double")
-    var title: String = ""
-    var value: String = ""
-
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .fill(LinearGradient(
-                    gradient: .init(colors: [
-                        Colors.cardGradientStart,
-                        Colors.cardGradientMiddle,
-                        Colors.cardGradientEnd
-                    ]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ))
-                .frame(height: 180)
-
-            VStack {
-                HStack {
-                    icon
-                    Text(title)
-                }
-                .padding()
-
-                Text(value)
-            }
-        }
-    }
-}
-
+#if DEBUG
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardView()
     }
 }
+#endif

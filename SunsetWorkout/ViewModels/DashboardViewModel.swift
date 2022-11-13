@@ -5,16 +5,25 @@
 //  Created by Paul Oggero on 16/09/2022.
 //
 
+import Combine
 import HealthKit
 
+/// Dashboard ViewModel
 class DashboardViewModel: SWHealthStoreManager {
+    var urlSession = URLSession.shared
     var feelingViewModel = FeelingViewModel()
+
     @Published var quote: Quote?
-    @Published var feeling: FeelingModel?
+    @Published var feeling: Feeling?
+    @Published var error: SWError?
+
     @Published var sleptHours: HKQuantity = HKQuantity(unit: .second(), doubleValue: 0)
     @Published var dailyKilocalories: HKQuantity = HKQuantity(unit: .kilocalorie(), doubleValue: 0)
     @Published var dailyTrainedTime: HKQuantity = HKQuantity(unit: .minute(), doubleValue: 0)
 
+    var cancellable: AnyCancellable?
+
+    /// Get updated values for dashboard
     func getUpdatedValues() {
         self.askForPermission { success in
             if success {
@@ -27,35 +36,57 @@ class DashboardViewModel: SWHealthStoreManager {
         }
     }
 
+    /// Fetch daily quote
     func getDailyQuote() {
-        self.dispatchedMainQueue {
-            self.quote = Quote(
-                author: "Jhon Doe",
-                content: "Lorem ipsum dolor sit amet, " +
-                "consectetuer adipiscing elit. Aenean commodo ligula eget dolor. " +
-                "Aenean massa. Cum sociis natoq",
-                tags: ["sports", "competition"])
-        }
+        cancellable?.cancel()
+
+        cancellable = loadQuote()
+            .subscribe(on: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    self.error = SWError(error: error)
+                case .finished:
+                    debugPrint("Publisher is finished")
+                }
+            } receiveValue: { [weak self] in
+                guard let self else { return }
+                self.quote = $0
+            }
     }
 
+    /// Get random quote with maxLength and tags
+    /// - Parameters:
+    ///   - maxLength: `String` = `"122"`
+    ///   - tags: `String` = `"sports,competition"`
+    /// - Returns: `AnyPublisher<Quote, Error>`
+    func loadQuote(
+        maxLength: String = "90",
+        tags: String = "sports,competition") -> AnyPublisher<Quote, Error> {
+        urlSession.quotablePublisher(
+            on: .quotableAPIHost,
+            for: .random(maxLength: maxLength, tags: tags),
+            using: ())
+    }
+
+    /// Get HK slept hours
     func getSleptHours() {
         if let sleepType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) {
             let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
 
-            // predicate
             let predicate = HKSampleQuery.predicateForSamples(
                 withStart: Date().getDay(order: .before, type: .evening),
-                end: Date())
+                end: Date(),
+                options: [.strictStartDate, .strictEndDate])
 
-            // the block completion to execute
             let query = HKSampleQuery(
                 sampleType: sleepType,
                 predicate: predicate,
                 limit: 0,
                 sortDescriptors: [sortDescriptor]) { (_, tmpResult, error) -> Void in
-                if error != nil {
-                    // Handle the error in your app gracefully
-                    dump(error)
+                if let error {
+                    self.error = SWError(error: error)
                     return
                 }
 
@@ -78,6 +109,7 @@ class DashboardViewModel: SWHealthStoreManager {
         }
     }
 
+    /// Get HK active energy burned
     func getMovedCalories() {
         if let activeEnergyBurnedType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) {
 
@@ -94,8 +126,8 @@ class DashboardViewModel: SWHealthStoreManager {
                 predicate: predicate,
                 limit: 0,
                 sortDescriptors: [sortDescriptor]) { (_, tmpResult, error) in
-                    if error != nil {
-                        dump("error")
+                    if let error {
+                        self.error = SWError(error: error)
                     }
 
                     if let results = tmpResult as? [HKQuantitySample] {
@@ -111,6 +143,7 @@ class DashboardViewModel: SWHealthStoreManager {
         }
     }
 
+    /// Get HK exercise time
     func getTrainedTime() {
         if let appleExerciseTimeType = HKObjectType.quantityType(forIdentifier: .appleExerciseTime) {
 
@@ -127,8 +160,8 @@ class DashboardViewModel: SWHealthStoreManager {
                 predicate: predicate,
                 limit: 0,
                 sortDescriptors: [sortDescriptor]) { (_, tmpResult, error) in
-                    if error != nil {
-                        dump("error")
+                    if let error {
+                        self.error = SWError(error: error)
                     }
 
                     if let results = tmpResult as? [HKQuantitySample] {
@@ -144,6 +177,11 @@ class DashboardViewModel: SWHealthStoreManager {
         }
     }
 
+    /// Extract total from quantity samples
+    /// - Parameters:
+    ///   - results: `[HKQuantitySample]`
+    ///   - unit: `HKUnit`
+    /// - Returns: `Double`
     func extractFrom(_ results: [HKQuantitySample], unit: HKUnit) -> Double {
         var total: Double = 0
         for result in results {
@@ -153,6 +191,8 @@ class DashboardViewModel: SWHealthStoreManager {
         return total
     }
 
+    /// Get slept string label
+    /// - Returns: `String`
     func getSleptLabel() -> String {
         var sleptLabel = "00h00"
 
@@ -177,12 +217,19 @@ class DashboardViewModel: SWHealthStoreManager {
         return sleptLabel
     }
 
+    /// Get the last feeling selected
     func getFeeling() {
         dispatchedMainQueue {
             self.feeling = self.feelingViewModel.getLastFeeling()
         }
     }
 
+    func getAuthorSaidLabel(author: String) -> String {
+        String(format: NSLocalizedString("dashboard.said.by", comment: "Author said"), author)
+    }
+
+    /// Get slept time in hours and minutes
+    /// - Returns: `(Int, Int)`
     private func getHoursAndMinutesSlept() -> (Int, Int) {
         return (
             Int(sleptHours.doubleValue(for: .second())) / 3600,
