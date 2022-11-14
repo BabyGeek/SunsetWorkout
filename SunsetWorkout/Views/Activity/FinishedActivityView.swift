@@ -16,26 +16,29 @@ struct FinishedActivityView: View {
 
     var body: some View {
         VStack(spacing: 80) {
-            NavigationLink(
-                destination: HistoryView(summary: viewModel.activity.getSummary()),
-                isActive: $goToSummary) {
-                EmptyView()
-            }
+            if viewModel.saved && viewModel.activitySummary != nil {
+                NavigationLink(
+                    destination: HistoryView(summary: viewModel.activitySummary!),
+                    isActive: $goToSummary) {
+                    EmptyView()
+                }
+                
 
+                ActivityButton {
+                    ActivityButtonWithIconAndTitle(
+                        titleKey: "button.go.to.summary",
+                        iconName: "calendar.badge.clock",
+                        color: .green
+                    )
+                } action: {
+                    goToSummary = true
+                }
+            }
+            
             NavigationLink(
                 destination: WorkoutView(viewModel: WorkoutViewModel(workout: viewModel.activity.workout)),
                 isActive: $goToWorkout) {
                 EmptyView()
-            }
-
-            ActivityButton {
-                ActivityButtonWithIconAndTitle(
-                    titleKey: "button.go.to.summary",
-                    iconName: "calendar.badge.clock",
-                    color: .green
-                )
-            } action: {
-                goToSummary = true
             }
 
             ActivityButton {

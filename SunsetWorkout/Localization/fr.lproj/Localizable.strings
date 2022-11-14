@@ -2,23 +2,140 @@
   Localizable.strings
   SunsetWorkout
 
-  Created by Paul Oggero on 15/10/2022.
+  Created by Paul Oggero on 14/11/2022.
   
 */
 
+// TAB BAR
+"dashboard.tab.title" = "Accueil";
+"add.tab.title" = "Nouvelle séance";
+"launch.tab.title" = "Lancer";
+"create.tab.title" = "Créer";
+"workouts.tab.title" = "Séances";
+"history.tab.title" = "Historique";
+"activities.tab.title" = "Activités";
+
+// NAVIGATION
+"dashboard.navigation.title" = "Bienvenue";
+"history.navigation.title" = "Historique";
+"activities.navigation.title" = "Activités";
+
+
 // DASHBOARD
-"dashboard.title" = "Welcome";
-"dashboard.sleep" = "Sleep";
-"dashboard.feeling" = "Feeling";
-"dashboard.move" = "Move";
-"dashboard.training" = "Training";
+"dashboard.sleep" = "Sommeil";
+"dashboard.feeling" = "Émotion";
+"dashboard.move" = "Bouger";
+"dashboard.training" = "M'entraîner";
+"dashboard.said.by" = "%@ a dit :";
 
 // WALKTHROUGHT
-"walkthrought.healthkit.information" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
-Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
-Duis semper.";
+"walkthrought.healthkit.information" = "Bienvenue dans Sunset Workout, cette application utilisera vos données à des fins de travail uniquement, aucune utilisation commerciale ne sera faite avec. Vous devez autoriser HealthKit à accéder à ces données. Les données sont stockées sur votre appareil uniquement en utilisant Realm, aucune donnée ne sera envoyée en dehors de l'application.";
+"walkthrought.healthkit.authorize" = "Authoriser";
+"walkthrought.profile.title" = "Configurer le profil";
+"walkthrought.skip" = "Passer";
+"walkthrought.feeling.title" = "Comment te sens-tu aujourd'hui?";
+
+// FEELINGS
+"feeling.name.happy" = "Content";
+"feeling.name.sad" = "Triste";
+"feeling.name.annoyed" = "Ennoyé";
+"feeling.name.excited" = "Excité";
+"feeling.name.tired" = "Fatigué";
+"feeling.name.stressed" = "Stressé";
+
+"feeling.description.happy" = "Je me sens bien !";
+"feeling.description.sad" = "Je suis triste :(";
+"feeling.description.annoyed" = "Je m'emmerde.";
+"feeling.description.excited" = "Je me sens trop excité !";
+"feeling.description.tired" = "Je suis fatigué.";
+"feeling.description.stressed" = "Ohlala je suis stressé.";
+
+"feeling.update" = "Change ton humeur";
+
+// WORKOUT TYPE
+"workout.type.name.hiit" = "HIIT";
+"workout.type.name.strenght" = "Strenght";
+"workout.hiit.repetition" = "Round";
+"workout.stregth.repetition" = "Serie";
+
+// METADATA TYPE
+"metadate.label.exercise.break" = "Pause entre les exercices";
+"metadate.label.round.break" = "Pause du round";
+"metadate.label.round.number" = "Nombre de round";
+"metadate.label.round.duration" = "Durée d'un round";
+"metadate.label.serie.break" = "Pause de la série";
+"metadate.label.serie.number" = "Nombre de série";
+"metadate.label.repetition.goal" = "Objectif de répétition";
+
+//WORKOUTS
+"workout.add.first" = "Pas encore de séance ajoutée.";
+"workout.name" = "Nom";
+
+// WORKOUT EXERCISE
+"workout.exercises.empty" = "Aucun exercice ajouté dans la séance pour le moment.";
+"exercise.name" = "Nom de l'exercice";
+"exercise.break" = "Pause de fin";
+"exercise.search.field.placeholder" = "Rechercher un exercice";
+"exercise.search.empty" = "S'il te plait commences ta recherche.";
+"exercise.search.loading" = "En cours de recherche...";
+"exercise.add" = "Ajouter un exercice";
+
+// PROFILE
+"profile.height" = "Taille";
+"profile.weight" = "Poids";
 
 // COMMON
-"common.app.title" = "Sunset Workout";
+"app.title" = "Sunset Workout";
+
+// ERRORS
+"error.global.unknown.description" = "Erreur inconnue";
+"error.global.unknown.failure.reason" = "Une erreur inconnue c'est produite.";
+
+"error.realm.no.realm.description" = "Erreur de Realm";
+"error.realm.no.realm.failure.reason" = "Impossible de trouver Realm.";
+"error.realm.failure.description" = "Echec de Realm";
+"error.realm.failure.failure.reason" = "Une erreur est survenue, vérifies tes données.";
+
+"error.workout.no.name.description" = "Erreur de séance";
+"error.workout.no.name.failure.reason" = "Tu dois spécifier un nom pour la séance.";
+"error.workout.is.nil.description" = "Erreur de sauvegarde";
+"error.workout.is.nil.failure.reason" = "Une erreur est survenue lors de la sauvegarde, vérifies tes données.";
+
+"error.exercise.no.name.description" = "Erreur d'éxercice";
+"error.exercise.no.name.failure.reason" = "Tu dois spécifier un nom pour l'éxercice.";
+"error.exercise.not.saved.description" = "Erreur de sauvegarde";
+"error.exercise.not.saved.failure.reason" = "Une erreur est survenue lors de la sauvegarde, vérifies tes données.";
+"error.exercise.several.orders.description" = "Erreur d'ordonnancement";
+"error.exercise.several.orders.failure.reason" = "L'ordre des exercices est incorrect.";
+
+"error.healthkit.not.saved.description" = "Erreur de HealthKit";
+"error.healthkit.not.saved.failure.reason" = "L'activité n'a pas pu être enregistrée dans HealthKit.";
+
+// ACTIVITY
+"activity.start.preface" = "Cliques sur commencer quand tu es prêt !";
+"activity.start" = "Commencer la séance";
+"activity.selected" = "Séance sélectionnée : %@";
+"activity.exercise.repetition" = "%@ : %d/%d";
+"activity.exercise.next" = "Prochain : %@";
+"activity.exercise.next.last" = "Prochain : %@, c'est ton dernier exercie, vas-y fonces !";
+"activity.in.break" = "Pause";
+"activity.starting" = "Ta séance est sur le point de commencer";
+"activity.be.ready" = "Sois prêt !";
+"activity.cant.start" = "Cette séance ne peut pas être lancée.";
+"button.go.to.summary" = "Résumé de l'activité";
+"button.go.to.workout" = "Séance";
+"button.go.to.launch" = "Lancer une autre";
+
+// HISTORY
+"history.empty" = "Aucune activité effectuée pour le moment. Lances en une pour voir son résumé ici une fois terminée.";
+"summary.goal" = "Ton objectif de répétition global était %d";
+"input.round" = "Round";
+"input.time" = "Temps passé";
+"input.serie" = "Série";
+"input.repetitions" = "Répétitions";
+"input.goal" = "Objectif";
+"input.skipped" = "Passé";
+
+// GLOBAL
+"not.found" = "Non trouvé";
+"button.save" = "Sauvegarder";

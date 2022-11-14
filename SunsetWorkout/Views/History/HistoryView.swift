@@ -35,11 +35,7 @@ struct HistoryView: View {
                         value: summary.type.name)
                 }
                 .padding()
-                Spacer()
-
-                Spacer()
                 exerciseSelection
-                Spacer()
             }
             .padding(.horizontal)
         }
@@ -51,11 +47,10 @@ struct HistoryView: View {
             TabView(selection: $viewModel.selectedExercise) {
                 if summary.type == .highIntensityIntervalTraining {
                     ForEach(summary.formattedInputsHIIT) { input in
-                        if let firstInput = input.inputs.first {
+                        VStack {
+                            Text(summary.getExerciseNameFromID(input.exerciseUUID))
                             HIITInputSummaryView(
-                                inputs: input.inputs,
-                                exerciseName: summary.getExerciseNameFromID(input.exerciseUUID),
-                                selectedInput: firstInput
+                                inputs: input.inputs
                             )
                             .tag(input.exerciseUUID)
                         }
@@ -66,12 +61,11 @@ struct HistoryView: View {
                     Text(String(format: NSLocalizedString("summary.goal", comment: "Goal label"), summary.getGoal()))
 
                     ForEach(summary.formattedInputsStrength) { input in
-                        if let firstInput = input.inputs.first {
+                        VStack {
+                            Text(summary.getExerciseNameFromID(input.exerciseUUID))
                             StrengthInputSummaryView(
                                 inputs: input.inputs,
-                                exerciseName: summary.getExerciseNameFromID(input.exerciseUUID),
-                                exerciseGoal: summary.getExerciseGoal(input.exerciseUUID),
-                                selectedInput: firstInput
+                                exerciseGoal: summary.getExerciseGoal(input.exerciseUUID)
                             )
                             .tag(input.exerciseUUID)
                         }
@@ -80,42 +74,8 @@ struct HistoryView: View {
             }
             .animation(.easeOut)
             .transition(.scale)
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .tabViewStyle(PageTabViewStyle())
         }
-        .frame(height: 200)
-        .overlay(
-            Button(action: {
-                viewModel.updateExerciseUp()
-            }, label: {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(Color(.label))
-                    .background(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray)
-                            .frame(width: 25, height: 20))
-            })
-            .padding(.trailing)
-            .opacity(viewModel.canHaveNext() ? 1 : 0)
-            .buttonStyle(PlainButtonStyle()),
-            alignment: .topTrailing
-        )
-        .overlay(
-            Button(action: {
-                viewModel.updateExerciseDown()
-            }, label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(Color(.label))
-                    .background(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray)
-                            .frame(width: 25, height: 20))
-            })
-            .padding(.leading)
-            .opacity(viewModel.canHavePrevious() ? 1 : 0)
-            .buttonStyle(PlainButtonStyle()),
-            alignment: .topLeading
-        )
-        .padding(.horizontal)
     }
 }
 

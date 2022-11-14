@@ -9,69 +9,15 @@ import SwiftUI
 
 struct StrengthInputSummaryView: View {
     let inputs: [ActivityStrengthInput]
-    let exerciseName: String
     let exerciseGoal: Int
-    @State var selectedInput: ActivityStrengthInput
-    @State var selectInputIndex: Int = 0
 
     var body: some View {
-        VStack {
-            Text(exerciseName)
-
-            TabView(selection: $selectedInput) {
-                ForEach(inputs) { input in
-                    StrengthInputRowView(input: input, goal: exerciseGoal)
-                        .tag(input)
-                }
-            }
-            .animation(.easeInOut)
-            .transition(.slide)
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        }
-        .frame(height: 200)
-        .onAppear {
-            if let first = inputs.first {
-                selectedInput = first
+        ScrollView(showsIndicators: false) {
+            ForEach(inputs) { input in
+                StrengthInputRowView(input: input, goal: exerciseGoal)
+                    .padding(.vertical, 6)
             }
         }
-        .onChange(of: selectedInput) { _ in
-            if let index = inputs.firstIndex(of: selectedInput) {
-                selectInputIndex = index
-            }
-        }
-        .overlay(
-            Button(action: {
-                selectedInput = inputs[inputs.index(after: selectInputIndex)]
-            }, label: {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(Color(.label))
-                    .background(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray)
-                            .frame(width: 25, height: 20))
-            })
-            .padding(.leading)
-            .opacity(inputs.index(after: selectInputIndex) < inputs.count ? 1 : 0)
-            .buttonStyle(PlainButtonStyle()),
-            alignment: .trailing
-        )
-        .overlay(
-            Button(action: {
-                selectedInput = inputs[inputs.index(before: selectInputIndex)]
-            }, label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(Color(.label))
-                    .background(
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.gray)
-                            .frame(width: 25, height: 20))
-            })
-            .padding(.trailing)
-            .opacity(inputs.index(before: selectInputIndex) >= 0 ? 1 : 0)
-            .buttonStyle(PlainButtonStyle()),
-            alignment: .leading
-        )
-        .padding(.horizontal)
     }
 }
 
@@ -88,8 +34,6 @@ struct StrengthInputSummaryView_Previews: PreviewProvider {
     static var previews: some View {
         StrengthInputSummaryView(
             inputs: strengthInputs,
-            exerciseName: "Preview Strength",
-            exerciseGoal: 12,
-            selectedInput: strengthInputs.first!)
+            exerciseGoal: 12)
     }
 }

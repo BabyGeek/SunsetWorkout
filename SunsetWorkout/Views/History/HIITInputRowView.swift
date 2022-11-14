@@ -10,32 +10,34 @@ import SwiftUI
 struct HIITInputRowView: View {
     let input: ActivityHIITInput
     var body: some View {
-        VStack {
-            HStack {
-                Text("input.round")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Text("\(input.round)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        GlassMorphicCard(content: {
+            VStack {
+                HStack {
+                    Text("input.round")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("\(input.round)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                HStack {
+                    Text("input.time")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("\(input.timePassed)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                HStack {
+                    Text("input.skipped")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Image(systemName: input.skipped ? "checkmark" : "xmark")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
-            HStack {
-                Text("input.time")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Text("\(input.timePassed)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            HStack {
-                Text("input.skipped")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Image(systemName: input.skipped ? "checkmark" : "xmark")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
+        }, height: 100)
     }
 }
 

@@ -15,7 +15,9 @@ struct HistoryCardView: View {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     VStack(alignment: .leading, spacing: 20) {
-                        VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "clock.badge.checkmark")
+                                .foregroundColor(summary.endedWithState == .canceled ? .red : .green)
                             Text(summary.title)
                         }
 

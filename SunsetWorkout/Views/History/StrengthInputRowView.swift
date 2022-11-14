@@ -12,40 +12,43 @@ struct StrengthInputRowView: View {
     let goal: Int
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("input.serie")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Text("\(input.serie)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        GlassMorphicCard(content: {
+            VStack {
+                HStack {
+                    Text("input.serie")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("\(input.serie)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                HStack {
+                    Text("input.repetitions")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text(input.repetitions)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                HStack {
+                    Text("input.goal")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("\(goal)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                HStack {
+                    Text("input.skipped")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Image(systemName: input.skipped ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        .foregroundColor(input.skipped ? .green : .red)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
-            HStack {
-                Text("input.repetitions")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Text(input.repetitions)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            HStack {
-                Text("input.goal")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Text("\(goal)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            HStack {
-                Text("input.skipped")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                Image(systemName: input.skipped ? "checkmark" : "xmark")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
+        }, height: 100)
     }
 }
 

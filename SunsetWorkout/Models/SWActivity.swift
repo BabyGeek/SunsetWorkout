@@ -75,13 +75,13 @@ class SWActivity: ObservableObject {
         lastState = state
         state = .paused
 
-        events.append(HKWorkoutEvent(type: .pause, dateInterval: DateInterval(), metadata: nil))
+        events.append(HKWorkoutEvent(type: .pause, dateInterval: DateInterval(start: Date(), end: Date()), metadata: nil))
     }
 
     func run() {
         if state == .paused {
             state = lastState
-            events.append(HKWorkoutEvent(type: .resume, dateInterval: DateInterval(), metadata: nil))
+            events.append(HKWorkoutEvent(type: .resume, dateInterval: DateInterval(start: Date(), end: Date()), metadata: nil))
         } else {
             state = .running
         }
@@ -258,6 +258,7 @@ extension SWActivity {
             workoutBuilder = .init(healthStore: store, configuration: workoutConfiguration, device: .local())
             workoutBuilder?.beginCollection(withStart: startDate, completion: { _, error in
                 if let error {
+                    dump("error from builder begin collection save: \(error)")
                     self.error = SWError(error: error)
                 }
             })
@@ -276,6 +277,7 @@ extension SWActivity {
     private func addWorkoutBuilderSamples(_ samples: [HKSample]) {
         workoutBuilder?.add(samples, completion: { _, error in
             if let error {
+                dump("error from builder samples save: \(error)")
                 self.error = SWError(error: error)
             }
         })
@@ -283,8 +285,11 @@ extension SWActivity {
 
     /// Add events to the healthkit workout builder
     private func addBuilderEvents() {
+        if events.isEmpty { return }
+        
         workoutBuilder?.addWorkoutEvents(events, completion: { _, error in
             if let error {
+                dump("error from builder events save: \(error)")
                 self.error = SWError(error: error)
             }
         })
@@ -331,27 +336,18 @@ extension SWActivity {
     private func endBuilder() {
         workoutBuilder?.endCollection(withEnd: endDate, completion: { _, error in
             if let error {
+                dump("error from builder end: \(error)")
                 self.error = SWError(error: error)
                 return
             }
 
             self.workoutBuilder?.finishWorkout(completion: { _, error in
                 if let error {
+                    dump("error from builder finish: \(error)")
                     self.error = SWError(error: error)
                     return
                 }
             })
-        })
-
-    }
-
-    /// Save detailed data to the workout
-    /// - Parameter workout: `HKWorkout`
-    private func saveWorkoutDetails(_ workout: HKWorkout) {
-        healthStoreManager.store?.add(getWorkoutActiveEnergySamples(), to: workout, completion: { _, error in
-            if let error {
-                self.error = SWError(error: error)
-            }
         })
     }
 

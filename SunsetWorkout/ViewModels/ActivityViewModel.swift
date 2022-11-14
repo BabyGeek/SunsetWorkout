@@ -17,6 +17,7 @@ class ActivityViewModel: ObservableObject {
     @Published var timeRemaining: Float = 0
     @Published var presentSerieAlert: Bool  = false
     @Published var saved: Bool = false
+    @Published var activitySummary: SWActivitySummary?
 
     private var inputPrepared: [String: Any] = [:]
     private var query: HKQuery?
@@ -91,9 +92,10 @@ class ActivityViewModel: ObservableObject {
     @MainActor func save() {
         if !activityStateIs(.initialized) && !activityStateIs(.starting) && !saved && isFinished {
             do {
-                let activitySummary = self.activity.getSummary()
-                try self.save(model: activitySummary, with: SWActivitySummaryEntity.init)
+                self.activitySummary = self.activity.getSummary()
+                try self.save(with: SWActivitySummaryEntity.init)
             } catch {
+                dump("error from activity save: \(error)")
                 self.error = SWError(error: error)
             }
         }
@@ -313,34 +315,15 @@ extension ActivityViewModel {
     /// - Parameters:
     ///   - model: `SWActivitySummary`
     ///   - reverseTransformer: `(SWActivitySummary) -> SWActivitySummaryEntity`
-    func save(
-        model: SWActivitySummary,
-        with reverseTransformer: (SWActivitySummary) -> SWActivitySummaryEntity) throws {
+    func save(with reverseTransformer: (SWActivitySummary) -> SWActivitySummaryEntity) throws {
         do {
-            try realmManager.save(model: model, with: reverseTransformer)
-            saved = true
-            // save(model: model)
+            if let activitySummary {
+                try realmManager.save(model: activitySummary, with: reverseTransformer)
+                saved = true
+            }
         } catch {
+            dump("error from activity save realm: \(error)")
             self.error = SWError(error: error)
         }
-    }
-
-    /// Save activity to HealthKit
-    /// - Parameter model: `SWActivitySummary`
-    func save(model: SWActivitySummary) {
-        SWHealthStoreManager.shared.saveObject(model.workoutHK, completion: { (inner: ThrowableCallback) -> Void in
-            do {
-                let success = try inner()
-                if !success {
-                    self.error = SWError(error: SWHealthKitError.notSaved)
-                } else {
-                    DispatchQueue.main.async {
-                        self.saved = true
-                    }
-                }
-            } catch {
-                self.error = SWError(error: error)
-            }
-        })
     }
 }

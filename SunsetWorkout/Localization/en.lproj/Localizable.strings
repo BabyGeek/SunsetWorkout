@@ -134,7 +134,7 @@
 "input.serie" = "Serie";
 "input.repetitions" = "Repetitions";
 "input.goal" = "Goal";
-"input.skipped" = "Skipped?";
+"input.skipped" = "Skipped";
 
 // GLOBAL
 "not.found" = "Not found";

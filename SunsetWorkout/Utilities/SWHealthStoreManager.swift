@@ -34,20 +34,6 @@ class SWHealthStoreManager: ObservableObject {
         self.isWaiting = false
     }
 
-    func saveObject<Object: HKWorkout>(_ object: Object, completion: @escaping (_ inner: ThrowableCallback) -> Void) {
-        askForPermission { success in
-            if success {
-                self.store?.save(object, withCompletion: { success, error in
-                    if let error {
-                        completion({ throw error })
-                    }
-
-                    completion({ return success })
-                })
-            }
-        }
-    }
-
     private func setToShare() {
         let workoutType = HKSampleType.workoutType()
 
