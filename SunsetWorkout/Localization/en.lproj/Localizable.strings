@@ -50,6 +50,8 @@
 "feeling.description.tired" = "I'm tired.";
 "feeling.description.stressed" = "I'm feeling so stressed.";
 
+"feeling.update" = "Change your feeling";
+
 // WORKOUT TYPE
 "workout.type.name.hiit" = "HIIT";
 "workout.type.name.strenght" = "Strenght";
@@ -96,8 +98,15 @@
 
 "error.workout.no.name.description" = "Workout error";
 "error.workout.no.name.failure.reason" = "You need to specify a name for the workout.";
-"error.workout.wrong.data.description" = "Workout saving error";
-"error.workout.wrong.data.failure.reason" = "Error while saving your workout, please check your data.";
+"error.workout.is.nil.description" = "Workout saving error";
+"error.workout.is.nil.failure.reason" = "Error while saving your workout, please check your data.";
+
+"error.exercise.no.name.description" = "Exercise error";
+"error.exercise.no.name.failure.reason" = "You need to specify a name for the exercise.";
+"error.exercise.not.saved.description" = "Exercise saving error";
+"error.exercise.not.saved.failure.reason" = "Error while saving your exercise, please check your data.";
+"error.exercise.several.orders.description" = "Exercise order error";
+"error.exercise.several.orders.failure.reason" = "The exercises ordering is not correct.";
 
 "error.healthkit.not.saved.description" = "HeathKit saving error";
 "error.healthkit.not.saved.failure.reason" = "Was not able to save the workout in HealthKit.";

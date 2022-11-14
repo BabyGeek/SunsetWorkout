@@ -57,6 +57,7 @@ struct WorkoutView: View {
                                         Image(systemName: "plus")
                                     })
         )
+        .toastWithError($viewModel.error)
     }
 }
 

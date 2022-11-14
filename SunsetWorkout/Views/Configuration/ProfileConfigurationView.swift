@@ -66,6 +66,7 @@ struct ProfileConfigurationView: View {
         .onDisappear {
             viewModel.saveValues()
         }
+        .toastWithError($viewModel.error)
     }
 }
 

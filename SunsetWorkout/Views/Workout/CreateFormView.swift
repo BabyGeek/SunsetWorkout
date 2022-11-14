@@ -73,6 +73,7 @@ extension CreateFormView {
             .onReceive(keyboardPublisher) { newIsKeyboardVisible in
                 isKeyboardVisible = newIsKeyboardVisible
             }
+            .toastWithError($workoutViewModel.error)
             .padding()
             .ignoresSafeArea(.keyboard)
     }

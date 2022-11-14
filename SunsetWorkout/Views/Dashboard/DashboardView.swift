@@ -10,7 +10,8 @@ import SwiftUI
 
 struct DashboardView: View {
     @StateObject var dashboardViewModel = DashboardViewModel()
-    @State private var lastHostingView: UIView!
+    @State var displayFeelingSelection: Bool = false
+    @State var selectedFeeling: FeelingType = .happy
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -48,12 +49,21 @@ struct DashboardView: View {
                         icon: Image(systemName: "bed.double"),
                         title: "dashboard.sleep",
                         value: dashboardViewModel.getSleptLabel())
-                    DashboardCardView(
-                        icon: Image(systemName: "leaf"),
-                        title: "dashboard.feeling",
-                        value: (
-                            dashboardViewModel.feeling != nil) ?
-                        dashboardViewModel.feeling!.type.relatedEmoji : "N/A")
+                    
+                    Button {
+                        displayFeelingSelection = true
+                        if let feeling = dashboardViewModel.feeling {
+                            selectedFeeling = feeling.type
+                        }
+                    } label: {
+                        DashboardCardView(
+                            icon: Image(systemName: "leaf"),
+                            title: "dashboard.feeling",
+                            value: (
+                                dashboardViewModel.feeling != nil) ?
+                            dashboardViewModel.feeling!.type.relatedEmoji : "N/A")
+                    }
+                    .foregroundColor(Color(.label))
                 }
 
                 HStack {
@@ -72,6 +82,44 @@ struct DashboardView: View {
         .onAppear {
             dashboardViewModel.getUpdatedValues()
         }
+        .toastWithError($dashboardViewModel.error)
+        .sheet(isPresented: $displayFeelingSelection, onDismiss: {
+            self.dashboardViewModel.feelingViewModel.save(model: Feeling(type: selectedFeeling), with: FeelingEntity.init)
+            self.dashboardViewModel.getFeeling()
+        }, content: {
+            ZStack {
+                BackgroundView()
+                VStack {
+                    Text("feeling.update")
+                    Spacer()
+                    FeelingSelectionView(selected: $selectedFeeling)
+                    Spacer()
+                    Button {
+                        displayFeelingSelection = false
+                    } label: {
+                            RoundedRectangle(cornerRadius: 25)
+                            .stroke(Color.green)
+                                .opacity(0.8)
+                                .frame(height: 50)
+                                .overlay(
+                                    HStack {
+                                        Spacer()
+                                        Text("button.save")
+                                            .font(.system(.callout))
+                                        Spacer()
+                                        Image(systemName: "pencil.circle.fill")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                    }
+                                        .padding(.horizontal)
+                                )
+                                .foregroundColor(Color(.label))
+                    }
+
+                }
+                .padding()
+            }
+        })
     }
 }
 

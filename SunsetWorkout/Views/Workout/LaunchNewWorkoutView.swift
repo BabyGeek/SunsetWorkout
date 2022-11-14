@@ -35,6 +35,7 @@ struct LaunchNewWorkoutView: View {
 
                 }
             }
+            .toastWithError($viewModel.error)
         }
     }
 }

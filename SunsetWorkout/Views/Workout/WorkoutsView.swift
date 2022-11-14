@@ -26,6 +26,7 @@ struct WorkoutsView: View {
                     .padding(.bottom)
                 }
             }
+            .toastWithError($viewModel.error)
         }
     }
 }

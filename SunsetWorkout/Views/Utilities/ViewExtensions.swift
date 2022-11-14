@@ -29,7 +29,7 @@ extension View {
         return self
             .highPriorityGesture(TapGesture().onEnded({ _ in
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                                                    to: nil, from: nil, for: nil)
+                                                to: nil, from: nil, for: nil)
             }), including: including)
     }
 }
@@ -55,7 +55,7 @@ extension KeyboardReadable {
             NotificationCenter.default
                 .publisher(for: UIResponder.keyboardWillShowNotification)
                 .map { _ in true },
-
+            
             NotificationCenter.default
                 .publisher(for: UIResponder.keyboardWillHideNotification)
                 .map { _ in false }
@@ -80,4 +80,57 @@ extension View {
             self
         }
     }
+    
+    /// ViewBuilder designed for toast with error modifiers
+    /// - Parameter error: `SWError`
+    /// - Returns: `some View`
+    @ViewBuilder
+    func toastWithError(_ error: Binding<SWError?>) -> some View {
+        self
+            .toast(
+                item: error,
+                type: .error,
+                position: .top,
+                title: error.wrappedValue?.description ?? "",
+                text: error.wrappedValue?.failureReason ?? ""
+            )
+    }
+}
+
+
+// MARK: - Toaster modifiers
+extension View {
+    func toast(
+        isPresented: Binding<Bool>,
+        type: ToasterType = .success,
+        position: ToasterPosition = .top,
+        title: String = "",
+        text: String = "",
+        duration: TimeInterval = 5) -> some View {
+            modifier(
+                TasterPresentedModifier(
+                    isPresented: isPresented,
+                    duration: duration,
+                    type: type,
+                    position: position,
+                    title: title,
+                    text: text))
+        }
+    
+    func toast<I: Identifiable>(
+        item: Binding<I?>,
+        type: ToasterType = .success,
+        position: ToasterPosition = .top,
+        title: String = "",
+        text: String = "",
+        duration: TimeInterval = 5) -> some View {
+            modifier(
+                TasterItemModifier(
+                    item: item,
+                    duration: duration,
+                    type: type,
+                    position: position,
+                    title: title,
+                    text: text))
+        }
 }

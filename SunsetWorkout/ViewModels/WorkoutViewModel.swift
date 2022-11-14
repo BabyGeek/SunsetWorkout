@@ -43,10 +43,6 @@ class WorkoutViewModel: ObservableObject {
             AnalyticsManager.logCreatingWorkout(type: workout?.type)
         }
 
-        if error != nil {
-            return
-        }
-
         workout?.cleanMetadata()
 
         guard let workout else {

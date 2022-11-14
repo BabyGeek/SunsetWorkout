@@ -31,7 +31,7 @@ class FeelingViewModel: ObservableObject {
     }
 
     func getLastFeeling() -> Feeling? {
-        self.fetch(with: Feeling.allByDateDESC)
+        self.fetch(with: Feeling.allByDateASC)
         guard let feelings else { return nil }
 
         return feelings.last

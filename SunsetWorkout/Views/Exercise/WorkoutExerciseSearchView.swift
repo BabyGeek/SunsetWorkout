@@ -142,6 +142,7 @@ struct WorkoutExerciseSearchView: View {
                                     .padding(.horizontal)
         )
         }
+        .toastWithError($viewModel.error)
     }
 }
 

@@ -57,11 +57,14 @@ struct FeelingConfigurationView: View {
         .onDisappear {
             feelingViewModel.save(model: feeling, with: FeelingEntity.init)
         }
+        .toastWithError($feelingViewModel.error)
     }
 }
 
-extension FeelingConfigurationView {
-    var feelingsList: some View {
+struct FeelingSelectionView: View {
+    @Binding var selected: FeelingType
+    
+    var body: some View {
         VStack {
             HStack {
                 FeelingListingView(selected: $selected, feeling: FeelingType.happy)
@@ -76,6 +79,12 @@ extension FeelingConfigurationView {
                 FeelingListingView(selected: $selected, feeling: FeelingType.stressed)
             }
         }
+    }
+}
+
+extension FeelingConfigurationView {
+    var feelingsList: some View {
+        FeelingSelectionView(selected: $selected)
     }
 }
 

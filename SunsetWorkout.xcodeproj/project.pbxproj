@@ -25,6 +25,7 @@
 		2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969728FB514E000D7B26 /* UserProfileFormView.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1480842909E2CB009E91B8 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1480832909E2CB009E91B8 /* ActivityView.swift */; };
+		2B266DAC29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B266DAB29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift */; };
 		2B28C59C28E7F6F6008CBB83 /* FeelingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B28C59B28E7F6F6008CBB83 /* FeelingEntity.swift */; };
 		2B2EB19928FC9EE400F4FEDB /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB19828FC9EE400F4FEDB /* BackgroundView.swift */; };
 		2B2EB19E28FC9FD500F4FEDB /* CustomBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */; };
@@ -72,6 +73,8 @@
 		2B6608D428CDFA7700361C0F /* ConfigurationWalkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */; };
 		2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */; };
 		2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6608DB28D02D4F00361C0F /* HealthKit.framework */; };
+		2B71A9D4292226EE00B5740B /* ToasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71A9D3292226EE00B5740B /* ToasterView.swift */; };
+		2B71A9D62922317D00B5740B /* ToasterModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71A9D52922317D00B5740B /* ToasterModifiers.swift */; };
 		2B75093D2918070F00A75F97 /* SWActivitySummaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75093C2918070F00A75F97 /* SWActivitySummaryEntity.swift */; };
 		2B75093F29185E5300A75F97 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75093E29185E5300A75F97 /* TypeAlias.swift */; };
 		2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7FDFEB28E7F640009FFAF5 /* Realm */; };
@@ -162,6 +165,7 @@
 		2B03969728FB514E000D7B26 /* UserProfileFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFormView.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1480832909E2CB009E91B8 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		2B266DAB29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutFeelingTest.swift; sourceTree = "<group>"; };
 		2B28C59B28E7F6F6008CBB83 /* FeelingEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingEntity.swift; sourceTree = "<group>"; };
 		2B2EB19828FC9EE400F4FEDB /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlurView.swift; sourceTree = "<group>"; };
@@ -208,6 +212,8 @@
 		2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWHealthStoreManager.swift; sourceTree = "<group>"; };
 		2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunsetWorkout.entitlements; sourceTree = "<group>"; };
 		2B6608DB28D02D4F00361C0F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		2B71A9D3292226EE00B5740B /* ToasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterView.swift; sourceTree = "<group>"; };
+		2B71A9D52922317D00B5740B /* ToasterModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterModifiers.swift; sourceTree = "<group>"; };
 		2B75093C2918070F00A75F97 /* SWActivitySummaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWActivitySummaryEntity.swift; sourceTree = "<group>"; };
 		2B75093E29185E5300A75F97 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2B83FA7428D8A19A00C3B1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -405,6 +411,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2B71A9D22922268400B5740B /* Toaster */ = {
+			isa = PBXGroup;
+			children = (
+				2B71A9D3292226EE00B5740B /* ToasterView.swift */,
+				2B71A9D52922317D00B5740B /* ToasterModifiers.swift */,
+			);
+			path = Toaster;
+			sourceTree = "<group>";
+		};
 		2B7FDFEF28E7F6A8009FFAF5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +515,7 @@
 				2B64341B29104EB200B21441 /* SunsetWorkoutActivityHIITWorkflowTests.swift */,
 				2B64341929104DE100B21441 /* SunsetWorkoutActivityTests.swift */,
 				2BD4A5882916A86600FAFCD9 /* SunsetWorkoutActivityStrengthWorkflowTests.swift */,
+				2B266DAB29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift */,
 			);
 			path = SunsetWorkoutTests;
 			sourceTree = "<group>";
@@ -523,6 +539,7 @@
 		2BFF299E28C350A50041841F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2B71A9D22922268400B5740B /* Toaster */,
 				2B617CA8291EF2510070C6D3 /* History */,
 				2B1480822909E2C0009E91B8 /* Activity */,
 				2B2EB19A28FC9F4A00F4FEDB /* Utilities */,
@@ -721,7 +738,7 @@
 		2BC729D228B690DE00FD0B04 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -733,7 +750,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n    swiftlint --fix & swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
@@ -773,6 +790,7 @@
 				2B00C26028EED907002FDA9F /* SWError.swift in Sources */,
 				2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */,
 				2BD727082921829C000B5E22 /* FinishedActivityView.swift in Sources */,
+				2B71A9D4292226EE00B5740B /* ToasterView.swift in Sources */,
 				2B2EB1A228FCA76D00F4FEDB /* WorkoutView.swift in Sources */,
 				2B617CA3291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift in Sources */,
 				2B4C3F99291FCDE400A12F11 /* TimeIntervalExtensions.swift in Sources */,
@@ -814,6 +832,7 @@
 				2B617CA7291EB5E70070C6D3 /* InputsView.swift in Sources */,
 				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
 				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
+				2B71A9D62922317D00B5740B /* ToasterModifiers.swift in Sources */,
 				2B2EB19928FC9EE400F4FEDB /* BackgroundView.swift in Sources */,
 				2B8EE32028F9F52D00206F9C /* Feeling.swift in Sources */,
 				2B37B66E28FC0F57005302D7 /* WorkoutCardView.swift in Sources */,
@@ -860,6 +879,7 @@
 			files = (
 				2BB3274629036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift in Sources */,
 				2B64341A29104DE100B21441 /* SunsetWorkoutActivityTests.swift in Sources */,
+				2B266DAC29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift in Sources */,
 				2BD1D80C28B626FF006A3848 /* SunsetWorkoutTests.swift in Sources */,
 				2B64341C29104EB200B21441 /* SunsetWorkoutActivityHIITWorkflowTests.swift in Sources */,
 				2BD4A5892916A86600FAFCD9 /* SunsetWorkoutActivityStrengthWorkflowTests.swift in Sources */,
