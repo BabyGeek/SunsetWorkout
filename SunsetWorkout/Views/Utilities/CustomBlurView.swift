@@ -23,8 +23,10 @@ struct CustomBlurView: UIViewRepresentable {
     }
 }
 
+#if DEBUG
 struct CustomBlurView_Previews: PreviewProvider {
     static var previews: some View {
         CustomBlurView(effect: .systemUltraThinMaterial, onChange: { _ in })
     }
 }
+#endif

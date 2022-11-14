@@ -17,7 +17,7 @@ extension Endpoint {
         var components = URLComponents()
         components.scheme = api.scheme
         components.host = api.host
-        components.path = "/" + path
+        components.path = api.path + "/" + path
         components.queryItems = queryItems.isEmpty ? nil : queryItems
 
         // If either the path or the query items passed contained

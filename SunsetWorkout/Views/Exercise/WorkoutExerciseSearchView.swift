@@ -31,16 +31,11 @@ struct WorkoutExerciseSearchView: View {
                                 Button {
                                     search = ""
                                 } label: {
-                                    Circle()
-                                        .fill(Color(.systemGray))
+                                    Image(systemName: "xmark.circle.fill")
+                                        .resizable()
+                                        .scaledToFit()
                                         .frame(width: 16, height: 16)
-                                        .overlay(
-                                            Image(systemName: "xmark")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 8, height: 8)
-                                                .foregroundColor(Color(.label))
-                                        )
+                                        .foregroundColor(Color(.label))
                                 }
                                     .padding(.trailing)
                                     .conditional(search.isEmpty, { view in
@@ -56,16 +51,11 @@ struct WorkoutExerciseSearchView: View {
                         Button {
                             isSearching = false
                         } label: {
-                            Circle()
-                                .fill(Color(.systemGray))
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(Color(.label))
                                 .frame(width: 20, height: 20)
-                                .overlay(
-                                    Image(systemName: "xmark")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 10, height: 10)
-                                        .foregroundColor(Color(.label))
-                                )
                         }, alignment: .topTrailing)
                     .padding(6)
 

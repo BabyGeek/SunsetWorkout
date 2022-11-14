@@ -10,9 +10,10 @@ import Foundation
 struct APIHost {
     let scheme: String
     let host: String
+    var path: String = ""
 }
 
 extension APIHost {
-    static var WGERAPIHost = APIHost(scheme: "https", host: "wger.de/api/v2")
+    static var WGERAPIHost = APIHost(scheme: "https", host: "wger.de", path: "/api/v2")
     static var quotableAPIHost = APIHost(scheme: "https", host: "api.quotable.io")
 }

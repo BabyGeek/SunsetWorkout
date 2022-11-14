@@ -29,8 +29,10 @@ struct HistoriesView: View {
     }
 }
 
+#if DEBUG
 struct HistoriesView_Previews: PreviewProvider {
     static var previews: some View {
         HistoriesView()
     }
 }
+#endif

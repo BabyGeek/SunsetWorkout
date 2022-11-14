@@ -68,11 +68,13 @@ struct ToasterTestView: View {
     }
 }
 
+#if DEBUG
 struct ToasterView_Previews: PreviewProvider {
     static var previews: some View {
         ToasterTestView()
     }
 }
+#endif
 
 struct ToasterView: View {
     let type: ToasterType
