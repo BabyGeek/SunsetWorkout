@@ -75,8 +75,7 @@ class SWActivity: ObservableObject {
         lastState = state
         state = .paused
         
-        var dateInterval = DateInterval()
-        dateInterval.start = Date()
+        let dateInterval = DateInterval()
 
         events.append(HKWorkoutEvent(type: .pause, dateInterval: dateInterval, metadata: nil))
     }
@@ -85,8 +84,7 @@ class SWActivity: ObservableObject {
         if state == .paused {
             state = lastState
             
-            var dateInterval = DateInterval()
-            dateInterval.start = Date()
+            let dateInterval = DateInterval()
             
             events.append(HKWorkoutEvent(type: .resume, dateInterval: dateInterval, metadata: nil))
         } else {
