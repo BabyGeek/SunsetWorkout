@@ -74,14 +74,21 @@ class SWActivity: ObservableObject {
     func pause() {
         lastState = state
         state = .paused
+        
+        var dateInterval = DateInterval()
+        dateInterval.start = Date()
 
-        events.append(HKWorkoutEvent(type: .pause, dateInterval: DateInterval(start: Date(), end: Date()), metadata: nil))
+        events.append(HKWorkoutEvent(type: .pause, dateInterval: dateInterval, metadata: nil))
     }
 
     func run() {
         if state == .paused {
             state = lastState
-            events.append(HKWorkoutEvent(type: .resume, dateInterval: DateInterval(start: Date(), end: Date()), metadata: nil))
+            
+            var dateInterval = DateInterval()
+            dateInterval.start = Date()
+            
+            events.append(HKWorkoutEvent(type: .resume, dateInterval: dateInterval, metadata: nil))
         } else {
             state = .running
         }
