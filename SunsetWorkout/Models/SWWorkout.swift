@@ -27,7 +27,7 @@ struct SWWorkout {
         self.name = name
         self.type = type
         self.createdAt = createdAt
-        self.metadata = metadata
+        self.metadata = metadata.filter({ type.SWMetadataTypes.contains($0.type) })
         self.exercises = exercises?.sorted(by: \.order) ?? []
     }
 
@@ -136,8 +136,12 @@ extension SWWorkout {
         self.id = object._id
         self.type = type
         self.name = object.name
-        self.metadata = object.metadata.map { SWMetadata(object: $0) }
-        self.exercises = object.exercises.map { SWExercise(object: $0) }.sorted(by: { $0.order < $1.order })
+        self.metadata = object.metadata
+            .map { SWMetadata(object: $0) }
+            .filter({ type.SWMetadataTypes.contains($0.type) })
+        self.exercises = object.exercises
+            .map { SWExercise(object: $0) }
+            .sorted(by: { $0.order < $1.order })
         self.createdAt = object.created_at
     }
 }

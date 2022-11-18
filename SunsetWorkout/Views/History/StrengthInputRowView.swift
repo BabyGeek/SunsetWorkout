@@ -48,7 +48,7 @@ struct StrengthInputRowView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-        }, height: 100)
+        })
     }
 }
 

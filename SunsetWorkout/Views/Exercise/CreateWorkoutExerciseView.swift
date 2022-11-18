@@ -28,7 +28,6 @@ struct CreateWorkoutExerciseView: View, KeyboardReadable {
             isKeyboardVisible = newIsKeyboardVisible
         }
         .navigationTitle(NSLocalizedString("exercise.add", comment: "Add exercise title"))
-        .navigationBarTitleDisplayMode(.inline)
         .toastWithError($viewModel.error)
     }
 }

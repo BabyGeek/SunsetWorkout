@@ -49,7 +49,6 @@ struct WorkoutView: View {
         }
         .navigationTitle(viewModel.workout?.name ??
                          NSLocalizedString("workout.name.not.found", comment: "Label workout name not found"))
-        .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing:
                                 NavigationLink(
                                     destination: CreateWorkoutExerciseView(viewModel: viewModel),

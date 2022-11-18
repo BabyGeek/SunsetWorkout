@@ -50,7 +50,12 @@ final class SunsetWorkoutActivityTests: XCTestCase {
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
 
-        XCTAssertEqual(viewModel.getCurrentRepetitionLocalizedString(), "Round: 1/0")
+        let localizedString = String(format: NSLocalizedString("activity.exercise.repetition", comment: ""),
+                                     NSLocalizedString("workout.hiit.repetition", comment: ""),
+                                     1,
+                                     0)
+
+        XCTAssertEqual(viewModel.getCurrentRepetitionLocalizedString(), localizedString)
     }
 
     func testStrengthCurrentRepetitionString() {
@@ -58,7 +63,12 @@ final class SunsetWorkoutActivityTests: XCTestCase {
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
 
-        XCTAssertEqual(viewModel.getCurrentRepetitionLocalizedString(), "Serie: 1/0")
+        let localizedString = String(format: NSLocalizedString("activity.exercise.repetition", comment: ""),
+                                     NSLocalizedString("workout.strength.repetition", comment: ""),
+                                     1,
+                                     0)
+
+        XCTAssertEqual(viewModel.getCurrentRepetitionLocalizedString(), localizedString)
     }
 
     func testNextExerciseEmptyString() {
@@ -66,8 +76,11 @@ final class SunsetWorkoutActivityTests: XCTestCase {
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
 
-        XCTAssertEqual(viewModel.getNextExerciseLocalizedString(),
-                       "Incoming: Not found, this is your last exercise, let's do it!")
+        let localizedString = String(
+            format: NSLocalizedString("activity.exercise.next.last", comment: ""),
+            NSLocalizedString("not.found", comment: ""))
+
+        XCTAssertEqual(viewModel.getNextExerciseLocalizedString(), localizedString)
     }
 
     func testNextExerciseNotLastString() {
@@ -89,7 +102,11 @@ final class SunsetWorkoutActivityTests: XCTestCase {
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
 
-        XCTAssertEqual(viewModel.getNextExerciseLocalizedString(), "Incoming: Jumps")
+        let localizedString = String(
+            format: NSLocalizedString("activity.exercise.next", comment: ""),
+            "Jumps")
+
+        XCTAssertEqual(viewModel.getNextExerciseLocalizedString(), localizedString)
     }
 
     func testNextExerciseIsLastString() {
@@ -105,8 +122,11 @@ final class SunsetWorkoutActivityTests: XCTestCase {
         let viewModel = ActivityViewModel(workout: workout)
         viewModel.getNext()
 
-        XCTAssertEqual(viewModel.getNextExerciseLocalizedString(),
-                       "Incoming: Jumps, this is your last exercise, let's do it!")
+        let localizedString = String(
+            format: NSLocalizedString("activity.exercise.next.last", comment: ""),
+            "Jumps")
+
+        XCTAssertEqual(viewModel.getNextExerciseLocalizedString(), localizedString)
     }
 
     func testPreparedInputOnNoExercise() {

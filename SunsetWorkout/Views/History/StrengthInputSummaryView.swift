@@ -12,10 +12,9 @@ struct StrengthInputSummaryView: View {
     let exerciseGoal: Int
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView {
             ForEach(inputs) { input in
                 StrengthInputRowView(input: input, goal: exerciseGoal)
-                    .padding(.vertical, 6)
             }
         }
     }

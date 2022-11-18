@@ -25,7 +25,7 @@ struct HIITInputRowView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("\(input.timePassed)")
+                    Text("\(String(format: "%.0f", input.timePassed))")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 HStack {
@@ -33,7 +33,8 @@ struct HIITInputRowView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    Image(systemName: input.skipped ? "checkmark" : "xmark")
+                    Image(systemName: input.skipped ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        .foregroundColor(input.skipped ? .green : .red)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }

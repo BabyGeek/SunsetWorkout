@@ -49,7 +49,7 @@ struct DashboardView: View {
                         icon: Image(systemName: "bed.double"),
                         title: "dashboard.sleep",
                         value: dashboardViewModel.getSleptLabel())
-                    
+
                     Button {
                         displayFeelingSelection = true
                         if let feeling = dashboardViewModel.feeling {
@@ -84,7 +84,9 @@ struct DashboardView: View {
         }
         .toastWithError($dashboardViewModel.error)
         .sheet(isPresented: $displayFeelingSelection, onDismiss: {
-            self.dashboardViewModel.feelingViewModel.save(model: Feeling(type: selectedFeeling), with: FeelingEntity.init)
+            self.dashboardViewModel
+                .feelingViewModel
+                .save(model: Feeling(type: selectedFeeling), with: FeelingEntity.init)
             self.dashboardViewModel.getFeeling()
         }, content: {
             ZStack {

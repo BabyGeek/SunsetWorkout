@@ -16,13 +16,11 @@ class SWActivity: ObservableObject {
     // MARK: - Properties
     let cantStepOverState: [SWActivityState] = [.initialized, .starting, .paused, .canceled, .finished]
     let workout: SWWorkout
-    var shouldSetUpTimer: Bool = false
     var startDate: Date = Date()
     var endDate: Date = Date()
     var events: [HKWorkoutEvent] = []
     var nextExerciseOrder: Int = 0
     var lastState: SWActivityState
-    var workoutInputs: [String: [[String: Any]]] = [:]
     var energyBurnedPerMinutes: Double?
     var workoutBuilder: HKWorkoutBuilder?
     var query: HKQuery?
@@ -40,6 +38,7 @@ class SWActivity: ObservableObject {
     @Published var currentExerciseBreak: Float = 0
     @Published var goal: Float = 0
     @Published var error: SWError?
+    @Published var workoutInputs: [String: [[String: Any]]] = [:]
 
     // MARK: - Computed properties
     var duration: Double {
@@ -115,8 +114,6 @@ class SWActivity: ObservableObject {
 
     /// Get the next activity step
     func getNext() {
-        shouldSetUpTimer = false
-
         switch state {
         case .initialized:
             initFirstExercise()
@@ -158,7 +155,6 @@ class SWActivity: ObservableObject {
 
     /// Increase the current repetition
     func increaseExerciseRepetition() {
-        shouldSetUpTimer = true
         exerciseHasChanged = false
         currentExerciseRepetition += 1
         inBreak()
@@ -166,7 +162,6 @@ class SWActivity: ObservableObject {
 
     /// Change the current exercise
     func changeExercise() {
-        shouldSetUpTimer = true
         exerciseHasChanged = true
         nextExerciseOrder += 1
         currentExerciseRepetition = 1
@@ -215,7 +210,7 @@ class SWActivity: ObservableObject {
     /// Add an input to the activity
     /// - Parameter inputPrepared: `[String: Any]`
     func addInput(_ inputPrepared: [String: Any]) {
-        if state == .inBreak { return }
+        if cantStepOverState.contains(state) { return }
         guard let exerciseID = inputPrepared["exerciseID"] as? String, exerciseID != "0" else { return }
         var inputMutable = inputPrepared
         inputMutable["exerciseOrder"] = currentExercise?.order
@@ -257,7 +252,6 @@ extension SWActivity {
             workoutBuilder = .init(healthStore: store, configuration: workoutConfiguration, device: .local())
             workoutBuilder?.beginCollection(withStart: startDate, completion: { _, error in
                 if let error {
-                    dump("error from builder begin collection save: \(error)")
                     self.error = SWError(error: error)
                 }
             })
@@ -276,7 +270,6 @@ extension SWActivity {
     private func addWorkoutBuilderSamples(_ samples: [HKSample]) {
         workoutBuilder?.add(samples, completion: { _, error in
             if let error {
-                dump("error from builder samples save: \(error)")
                 self.error = SWError(error: error)
             }
         })
@@ -285,10 +278,9 @@ extension SWActivity {
     /// Add events to the healthkit workout builder
     private func addBuilderEvents() {
         if events.isEmpty { return }
-        
+
         workoutBuilder?.addWorkoutEvents(events, completion: { _, error in
             if let error {
-                dump("error from builder events save: \(error)")
                 self.error = SWError(error: error)
             }
         })
@@ -335,14 +327,12 @@ extension SWActivity {
     private func endBuilder() {
         workoutBuilder?.endCollection(withEnd: endDate, completion: { _, error in
             if let error {
-                dump("error from builder end: \(error)")
                 self.error = SWError(error: error)
                 return
             }
 
             self.workoutBuilder?.finishWorkout(completion: { _, error in
                 if let error {
-                    dump("error from builder finish: \(error)")
                     self.error = SWError(error: error)
                     return
                 }

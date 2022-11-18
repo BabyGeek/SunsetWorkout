@@ -22,7 +22,12 @@ struct FinishedActivityView: View {
                     isActive: $goToSummary) {
                     EmptyView()
                 }
-                
+
+                NavigationLink(
+                    destination: WorkoutView(viewModel: WorkoutViewModel(workout: viewModel.activity.workout)),
+                    isActive: $goToWorkout) {
+                    EmptyView()
+                }
 
                 ActivityButton {
                     ActivityButtonWithIconAndTitle(
@@ -33,34 +38,28 @@ struct FinishedActivityView: View {
                 } action: {
                     goToSummary = true
                 }
-            }
-            
-            NavigationLink(
-                destination: WorkoutView(viewModel: WorkoutViewModel(workout: viewModel.activity.workout)),
-                isActive: $goToWorkout) {
-                EmptyView()
-            }
 
-            ActivityButton {
-                ActivityButtonWithIconAndTitle(
-                    titleKey: "button.go.to.workout",
-                    iconName: "figure.strengthtraining.traditional",
-                    color: .yellow
-                )
-            } action: {
-                goToWorkout = true
-            }
+                ActivityButton {
+                    ActivityButtonWithIconAndTitle(
+                        titleKey: "button.go.to.workout",
+                        iconName: "figure.strengthtraining.traditional",
+                        color: .yellow
+                    )
+                } action: {
+                    goToWorkout = true
+                }
 
-            ActivityButton {
-                ActivityButtonWithIconAndTitle(
-                    titleKey: "button.go.to.launch",
-                    iconName: "play.fill",
-                    color: .blue
-                )
-            } action: {
-                presentationMode.wrappedValue.dismiss()
+                ActivityButton {
+                    ActivityButtonWithIconAndTitle(
+                        titleKey: "button.go.to.launch",
+                        iconName: "play.fill",
+                        color: .blue
+                    )
+                } action: {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                Spacer()
             }
-            Spacer()
         }
         .padding(.horizontal)
     }

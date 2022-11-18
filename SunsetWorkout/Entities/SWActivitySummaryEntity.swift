@@ -53,11 +53,11 @@ extension SWActivitySummaryEntity {
     private func setUpHIITInputs(with summary: SWActivitySummary) {
         for (id, values) in summary.inputs {
             let actityInputs = ActivityHIITInputsEntity()
-            let hiitInput = ActivityHIITInputEntity()
 
             actityInputs.exerciseUUID = id
 
             for input in values {
+                let hiitInput = ActivityHIITInputEntity()
                 hiitInput.skipped = false
                 for (key, value) in input {
                     if key == "exerciseOrder" {
@@ -73,7 +73,7 @@ extension SWActivitySummaryEntity {
                     }
 
                     if key == "value" {
-                        if let value = value as? Int {
+                        if let value = value as? Float {
                             hiitInput.timePassed = value
                         }
                     }
@@ -95,11 +95,11 @@ extension SWActivitySummaryEntity {
     private func setUpStrengthInputs(with summary: SWActivitySummary) {
         for (id, values) in summary.inputs {
             let actityInputs = ActivityStrengthInputsEntity()
-            let strengthInput = ActivityStrengthInputEntity()
 
             actityInputs.exerciseUUID = id
 
             for input in values {
+                let strengthInput = ActivityStrengthInputEntity()
                 strengthInput.skipped = false
                 for (key, value) in input {
                     if key == "exerciseOrder" {

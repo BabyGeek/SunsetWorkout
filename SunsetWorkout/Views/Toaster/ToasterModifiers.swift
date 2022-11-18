@@ -14,7 +14,7 @@ struct TasterPresentedModifier: ViewModifier {
     let position: ToasterPosition
     let title: String
     let text: String
-    
+
     func body(content: Content) -> some View {
         ZStack {
             content
@@ -39,7 +39,7 @@ struct TasterItemModifier<I: Identifiable>: ViewModifier {
     let position: ToasterPosition
     let title: String
     let text: String
-    
+
     func body(content: Content) -> some View {
         ZStack {
             content

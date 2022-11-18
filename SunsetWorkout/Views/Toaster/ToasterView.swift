@@ -9,7 +9,7 @@ import SwiftUI
 
 enum ToasterType {
     case error, success, warning, info
-    
+
     var iconName: String {
         switch self {
         case .error:
@@ -22,7 +22,7 @@ enum ToasterType {
             return "info.circle.fill"
         }
     }
-    
+
     var foregroundColor: Color {
         switch self {
         case .error:
@@ -39,7 +39,7 @@ enum ToasterType {
 
 enum ToasterPosition {
     case top, bottom
-    
+
     var edgeMoving: Edge {
         switch self {
         case .top:
@@ -57,7 +57,7 @@ struct TestToastItem: Identifiable {
 struct ToasterTestView: View {
     @State var isPresented: Bool = false
     @State var item: SWError?
-    
+
     var body: some View {
         Text("Hello, World!")
             .onTapGesture {
@@ -81,18 +81,18 @@ struct ToasterView: View {
     let position: ToasterPosition
     let title: String
     let text: String
-    
+
     var body: some View {
         VStack {
             if position == .bottom {
                 Spacer()
             }
-            
+
             HStack(spacing: 12) {
                 Image(systemName: type.iconName)
                     .resizable()
                     .frame(width: 24, height: 24)
-                
+
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.headline)
@@ -107,7 +107,7 @@ struct ToasterView: View {
             .background(Color.white)
             .cornerRadius(50)
             .shadow(radius: 5)
-            
+
             if position == .top {
                 Spacer()
             }

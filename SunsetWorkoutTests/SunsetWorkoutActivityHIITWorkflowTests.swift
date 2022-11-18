@@ -256,6 +256,7 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
 
         XCTAssertTrue(viewModel.canSkip)
         viewModel.skip()
+        viewModel.getNext()
         XCTAssertEqual(viewModel.activity.currentExerciseRepetition, 2)
     }
 }

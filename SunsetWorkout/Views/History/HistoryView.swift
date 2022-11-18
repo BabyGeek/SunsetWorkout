@@ -9,12 +9,6 @@ import SwiftUI
 
 struct HistoryView: View {
     let summary: SWActivitySummary
-    @StateObject var viewModel: SummaryExerciseSelectionViewModel
-
-    init(summary: SWActivitySummary) {
-        self.summary = summary
-        _viewModel = StateObject(wrappedValue: SummaryExerciseSelectionViewModel(summary: summary))
-    }
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -36,6 +30,7 @@ struct HistoryView: View {
                 }
                 .padding()
                 exerciseSelection
+                    .edgesIgnoringSafeArea(.bottom)
             }
             .padding(.horizontal)
         }
@@ -43,8 +38,7 @@ struct HistoryView: View {
     }
 
     var exerciseSelection: some View {
-        VStack {
-            TabView(selection: $viewModel.selectedExercise) {
+        TabView {
                 if summary.type == .highIntensityIntervalTraining {
                     ForEach(summary.formattedInputsHIIT) { input in
                         VStack {
@@ -52,8 +46,8 @@ struct HistoryView: View {
                             HIITInputSummaryView(
                                 inputs: input.inputs
                             )
-                            .tag(input.exerciseUUID)
                         }
+                        .tag(input.exerciseUUID)
                     }
                 }
 
@@ -71,11 +65,11 @@ struct HistoryView: View {
                         }
                     }
                 }
-            }
-            .animation(.easeOut)
-            .transition(.scale)
-            .tabViewStyle(PageTabViewStyle())
         }
+        .frame(maxHeight: 650)
+        .animation(.easeOut)
+        .transition(.scale)
+        .tabViewStyle(PageTabViewStyle())
     }
 }
 

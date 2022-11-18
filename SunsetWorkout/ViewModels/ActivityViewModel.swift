@@ -20,6 +20,7 @@ class ActivityViewModel: ObservableObject {
     @Published var activitySummary: SWActivitySummary?
 
     private var inputPrepared: [String: Any] = [:]
+    private var excisesRepetitionsSaved: [String: [Int]] = [:]
     private var query: HKQuery?
 
     let realmManager = RealmManager()
@@ -95,7 +96,6 @@ class ActivityViewModel: ObservableObject {
                 self.activitySummary = self.activity.getSummary()
                 try self.save(with: SWActivitySummaryEntity.init)
             } catch {
-                dump("error from activity save: \(error)")
                 self.error = SWError(error: error)
             }
         }
@@ -113,7 +113,6 @@ class ActivityViewModel: ObservableObject {
         } else if activity.workout.type == .highIntensityIntervalTraining {
             saveInputRound()
             timeRemaining = 0
-            getNext()
         }
     }
 
@@ -187,11 +186,12 @@ class ActivityViewModel: ObservableObject {
                 if activityStateIs(.inBreak) {
                     play()
                 } else if !activityStateIs(.paused) {
-                    if activity.workout.type != .traditionalStrengthTraining {
-                        if activity.workout.type == .highIntensityIntervalTraining {
+                    if activity.workout.type == .highIntensityIntervalTraining {
                             prepareAddInput()
                             saveInputRound()
-                        }
+                    }
+
+                    if activity.workout.type != .traditionalStrengthTraining {
                         getNext()
                     }
                 }
@@ -226,12 +226,23 @@ class ActivityViewModel: ObservableObject {
 
     /// Add the prepared input to the activity
     func addInput() {
+        guard let currenExerciseID = activity.currentExercise?.id else { return }
+
+        if excisesRepetitionsSaved[currenExerciseID] != nil {
+            if excisesRepetitionsSaved[currenExerciseID]!.contains(activity.currentExerciseRepetition) { return }
+            excisesRepetitionsSaved[currenExerciseID]!.append(activity.currentExerciseRepetition)
+        } else {
+            excisesRepetitionsSaved[currenExerciseID] = [activity.currentExerciseRepetition]
+        }
+
         activity.addInput(inputPrepared)
     }
 
     /// Prepare the next input with current exercise ID and current repetition number
     func prepareAddInput() {
         guard let currenExerciseID = activity.currentExercise?.id else { return }
+
+        inputPrepared = [:]
         inputPrepared["exerciseID"] = currenExerciseID
         inputPrepared["currentRepetition"] = activity.currentExerciseRepetition
     }
@@ -292,7 +303,7 @@ class ActivityViewModel: ObservableObject {
         case .highIntensityIntervalTraining:
             return NSLocalizedString("workout.hiit.repetition", comment: "Workout HIIT repetition name")
         case .traditionalStrengthTraining:
-            return NSLocalizedString("workout.stregth.repetition", comment: "Workout Strength repetition name")
+            return NSLocalizedString("workout.strength.repetition", comment: "Workout Strength repetition name")
         }
     }
 
@@ -319,10 +330,10 @@ extension ActivityViewModel {
         do {
             if let activitySummary {
                 try realmManager.save(model: activitySummary, with: reverseTransformer)
+                self.activitySummary = try? realmManager.fetch(with: SWActivitySummary.allByDateDESC).first
                 saved = true
             }
         } catch {
-            dump("error from activity save realm: \(error)")
             self.error = SWError(error: error)
         }
     }

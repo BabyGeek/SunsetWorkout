@@ -11,10 +11,9 @@ struct HIITInputSummaryView: View {
     let inputs: [ActivityHIITInput]
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        ScrollView {
             ForEach(inputs) { input in
                 HIITInputRowView(input: input)
-                    .padding(.vertical, 6)
             }
         }
     }

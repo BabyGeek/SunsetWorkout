@@ -55,7 +55,7 @@ extension KeyboardReadable {
             NotificationCenter.default
                 .publisher(for: UIResponder.keyboardWillShowNotification)
                 .map { _ in true },
-            
+
             NotificationCenter.default
                 .publisher(for: UIResponder.keyboardWillHideNotification)
                 .map { _ in false }
@@ -80,7 +80,7 @@ extension View {
             self
         }
     }
-    
+
     /// ViewBuilder designed for toast with error modifiers
     /// - Parameter error: `SWError`
     /// - Returns: `some View`
@@ -96,7 +96,6 @@ extension View {
             )
     }
 }
-
 
 // MARK: - Toaster modifiers
 extension View {
@@ -116,7 +115,7 @@ extension View {
                     title: title,
                     text: text))
         }
-    
+
     func toast<I: Identifiable>(
         item: Binding<I?>,
         type: ToasterType = .success,

@@ -63,7 +63,7 @@ struct FeelingConfigurationView: View {
 
 struct FeelingSelectionView: View {
     @Binding var selected: FeelingType
-    
+
     var body: some View {
         VStack {
             HStack {

@@ -56,7 +56,7 @@
 "workout.type.name.hiit" = "HIIT";
 "workout.type.name.strenght" = "Strenght";
 "workout.hiit.repetition" = "Round";
-"workout.stregth.repetition" = "Serie";
+"workout.strength.repetition" = "Serie";
 
 // METADATA TYPE
 "metadate.label.exercise.break" = "Exercise end break";
