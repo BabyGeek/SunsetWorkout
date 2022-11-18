@@ -18,6 +18,8 @@ struct DashboardCardView: View {
                 HStack {
                     icon
                     Text(title)
+                        .font(.subheadline)
+                        .fontWeight(.regular)
                 }
                 .padding()
 
