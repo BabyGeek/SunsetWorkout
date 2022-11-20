@@ -55,7 +55,6 @@ struct MainActivityView: View {
                     Button {
                         if !viewModel.activityStateIs(.initialized) {
                             viewModel.cancel()
-                            viewModel.save()
                         }
 
                         presentationMode.wrappedValue.dismiss()

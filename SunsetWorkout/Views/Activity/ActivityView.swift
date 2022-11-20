@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ActivityView: View {
     @StateObject var viewModel: ActivityViewModel
+    @State var shouldSkip: Bool = false
+    @State var shouldCancel: Bool = false
 
     var timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
 
@@ -29,9 +31,20 @@ struct ActivityView: View {
                 }
             }
 
-            ActivitySerieInputAlertView { goalValue in
+            ActivitySerieInputAlertView(goal: viewModel.getExerciseGoal()) { goalValue in
                 viewModel.presentSerieAlert = false
-                viewModel.saveInputSerie(goalValue)
+
+                if viewModel.shouldSkip || viewModel.shouldCancel {
+                    viewModel.skipPreparedInput()
+                    viewModel.saveInputSerie(goalValue)
+
+                    if viewModel.shouldCancel {
+                       viewModel.cancel()
+                    }
+                    viewModel.shouldSkip = false
+                } else {
+                    viewModel.saveInputSerie(goalValue)
+                }
             }
             .conditional(!viewModel.presentSerieAlert) { view in
                     view

@@ -24,52 +24,51 @@ struct HistoryView: View {
                         iconName: "flame.fill",
                         value: summary.totalEnergyBurnedQuantity.description)
                     Spacer()
-                    HistoryMetaView(
-                        iconName: "dumbbell.fill",
-                        value: summary.type.name)
+                    if #available(iOS 16, *) {
+                        HistoryMetaView(
+                            iconName: "dumbbell.fill",
+                            value: summary.type.name)
+                    } else {
+                        HistoryMetaView(
+                            iconName: "list.bullet.clipboard",
+                            value: summary.type.name)
+                    }
                 }
                 .padding()
-                exerciseSelection
-                    .edgesIgnoringSafeArea(.bottom)
+
+                VStack {
+                    if summary.type == .traditionalStrengthTraining {
+                        Text(String(
+                            format: NSLocalizedString("summary.goal", comment: "Goal label"),
+                            summary.getGoal()))
+                            .padding(.horizontal)
+
+                        InputListView(
+                            exercises: summary.formattedInputsStrength,
+                            inputsKeyPath: \.inputs,
+                            inputTagKeyPath: \.exerciseUUID) { inputExercise in
+                                Text(summary.getExerciseNameFromID(inputExercise.exerciseUUID))
+                            } inputItemView: { (input, exerciseUUID) in
+                                StrengthInputRowView(
+                                    input: input,
+                                    goal: summary.getExerciseGoal(exerciseUUID))
+                            }
+                    }
+
+                    if summary.type == .highIntensityIntervalTraining {
+                        InputListView(
+                            exercises: summary.formattedInputsHIIT,
+                            inputsKeyPath: \.inputs,
+                            inputTagKeyPath: \.exerciseUUID) { inputExercise in
+                                Text(summary.getExerciseNameFromID(inputExercise.exerciseUUID))
+                            } inputItemView: { (input, _) in
+                                HIITInputRowView(input: input)
+                            }
+                    }
+                }
             }
-            .padding(.horizontal)
         }
         .navigationTitle(summary.title)
-    }
-
-    var exerciseSelection: some View {
-        TabView {
-                if summary.type == .highIntensityIntervalTraining {
-                    ForEach(summary.formattedInputsHIIT) { input in
-                        VStack {
-                            Text(summary.getExerciseNameFromID(input.exerciseUUID))
-                            HIITInputSummaryView(
-                                inputs: input.inputs
-                            )
-                        }
-                        .tag(input.exerciseUUID)
-                    }
-                }
-
-                if summary.type == .traditionalStrengthTraining {
-                    Text(String(format: NSLocalizedString("summary.goal", comment: "Goal label"), summary.getGoal()))
-
-                    ForEach(summary.formattedInputsStrength) { input in
-                        VStack {
-                            Text(summary.getExerciseNameFromID(input.exerciseUUID))
-                            StrengthInputSummaryView(
-                                inputs: input.inputs,
-                                exerciseGoal: summary.getExerciseGoal(input.exerciseUUID)
-                            )
-                            .tag(input.exerciseUUID)
-                        }
-                    }
-                }
-        }
-        .frame(maxHeight: 650)
-        .animation(.easeOut)
-        .transition(.scale)
-        .tabViewStyle(PageTabViewStyle())
     }
 }
 

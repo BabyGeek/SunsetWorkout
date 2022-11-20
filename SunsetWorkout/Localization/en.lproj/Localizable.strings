@@ -79,6 +79,9 @@
 "exercise.search.empty" = "Please enter something to began searching.";
 "exercise.search.loading" = "Searching...";
 "exercise.add" = "Add an exercise";
+"exercise.serie.input.title" = "How many repetitions have you done?";
+"exercise.serie.goal" = "Your repetition goal is %@";
+"exercise.serie.total" = "Repetitions done";
 
 // PROFILE
 "profile.height" = "Height";
@@ -90,6 +93,8 @@
 // ERRORS
 "error.global.unknown.description" = "Unknown error";
 "error.global.unknown.failure.reason" = "An unknown error occured.";
+"error.global.NaN.description" = "Data error";
+"error.global.NaN.failure.reason" = "You have entered number parameter in a forbidden format.";
 
 "error.realm.no.realm.description" = "Realm error";
 "error.realm.no.realm.failure.reason" = "Realm was not able to be found.";
@@ -100,6 +105,8 @@
 "error.workout.no.name.failure.reason" = "You need to specify a name for the workout.";
 "error.workout.is.nil.description" = "Workout saving error";
 "error.workout.is.nil.failure.reason" = "Error while saving your workout, please check your data.";
+"error.workout.not.found.description" = "Workout fetching error";
+"error.workout.not.found.failure.reason" = "Impossible to find the selected workout.";
 
 "error.exercise.no.name.description" = "Exercise error";
 "error.exercise.no.name.failure.reason" = "You need to specify a name for the exercise.";
@@ -107,9 +114,13 @@
 "error.exercise.not.saved.failure.reason" = "Error while saving your exercise, please check your data.";
 "error.exercise.several.orders.description" = "Exercise order error";
 "error.exercise.several.orders.failure.reason" = "The exercises ordering is not correct.";
+"error.exercise.is.nil.description" = "Exercise saving error";
+"error.exercise.is.nil.failure.reason" = "Error while saving your exercise, please check your data.";
 
-"error.healthkit.not.saved.description" = "HeathKit saving error";
-"error.healthkit.not.saved.failure.reason" = "Was not able to save the workout in HealthKit.";
+"error.healthkit.not.saved.description" = "Health saving error";
+"error.healthkit.not.saved.failure.reason" = "Was not able to save the workout in Health application.";
+"error.healthkit.collection.end.failure.description" = "Health collection error";
+"error.healthkit.collection.end.failure.failure.reason" = "The Health application activity was not able to end properly.";
 
 // ACTIVITY
 "activity.start.preface" = "Press start when you feel ready!";
@@ -125,6 +136,7 @@
 "button.go.to.summary" = "Workout summary";
 "button.go.to.workout" = "Workout";
 "button.go.to.launch" = "Launch an other workout";
+"activity.loading" = "Saving...";
 
 // HISTORY
 "history.empty" = "No workout session done yet. Start one to see the summary in here later";

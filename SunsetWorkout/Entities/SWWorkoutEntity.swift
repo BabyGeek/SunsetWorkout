@@ -33,3 +33,18 @@ extension SWWorkoutEntity {
         self.created_at = workout.createdAt
     }
 }
+
+// MARK: - Checks
+extension SWWorkoutEntity {
+    func exerciseOrderIsGood() -> Bool {
+        if exercises.isEmpty {
+            return true
+        }
+
+        for index in 0..<exercises.count - 1 where exercises[index].order == exercises[index + 1].order {
+            return false
+        }
+
+        return true
+    }
+}

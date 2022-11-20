@@ -6,9 +6,14 @@
 //
 
 @testable import SunsetWorkout
+import RealmSwift
 import XCTest
 
 final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
+    override class func setUp() {
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealmHIIT"
+    }
+
     func testActivityStartingToRunning() {
         let workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
         let viewModel = ActivityViewModel(workout: workout)
@@ -203,6 +208,7 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         viewModel.cancel()
 
         viewModel.setupTimer()
+
         XCTAssertTrue(viewModel.activityStateIs(.canceled))
         XCTAssertTrue(viewModel.isFinished)
         XCTAssertFalse(viewModel.shouldShowTimer)

@@ -25,7 +25,11 @@ enum TabBarItem {
         case .history:
             return Image(systemName: "calendar.badge.clock")
         case .activities:
-            return Image(systemName: "figure.strengthtraining.traditional")
+            if #available(iOS 16, *) {
+                return Image(systemName: "figure.strengthtraining.traditional")
+            } else {
+                return Image(systemName: "bolt.heart")
+            }
         }
     }
 

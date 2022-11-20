@@ -30,6 +30,14 @@ struct SWExercise {
 
         return goal.intValue
     }
+
+    /// Get repetition goal string if set up
+    /// - Returns: `String`
+    func getGoalString() -> String {
+        guard let goal = metadata.first(where: { $0.type == .repetitionGoal }) else { return "" }
+
+        return goal.value
+    }
 }
 
 // MARK: - Identifiable

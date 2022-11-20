@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ActivitySerieInputAlertView: View {
     @State var text: String = ""
+    var goal: String = ""
     var action: (String) -> Void
 
-    init(_ action: @escaping (String) -> Void) {
+    init(goal: String, _ action: @escaping (String) -> Void) {
+        self.goal = goal
         self.action = action
     }
 
@@ -23,13 +25,15 @@ struct ActivitySerieInputAlertView: View {
             VStack(spacing: 20) {
                 Text("exercise.serie.input.title")
 
-                Text("exercise.serie.goal")
+                Text(String(
+                    format: NSLocalizedString("exercise.serie.goal", comment: "Exercise goal"),
+                    goal))
 
-                FloatingTextField(placeHolder: "exercise.serie.goal", text: $text, bgColor: .clear)
+                FloatingTextField(placeHolder: "exercise.serie.total", text: $text, bgColor: .clear)
                     .keyboardType(.numberPad)
 
                 Button {
-                    action(text)
+                    action(text.isEmpty ? "0" : text)
                 } label: {
                     Text("button.save")
                         .foregroundColor(Color(.label))
@@ -45,7 +49,7 @@ struct ActivitySerieInputAlertView: View {
 
 struct ActivitySerieInputAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivitySerieInputAlertView { text in
+        ActivitySerieInputAlertView(goal: "12") { text in
             print(text)
         }
     }

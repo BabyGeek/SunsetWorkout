@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct WorkoutsView: View {
-    @StateObject var viewModel = WorkoutsViewModel()
+    @ObservedObject var viewModel = WorkoutsViewModel()
 
     var body: some View {
         if viewModel.workouts.isEmpty {
@@ -18,7 +18,7 @@ struct WorkoutsView: View {
             ScrollView {
                 ForEach(viewModel.workouts) { workout in
                     NavigationLink {
-                        WorkoutView(viewModel: WorkoutViewModel(workout: workout))
+                        WorkoutView(workout: workout)
                     } label: {
                         WorkoutCardView(workout: workout)
                             .foregroundColor(Color(.label))

@@ -18,6 +18,8 @@ class ActivityViewModel: ObservableObject {
     @Published var presentSerieAlert: Bool  = false
     @Published var saved: Bool = false
     @Published var activitySummary: SWActivitySummary?
+    @Published var shouldSkip: Bool = false
+    @Published var shouldCancel: Bool = false
 
     private var inputPrepared: [String: Any] = [:]
     private var excisesRepetitionsSaved: [String: [Int]] = [:]
@@ -29,9 +31,7 @@ class ActivityViewModel: ObservableObject {
     var cancellable: AnyCancellable?
 
     var shouldShowTimer: Bool {
-        activity.shouldHaveTimer() ||
-        (activityStateIs(.paused) &&
-         (activityLastStateIs(.inBreak) || activity.workout.type == .highIntensityIntervalTraining))
+        activity.shouldHaveTimer() || (activityStateIs(.paused) && (activityLastStateIs(.inBreak) || isHIITTraining))
     }
 
     var exerciseHasChanged: Bool {
@@ -42,7 +42,7 @@ class ActivityViewModel: ObservableObject {
 
     var canSkip: Bool {
         withAnimation {
-            activityStateIs(.running) || activityStateIs(.inBreak)
+            activityStateIs(.running) && isHIITTraining || activityStateIs(.inBreak)
         }
     }
 
@@ -76,9 +76,16 @@ class ActivityViewModel: ObservableObject {
         }
     }
 
+    var isHIITTraining: Bool {
+        activity.workout.type == .highIntensityIntervalTraining
+    }
+
+    var isTraditionalTraining: Bool {
+        activity.workout.type == .traditionalStrengthTraining
+    }
+
     init(workout: SWWorkout) {
         self.activity = SWActivity(workout: workout, state: .initialized)
-        AnalyticsManager.logInitializeActivity()
 
         cancellable = activity.objectWillChange.sink { [weak self] _ in
             if let self {
@@ -102,15 +109,10 @@ class ActivityViewModel: ObservableObject {
     }
 
     func skip() {
-        prepareAddInput()
-        inputPrepared["skipped"] = true
-
-        if activity.workout.type == .traditionalStrengthTraining {
-            timeRemaining = 0
-            saveInputSerie("0")
-            getNext()
-            setupTimer()
-        } else if activity.workout.type == .highIntensityIntervalTraining {
+        shouldSkip = false
+       if isHIITTraining {
+            prepareAddInput()
+            skipPreparedInput()
             saveInputRound()
             timeRemaining = 0
         }
@@ -128,8 +130,11 @@ class ActivityViewModel: ObservableObject {
         }
     }
 
-    func cancel() {
-        activity.endActivity(canceled: true)
+    func cancel(withSkip: Bool = true) {
+        if withSkip {
+            skip()
+        }
+        self.activity.endActivity(canceled: true)
     }
 
     func activityStateIs(_ state: SWActivityState) -> Bool {
@@ -157,9 +162,9 @@ class ActivityViewModel: ObservableObject {
                 resetTimerWithRemaining(activity.currentExerciseBreak)
             }
         } else {
-            if activity.workout.type == .highIntensityIntervalTraining {
+            if isHIITTraining {
                 resetTimerWithRemaining(activity.goal)
-            } else if activity.workout.type == .traditionalStrengthTraining {
+            } else if isTraditionalTraining {
                 resetTimerWithRemaining(0)
             }
         }
@@ -186,9 +191,9 @@ class ActivityViewModel: ObservableObject {
                 if activityStateIs(.inBreak) {
                     play()
                 } else if !activityStateIs(.paused) {
-                    if activity.workout.type == .highIntensityIntervalTraining {
-                            prepareAddInput()
-                            saveInputRound()
+                    if isHIITTraining {
+                        prepareAddInput()
+                        saveInputRound()
                     }
 
                     if activity.workout.type != .traditionalStrengthTraining {
@@ -206,7 +211,7 @@ class ActivityViewModel: ObservableObject {
     /// Save an input for a Strength serie
     /// - Parameter input: `String`
     func saveInputSerie(_ input: String) {
-        if activity.workout.type == .highIntensityIntervalTraining {
+        if isHIITTraining {
             return
         }
 
@@ -216,11 +221,11 @@ class ActivityViewModel: ObservableObject {
 
     /// Save an input of the time passed for HIIT round
     func saveInputRound() {
-        if activity.workout.type == .traditionalStrengthTraining {
+        if isTraditionalTraining {
             return
         }
 
-        inputPrepared["value"] = timePassed
+        inputPrepared["value"] = Int(timePassed)
         addInput()
     }
 
@@ -245,6 +250,12 @@ class ActivityViewModel: ObservableObject {
         inputPrepared = [:]
         inputPrepared["exerciseID"] = currenExerciseID
         inputPrepared["currentRepetition"] = activity.currentExerciseRepetition
+        inputPrepared["skipped"] = false
+    }
+
+    /// Set prepared input skip
+    func skipPreparedInput() {
+        inputPrepared["skipped"] = true
     }
 
     /// Update the timePassed value to the equivalent percentage depending on state and type
@@ -258,7 +269,7 @@ class ActivityViewModel: ObservableObject {
                 timePassedPercentage = timePassed / activity.currentExerciseBreak
             }
         } else {
-            if activity.workout.type == .highIntensityIntervalTraining {
+            if isHIITTraining {
                 timePassedPercentage = timePassed / activity.goal
             }
         }
@@ -288,6 +299,13 @@ class ActivityViewModel: ObservableObject {
         return String(
             format: NSLocalizedString("activity.exercise.next", comment: "Next exercise label"),
             getNextExerciseString())
+    }
+
+    /// Get exercise goal in String
+    /// - Returns: `String`
+    func getExerciseGoal() -> String {
+        if isHIITTraining { return "" }
+        return activity.currentExercise?.getGoalString() ?? ""
     }
 
     /// Get next exercise name

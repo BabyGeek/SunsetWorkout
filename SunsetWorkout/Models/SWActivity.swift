@@ -117,6 +117,7 @@ class SWActivity: ObservableObject {
         switch state {
         case .initialized:
             initFirstExercise()
+            AnalyticsManager.logRunActivity()
         case .starting, .paused:
             break
         case .canceled:
@@ -207,13 +208,12 @@ class SWActivity: ObservableObject {
         }
     }
 
-    /// Add an input to the activity
+    /// Add an input to the activity for the summary data
     /// - Parameter inputPrepared: `[String: Any]`
     func addInput(_ inputPrepared: [String: Any]) {
         if cantStepOverState.contains(state) { return }
         guard let exerciseID = inputPrepared["exerciseID"] as? String, exerciseID != "0" else { return }
         var inputMutable = inputPrepared
-        inputMutable["exerciseOrder"] = currentExercise?.order
         inputMutable.removeValue(forKey: "exerciseID")
 
         if workoutInputs[exerciseID] != nil {
@@ -286,7 +286,7 @@ extension SWActivity {
         })
     }
 
-    /// Add metadata to the healthkit workout builder
+    /// Add metadata calories to the healthkit workout builder
     private func getWorkoutActiveEnergySamples() -> [HKSample] {
         var samples: [HKSample] = []
 
@@ -325,13 +325,22 @@ extension SWActivity {
 
     /// End the workout builder collection and finish the workout to save in healthkit
     private func endBuilder() {
-        workoutBuilder?.endCollection(withEnd: endDate, completion: { _, error in
+        workoutBuilder?.endCollection(withEnd: endDate, completion: { success, error in
             if let error {
                 self.error = SWError(error: error)
                 return
             }
 
-            self.workoutBuilder?.finishWorkout(completion: { _, error in
+            if !success {
+                self.error = SWError(error: SWHealthKitError.collectionEndFailure)
+                return
+            }
+
+            self.workoutBuilder?.finishWorkout(completion: { workout, error in
+                if workout == nil {
+                    self.error = SWError(error: SWHealthKitError.notSaved)
+                }
+
                 if let error {
                     self.error = SWError(error: error)
                     return
@@ -344,7 +353,7 @@ extension SWActivity {
     /// - Parameters:
     ///   - start: `Date`
     ///   - end: `Date`
-    ///   - component: `Calendar.Component`
+    ///   - component: `Calendar.Component` the  interval component to use
     ///   - value: `Int`
     /// - Returns: `[Date]`
     func getIntervals(fromStart start: Date, toEnd end: Date, component: Calendar.Component, value: Int) -> [Date] {

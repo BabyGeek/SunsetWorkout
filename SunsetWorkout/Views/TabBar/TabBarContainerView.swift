@@ -20,25 +20,25 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     }
 
     var body: some View {
-            NavigationView {
-                VStack {
-                    ZStack {
-                        content
-                            .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
-                    }
-
-                    if !isKeyboardVisible {
-                        TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-                    }
+        NavigationView {
+            VStack {
+                ZStack {
+                    content
+                        .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
                 }
-                .background(BackgroundView())
-                .navigationTitle(selection.navigationTitle)
-                .navigationBarTitleDisplayMode(.inline)
+
+                if !isKeyboardVisible {
+                    TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+                }
             }
-            .navigationViewStyle(.stack)
-            .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
-                self.tabs = value
-            }
+            .background(BackgroundView())
+            .navigationTitle(selection.navigationTitle)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationViewStyle(.stack)
+        .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
+            self.tabs = value
+        }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }

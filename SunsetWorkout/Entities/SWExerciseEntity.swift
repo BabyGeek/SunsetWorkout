@@ -10,6 +10,7 @@ import RealmSwift
 
 class SWExerciseEntity: Object {
     @Persisted(primaryKey: true) var _id: String = UUID().uuidString
+    @Persisted(originProperty: "exercises") var assignee: LinkingObjects<SWWorkoutEntity>
     @Persisted var created_at = Date()
     @Persisted var name: String
     @Persisted var order: Int

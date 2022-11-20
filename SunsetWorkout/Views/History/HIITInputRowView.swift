@@ -25,7 +25,7 @@ struct HIITInputRowView: View {
                         .font(.headline)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    Text("\(String(format: "%.0f", input.timePassed))")
+                    Text("\(input.timePassed)")
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 HStack {

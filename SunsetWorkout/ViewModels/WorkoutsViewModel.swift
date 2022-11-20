@@ -17,14 +17,20 @@ import RealmSwift
     let realmManager = RealmManager()
 
     init() {
-        self.fetch(with: SWWorkout.allByDateDESC)
-
         if let realm = try? Realm() {
-            self.notificationToken = realm.observe { [weak self] (_, _) in
+            let results = realm.objects(SWWorkoutEntity.self)
+            self.notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
                 if let self {
-                    self.fetch(with: SWWorkout.allByDateDESC)
+                    switch changes {
+                    case .initial, .update:
+                        self.fetch(with: SWWorkout.allByDateDESC)
+                    case .error(let error):
+                        self.error = SWError(error: error)
+                    }
                 }
             }
+        } else {
+            self.error = SWError(error: RealmError.noRealm)
         }
     }
 

@@ -24,7 +24,9 @@ struct FinishedActivityView: View {
                 }
 
                 NavigationLink(
-                    destination: WorkoutView(viewModel: WorkoutViewModel(workout: viewModel.activity.workout)),
+                    destination: WorkoutView(
+                        workout: viewModel.activity.workout
+                    ),
                     isActive: $goToWorkout) {
                     EmptyView()
                 }
@@ -59,6 +61,10 @@ struct FinishedActivityView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
                 Spacer()
+            } else {
+                ProgressView {
+                    Text("activity.loading")
+                }
             }
         }
         .padding(.horizontal)

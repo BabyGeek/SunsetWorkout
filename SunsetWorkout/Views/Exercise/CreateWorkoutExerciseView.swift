@@ -19,9 +19,8 @@ struct CreateWorkoutExerciseView: View, KeyboardReadable {
             VStack {
                 Spacer()
 
-                WorkoutExerciseFormView(viewModel)
+                WorkoutExerciseFormView(viewModel.workout?.id ?? "")
             }
-            .padding(.horizontal)
             .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in

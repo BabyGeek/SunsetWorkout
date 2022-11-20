@@ -34,62 +34,66 @@ struct CreateFormView: View, KeyboardReadable {
 
 extension CreateFormView {
     var form: some View {
+        ScrollView {
             VStack {
-                BaseWorkoutFormView(
-                    type: $workoutViewModel.type,
-                    name: $workoutViewModel.name,
-                    exerciseBreak: $workoutViewModel.exerciseBreak)
+                    BaseWorkoutFormView(
+                        type: $workoutViewModel.type,
+                        name: $workoutViewModel.name,
+                        exerciseBreak: $workoutViewModel.exerciseBreak)
 
-                if workoutViewModel.type == .highIntensityIntervalTraining {
-                    HIITFormView(
-                        roundBreak: $workoutViewModel.roundBreak,
-                        roundDuration: $workoutViewModel.roundDuration,
-                        roundNumber: $workoutViewModel.roundNumber)
-                }
+                    if workoutViewModel.type == .highIntensityIntervalTraining {
+                        HIITFormView(
+                            roundBreak: $workoutViewModel.roundBreak,
+                            roundDuration: $workoutViewModel.roundDuration,
+                            roundNumber: $workoutViewModel.roundNumber)
+                    }
 
-                if workoutViewModel.type == .traditionalStrengthTraining {
-                    TraditionalFormView(
-                        seriesBreak: $workoutViewModel.seriesBreak,
-                        seriesNumber: $workoutViewModel.seriesNumber,
-                        repetitionGoal: $workoutViewModel.repetitionGoal)
-                }
+                    if workoutViewModel.type == .traditionalStrengthTraining {
+                        TraditionalFormView(
+                            seriesBreak: $workoutViewModel.seriesBreak,
+                            seriesNumber: $workoutViewModel.seriesNumber,
+                            repetitionGoal: $workoutViewModel.repetitionGoal)
+                    }
 
-                Spacer()
+                    Spacer()
 
-                if !isKeyboardVisible {
-                    Button {
-                        saveWorkout()
+                    if !isKeyboardVisible {
+                        Button {
+                            saveWorkout()
+                        } label: {
+                            saveButton
+                        }
+                    }
+
+                    NavigationLink(isActive: $goToWorkoutView) {
+                        WorkoutView(workout: workoutViewModel.workout ?? SWWorkout(
+                            name: "Error",
+                            type: .highIntensityIntervalTraining,
+                            metadata: []))
                     } label: {
-                        saveButton
+                        EmptyView()
                     }
                 }
-
-                NavigationLink(isActive: $goToWorkoutView) {
-                    WorkoutView(viewModel: workoutViewModel)
-                } label: {
-                    EmptyView()
+                .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+                    isKeyboardVisible = newIsKeyboardVisible
                 }
-            }
-            .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-                isKeyboardVisible = newIsKeyboardVisible
-            }
-            .toastWithError($workoutViewModel.error)
-            .padding()
-            .ignoresSafeArea(.keyboard)
+                .toastWithError($workoutViewModel.error)
+                .padding()
+        }
     }
     var saveButton: some View {
-        RoundedRectangle(cornerRadius: 25)
-            .frame(height: 50)
-            .overlay(
-                Text("button.save")
-                    .foregroundColor(Color(.label))
-            )
+        Text("button.save")
+            .foregroundColor(Color(.label))
+            .padding()
+            .frame(maxWidth: .infinity)
+            .overlay(Capsule().stroke(Color.green))
     }
 
     func saveWorkout() {
         workoutViewModel.saveWorkout(isNew: true)
         if workoutViewModel.error == nil && workoutViewModel.saved {
             AnalyticsManager.logCreatedWorkout(type: workoutViewModel.workout?.type)
+            _ = WorkoutsViewModel()
             goToWorkoutView = true
         }
     }

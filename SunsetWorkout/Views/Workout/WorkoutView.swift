@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct WorkoutView: View {
-    @StateObject var viewModel: WorkoutViewModel
+    @ObservedObject var viewModel: WorkoutViewModel
 
-    init(viewModel: WorkoutViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    init(workout: SWWorkout) {
+        _viewModel = ObservedObject(
+            wrappedValue: WorkoutViewModel(workout: workout)
+        )
         UICollectionView.appearance().backgroundColor = .clear
     }
 
@@ -75,6 +77,6 @@ struct WorkoutView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        WorkoutView(viewModel: WorkoutViewModel(workout: HIITExample))
+        WorkoutView(workout: HIITExample)
     }
 }

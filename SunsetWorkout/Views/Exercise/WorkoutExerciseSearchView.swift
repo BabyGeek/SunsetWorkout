@@ -129,8 +129,7 @@ struct WorkoutExerciseSearchView: View {
                                             .resizable()
                                             .scaledToFit()
                                     })
-                                    .padding(.horizontal)
-        )
+                                    .padding(.horizontal))
         }
         .toastWithError($viewModel.error)
     }

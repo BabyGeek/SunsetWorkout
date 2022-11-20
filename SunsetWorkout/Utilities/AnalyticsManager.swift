@@ -40,15 +40,7 @@ struct AnalyticsManager {
         ])
     }
 
-    static func logInitializeActivity() {
-        Analytics.logEvent("initialize_activity", parameters: nil)
-    }
-
     static func logRunActivity() {
         Analytics.logEvent("run_activity", parameters: nil)
-    }
-
-    static func logPausedActivity() {
-        Analytics.logEvent("paused_activity", parameters: nil)
     }
 }

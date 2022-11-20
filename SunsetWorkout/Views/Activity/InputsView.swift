@@ -34,7 +34,15 @@ struct InputsView: View {
                             color: .blue
                         )
                     } action: {
-                        viewModel.skip()
+                        if viewModel.isTraditionalTraining && viewModel.activityStateIs(.running) {
+                            viewModel.presentSerieAlert = true
+                            viewModel.shouldSkip = true
+                            viewModel.prepareAddInput()
+                            viewModel.getNext()
+                            viewModel.setupTimer()
+                        } else {
+                            viewModel.skip()
+                        }
                     }
                 }
             }
@@ -68,7 +76,14 @@ struct InputsView: View {
                         color: .red
                     )
                 } action: {
-                    viewModel.cancel()
+
+                    if viewModel.isTraditionalTraining && viewModel.activityStateIs(.running) {
+                        viewModel.prepareAddInput()
+                        viewModel.presentSerieAlert = true
+                        viewModel.shouldCancel = true
+                    } else {
+                        viewModel.cancel()
+                    }
                 }
             }
         }

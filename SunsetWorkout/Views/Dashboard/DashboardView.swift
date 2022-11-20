@@ -99,23 +99,19 @@ struct DashboardView: View {
                     Button {
                         displayFeelingSelection = false
                     } label: {
-                            RoundedRectangle(cornerRadius: 25)
-                            .stroke(Color.green)
-                                .opacity(0.8)
-                                .frame(height: 50)
-                                .overlay(
-                                    HStack {
-                                        Spacer()
-                                        Text("button.save")
-                                            .font(.system(.callout))
-                                        Spacer()
-                                        Image(systemName: "pencil.circle.fill")
-                                            .resizable()
-                                            .frame(width: 30, height: 30)
-                                    }
-                                        .padding(.horizontal)
-                                )
-                                .foregroundColor(Color(.label))
+                        HStack {
+                            Spacer()
+                            Text("button.save")
+                                .font(.system(.callout))
+                            Spacer()
+                            Image(systemName: "pencil.circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        .foregroundColor(Color(.label))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .overlay(Capsule().stroke(Color.green))
                     }
 
                 }

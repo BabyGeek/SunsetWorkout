@@ -11,7 +11,7 @@ import RealmSwift
 class ActivityHIITInputEntity: Object {
     @Persisted(primaryKey: true) var _id: String = UUID().uuidString
     @Persisted var round: Int
-    @Persisted var timePassed: Float
+    @Persisted var timePassed: Int
     @Persisted var skipped: Bool
 }
 

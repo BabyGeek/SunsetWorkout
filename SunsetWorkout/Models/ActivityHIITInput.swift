@@ -10,7 +10,7 @@ import Foundation
 struct ActivityHIITInput {
     var id: String = UUID().uuidString
     let round: Int
-    let timePassed: Float
+    let timePassed: Int
     let skipped: Bool
 }
 

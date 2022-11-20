@@ -22,7 +22,6 @@ struct HistoriesView: View {
                         HistoryCardView(summary: summary)
                             .foregroundColor(Color(.label))
                     }
-                    .padding(.bottom)
                 }
             }
         }

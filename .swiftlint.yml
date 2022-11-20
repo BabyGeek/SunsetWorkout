@@ -4,7 +4,10 @@ identifier_name:
   allowed_symbols: "_"
   excluded:
     - id
+    - on
     - _id
 disabled_rules:
   - file_length
   - cyclomatic_complexity
+  - type_body_length
+  - identifier_name

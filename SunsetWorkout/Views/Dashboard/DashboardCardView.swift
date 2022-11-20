@@ -25,7 +25,7 @@ struct DashboardCardView: View {
 
                 Text(value)
             }
-        }, height: 150)
+        }, height: 100)
     }
 }
 

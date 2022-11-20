@@ -26,21 +26,39 @@ class WorkoutViewModel: ObservableObject {
     @Published var seriesNumber: String = ""
     @Published var repetitionGoal: String = ""
 
+    var workoutEntity: SWWorkoutEntity?
     let realmManager = RealmManager()
+    var notificationToken: NotificationToken?
 
     init(workout: SWWorkout? = nil) {
-        self.workout = workout
+        find(workout?.id ?? "")
         self.error = nil
         self.saved = false
+
+        if let workoutEntity {
+            notificationToken = workoutEntity.observe(keyPaths: ["exercises"], { change in
+                switch change {
+                case .error(let error):
+                    self.error = SWError(error: error)
+                default:
+                    self.find(workoutEntity._id)
+                    self.loadEntity()
+                }
+            })
+
+        }
+    }
+
+    deinit {
+        notificationToken?.invalidate()
     }
 
     public func saveWorkout(isNew: Bool = false) {
         saved = false
         error = nil
 
-        if !self.find() || isNew {
+        if isNew {
             self.createWorkout()
-            AnalyticsManager.logCreatingWorkout(type: workout?.type)
         }
 
         workout?.cleanMetadata()
@@ -58,42 +76,38 @@ class WorkoutViewModel: ObservableObject {
         save(model: workout, with: SWWorkoutEntity.init)
     }
 
-    public func addExercise(_ exercise: SWExercise) {
-        guard let exercise = validateExercise(exercise) else { return }
-        AnalyticsManager.logAddExercise(type: workout?.type)
-        workout?.exercises.replaceOrAppend(exercise, whereFirstIndex: { exercise.id == $0.id })
-    }
+    func find(_ id: String? = nil) {
+        workout = nil
 
-    func find(_ id: String? = nil) -> Bool {
         if let id {
             do {
                 if let workout = try realmManager.fetch(with: SWWorkout.find(id, with: nil)).first {
                     self.workout = workout
-                    return true
+                    loadEntity()
                 }
             } catch {
                 self.error = SWError(error: error)
             }
-        } else {
-            guard workout != nil else { return false }
-            return true
         }
+    }
 
-        return false
+    func loadEntity() {
+        if let workout {
+            do {
+                self.workoutEntity = try realmManager.fetchEntities(with: SWWorkout.find(workout.id, with: nil)).first
+            } catch {
+                self.error = SWError(error: error)
+            }
+        } else {
+            guard workout != nil else { return }
+            workout = nil
+        }
     }
 
     func save(model: SWWorkout, with reverseTransformer: (SWWorkout) -> SWWorkoutEntity) {
         do {
             try realmManager.save(model: model, with: reverseTransformer)
-
-            name = ""
-            roundBreak = ""
-            roundNumber = ""
-            roundDuration = ""
-            exerciseBreak = ""
-            seriesBreak = ""
-            seriesNumber = ""
-            repetitionGoal = ""
+            resetFormData()
 
             saved = true
         } catch {
@@ -101,16 +115,14 @@ class WorkoutViewModel: ObservableObject {
         }
     }
 
-    private func validateExercise(_ exercise: SWExercise) -> SWExercise? {
-        if exercise.name.isEmpty {
-            self.error = SWError(error: SWExerciseError.noName)
-            return nil
+    private func refreshWorkout() {
+        if let workout {
+            find(workout.id)
         }
-
-        return exercise
     }
 
     private func createWorkout() {
+        AnalyticsManager.logCreatingWorkout(type: workout?.type)
         if self.name.isEmpty {
             self.error = SWError(error: SWWorkoutError.noName)
             return
@@ -120,7 +132,7 @@ class WorkoutViewModel: ObservableObject {
     }
 
     private func getMetadata() -> [SWMetadata] {
-        return [
+        [
             SWMetadata(type: .roundBreak, value: roundBreak),
             SWMetadata(type: .roundDuration, value: roundDuration),
             SWMetadata(type: .roundNumber, value: roundNumber),
@@ -129,5 +141,17 @@ class WorkoutViewModel: ObservableObject {
             SWMetadata(type: .serieNumber, value: seriesNumber),
             SWMetadata(type: .repetitionGoal, value: repetitionGoal)
         ]
+    }
+
+    private func resetFormData() {
+        type = .highIntensityIntervalTraining
+        name = ""
+        roundBreak = ""
+        roundNumber = ""
+        roundDuration = ""
+        exerciseBreak = ""
+        seriesBreak = ""
+        seriesNumber = ""
+        repetitionGoal = ""
     }
 }

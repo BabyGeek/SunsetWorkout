@@ -14,8 +14,9 @@ class ExerciseSearchViewModel: ObservableObject {
     @Published var searchEmpty: Bool = false
     @Published var isLoading: Bool = false
 
-    let exerciseSearchLoader = ExerciseSearchLoader(userSession: UserSession())
     var cancellable: AnyCancellable?
+    var urlSession = URLSession.shared
+    var userSession: UserSession = .init()
 
     func search(for search: String) {
         self.isLoading = false
@@ -30,7 +31,7 @@ class ExerciseSearchViewModel: ObservableObject {
 
         self.isLoading = true
 
-        cancellable = exerciseSearchLoader.loadResults(matching: search)
+        cancellable = loadResults(matching: search)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .sink { completion in
@@ -48,5 +49,15 @@ class ExerciseSearchViewModel: ObservableObject {
                 self.isLoading = false
             }
 
+    }
+
+    func loadResults(
+        matching query: String
+    ) -> AnyPublisher<[ExerciseSearch], Error> {
+        urlSession.WGERPublisher(
+            on: .WGERAPIHost,
+            for: .search(for: query),
+            using: userSession.accessTokenWGER
+        )
     }
 }

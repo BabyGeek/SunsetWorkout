@@ -12,7 +12,7 @@ import RealmSwift
 final class SunsetWorkoutExerciseTests: XCTestCase {
     override class func setUp() {
         super.setUp()
-        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealm"
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealmExerciseTest"
     }
 
     func getMetadataModelFrom(type: SWMetadataType, value: String) -> SWWorkoutMetadataEntity {
@@ -200,32 +200,59 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
     }
 
     func testAddHIITThenAddExerciseThenSaveWithViewModel() throws {
-        let viewModel = WorkoutViewModel()
-        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        let workoutViewModel = WorkoutViewModel()
+        let workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        workoutViewModel.workout = workout
+        workoutViewModel.saveWorkout()
 
-        viewModel.addExercise(SWExercise.getMockWithName("Burpees", for: viewModel.workout))
-        viewModel.addExercise(SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout))
+        let viewModel = WorkoutExerciseViewModel(workoutUUID: workout.id)
+        viewModel.name = "Burpees"
+        viewModel.saveExercise()
 
+        workoutViewModel.find(workout.id)
+
+        XCTAssertTrue(viewModel.isHIITTraining)
+        XCTAssertFalse(viewModel.isTraditionalTraining)
+        XCTAssertEqual(workoutViewModel.workout?.exercises.count, 1)
+        XCTAssertNil(workoutViewModel.error)
         XCTAssertNil(viewModel.error)
     }
 
     func testAddHIITWithExercisesSameOrderWithViewModel() throws {
-        let viewModel = WorkoutViewModel()
-        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        let workoutViewModel = WorkoutViewModel()
+        let workout = SWWorkout.getMockWithName("Test Strength", type: .traditionalStrengthTraining)
+        workoutViewModel.workout = workout
+        workoutViewModel.saveWorkout()
 
-        viewModel.addExercise(SWExercise.getMockWithName("Burpees", for: viewModel.workout))
-        viewModel.addExercise(SWExercise.getMockWithName("Jumping Jacks", for: viewModel.workout, order: 1))
+        let viewModel = WorkoutExerciseViewModel(workoutUUID: workout.id)
+        viewModel.exercise = SWExercise.getMockWithName("Burpees", for: workout)
+        viewModel.saveExercise()
 
-        viewModel.saveWorkout()
+        viewModel.exercise = SWExercise.getMockWithName("Jumping Jacks", for: workout, order: 1)
+        viewModel.saveExercise()
+
+        workoutViewModel.find(workout.id)
+
+        XCTAssertTrue(viewModel.isTraditionalTraining)
+        XCTAssertFalse(viewModel.isHIITTraining)
+        XCTAssertEqual(workoutViewModel.workout?.exercises.count, 1)
+        XCTAssertNil(workoutViewModel.error)
         XCTAssertNotNil(viewModel.error)
+        XCTAssertEqual(viewModel.error?.error as? SWExerciseError, SWExerciseError.severalOrders)
     }
 
     func testAddHIITWithExerciseEmptyNameWithViewModel() throws {
-        let viewModel = WorkoutViewModel()
-        viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
-        viewModel.addExercise(SWExercise.getMockWithName("", for: viewModel.workout))
+        let workoutViewModel = WorkoutViewModel()
+        let workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
+        workoutViewModel.workout = workout
+        workoutViewModel.saveWorkout()
+
+        let viewModel = WorkoutExerciseViewModel(workoutUUID: workout.id)
+        viewModel.exercise = SWExercise.getMockWithName("", for: workout)
+        viewModel.saveExercise()
 
         XCTAssertNotNil(viewModel.error)
+        XCTAssertEqual(viewModel.error?.error as? SWExerciseError, SWExerciseError.noName)
     }
 
     func testAddStrengthWithExerciseWithViewModel() throws {
@@ -279,7 +306,7 @@ final class SunsetWorkoutExerciseTests: XCTestCase {
         ]
 
         viewModel.workout = SWWorkout.getMockWithName("Test Strength",
-                                                      type: .traditionalStrengthTraining,
+                                                      type: .highIntensityIntervalTraining,
                                                       exercises: exercises)
         viewModel.saveWorkout()
 

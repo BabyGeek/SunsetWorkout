@@ -67,6 +67,15 @@ struct SWActivitySummary {
         return exercise.name
     }
 
+    /// Get exercise order from his ID
+    /// - Parameter exerciseID: `String` UUID String of the exercise
+    /// - Returns: `Int` order of the exercise or 0 if not found
+    func getExerciseOrderFromID(_ exerciseID: String) -> Int {
+        guard let exercise = getExerciseFromID(exerciseID) else { return 0 }
+
+        return exercise.order
+    }
+
     /// Get workout goal number if it has been set up
     /// - Returns: `Int`
     func getGoal() -> Int {

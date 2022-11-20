@@ -58,11 +58,10 @@ class SunsetWorkoutTests: XCTestCase {
     }
 
     @MainActor func testWorkoutsViewModelFetch() throws {
+        let workoutsViewModel = WorkoutsViewModel()
         let viewModel = WorkoutViewModel()
         viewModel.workout = SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining)
         viewModel.saveWorkout()
-
-        let workoutsViewModel = WorkoutsViewModel()
         workoutsViewModel.fetch(with: SWWorkout.allByDateDESC)
 
         XCTAssertNotNil(workoutsViewModel.notificationToken)

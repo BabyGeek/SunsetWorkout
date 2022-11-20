@@ -55,17 +55,12 @@ extension SWActivitySummaryEntity {
             let actityInputs = ActivityHIITInputsEntity()
 
             actityInputs.exerciseUUID = id
+            actityInputs.exerciseOrder = summary.getExerciseOrderFromID(id)
 
             for input in values {
                 let hiitInput = ActivityHIITInputEntity()
-                hiitInput.skipped = false
-                for (key, value) in input {
-                    if key == "exerciseOrder" {
-                        if let value = value as? Int {
-                            actityInputs.exerciseOrder = value
-                        }
-                    }
 
+                for (key, value) in input {
                     if key == "currentRepetition" {
                         if let value = value as? Int {
                             hiitInput.round = value
@@ -73,7 +68,7 @@ extension SWActivitySummaryEntity {
                     }
 
                     if key == "value" {
-                        if let value = value as? Float {
+                        if let value = value as? Int {
                             hiitInput.timePassed = value
                         }
                     }
@@ -97,17 +92,12 @@ extension SWActivitySummaryEntity {
             let actityInputs = ActivityStrengthInputsEntity()
 
             actityInputs.exerciseUUID = id
+            actityInputs.exerciseOrder = summary.getExerciseOrderFromID(id)
 
             for input in values {
                 let strengthInput = ActivityStrengthInputEntity()
-                strengthInput.skipped = false
-                for (key, value) in input {
-                    if key == "exerciseOrder" {
-                        if let value = value as? Int {
-                            actityInputs.exerciseOrder = value
-                        }
-                    }
 
+                for (key, value) in input {
                     if key == "currentRepetition" {
                         if let value = value as? Int {
                             strengthInput.serie = value

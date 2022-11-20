@@ -79,6 +79,9 @@
 "exercise.search.empty" = "S'il te plait commences ta recherche.";
 "exercise.search.loading" = "En cours de recherche...";
 "exercise.add" = "Ajouter un exercice";
+"exercise.serie.input.title" = "Combien de répétitions avez vous effectuer ?";
+"exercise.serie.goal" = "Votre objectif de répétitions est de %@";
+"exercise.serie.total" = "Repetitions effectuées";
 
 // PROFILE
 "profile.height" = "Taille";
@@ -90,6 +93,8 @@
 // ERRORS
 "error.global.unknown.description" = "Erreur inconnue";
 "error.global.unknown.failure.reason" = "Une erreur inconnue c'est produite.";
+"error.global.NaN.description" = "Erreur de donnée";
+"error.global.NaN.failure.reason" = "Vous avez saisi un paramètre de chiffre dans un format interdit.";
 
 "error.realm.no.realm.description" = "Erreur de Realm";
 "error.realm.no.realm.failure.reason" = "Impossible de trouver Realm.";
@@ -100,6 +105,8 @@
 "error.workout.no.name.failure.reason" = "Tu dois spécifier un nom pour la séance.";
 "error.workout.is.nil.description" = "Erreur de sauvegarde";
 "error.workout.is.nil.failure.reason" = "Une erreur est survenue lors de la sauvegarde, vérifies tes données.";
+"error.workout.not.found.description" = "Erreur de récupération";
+"error.workout.not.found.failure.reason" = "Impossible de trouver la séance sélectionnée.";
 
 "error.exercise.no.name.description" = "Erreur d'éxercice";
 "error.exercise.no.name.failure.reason" = "Tu dois spécifier un nom pour l'éxercice.";
@@ -107,9 +114,13 @@
 "error.exercise.not.saved.failure.reason" = "Une erreur est survenue lors de la sauvegarde, vérifies tes données.";
 "error.exercise.several.orders.description" = "Erreur d'ordonnancement";
 "error.exercise.several.orders.failure.reason" = "L'ordre des exercices est incorrect.";
+"error.exercise.is.nil.description" = "Erreur de sauvegarde";
+"error.exercise.is.nil.failure.reason" = "Une erreur est survenue lors de la sauvegarde, vérifies tes données.";
 
-"error.healthkit.not.saved.description" = "Erreur de HealthKit";
-"error.healthkit.not.saved.failure.reason" = "L'activité n'a pas pu être enregistrée dans HealthKit.";
+"error.healthkit.not.saved.description" = "Sauvegarde Santé";
+"error.healthkit.not.saved.failure.reason" = "L'activité n'a pas pu être enregistrée dans l'application Santé.";
+"error.healthkit.collection.end.failure.description" = "Collection Santé";
+"error.healthkit.collection.end.failure.failure.reason" = "L'activité de Santé n'a pas pu être terminée correctement.";
 
 // ACTIVITY
 "activity.start.preface" = "Cliques sur commencer quand tu es prêt !";
@@ -125,6 +136,7 @@
 "button.go.to.summary" = "Résumé de l'activité";
 "button.go.to.workout" = "Séance";
 "button.go.to.launch" = "Lancer une autre";
+"activity.loading" = "En cours de sauvegarde...";
 
 // HISTORY
 "history.empty" = "Aucune activité effectuée pour le moment. Lances en une pour voir son résumé ici une fois terminée.";

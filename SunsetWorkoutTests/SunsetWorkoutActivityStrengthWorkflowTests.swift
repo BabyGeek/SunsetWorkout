@@ -6,9 +6,14 @@
 //
 
 @testable import SunsetWorkout
+import RealmSwift
 import XCTest
 
 final class SunsetWorkoutStrengthWorkflowTests: XCTestCase {
+    override class func setUp() {
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "SunsetWorkoutTestsRealmStrength"
+    }
+
     func testActivityStartingToRunning() {
         let workout = SWWorkout.getMockWithName("Test Strength", type: .traditionalStrengthTraining)
         let viewModel = ActivityViewModel(workout: workout)
