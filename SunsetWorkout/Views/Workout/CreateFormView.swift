@@ -34,52 +34,50 @@ struct CreateFormView: View, KeyboardReadable {
 
 extension CreateFormView {
     var form: some View {
-        ScrollView {
-            VStack {
-                    BaseWorkoutFormView(
-                        type: $workoutViewModel.type,
-                        name: $workoutViewModel.name,
-                        exerciseBreak: $workoutViewModel.exerciseBreak)
+        VStack {
+            BaseWorkoutFormView(
+                type: $workoutViewModel.type,
+                name: $workoutViewModel.name,
+                exerciseBreak: $workoutViewModel.exerciseBreak)
 
-                    if workoutViewModel.type == .highIntensityIntervalTraining {
-                        HIITFormView(
-                            roundBreak: $workoutViewModel.roundBreak,
-                            roundDuration: $workoutViewModel.roundDuration,
-                            roundNumber: $workoutViewModel.roundNumber)
-                    }
+            if workoutViewModel.type == .highIntensityIntervalTraining {
+                HIITFormView(
+                    roundBreak: $workoutViewModel.roundBreak,
+                    roundDuration: $workoutViewModel.roundDuration,
+                    roundNumber: $workoutViewModel.roundNumber)
+            }
 
-                    if workoutViewModel.type == .traditionalStrengthTraining {
-                        TraditionalFormView(
-                            seriesBreak: $workoutViewModel.seriesBreak,
-                            seriesNumber: $workoutViewModel.seriesNumber,
-                            repetitionGoal: $workoutViewModel.repetitionGoal)
-                    }
+            if workoutViewModel.type == .traditionalStrengthTraining {
+                TraditionalFormView(
+                    seriesBreak: $workoutViewModel.seriesBreak,
+                    seriesNumber: $workoutViewModel.seriesNumber,
+                    repetitionGoal: $workoutViewModel.repetitionGoal)
+            }
 
-                    Spacer()
+            Spacer()
 
-                    if !isKeyboardVisible {
-                        Button {
-                            saveWorkout()
-                        } label: {
-                            saveButton
-                        }
-                    }
-
-                    NavigationLink(isActive: $goToWorkoutView) {
-                        WorkoutView(workout: workoutViewModel.workout ?? SWWorkout(
-                            name: "Error",
-                            type: .highIntensityIntervalTraining,
-                            metadata: []))
-                    } label: {
-                        EmptyView()
-                    }
+            if !isKeyboardVisible {
+                Button {
+                    saveWorkout()
+                } label: {
+                    saveButton
                 }
-                .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-                    isKeyboardVisible = newIsKeyboardVisible
-                }
-                .toastWithError($workoutViewModel.error)
-                .padding()
+            }
+
+            NavigationLink(isActive: $goToWorkoutView) {
+                WorkoutView(workout: workoutViewModel.workout ?? SWWorkout(
+                    name: "Error",
+                    type: .highIntensityIntervalTraining,
+                    metadata: []))
+            } label: {
+                EmptyView()
+            }
         }
+        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+            isKeyboardVisible = newIsKeyboardVisible
+        }
+        .toastWithError($workoutViewModel.error)
+        .padding()
     }
     var saveButton: some View {
         Text("button.save")
