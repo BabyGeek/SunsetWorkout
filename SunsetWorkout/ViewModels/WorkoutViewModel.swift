@@ -122,7 +122,6 @@ class WorkoutViewModel: ObservableObject {
     }
 
     private func createWorkout() {
-        AnalyticsManager.logCreatingWorkout(type: workout?.type)
         if self.name.isEmpty {
             self.error = SWError(error: SWWorkoutError.noName)
             return

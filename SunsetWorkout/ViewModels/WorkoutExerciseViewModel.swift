@@ -90,7 +90,6 @@ class WorkoutExerciseViewModel: ObservableObject {
                         withKeyPath: \.exercises)
                     resetFormData()
                     saved = true
-                    AnalyticsManager.logAddExercise(type: SWWorkoutType(rawValue: workout.rawType))
                 } else {
                     self.error = SWError(error: SWWorkoutError.notFound)
                 }

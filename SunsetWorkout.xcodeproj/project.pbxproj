@@ -61,10 +61,6 @@
 		2B617CAE291EF4F50070C6D3 /* EmptyHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CAD291EF4F50070C6D3 /* EmptyHistoryView.swift */; };
 		2B64341A29104DE100B21441 /* SunsetWorkoutActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64341929104DE100B21441 /* SunsetWorkoutActivityTests.swift */; };
 		2B64341C29104EB200B21441 /* SunsetWorkoutActivityHIITWorkflowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64341B29104EB200B21441 /* SunsetWorkoutActivityHIITWorkflowTests.swift */; };
-		2B64BA2128D5B8D500E95514 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */; };
-		2B64BA2628D5BD4700E95514 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */; };
-		2B64BA2828D5BD4700E95514 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */; };
-		2B64BA2A28D5BD4700E95514 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 2B64BA2928D5BD4700E95514 /* FirebasePerformance */; };
 		2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C128CB5A4E00361C0F /* MainView.swift */; };
 		2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608C428CB63D400361C0F /* DashboardView.swift */; };
 		2B6608CC28CCC84600361C0F /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608CB28CCC84600361C0F /* ViewExtensions.swift */; };
@@ -99,7 +95,6 @@
 		2BB3274629036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */; };
 		2BC1126828FDF1A400898C80 /* CreateWorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */; };
 		2BC1126A28FDF80500898C80 /* WorkoutExerciseSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */; };
-		2BC7DD59290D33E800D71CA8 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7DD58290D33E800D71CA8 /* AnalyticsManager.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
 		2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */; };
 		2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FE28B626FF006A3848 /* Assets.xcassets */; };
@@ -203,7 +198,6 @@
 		2B617CAD291EF4F50070C6D3 /* EmptyHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyHistoryView.swift; sourceTree = "<group>"; };
 		2B64341929104DE100B21441 /* SunsetWorkoutActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutActivityTests.swift; sourceTree = "<group>"; };
 		2B64341B29104EB200B21441 /* SunsetWorkoutActivityHIITWorkflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutActivityHIITWorkflowTests.swift; sourceTree = "<group>"; };
-		2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2B6608C128CB5A4E00361C0F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B6608C428CB63D400361C0F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		2B6608CB28CCC84600361C0F /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
@@ -238,7 +232,6 @@
 		2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutExerciseTests.swift; sourceTree = "<group>"; };
 		2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutExerciseView.swift; sourceTree = "<group>"; };
 		2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSearchView.swift; sourceTree = "<group>"; };
-		2BC7DD58290D33E800D71CA8 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutApp.swift; sourceTree = "<group>"; };
 		2BD1D7FC28B626FE006A3848 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
@@ -283,9 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B7FDFEE28E7F640009FFAF5 /* RealmSwift in Frameworks */,
-				2B64BA2828D5BD4700E95514 /* FirebaseCrashlytics in Frameworks */,
-				2B64BA2628D5BD4700E95514 /* FirebaseAnalytics in Frameworks */,
-				2B64BA2A28D5BD4700E95514 /* FirebasePerformance in Frameworks */,
 				2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */,
 				2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */,
 			);
@@ -495,7 +485,6 @@
 				2BFF299E28C350A50041841F /* Views */,
 				2B6608C828CCC56A00361C0F /* ViewModels */,
 				2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */,
-				2B64BA2028D5B8D500E95514 /* GoogleService-Info.plist */,
 				2BD1D7FE28B626FF006A3848 /* Assets.xcassets */,
 				2BD1D80028B626FF006A3848 /* Preview Content */,
 			);
@@ -608,7 +597,6 @@
 				2BF575AB28FF59D000F21605 /* InvalidEndpointError.swift */,
 				2BB327412903642F008A4B81 /* ArrayExtensions.swift */,
 				2BB3274329036768008A4B81 /* CollectionExtensions.swift */,
-				2BC7DD58290D33E800D71CA8 /* AnalyticsManager.swift */,
 				2B75093E29185E5300A75F97 /* TypeAlias.swift */,
 				2B4C3F98291FCDE400A12F11 /* TimeIntervalExtensions.swift */,
 			);
@@ -644,9 +632,6 @@
 			);
 			name = SunsetWorkout;
 			packageProductDependencies = (
-				2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */,
-				2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */,
-				2B64BA2928D5BD4700E95514 /* FirebasePerformance */,
 				2B7FDFEB28E7F640009FFAF5 /* Realm */,
 				2B7FDFED28E7F640009FFAF5 /* RealmSwift */,
 			);
@@ -702,7 +687,6 @@
 			);
 			mainGroup = 2BD1D7EE28B626FE006A3848;
 			packageReferences = (
-				2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 2BD1D7F828B626FE006A3848 /* Products */;
@@ -725,7 +709,6 @@
 				2BD1D80228B626FF006A3848 /* Preview Assets.xcassets in Resources */,
 				2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */,
 				2B03968328FAEBC6000D7B26 /* Launch Screen.storyboard in Resources */,
-				2B64BA2128D5B8D500E95514 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,7 +758,6 @@
 				2BB327422903642F008A4B81 /* ArrayExtensions.swift in Sources */,
 				2B83FA7C28DC867200C3B1C0 /* EmptySelectingView.swift in Sources */,
 				2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */,
-				2BC7DD59290D33E800D71CA8 /* AnalyticsManager.swift in Sources */,
 				2BB3273E29034E13008A4B81 /* SWExerciseEntity.swift in Sources */,
 				2BFF29B328C5FFF00041841F /* TabBarView.swift in Sources */,
 				2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */,
@@ -1340,14 +1322,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
@@ -1359,21 +1333,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B64BA2528D5BD4700E95514 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		2B64BA2728D5BD4700E95514 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		2B64BA2928D5BD4700E95514 /* FirebasePerformance */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B64BA2428D5BD4700E95514 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebasePerformance;
-		};
 		2B7FDFEB28E7F640009FFAF5 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B7FDFEA28E7F640009FFAF5 /* XCRemoteSwiftPackageReference "realm-swift" */;

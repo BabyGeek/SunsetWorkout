@@ -117,7 +117,6 @@ class SWActivity: ObservableObject {
         switch state {
         case .initialized:
             initFirstExercise()
-            AnalyticsManager.logRunActivity()
         case .starting, .paused:
             break
         case .canceled:
