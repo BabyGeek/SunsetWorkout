@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileConfigurationView: View {
     @StateObject var viewModel = ProfileConfigurationViewModel()
-    @AppStorage("currentPage") var currenPage = 1
+    @AppStorage("currentPage", store: UserDefaults(suiteName: "defaults.com.poggero.SunsetWorkout")) var currenPage = 1
 
     var body: some View {
         VStack(spacing: 20) {

@@ -22,17 +22,11 @@ struct HistoryView: View {
                     Spacer()
                     HistoryMetaView(
                         iconName: "flame.fill",
-                        value: summary.totalEnergyBurnedQuantity.description)
+                        value: summary.totalEnergyBurnedInt.description)
                     Spacer()
-                    if #available(iOS 16, *) {
-                        HistoryMetaView(
-                            iconName: "dumbbell.fill",
-                            value: summary.type.name)
-                    } else {
-                        HistoryMetaView(
-                            iconName: "list.bullet.clipboard",
-                            value: summary.type.name)
-                    }
+                    HistoryMetaView(
+                        iconName: summary.type.iconName,
+                        value: summary.type.name)
                 }
                 .padding()
 

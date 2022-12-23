@@ -54,7 +54,8 @@ struct ActivityView: View {
         .toastWithError($viewModel.error)
         .toastWithError($viewModel.activity.error)
         .onReceive(timer) { _ in
-            if viewModel.isFinished {
+            if viewModel.isFinished
+            {
                 timer.upstream.connect().cancel()
                 viewModel.save()
             }

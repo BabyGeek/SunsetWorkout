@@ -32,9 +32,13 @@ struct SWActivitySummary {
     var title: String {
         String(format: "%@ - %@", workout.name, date)
     }
-
+    
     var totalEnergyBurnedQuantity: HKQuantity {
         HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: totalEnergyBurned)
+    }
+    
+    var totalEnergyBurnedInt: Int {
+        Int(totalEnergyBurned)
     }
 
     var workoutHK: HKWorkout {

@@ -25,7 +25,7 @@ struct InitialActivityView: View {
             }
             Spacer()
             if viewModel.canStart {
-                ActivityButton {
+                SWButton(tint: .green) {
                     ActivityBeganButton()
                 } action: {
                     viewModel.getNext()

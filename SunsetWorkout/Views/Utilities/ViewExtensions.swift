@@ -16,9 +16,8 @@ extension View {
     /// - Parameters:
     ///   - tab: tab corresponding to the tab bar item
     ///   - selection: current tab selected
-    /// - Returns: View modifier TabBarItemViewModifier
     func tabBarItem(tab: TabBarItem, selection: Binding<TabBarItem>) -> some View {
-        modifier(TabBarItemViewModifier(tab: tab, selection: selection))
+        modifier(TabBarItemModifier(tab: tab, selection: selection))
     }
 }
 
@@ -31,14 +30,6 @@ extension View {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
                                                 to: nil, from: nil, for: nil)
             }), including: including)
-    }
-}
-
-// MARK: - UICollectionReusableView backgroundColor
-extension UICollectionReusableView {
-    override open var backgroundColor: UIColor? {
-        get { .clear }
-        set { }
     }
 }
 
@@ -67,11 +58,31 @@ extension KeyboardReadable {
 // MARK: - View builders
 
 extension View {
-    /// ViewBuilder designed for conditional modifiers
+    /// Add a view transformation depending on a condition.
+    ///
+    /// Use this method to use a conditionnal view modifier or transformation.
+    /// "Blur-Conditional" button:
+    ///
+    ///     struct ShowLicenseAgreement: View {
+    ///         @State private var isBlur: Bool = false
+    ///
+    ///         var body: some View {
+    ///             Button(action: {
+    ///                 isBlur = true
+    ///             }) {
+    ///                 Text("Blur this button")
+    ///             }
+    ///             .conditional(isBlur) { button in
+    ///                 button
+    ///                     .blur(radius: 20)
+    ///             }
+    ///         }
+    ///     }
+    ///
+    /// ![A toast view that shows a message.](SwiftUI-ToastViewItemContent.png)
     /// - Parameters:
     ///   - condition: condition to check to add the modifier
     ///   - transform: the transformation to apply on the view
-    /// - Returns: the view modified if condition is set to true, else the view itself
     @ViewBuilder
     func conditional<Content: View>(_ condition: Bool, _ transform: @escaping (Self) -> Content) -> some View {
         if condition {
@@ -80,25 +91,84 @@ extension View {
             self
         }
     }
-
-    /// ViewBuilder designed for toast with error modifiers
-    /// - Parameter error: `SWError`
-    /// - Returns: `some View`
+    
+    
+    /// Presents a toast view for a given error.
+    ///
+    /// Use this method to display a toast view that show an
+    /// `SWError` message on the top position of the view for 5 seconds.
+    /// "Present Toast-Error Cover" button:
+    ///
+    ///     struct ShowLicenseAgreement: View {
+    ///         @State private var error: SWError?
+    ///
+    ///         var body: some View {
+    ///             Button(action: {
+    ///                 error = SWError(error: RealmError.failure)
+    ///             }) {
+    ///                 Text("Show an error toast")
+    ///             }
+    ///             .toastWithError($error)
+    ///         }
+    ///     }
+    ///
+    /// ![A toast view that shows a message.](SwiftUI-ToastViewItemContent.png)
+    ///
+    /// - Parameters :
+    ///   - error: A binding to an `Optional SWError` value that determines whether to present the sheet that you create in the modifier’s content closure.
+    ///   - position:  A `ToasterPosition` value that determines the position of the toast, default top
+    ///   - duration: A `TimeInterval` value that determines the time that the error is displayed on the screen, default is 5 seconds
     @ViewBuilder
-    func toastWithError(_ error: Binding<SWError?>) -> some View {
+    func toastWithError(
+        _ error: Binding<SWError?>,
+        position: ToasterPosition = .top,
+        duration: TimeInterval = 5) -> some View {
         self
             .toast(
                 item: error,
                 type: .error,
-                position: .top,
-                title: error.wrappedValue?.description ?? "",
-                text: error.wrappedValue?.failureReason ?? ""
+                position: position,
+                title: error.wrappedValue?.title ?? "",
+                text: error.wrappedValue?.description ?? "",
+                duration: duration
             )
     }
 }
 
-// MARK: - Toaster modifiers
+// MARK: - Toaster methods to call modifiers
 extension View {
+    /// Presents a toast view that show on the edge given
+    /// using the binding you provide to display.
+    ///
+    /// Use this method to display a toast view that show a
+    /// success message on the top position of the view for 5 seconds.
+    /// "Present Toast-Screen Cover" button:
+    ///
+    ///     struct ShowLicenseAgreement: View {
+    ///         @State private var isShowingSheet = false
+    ///
+    ///         var body: some View {
+    ///             Button(action: {
+    ///                 isShowingSheet.toggle()
+    ///             }) {
+    ///                 Text("Show License Agreement Success")
+    ///             }
+    ///             .toast(
+    ///             isPresented: $isShowingToast,
+    ///             title: "Success License Agreement",
+    ///             text: "You successfully get your license agreement")
+    ///         }
+    ///     }
+    ///
+    /// ![A toast view that shows a message.](SwiftUI-ToastViewItemContent.png)
+    ///
+    /// - Parameters:
+    ///   - isPresented: A binding to a Boolean value that determines whether to present the sheet that you create in the modifier’s content closure.
+    ///   - type: An enum type that determines the toaster type
+    ///   - position: An enum position that determines the position of the toast
+    ///   - title: A String that determines the title of the toast
+    ///   - text: A String text that determines the text of the toast
+    ///   - duration: A TimeInterval that determines how long the toast will appear on the screen
     func toast(
         isPresented: Binding<Bool>,
         type: ToasterType = .success,
@@ -115,8 +185,48 @@ extension View {
                     title: title,
                     text: text))
         }
-
-    func toast<I: Identifiable>(
+    
+    /// Presents a toast view that show on the edge given
+    /// using the binding you provide to display.
+    ///
+    /// Use this method to display a toast view that show a
+    /// success message on the top position of the view for 5 seconds.
+    /// "Present Toast-Screen Cover" button:
+    ///
+    ///     struct TestToastItem: Identifiable, Equatable {
+    ///         let id = UUID()
+    ///
+    ///         static func == (lhs: TestToastItem, rhs: TestToastItem) -> Bool {
+    ///             lhs.id == rhs.id
+    ///         }
+    ///     }
+    ///
+    ///     struct ShowLicenseAgreement: View {
+    ///         @State private var item: TestToastItem?
+    ///
+    ///         var body: some View {
+    ///             Button(action: {
+    ///                 item = TestToastItem()
+    ///             }) {
+    ///                 Text("Show License Agreement Success")
+    ///             }
+    ///             .toast(
+    ///             item: $item,
+    ///             title: "Success License Agreement",
+    ///             text: "You successfully get your license agreement")
+    ///         }
+    ///     }
+    ///
+    /// ![A toast view that shows a message.](SwiftUI-ToastViewItemContent.png)
+    ///
+    /// - Parameters:
+    ///   - item: A binding to an Identifiable and Equatable value that determines whether to present the sheet that you create in the modifier’s content closure.
+    ///   - type: An enum type that determines the toaster type
+    ///   - position: An enum position that determines the position of the toast
+    ///   - title: A String that determines the title of the toast
+    ///   - text: A String text that determines the text of the toast
+    ///   - duration: A TimeInterval that determines how long the toast will appear on the screen
+    func toast<I: Identifiable & Equatable>(
         item: Binding<I?>,
         type: ToasterType = .success,
         position: ToasterPosition = .top,
@@ -132,4 +242,16 @@ extension View {
                     title: title,
                     text: text))
         }
+}
+
+extension View {
+    func clearListBackground() -> some View {
+        modifier(ClearListBackgroundModifier())
+    }
+}
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }

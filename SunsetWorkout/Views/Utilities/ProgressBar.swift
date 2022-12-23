@@ -23,7 +23,7 @@ struct ProgressBar: View {
                 .stroke(style: StrokeStyle(lineWidth: 40.0, lineCap: .round, lineJoin: .round))
                 .foregroundColor(Color.purple)
                 .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
+                .animation(.linear, value: progress)
 
             Text(String(format: "%.0f", self.progressShow))
                 .font(.largeTitle)

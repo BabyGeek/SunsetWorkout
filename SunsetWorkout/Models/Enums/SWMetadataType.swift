@@ -34,4 +34,19 @@ enum SWMetadataType: String {
             return "metadate.label.repetition.goal"
         }
     }
+    
+    var iconName: String {
+        switch self {
+        case .exerciseBreak:
+            return "exclamationmark.arrow.circlepath"
+        case .roundBreak, .serieBreak:
+            return "goforward"
+        case .roundDuration:
+            return "clock.arrow.2.circlepath"
+        case .serieNumber, .roundNumber:
+            return "number"
+        case .repetitionGoal:
+            return "repeat"
+        }
+    }
 }

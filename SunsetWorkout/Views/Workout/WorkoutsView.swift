@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct WorkoutsView: View {
     @ObservedObject var viewModel = WorkoutsViewModel()
@@ -16,14 +15,16 @@ struct WorkoutsView: View {
             EmptyWorkoutView()
         } else {
             ScrollView {
-                ForEach(viewModel.workouts) { workout in
-                    NavigationLink {
-                        WorkoutView(workout: workout)
-                    } label: {
-                        WorkoutCardView(workout: workout)
-                            .foregroundColor(Color(.label))
+                
+                VStack(spacing: 12) {
+                    ForEach(viewModel.workouts) { workout in
+                        NavigationLink {
+                            WorkoutView(workout: workout)
+                        } label: {
+                            WorkoutCardView(workout: workout)
+                                .foregroundColor(Color(.label))
+                        }
                     }
-                    .padding(.bottom)
                 }
             }
             .toastWithError($viewModel.error)

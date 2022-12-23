@@ -11,30 +11,32 @@ struct BaseWorkoutFormView: View {
     @Binding var type: SWWorkoutType
     @Binding var name: String
     @Binding var exerciseBreak: String
-
+    
     var body: some View {
-        VStack {
-                Picker("Type", selection: $type) {
-                    Text(SWWorkoutType.highIntensityIntervalTraining.name)
-                        .tag(SWWorkoutType.highIntensityIntervalTraining)
-
-                    Text(SWWorkoutType.traditionalStrengthTraining.name)
-                        .tag(SWWorkoutType.traditionalStrengthTraining)
+        Section {
+            Picker("", selection: $type) {
+                ForEach(SWWorkoutType.allCases, id: \.self) { workoutType in
+                    Text(workoutType.name)
+                        .tag(workoutType.rawValue)
                 }
-                .pickerStyle(.segmented)
-                .padding(.bottom, 70)
-
-                FloatingTextField(
-                    placeHolder: "workout.name",
-                    text: $name,
-                    bgColor: Color(.clear))
-
-                FloatingTextField(
-                    placeHolder: SWMetadataType.exerciseBreak.label,
-                    placeHolderSuffix: "secs",
-                    text: $exerciseBreak,
-                    bgColor: Color(.clear))
-                    .keyboardType(.numberPad)
+            }
+            .pickerStyle(.segmented)
+            
+            FloatingTextField(
+                placeHolder: "workout.name",
+                text: $name,
+                bgColor: Color(.clear)) {
+                    Text("workout.name")
+                }
+            
+            FloatingTextField(
+                placeHolder: SWMetadataType.exerciseBreak.label,
+                placeHolderSuffix: "secs",
+                text: $exerciseBreak,
+                bgColor: Color(.clear)) {
+                    Text(SWMetadataType.exerciseBreak.label)
+                }
+            .keyboardType(.numberPad)
         }
     }
 }

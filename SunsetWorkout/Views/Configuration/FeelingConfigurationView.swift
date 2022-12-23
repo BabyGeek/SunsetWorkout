@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeelingConfigurationView: View {
-    @AppStorage("currentPage") var currentPage = 1
+    @AppStorage("currentPage", store: UserDefaults(suiteName: "defaults.com.poggero.SunsetWorkout")) var currentPage = 1
     @State var selected: FeelingType = .happy
 
     @StateObject var feelingViewModel = FeelingViewModel()
@@ -100,9 +100,9 @@ struct FeelingListingView: View {
             RoundedRectangle(cornerRadius: 25)
                 .fill(LinearGradient(
                     gradient: .init(colors: [
-                        Colors.cardGradientStart,
-                        Colors.cardGradientMiddle,
-                        Colors.cardGradientEnd
+                        K.Colors.cardGradientStart,
+                        K.Colors.cardGradientMiddle,
+                        K.Colors.cardGradientEnd
                     ]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing

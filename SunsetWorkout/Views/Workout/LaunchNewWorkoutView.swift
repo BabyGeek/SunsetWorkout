@@ -23,14 +23,23 @@ struct LaunchNewWorkoutView: View {
                         GlassMorphicCard(content: {
                             HStack {
                                 Text(workout.name)
+                                    .foregroundColor(Color(.label))
                                 Spacer()
-                                Image(systemName: "timer")
-                                Text("\(workout.estimatedTime()) min")
+                                HStack {
+                                    Image(systemName: "timer")
+                                        .foregroundColor(Color(.label))
+                                    Text("\(workout.estimatedTime()) min")
+                                        .foregroundColor(Color(.label))
+                                }
+                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                .padding(.trailing)
                                 Spacer()
                                 Image(systemName: "chevron.right")
+                                    .resizable()
+                                    .frame(width: 8, height: 8)
+                                    .foregroundColor(Color(.secondaryLabel))
                             }
-                            .foregroundColor(Color(.label))
-                        }, height: 80)
+                        }, height: 50)
                     }
 
                 }

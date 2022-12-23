@@ -7,56 +7,58 @@
 
 import SwiftUI
 
-struct FloatingTextField: View {
+struct FloatingTextField<LabelContent>: View where LabelContent: View {
     let textFieldHeight: CGFloat = 50
     private let placeHolderText: LocalizedStringKey
-    private let placeHolderSuffix: String
+    private var placeHolderSuffix: String = ""
     @Binding var text: String
     private let bgColor: Color
-    @State private var isEditing = false
+    @FocusState var isInputActive: Bool
+    var labelContent: LabelContent?
 
-    var test: LocalizedStringKey {
+    var suffixText: LocalizedStringKey {
         LocalizedStringKey(self.placeHolderSuffix)
     }
 
     public init(placeHolder: LocalizedStringKey,
                 placeHolderSuffix: String? = nil,
-                text: Binding<String>, bgColor: Color) {
+                text: Binding<String>,
+                bgColor: Color,
+                @ViewBuilder labelContent: () -> LabelContent? = { nil }) {
         self._text = text
         self.placeHolderText = placeHolder
-        self.placeHolderSuffix = placeHolderSuffix != nil ? "(\(placeHolderSuffix!))" : ""
+        
+        if let placeHolderSuffix {
+            self.placeHolderSuffix = "(\(placeHolderSuffix))"
+        }
+
         self.bgColor = bgColor
+        self.labelContent = labelContent()
     }
 
     var shouldPlaceHolderMove: Bool {
-        isEditing || (text.count != 0)
+        isInputActive || (text.count != 0)
     }
-
+    
     var body: some View {
-        ZStack(alignment: .leading) {
-            TextField("", text: $text, onEditingChanged: { (edit) in
-                isEditing = edit
-            })
-            .padding()
-            .overlay(RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.secondary, lineWidth: 1)
-                .frame(height: textFieldHeight))
-            .foregroundColor(Color(.label))
-            .accentColor(Color.secondary)
-            .animation(.linear)
-            HStack {
-                Text(placeHolderText)
-                Text(test)
+        VStack(spacing: 8) {
+            if shouldPlaceHolderMove {
+                if let labelContent {
+                    labelContent
+                        .font(.caption)
+                        .font(.system(size: 8, weight: .semibold, design: .rounded))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
-            .foregroundColor(Color(.secondaryLabel))
-            .background(bgColor)
-            .padding(shouldPlaceHolderMove ?
-                     EdgeInsets(top: 0, leading: 15, bottom: textFieldHeight + 20, trailing: 0) :
-                        EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-            .scaleEffect(shouldPlaceHolderMove ? 1.0 : 1.2)
-            .animation(.linear)
-
+            
+            TextField(
+                placeHolderText,
+                text: $text,
+                prompt: Text(placeHolderText))
+            .frame(height: 30)
         }
+        .transition(.move(edge: .bottom))
+        .animation(.linear, value: text.isEmpty)
     }
 }
 
@@ -66,8 +68,11 @@ struct FloatingTextField_Previews: PreviewProvider {
         FloatingTextField(
             placeHolder: "Preview",
             placeHolderSuffix: "secs",
-            text: .constant(""),
-            bgColor: Color(.systemBackground))
+            text: .constant("g"),
+            bgColor: Color(.systemBackground),
+            labelContent: {
+                Text("test")
+            })
     }
 }
 #endif

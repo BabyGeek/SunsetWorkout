@@ -7,71 +7,39 @@
 
 import SwiftUI
 
-enum ToasterType {
-    case error, success, warning, info
+struct ToasterBoolTestView: View {
+    @State var isPresented: Bool = false
 
-    var iconName: String {
-        switch self {
-        case .error:
-            return "xmark.circle.fill"
-        case .success:
-            return "checkmark.circle.fill"
-        case .warning:
-            return "exclamationmark.triangle.fill"
-        case .info:
-            return "info.circle.fill"
-        }
+    var body: some View {
+        Text("Hello, World!")
+            .onTapGesture {
+                withAnimation {
+                    isPresented = true
+                }
+            }
+            .toast(isPresented: $isPresented, position: .bottom)
     }
-
-    var foregroundColor: Color {
-        switch self {
-        case .error:
-            return .red
-        case .success:
-            return .green
-        case .warning:
-            return .yellow
-        case .info:
-            return .blue
-        }
-    }
-}
-
-enum ToasterPosition {
-    case top, bottom
-
-    var edgeMoving: Edge {
-        switch self {
-        case .top:
-            return .top
-        case .bottom:
-            return .bottom
-        }
-    }
-}
-
-struct TestToastItem: Identifiable {
-    let id = UUID()
 }
 
 struct ToasterTestView: View {
-    @State var isPresented: Bool = false
     @State var item: SWError?
 
     var body: some View {
         Text("Hello, World!")
             .onTapGesture {
-                isPresented = true
                 item = SWError(error: RealmError.failure)
             }
-            .toastWithError($item)
+            .toastWithError($item, position: .bottom)
     }
 }
 
 #if DEBUG
 struct ToasterView_Previews: PreviewProvider {
     static var previews: some View {
-        ToasterTestView()
+        VStack {
+            ToasterTestView()
+            ToasterBoolTestView()
+        }
     }
 }
 #endif
@@ -81,7 +49,8 @@ struct ToasterView: View {
     let position: ToasterPosition
     let title: String
     let text: String
-
+    @Binding var isPresented: Bool
+    
     var body: some View {
         VStack {
             if position == .bottom {
@@ -113,7 +82,7 @@ struct ToasterView: View {
             }
         }
         .padding()
-        .animation(.easeInOut(duration: 1))
+        .animation(.easeInOut(duration: 1), value: isPresented)
         .transition(.move(edge: position.edgeMoving))
     }
 }

@@ -14,11 +14,8 @@ struct InputsView: View {
         VStack {
             HStack {
                 if viewModel.waitForInput {
-                    ActivityButton {
-                        ActivityButtonWithIcon(
-                            iconName: "pencil.and.ellipsis.rectangle",
-                            color: .yellow
-                        )
+                    SWButton(tint: .yellow) {
+                        SWButtonWithIcon(iconName: "pencil.and.ellipsis.rectangle")
                     } action: {
                         viewModel.presentSerieAlert = true
                         viewModel.prepareAddInput()
@@ -28,11 +25,8 @@ struct InputsView: View {
                 }
 
                 if viewModel.canSkip {
-                    ActivityButton {
-                        ActivityButtonWithIcon(
-                            iconName: "forward.fill",
-                            color: .blue
-                        )
+                    SWButton(tint: .blue) {
+                        SWButtonWithIcon(iconName: "forward.fill")
                     } action: {
                         if viewModel.isTraditionalTraining && viewModel.activityStateIs(.running) {
                             viewModel.presentSerieAlert = true
@@ -44,45 +38,44 @@ struct InputsView: View {
                             viewModel.skip()
                         }
                     }
+                    .animation(.easeIn, value: viewModel.canSkip)
                 }
             }
 
             HStack {
                 if viewModel.canAskForReplay {
-                    ActivityButton {
-                        ActivityButtonWithIcon(
-                            iconName: "play.fill",
-                            color: .green
-                        )
+                    SWButton(tint: .green) {
+                        SWButtonWithIcon(iconName: "play.fill")
                     } action: {
-                        viewModel.play()
+                        withAnimation {
+                            viewModel.play()
+                        }
                     }
+                    .animation(.easeIn, value: viewModel.canAskForReplay)
                 }
 
                 if viewModel.canAskForPause {
-                    ActivityButton {
-                        ActivityButtonWithIcon(
-                            iconName: "pause.fill",
-                            color: .orange
-                        )
+                    SWButton(tint: .orange) {
+                        SWButtonWithIcon(iconName: "pause.fill")
                     } action: {
-                        viewModel.pause()
+                        withAnimation {
+                            viewModel.pause()
+                        }
                     }
+                    .animation(.easeIn, value: viewModel.canAskForPause)
                 }
 
-                ActivityButton {
-                    ActivityButtonWithIcon(
-                        iconName: "stop.fill",
-                        color: .red
-                    )
+                SWButton(tint: .red) {
+                    SWButtonWithIcon(iconName: "stop.fill")
                 } action: {
-
                     if viewModel.isTraditionalTraining && viewModel.activityStateIs(.running) {
                         viewModel.prepareAddInput()
                         viewModel.presentSerieAlert = true
                         viewModel.shouldCancel = true
                     } else {
-                        viewModel.cancel()
+                        withAnimation {
+                            viewModel.cancel()
+                        }
                     }
                 }
             }

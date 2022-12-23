@@ -26,10 +26,9 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
                     content
                         .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
                 }
-
-                if !isKeyboardVisible {
-                    TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
-                }
+                
+                TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+                    .ignoresSafeArea(.all)
             }
             .background(BackgroundView())
             .navigationTitle(selection.navigationTitle)

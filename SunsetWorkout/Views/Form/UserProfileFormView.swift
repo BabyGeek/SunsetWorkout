@@ -16,18 +16,18 @@ struct UserProfileFormView: View {
 
     var body: some View {
         VStack(spacing: 30) {
-            FloatingTextField(
+            FloatingTextField<EmptyView>(
                 placeHolder: "profile.height",
                 placeHolderSuffix: heightUnit,
-                text: $height, bgColor:
-                        .purple)
+                text: $height,
+                bgColor: .purple)
             .keyboardType(.decimalPad)
 
-            FloatingTextField(
+            FloatingTextField<EmptyView>(
                 placeHolder: "profile.weight",
                 placeHolderSuffix: weightUnit,
-                text: $weight, bgColor:
-                        .purple)
+                text: $weight,
+                bgColor: .purple)
             .keyboardType(.decimalPad)
         }
     }

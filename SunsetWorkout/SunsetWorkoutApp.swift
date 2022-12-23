@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct SunsetWorkoutApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
         WindowGroup {
             MainView()

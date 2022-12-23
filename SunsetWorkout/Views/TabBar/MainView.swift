@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View, KeyboardReadable {
-    @AppStorage("currentPage") var currenPage = 1
+    @AppStorage("currentPage", store: UserDefaults(suiteName: "defaults.com.poggero.SunsetWorkout")) var currenPage = 1
     @State private var selection: String = "dashboard"
     @State private var selectedTab: TabBarItem = .dashboard
     @State private var isKeyboardVisible = false

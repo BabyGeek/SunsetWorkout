@@ -29,7 +29,10 @@ struct ActivitySerieInputAlertView: View {
                     format: NSLocalizedString("exercise.serie.goal", comment: "Exercise goal"),
                     goal))
 
-                FloatingTextField(placeHolder: "exercise.serie.total", text: $text, bgColor: .clear)
+                FloatingTextField<EmptyView>(
+                    placeHolder: "exercise.serie.total",
+                    text: $text,
+                    bgColor: .clear)
                     .keyboardType(.numberPad)
 
                 Button {

@@ -24,46 +24,62 @@ struct FinishedActivityView: View {
                 }
 
                 NavigationLink(
-                    destination: WorkoutView(
-                        workout: viewModel.activity.workout
-                    ),
+                    destination: WorkoutView(workout: viewModel.activity.workout),
                     isActive: $goToWorkout) {
                     EmptyView()
                 }
 
-                ActivityButton {
-                    ActivityButtonWithIconAndTitle(
+                SWButton(tint: .green) {
+                    SWButtonWithIconAndTitle(
                         titleKey: "button.go.to.summary",
-                        iconName: "calendar.badge.clock",
-                        color: .green
+                        iconName: "calendar.badge.clock"
                     )
                 } action: {
                     goToSummary = true
                 }
 
-                ActivityButton {
-                    ActivityButtonWithIconAndTitle(
+                SWButton(tint: .yellow) {
+                    SWButtonWithIconAndTitle(
                         titleKey: "button.go.to.workout",
-                        iconName: "figure.strengthtraining.traditional",
-                        color: .yellow
+                        iconName: "figure.strengthtraining.traditional"
                     )
                 } action: {
                     goToWorkout = true
                 }
 
-                ActivityButton {
-                    ActivityButtonWithIconAndTitle(
+                SWButton(tint: .blue) {
+                    SWButtonWithIconAndTitle(
                         titleKey: "button.go.to.launch",
-                        iconName: "play.fill",
-                        color: .blue
+                        iconName: "play.fill"
                     )
                 } action: {
                     presentationMode.wrappedValue.dismiss()
                 }
                 Spacer()
             } else {
-                ProgressView {
-                    Text("activity.loading")
+                if viewModel.activityLastStateIs(.initialized) || viewModel.activityLastStateIs(.starting) {
+                    SWButton(tint: .yellow) {
+                        SWButtonWithIconAndTitle(
+                            titleKey: "button.go.to.workout",
+                            iconName: "figure.strengthtraining.traditional"
+                        )
+                    } action: {
+                        goToWorkout = true
+                    }
+
+                    SWButton(tint: .blue) {
+                        SWButtonWithIconAndTitle(
+                            titleKey: "button.go.to.launch",
+                            iconName: "play.fill"
+                        )
+                    } action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    Spacer()
+                } else {
+                    ProgressView {
+                        Text("activity.loading")
+                    }
                 }
             }
         }

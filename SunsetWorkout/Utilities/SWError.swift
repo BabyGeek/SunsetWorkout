@@ -10,18 +10,8 @@ import Foundation
 struct SWError: Identifiable {
     let id: UUID = UUID()
     let error: Error
-
-    var description: String {
-        if let error = error as? LocalizedError {
-            if let description = error.errorDescription {
-                return description
-            }
-        }
-
-        return GlobalError.unknown.errorDescription!
-    }
-
-    var failureReason: String {
+    
+    var title: String {
         if let error = error as? LocalizedError {
             if let failureReason = error.failureReason {
                 return failureReason
@@ -29,5 +19,15 @@ struct SWError: Identifiable {
         }
 
         return GlobalError.unknown.failureReason!
+    }
+
+    var description: String {
+        return error.localizedDescription
+    }
+}
+
+extension SWError: Equatable {
+    static func == (lhs: SWError, rhs: SWError) -> Bool {
+        lhs.id == rhs.id
     }
 }

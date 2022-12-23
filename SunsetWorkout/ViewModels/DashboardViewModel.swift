@@ -10,6 +10,7 @@ import HealthKit
 
 /// Dashboard ViewModel
 class DashboardViewModel: SWHealthStoreManager {
+    var userDefault: UserDefaults = .init(suiteName: "defaults.com.poggero.SunsetWorkout") ?? .standard
     var urlSession = URLSession.shared
     var feelingViewModel = FeelingViewModel()
 
@@ -39,6 +40,10 @@ class DashboardViewModel: SWHealthStoreManager {
     /// Fetch daily quote
     func getDailyQuote() {
         cancellable?.cancel()
+        
+        if userDefault.bool(forKey: "hasLoadedDailyQuote") {
+            return
+        }
 
         cancellable = loadQuote()
             .subscribe(on: DispatchQueue.global())
@@ -48,7 +53,7 @@ class DashboardViewModel: SWHealthStoreManager {
                 case .failure(let error):
                     self.error = SWError(error: error)
                 case .finished:
-                    debugPrint("Publisher is finished")
+                    self.userDefault.set(true, forKey: "hasLoadedDailyQuote")
                 }
             } receiveValue: { [weak self] in
                 guard let self else { return }
@@ -63,7 +68,7 @@ class DashboardViewModel: SWHealthStoreManager {
     /// - Returns: `AnyPublisher<Quote, Error>`
     func loadQuote(
         maxLength: String = "90",
-        tags: String = "sports,competition") -> AnyPublisher<Quote, Error> {
+        tags: String = "") -> AnyPublisher<Quote, Error> {
         urlSession.quotablePublisher(
             on: .quotableAPIHost,
             for: .random(maxLength: maxLength, tags: tags),

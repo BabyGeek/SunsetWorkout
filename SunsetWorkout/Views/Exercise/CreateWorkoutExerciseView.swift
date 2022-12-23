@@ -15,13 +15,9 @@ struct CreateWorkoutExerciseView: View, KeyboardReadable {
     var body: some View {
         ZStack {
             BackgroundView()
-
-            VStack {
-                Spacer()
-
-                WorkoutExerciseFormView(viewModel.workout?.id ?? "")
-            }
-            .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
+            
+            WorkoutExerciseFormView(viewModel.workout?.id ?? "")
+                .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible

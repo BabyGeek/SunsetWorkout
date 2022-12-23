@@ -114,6 +114,10 @@ class WorkoutViewModel: ObservableObject {
             self.error = SWError(error: error)
         }
     }
+    
+    func getExercises() -> [SWExercise] {
+        workout?.exercises ?? []
+    }
 
     private func refreshWorkout() {
         if let workout {

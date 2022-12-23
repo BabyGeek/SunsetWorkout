@@ -41,7 +41,6 @@ struct InputListView<TitleContent: View, InputContent: View, ListItem: Identifia
             }
         }
         .frame(maxHeight: UIScreen.main.bounds.height - 200)
-        .animation(.easeOut)
         .transition(.scale)
         .tabViewStyle(.page(indexDisplayMode: .always))
     }

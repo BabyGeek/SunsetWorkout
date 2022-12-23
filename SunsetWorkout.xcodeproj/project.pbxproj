@@ -68,7 +68,6 @@
 		2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */; };
 		2B6608DC28D02D4F00361C0F /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6608DB28D02D4F00361C0F /* HealthKit.framework */; };
 		2B71A9D4292226EE00B5740B /* ToasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71A9D3292226EE00B5740B /* ToasterView.swift */; };
-		2B71A9D62922317D00B5740B /* ToasterModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71A9D52922317D00B5740B /* ToasterModifiers.swift */; };
 		2B75093D2918070F00A75F97 /* SWActivitySummaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75093C2918070F00A75F97 /* SWActivitySummaryEntity.swift */; };
 		2B75093F29185E5300A75F97 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B75093E29185E5300A75F97 /* TypeAlias.swift */; };
 		2B7FDFEC28E7F640009FFAF5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 2B7FDFEB28E7F640009FFAF5 /* Realm */; };
@@ -86,13 +85,14 @@
 		2B94AD7D28F7677E00F3C71B /* SWWorkoutEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94AD7C28F7677E00F3C71B /* SWWorkoutEntity.swift */; };
 		2B94AD7F28F7686100F3C71B /* SWWorkoutMetadataEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataEntity.swift */; };
 		2B9FEB7728D4A42F00577A67 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */; };
-		2BA37C45290C7A8200826266 /* ActivityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA37C44290C7A8200826266 /* ActivityButton.swift */; };
+		2BA37C45290C7A8200826266 /* SWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA37C44290C7A8200826266 /* SWButton.swift */; };
 		2BAFA7CC29298C0800A86DF0 /* InputListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAFA7CB29298C0800A86DF0 /* InputListView.swift */; };
 		2BB3273C29034D43008A4B81 /* SWExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3273B29034D43008A4B81 /* SWExercise.swift */; };
 		2BB3273E29034E13008A4B81 /* SWExerciseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3273D29034E13008A4B81 /* SWExerciseEntity.swift */; };
 		2BB327422903642F008A4B81 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB327412903642F008A4B81 /* ArrayExtensions.swift */; };
 		2BB3274429036768008A4B81 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274329036768008A4B81 /* CollectionExtensions.swift */; };
 		2BB3274629036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */; };
+		2BB7A4422932531400A51C4D /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB7A4412932531400A51C4D /* ViewModifiers.swift */; };
 		2BC1126828FDF1A400898C80 /* CreateWorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */; };
 		2BC1126A28FDF80500898C80 /* WorkoutExerciseSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */; };
 		2BD1D7FB28B626FE006A3848 /* SunsetWorkoutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */; };
@@ -120,8 +120,11 @@
 		2BF575AA28FF596800F21605 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF575A928FF596800F21605 /* AccessToken.swift */; };
 		2BF575AC28FF59D000F21605 /* InvalidEndpointError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF575AB28FF59D000F21605 /* InvalidEndpointError.swift */; };
 		2BF575AE28FF5EA000F21605 /* ExerciseSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF575AD28FF5EA000F21605 /* ExerciseSearchViewModel.swift */; };
+		2BF6882129339305007578BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6882029339305007578BE /* AppDelegate.swift */; };
+		2BF6882329339AB5007578BE /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6882229339AB5007578BE /* K.swift */; };
+		2BF688252933E669007578BE /* ToasterPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF688242933E669007578BE /* ToasterPosition.swift */; };
+		2BF688272933E6B9007578BE /* ToasterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF688262933E6B9007578BE /* ToasterType.swift */; };
 		2BFCDC33292A3F6200E61A23 /* WorkoutExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCDC32292A3F6200E61A23 /* WorkoutExerciseViewModel.swift */; };
-		2BFCDC35292A9C8600E61A23 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCDC34292A9C8600E61A23 /* Colors.swift */; };
 		2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */; };
 		2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */; };
 		2BFF29AA28C4F55E0041841F /* FeelingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFF29A928C4F55E0041841F /* FeelingType.swift */; };
@@ -200,13 +203,12 @@
 		2B64341B29104EB200B21441 /* SunsetWorkoutActivityHIITWorkflowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutActivityHIITWorkflowTests.swift; sourceTree = "<group>"; };
 		2B6608C128CB5A4E00361C0F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B6608C428CB63D400361C0F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		2B6608CB28CCC84600361C0F /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		2B6608CB28CCC84600361C0F /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2B6608D328CDFA7700361C0F /* ConfigurationWalkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationWalkthrough.swift; sourceTree = "<group>"; };
 		2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWHealthStoreManager.swift; sourceTree = "<group>"; };
 		2B6608D928D02D4F00361C0F /* SunsetWorkout.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SunsetWorkout.entitlements; sourceTree = "<group>"; };
 		2B6608DB28D02D4F00361C0F /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2B71A9D3292226EE00B5740B /* ToasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterView.swift; sourceTree = "<group>"; };
-		2B71A9D52922317D00B5740B /* ToasterModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterModifiers.swift; sourceTree = "<group>"; };
 		2B75093C2918070F00A75F97 /* SWActivitySummaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWActivitySummaryEntity.swift; sourceTree = "<group>"; };
 		2B75093E29185E5300A75F97 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		2B83FA7428D8A19A00C3B1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -223,13 +225,14 @@
 		2B94AD7C28F7677E00F3C71B /* SWWorkoutEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWorkoutEntity.swift; sourceTree = "<group>"; };
 		2B94AD7E28F7686100F3C71B /* SWWorkoutMetadataEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWorkoutMetadataEntity.swift; sourceTree = "<group>"; };
 		2B9FEB7628D4A42F00577A67 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		2BA37C44290C7A8200826266 /* ActivityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityButton.swift; sourceTree = "<group>"; };
+		2BA37C44290C7A8200826266 /* SWButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWButton.swift; sourceTree = "<group>"; };
 		2BAFA7CB29298C0800A86DF0 /* InputListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputListView.swift; sourceTree = "<group>"; };
 		2BB3273B29034D43008A4B81 /* SWExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWExercise.swift; sourceTree = "<group>"; };
 		2BB3273D29034E13008A4B81 /* SWExerciseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWExerciseEntity.swift; sourceTree = "<group>"; };
 		2BB327412903642F008A4B81 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		2BB3274329036768008A4B81 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutExerciseTests.swift; sourceTree = "<group>"; };
+		2BB7A4412932531400A51C4D /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutExerciseView.swift; sourceTree = "<group>"; };
 		2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSearchView.swift; sourceTree = "<group>"; };
 		2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunsetWorkout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,8 +262,11 @@
 		2BF575A928FF596800F21605 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		2BF575AB28FF59D000F21605 /* InvalidEndpointError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidEndpointError.swift; sourceTree = "<group>"; };
 		2BF575AD28FF5EA000F21605 /* ExerciseSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSearchViewModel.swift; sourceTree = "<group>"; };
+		2BF6882029339305007578BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2BF6882229339AB5007578BE /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
+		2BF688242933E669007578BE /* ToasterPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterPosition.swift; sourceTree = "<group>"; };
+		2BF688262933E6B9007578BE /* ToasterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToasterType.swift; sourceTree = "<group>"; };
 		2BFCDC32292A3F6200E61A23 /* WorkoutExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseViewModel.swift; sourceTree = "<group>"; };
-		2BFCDC34292A9C8600E61A23 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2BFF29A428C4F1430041841F /* ProfileConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationView.swift; sourceTree = "<group>"; };
 		2BFF29A628C4F5420041841F /* FeelingConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingConfigurationView.swift; sourceTree = "<group>"; };
 		2BFF29A928C4F55E0041841F /* FeelingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelingType.swift; sourceTree = "<group>"; };
@@ -326,7 +332,6 @@
 			children = (
 				2B1480832909E2CB009E91B8 /* ActivityView.swift */,
 				2B02708A290DCE5500477305 /* InitialActivityView.swift */,
-				2BA37C44290C7A8200826266 /* ActivityButton.swift */,
 				2B617CA2291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift */,
 				2B617CA4291EB5B80070C6D3 /* MainActivityView.swift */,
 				2B617CA6291EB5E70070C6D3 /* InputsView.swift */,
@@ -347,9 +352,11 @@
 			isa = PBXGroup;
 			children = (
 				2BD25A5B290B1918003ABF5F /* ProgressBar.swift */,
+				2BA37C44290C7A8200826266 /* SWButton.swift */,
 				2B6608CB28CCC84600361C0F /* ViewExtensions.swift */,
 				2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */,
 				2B2EB19F28FCA02200F4FEDB /* GlassMorphicCard.swift */,
+				2BB7A4412932531400A51C4D /* ViewModifiers.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -408,7 +415,6 @@
 			isa = PBXGroup;
 			children = (
 				2B71A9D3292226EE00B5740B /* ToasterView.swift */,
-				2B71A9D52922317D00B5740B /* ToasterModifiers.swift */,
 			);
 			path = Toaster;
 			sourceTree = "<group>";
@@ -449,6 +455,8 @@
 				2BF575A928FF596800F21605 /* AccessToken.swift */,
 				2BD25A59290B137F003ABF5F /* SWActivityState.swift */,
 				2B02707E290D5DB900477305 /* Order.swift */,
+				2BF688242933E669007578BE /* ToasterPosition.swift */,
+				2BF688262933E6B9007578BE /* ToasterType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -484,6 +492,7 @@
 				2BD4A58C2916AF8B00FAFCD9 /* Entities */,
 				2BFF299E28C350A50041841F /* Views */,
 				2B6608C828CCC56A00361C0F /* ViewModels */,
+				2BF6882029339305007578BE /* AppDelegate.swift */,
 				2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */,
 				2BD1D7FE28B626FF006A3848 /* Assets.xcassets */,
 				2BD1D80028B626FF006A3848 /* Preview Content */,
@@ -583,7 +592,6 @@
 		2BFF29A828C4F54B0041841F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2BFCDC34292A9C8600E61A23 /* Colors.swift */,
 				2BFF29AE28C59AD90041841F /* TabBarItemsPreferenceKey.swift */,
 				2B6608D728D02D0600361C0F /* SWHealthStoreManager.swift */,
 				2B00C25D28EEC637002FDA9F /* RealmManager.swift */,
@@ -599,6 +607,7 @@
 				2BB3274329036768008A4B81 /* CollectionExtensions.swift */,
 				2B75093E29185E5300A75F97 /* TypeAlias.swift */,
 				2B4C3F98291FCDE400A12F11 /* TimeIntervalExtensions.swift */,
+				2BF6882229339AB5007578BE /* K.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -725,7 +734,7 @@
 		2BC729D228B690DE00FD0B04 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -737,7 +746,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n    swiftlint --fix & swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
@@ -750,6 +759,7 @@
 			files = (
 				2BFF29AD28C55C3B0041841F /* TabBarItem.swift in Sources */,
 				2B94AD7528F7605A00F3C71B /* SWWorkoutType.swift in Sources */,
+				2BB7A4422932531400A51C4D /* ViewModifiers.swift in Sources */,
 				2BF5759828FF529A00F21605 /* ExerciseSearchLoader.swift in Sources */,
 				2B617CAA291EF27D0070C6D3 /* HistoriesView.swift in Sources */,
 				2B4C3FA32920568200A12F11 /* StrengthInputRowView.swift in Sources */,
@@ -780,6 +790,7 @@
 				2B4C3F99291FCDE400A12F11 /* TimeIntervalExtensions.swift in Sources */,
 				2BF575AE28FF5EA000F21605 /* ExerciseSearchViewModel.swift in Sources */,
 				2B94AD7B28F7609100F3C71B /* SWWorkout.swift in Sources */,
+				2BF688252933E669007578BE /* ToasterPosition.swift in Sources */,
 				2B03969428FB4A93000D7B26 /* FloatingTextField.swift in Sources */,
 				2B00C26428EEE31C002FDA9F /* DateExtension.swift in Sources */,
 				2BFF29A528C4F1430041841F /* ProfileConfigurationView.swift in Sources */,
@@ -807,7 +818,7 @@
 				2B83FA8028DD38B800C3B1C0 /* FeelingViewModel.swift in Sources */,
 				2B2F76CC291C47F8001C1921 /* ActivityHIITInputsEntity.swift in Sources */,
 				2B2F76DA291C48B3001C1921 /* ActivityStrengthInput.swift in Sources */,
-				2BFCDC35292A9C8600E61A23 /* Colors.swift in Sources */,
+				2BF6882329339AB5007578BE /* K.swift in Sources */,
 				2B6608C528CB63D400361C0F /* DashboardView.swift in Sources */,
 				2B83FA7628DC799400C3B1C0 /* CreateFormView.swift in Sources */,
 				2BF575A028FF54C300F21605 /* Endpoint.swift in Sources */,
@@ -816,8 +827,9 @@
 				2B617CA7291EB5E70070C6D3 /* InputsView.swift in Sources */,
 				2BD1D7FD28B626FE006A3848 /* AuthorizationView.swift in Sources */,
 				2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */,
-				2B71A9D62922317D00B5740B /* ToasterModifiers.swift in Sources */,
 				2B2EB19928FC9EE400F4FEDB /* BackgroundView.swift in Sources */,
+				2BF688272933E6B9007578BE /* ToasterType.swift in Sources */,
+				2BF6882129339305007578BE /* AppDelegate.swift in Sources */,
 				2B8EE32028F9F52D00206F9C /* Feeling.swift in Sources */,
 				2B37B66E28FC0F57005302D7 /* WorkoutCardView.swift in Sources */,
 				2BFF29A728C4F5420041841F /* FeelingConfigurationView.swift in Sources */,
@@ -827,7 +839,7 @@
 				2B2F76DC291C57D5001C1921 /* HistoriesViewModel.swift in Sources */,
 				2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */,
 				2B94AD7928F7608B00F3C71B /* SWMetadata.swift in Sources */,
-				2BA37C45290C7A8200826266 /* ActivityButton.swift in Sources */,
+				2BA37C45290C7A8200826266 /* SWButton.swift in Sources */,
 				2B4C3F9B291FDADC00A12F11 /* HistoryMetaView.swift in Sources */,
 				2BAFA7CC29298C0800A86DF0 /* InputListView.swift in Sources */,
 				2B94AD7F28F7686100F3C71B /* SWWorkoutMetadataEntity.swift in Sources */,
@@ -998,7 +1010,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1024,7 +1036,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1181,7 +1193,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1223,7 +1235,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1249,7 +1261,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1272,7 +1284,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6268FDJSTY;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.poggero.SunsetWorkoutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

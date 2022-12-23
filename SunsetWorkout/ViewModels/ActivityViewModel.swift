@@ -98,7 +98,7 @@ class ActivityViewModel: ObservableObject {
 
     /// Save the workout session
     @MainActor func save() {
-        if !activityStateIs(.initialized) && !activityStateIs(.starting) && !saved && isFinished {
+        if !activityLastStateIs(.initialized) && !activityLastStateIs(.starting) && !saved && isFinished {
             do {
                 self.activitySummary = self.activity.getSummary()
                 try self.save(with: SWActivitySummaryEntity.init)
@@ -314,15 +314,10 @@ class ActivityViewModel: ObservableObject {
         activity.currentExercise?.name ?? NSLocalizedString("not.found", comment: "Not found label")
     }
 
-    /// Get the current repetition string text, `round` for HIIT, `serie` for Strength
+    /// Get the current repetition string text depends on the workout type
     /// - Returns: `String`
     private func getCurrentRepetitionString() -> String {
-        switch activity.workout.type {
-        case .highIntensityIntervalTraining:
-            return NSLocalizedString("workout.hiit.repetition", comment: "Workout HIIT repetition name")
-        case .traditionalStrengthTraining:
-            return NSLocalizedString("workout.strength.repetition", comment: "Workout Strength repetition name")
-        }
+        activity.workout.type.repetitionLabel
     }
 
     /// Get the current repetition number

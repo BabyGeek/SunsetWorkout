@@ -54,9 +54,13 @@
 
 // WORKOUT TYPE
 "workout.type.name.hiit" = "HIIT";
-"workout.type.name.strenght" = "Strenght";
+"workout.type.name.strenght" = "Force";
+"workout.type.name.mixed" = "Mix";
+"workout.type.name.cycle" = "Cycle";
 "workout.hiit.repetition" = "Round";
 "workout.strength.repetition" = "Serie";
+"workout.mixed.repetition" = "Round";
+"workout.cycle.repetition" = "Round";
 
 // METADATA TYPE
 "metadate.label.exercise.break" = "Pause entre les exercices";
@@ -151,3 +155,4 @@
 // GLOBAL
 "not.found" = "Non trouvé";
 "button.save" = "Sauvegarder";
+"text.field.done" = "Terminé";

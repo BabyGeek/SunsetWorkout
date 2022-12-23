@@ -16,7 +16,7 @@ struct WalkthroughConfigurationSettings {
 
 struct ConfigurationWalkthroughView: View {
     @StateObject var SWHealthStoreManager: SWHealthStoreManager
-    @AppStorage("currentPage") var currentPage = 1
+    @AppStorage("currentPage", store: UserDefaults(suiteName: "defaults.com.poggero.SunsetWorkout")) var currentPage = 1
 
     var body: some View {
         ZStack {

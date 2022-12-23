@@ -12,34 +12,36 @@ struct HistoryCardView: View {
 
     var body: some View {
         GlassMorphicCard(content: {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 20) {
-                        HStack {
-                            Image(systemName: "clock.badge.checkmark")
-                                .foregroundColor(summary.endedWithState == .canceled ? .red : .green)
-                            Text(summary.title)
-                        }
-
-                        VStack(alignment: .leading) {
-                            HistoryMetaView(
-                                iconName: "timer",
-                                value: summary.duration.stringFromTimeInterval())
-                            HistoryMetaView(
-                                iconName: "flame.fill",
-                                value: summary.totalEnergyBurnedQuantity.description)
-                            HistoryMetaView(
-                                iconName: "dumbbell.fill",
-                                value: summary.type.name)
-                        }
+            HStack {
+                VStack(alignment: .leading, spacing: 20) {
+                    HStack {
+                        Image(systemName: "clock.badge.checkmark")
+                            .foregroundColor(summary.endedWithState == .canceled ? .red : .green)
+                        Text(summary.title)
                     }
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .resizable()
-                        .frame(width: 18, height: 18)
+
+                    HStack {
+                        HistoryMetaView(
+                            iconName: "timer",
+                            value: summary.duration.stringFromTimeInterval())
+                        Spacer()
+                        HistoryMetaView(
+                            iconName: "flame.fill",
+                            value: summary.totalEnergyBurnedInt.description)
+                        Spacer()
+                        HistoryMetaView(
+                            iconName: summary.type.iconName,
+                            value: "")
+                    }
                 }
+                .padding(.trailing)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .resizable()
+                    .frame(width: 8, height: 8)
+                    .foregroundColor(Color(.secondaryLabel))
             }
-        }, height: 150)
+        }, height: 100)
     }
 }
 

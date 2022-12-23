@@ -13,22 +13,28 @@ struct HIITFormView: View {
     @Binding var roundNumber: String
 
     var body: some View {
-        VStack {
+        Section {
             FloatingTextField(placeHolder: SWMetadataType.roundBreak.label,
                               placeHolderSuffix: "secs",
                               text: $roundBreak,
-                              bgColor: Color(.clear))
+                              bgColor: Color(.clear)) {
+                Text(SWMetadataType.roundBreak.label)
+            }
                 .keyboardType(.numberPad)
 
             FloatingTextField(placeHolder: SWMetadataType.roundDuration.label,
                               placeHolderSuffix: "secs",
                               text: $roundDuration,
-                              bgColor: Color(.clear))
+                              bgColor: Color(.clear)) {
+                Text(SWMetadataType.roundDuration.label)
+            }
             .keyboardType(.numberPad)
 
             FloatingTextField(placeHolder: SWMetadataType.roundNumber.label,
                               text: $roundNumber,
-                              bgColor: Color(.clear))
+                              bgColor: Color(.clear)) {
+                Text(SWMetadataType.roundNumber.label)
+            }
                 .keyboardType(.numberPad)
         }
     }

@@ -14,6 +14,8 @@ struct WorkoutExerciseFormView: View, KeyboardReadable {
     @State var isSearching: Bool = false
     @State var selectedSearch: ExerciseSearch?
     @State var isKeyboardVisible: Bool = false
+    
+    @FocusState var isSearchActive: Bool
 
     init(_ exerciseUUID: String) {
         _viewModel = StateObject(
@@ -23,38 +25,38 @@ struct WorkoutExerciseFormView: View, KeyboardReadable {
 
     var body: some View {
         VStack {
-            FloatingTextField(
-                placeHolder: "exercise.name",
-                text: $viewModel.name,
-                bgColor: .clear)
-            .simultaneousGesture(
-                TapGesture()
-                    .onEnded({ _ in
-                        isSearching = true
-                    })
-            )
-
             formView
-        }
-        .padding()
-        .onReceive(keyboardPublisher) { newIsKeyboardVisible in
-            isKeyboardVisible = newIsKeyboardVisible
-        }
-        .onChange(of: selectedSearch) { newSelection in
-            isSearching = false
-            if let newSelection {
-                viewModel.name = newSelection.value
+            
+            Spacer()
+            
+            SWButton(tint: .green) {
+                Text("button.save")
+            } action: {
+                viewModel.saveExercise()
+                if viewModel.saved {
+                    self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    viewModel.error = SWError(error: SWExerciseError.notSaved)
+                    
+                }
             }
-        }
-        .sheet(isPresented: $isSearching) {
-            WorkoutExerciseSearchView(
-                search: $viewModel.name,
-                selected: $selectedSearch,
-                isSearching: $isSearching)
-        }
-        .toastWithError($viewModel.error)
-        .onAppear {
-            // viewModel.initMetadataWithValues()
+            .padding()
+            .onReceive(keyboardPublisher) { newIsKeyboardVisible in
+                isKeyboardVisible = newIsKeyboardVisible
+            }
+            .onChange(of: selectedSearch) { newSelection in
+                isSearching = false
+                if let newSelection {
+                    viewModel.name = newSelection.value
+                }
+            }
+            .sheet(isPresented: $isSearching) {
+                WorkoutExerciseSearchView(
+                    search: $viewModel.name,
+                    selected: $selectedSearch,
+                    isSearching: $isSearching)
+            }
+            .toastWithError($viewModel.error)
         }
     }
 }
@@ -62,8 +64,20 @@ struct WorkoutExerciseFormView: View, KeyboardReadable {
 // MARK: - Form view
 extension WorkoutExerciseFormView {
     var formView: some View {
-        VStack {
-            FloatingTextField(
+        Form {
+            FloatingTextField<EmptyView>(
+                placeHolder: "exercise.name",
+                text: $viewModel.name,
+                bgColor: .clear)
+            .focused($isSearchActive)
+            .simultaneousGesture(
+                TapGesture()
+                    .onEnded({ _ in
+                        isSearching = true
+                    })
+            )
+            
+            FloatingTextField<EmptyView>(
                 placeHolder: "exercise.break",
                 text: $viewModel.exerciseBreak,
                 bgColor: .clear)
@@ -82,27 +96,8 @@ extension WorkoutExerciseFormView {
                     seriesNumber: $viewModel.seriesNumber,
                     repetitionGoal: $viewModel.repetitionGoal)
             }
-
-            Spacer()
-
-            if !isKeyboardVisible {
-                Button {
-                    viewModel.saveExercise()
-                    if viewModel.saved {
-                        self.presentationMode.wrappedValue.dismiss()
-                    } else {
-                        viewModel.error = SWError(error: SWExerciseError.notSaved)
-                    }
-
-                } label: {
-                    Text("button.save")
-                        .foregroundColor(Color(.label))
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .overlay(Capsule().stroke(Color.green))
-                }
-            }
         }
+        .clearListBackground()
     }
 }
 
@@ -122,7 +117,6 @@ struct WorkoutExerciseFormView_Previews: PreviewProvider {
     ])
 
     static var previews: some View {
-        Text("In progress")
         WorkoutExerciseFormView(HIITExample.id)
     }
 }

@@ -14,50 +14,49 @@ struct WorkoutView: View {
         _viewModel = ObservedObject(
             wrappedValue: WorkoutViewModel(workout: workout)
         )
-        UICollectionView.appearance().backgroundColor = .clear
+        
+        if #unavailable(iOS 16.0) {
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
 
     var body: some View {
-        ZStack {
-            BackgroundView()
-            if let workout = viewModel.workout {
-                if workout.exercises.isEmpty {
+        VStack {
+            if viewModel.getExercises().isEmpty {
+                VStack(alignment: .center) {
                     Spacer()
                     Text("workout.exercises.empty")
                     Spacer()
                 }
-
-                List {
-                    ForEach(workout.exercises) { exercise in
-                        VStack(spacing: 0) {
-                            Text(exercise.name)
-
-                            if exercise != workout.exercises.last {
-                                Rectangle()
-                                    .fill(.purple)
-                                    .blur(radius: 1.5)
-                                    .frame(maxWidth: .infinity, maxHeight: 0.5, alignment: .center)
-                                    .padding(.horizontal)
-                                    .padding(.top)
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    }
+                .frame(maxWidth: .infinity, alignment: .center)
+            } else {
+                List(viewModel.getExercises()) { exercise in
+                    Text(exercise.name)
                 }
-                NavigationLink(destination: EmptyView()) {
-                    EmptyView()
-                }
+                .clearListBackground()
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(BackgroundView())
         .navigationTitle(viewModel.workout?.name ??
                          NSLocalizedString("workout.name.not.found", comment: "Label workout name not found"))
-        .navigationBarItems(trailing:
-                                NavigationLink(
-                                    destination: CreateWorkoutExerciseView(viewModel: viewModel),
-                                    label: {
-                                        Image(systemName: "plus")
-                                    })
-        )
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                if let workout = viewModel.workout {
+                    NavigationLink(
+                        destination: ActivityView(workout: workout),
+                        label: {
+                            Image(systemName: "play")
+                        })
+                }
+                NavigationLink(
+                    destination: CreateWorkoutExerciseView(viewModel: viewModel),
+                    label: {
+                        Image(systemName: "plus")
+                    })
+            }
+
+        }
         .toastWithError($viewModel.error)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthorizationView: View {
     @EnvironmentObject var SWHealthStoreManager: SWHealthStoreManager
-    @AppStorage("currentPage") var currenPage = 1
+    @AppStorage("currentPage", store: UserDefaults(suiteName: "defaults.com.poggero.SunsetWorkout")) var currenPage = 1
     var withButton: Bool = false
 
     var body: some View {
