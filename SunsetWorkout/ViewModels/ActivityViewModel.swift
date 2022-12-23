@@ -344,7 +344,7 @@ extension ActivityViewModel {
             if let activitySummary {
                 try realmManager.save(model: activitySummary, with: reverseTransformer)
                 self.activitySummary = try? realmManager.fetch(with: SWActivitySummary.allByDateDESC).first
-                saved = true
+                self.saved = true
             }
         } catch {
             self.error = SWError(error: error)

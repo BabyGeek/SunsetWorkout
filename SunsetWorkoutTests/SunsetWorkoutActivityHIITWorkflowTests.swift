@@ -214,7 +214,7 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         XCTAssertFalse(viewModel.shouldShowTimer)
     }
 
-    @MainActor func testActivityIsSaved() {
+    func testActivityIsSaved() {
         let workout =  SWWorkout.getMockWithName("Test HIIT", type: .highIntensityIntervalTraining, exercises: [
             SWExercise(name: "Jumps", order: 1, metadata: [
                 SWMetadata(type: .exerciseBreak, value: "20"),
@@ -236,10 +236,16 @@ final class SunsetWorkoutActivityHIITWorkflowTests: XCTestCase {
         }
 
         viewModel.setupTimer()
-        viewModel.save()
+        
+        DispatchQueue.main.async {
+            viewModel.save()
+            
+            XCTAssertNil(viewModel.error)
+            XCTAssertTrue(viewModel.saved)
+        }
+        
         XCTAssertTrue(viewModel.activityStateIs(.finished))
         XCTAssertTrue(viewModel.isFinished)
-        XCTAssertTrue(viewModel.saved)
         XCTAssertFalse(viewModel.shouldShowTimer)
     }
 
