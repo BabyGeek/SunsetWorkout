@@ -53,6 +53,7 @@
 		2B4C3FA12920548600A12F11 /* HIITInputRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA02920548600A12F11 /* HIITInputRowView.swift */; };
 		2B4C3FA32920568200A12F11 /* StrengthInputRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA22920568200A12F11 /* StrengthInputRowView.swift */; };
 		2B4C3FA5292068AC00A12F11 /* SummaryExerciseSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA4292068AC00A12F11 /* SummaryExerciseSelectionViewModel.swift */; };
+		2B50B5C32959B68400D008DC /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50B5C22959B68400D008DC /* NavigationCoordinator.swift */; };
 		2B617CA3291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CA2291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift */; };
 		2B617CA5291EB5B80070C6D3 /* MainActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CA4291EB5B80070C6D3 /* MainActivityView.swift */; };
 		2B617CA7291EB5E70070C6D3 /* InputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CA6291EB5E70070C6D3 /* InputsView.swift */; };
@@ -193,6 +194,7 @@
 		2B4C3FA02920548600A12F11 /* HIITInputRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITInputRowView.swift; sourceTree = "<group>"; };
 		2B4C3FA22920568200A12F11 /* StrengthInputRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthInputRowView.swift; sourceTree = "<group>"; };
 		2B4C3FA4292068AC00A12F11 /* SummaryExerciseSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryExerciseSelectionViewModel.swift; sourceTree = "<group>"; };
+		2B50B5C22959B68400D008DC /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		2B617CA2291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySerieInputAlertView.swift; sourceTree = "<group>"; };
 		2B617CA4291EB5B80070C6D3 /* MainActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActivityView.swift; sourceTree = "<group>"; };
 		2B617CA6291EB5E70070C6D3 /* InputsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputsView.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				2B75093E29185E5300A75F97 /* TypeAlias.swift */,
 				2B4C3F98291FCDE400A12F11 /* TimeIntervalExtensions.swift */,
 				2BF6882229339AB5007578BE /* K.swift */,
+				2B50B5C22959B68400D008DC /* NavigationCoordinator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				2B2F76D6291C48A5001C1921 /* ActivityHIITInput.swift in Sources */,
 				2BF575A428FF552000F21605 /* EndpointKinds.swift in Sources */,
 				2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */,
+				2B50B5C32959B68400D008DC /* NavigationCoordinator.swift in Sources */,
 				2B4C3F97291FCA9300A12F11 /* HistoryCardView.swift in Sources */,
 				2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */,
 				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
