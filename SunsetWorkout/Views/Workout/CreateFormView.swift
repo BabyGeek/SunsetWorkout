@@ -9,6 +9,10 @@ import SwiftUI
 import HealthKit
 
 struct CreateFormView: View {
+    enum FocusedField {
+        case type, name, endBreak, roundBreak, roundDuration, roundNumber, serieBreak, serieDuration, repetitionGoal
+    }
+    
     @StateObject var workoutViewModel: WorkoutViewModel = WorkoutViewModel()
     @State var goToWorkoutView: Bool = false
     @State var selectBaseMetadata: Bool = true
@@ -17,11 +21,6 @@ struct CreateFormView: View {
 
     init(shouldHaveBackground: Bool = false) {
         self.shouldHaveBackground = shouldHaveBackground
-        
-        if #unavailable(iOS 16.0) {
-            UITableView.appearance().backgroundColor = .clear
-            UITableViewCell.appearance().backgroundColor = .clear
-        }
     }
 
     var body: some View {
@@ -51,6 +50,14 @@ struct CreateFormView: View {
         .clearListBackground()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toastWithError($workoutViewModel.error)
+        .onAppear {
+            if #unavailable(iOS 16.0) {
+                UITableView.appearance().backgroundColor = .clear
+                UITableViewCell.appearance().backgroundColor = .clear
+            }
+            
+            UITextField.appearance().clearButtonMode = .whileEditing
+        }
     }
 }
 

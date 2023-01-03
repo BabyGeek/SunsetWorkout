@@ -17,8 +17,11 @@
 
 // NAVIGATION
 "dashboard.navigation.title" = "Welcome";
+"create.navigation.title" = "Create a workout";
+"launch.navigation.title" = "Launch a workout";
+"workouts.navigation.title" = "Your workouts";
 "history.navigation.title" = "History";
-"activities.navigation.title" = "Workouts";
+"activities.navigation.title" = "Recent activities";
 
 
 // DASHBOARD

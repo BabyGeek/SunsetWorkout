@@ -59,7 +59,7 @@ struct GlassMorphicCard<Content: View>: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         )
         .padding(.horizontal)
-        .frame(maxWidth: width, minHeight: height)
+        .frame(width: width, height: height)
     }
 }
 

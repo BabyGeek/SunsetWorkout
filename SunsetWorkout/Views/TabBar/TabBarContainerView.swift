@@ -10,8 +10,10 @@ import SwiftUI
 struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     @State private var tabs: [TabBarItem] = [TabBarItem]()
     @State private var isKeyboardVisible = false
+    
     @Binding var selection: TabBarItem
-
+    
+    
     let content: Content
 
     init(selection: Binding<TabBarItem>, @ViewBuilder content: () -> Content) {
@@ -24,10 +26,9 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
             VStack {
                 ZStack {
                     content
-                        .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
                 }
                 
-                TabBarView(tabs: tabs, selection: $selection, localSelection: selection)
+                TabBarView(tabs: tabs, promotedItems: [.launch], selection: $selection)
                     .ignoresSafeArea(.all)
             }
             .background(BackgroundView())
@@ -48,8 +49,10 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
 struct TabBarContainerView_Previews: PreviewProvider {
     static let tabs: [TabBarItem] = [
         .dashboard,
-        .add,
-        .workouts
+        .create,
+        .launch,
+        .workouts,
+        .history
     ]
 
     static var previews: some View {
