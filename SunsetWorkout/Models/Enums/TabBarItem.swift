@@ -9,7 +9,7 @@ import SwiftUI
 
 enum TabBarItem {
     case dashboard, launch, create, workouts, history, activities
-
+    
     var symbol: Image {
         switch self {
         case .dashboard:
@@ -26,25 +26,8 @@ enum TabBarItem {
             if #available(iOS 16, *) {
                 return Image(systemName: "figure.strengthtraining.traditional")
             } else {
-                return Image(systemName: "bolt.heart")
+                return Image(systemName: "bolt")
             }
-        }
-    }
-
-    var title: String {
-        switch self {
-        case .dashboard:
-            return NSLocalizedString("dashboard.tab.title", comment: "Dashboard tab bar title")
-        case .launch:
-            return NSLocalizedString("launch.tab.title", comment: "Launch tab bar title")
-        case .create:
-            return NSLocalizedString("create.tab.title", comment: "Create tab bar title")
-        case .workouts:
-            return NSLocalizedString("workouts.tab.title", comment: "Workouts tab bar title")
-        case .history:
-            return NSLocalizedString("history.tab.title", comment: "Summaries tab bar title")
-        case .activities:
-            return NSLocalizedString("activities.tab.title", comment: "Summaries tab bar title")
         }
     }
 

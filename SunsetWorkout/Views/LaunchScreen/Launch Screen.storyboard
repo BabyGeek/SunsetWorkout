@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenBackground" translatesAutoresizingMaskIntoConstraints="NO" id="jp4-0X-FBb">
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barbellAndPlates" translatesAutoresizingMaskIntoConstraints="NO" id="Kw5-af-LiK">
+                                <rect key="frame" x="-185" y="493" width="800" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Kw5-af-LiK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4GT-BJ-qho"/>
+                            <constraint firstItem="jp4-0X-FBb" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="6G6-GH-McT"/>
+                            <constraint firstAttribute="bottom" secondItem="jp4-0X-FBb" secondAttribute="bottom" id="C7X-ZF-E9a"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="Kw5-af-LiK" secondAttribute="bottom" constant="277" id="I6g-6B-LBK"/>
+                            <constraint firstItem="jp4-0X-FBb" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="KDB-nC-pMS"/>
+                            <constraint firstItem="Kw5-af-LiK" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="434" id="MAQ-wX-aKh"/>
+                            <constraint firstItem="jp4-0X-FBb" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="gQ6-GV-FUy"/>
+                            <constraint firstItem="Kw5-af-LiK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zmZ-ni-Obv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="barbellAndPlates" width="800" height="800"/>
+        <image name="launchScreenBackground" width="500" height="500"/>
+    </resources>
+</document>

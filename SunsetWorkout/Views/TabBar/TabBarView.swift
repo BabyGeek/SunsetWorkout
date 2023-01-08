@@ -19,11 +19,6 @@ struct TabBarView: View {
             tabBar
         }
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 30)
-                .fill(Color(.systemPurple))
-                .clipShape(TabCurve(tabPoint: getCurvePoint() - 15))
-        )
         .overlay(
             Circle()
                 .fill(Color(.systemCyan))
@@ -31,7 +26,11 @@ struct TabBarView: View {
                 .offset(x: getCurvePoint() - 20)
             , alignment: .bottomLeading
         )
-        .foregroundColor(Color(.systemBackground))
+        .background(
+            RoundedRectangle(cornerRadius: 30)
+                .fill(Color(.systemPurple))
+                .clipShape(TabCurve(tabPoint: getCurvePoint() - 15))
+        )
         .padding([.horizontal, .bottom])
     }
 }
@@ -54,8 +53,9 @@ extension TabBarView {
                         switchToTab(tab: item)
                     }, label: {
                         item.symbol
-                            .font(.system(size: 20, weight: .semibold))
                     })
+                    .foregroundColor(Color(.systemBackground))
+                    .font(.system(size: 20, weight: .semibold))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         }
@@ -79,8 +79,9 @@ extension TabBarView {
                         switchToTab(tab: item)
                     }, label: {
                         item.symbol
-                            .font(.system(size: 20, weight: .semibold))
                     })
+                    .foregroundColor(Color(.systemBackground))
+                    .font(.system(size: 20, weight: .semibold))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .padding()
                     .background(Color(.systemCyan))
@@ -114,7 +115,7 @@ extension TabBarView {
     
     private func getCurvePoint() -> CGFloat {
         if tabPoints.isEmpty {
-            return 10
+            return 20
         }
         
         if let selectedIndex = tabs.firstIndex(of: selection) {

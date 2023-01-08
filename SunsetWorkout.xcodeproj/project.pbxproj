@@ -18,7 +18,6 @@
 		2B02708B290DCE5500477305 /* InitialActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B02708A290DCE5500477305 /* InitialActivityView.swift */; };
 		2B03964C28FAE07F000D7B26 /* TraditionalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */; };
 		2B03964E28FAE0E9000D7B26 /* HIITFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */; };
-		2B03968328FAEBC6000D7B26 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */; };
 		2B03968E28FAEDB1000D7B26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B03969028FAEDB1000D7B26 /* Localizable.strings */; };
 		2B03969428FB4A93000D7B26 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969328FB4A93000D7B26 /* FloatingTextField.swift */; };
 		2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */; };
@@ -108,6 +107,7 @@
 		2BD4A58B2916AF2100FAFCD9 /* SWActivitySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD4A58A2916AF2100FAFCD9 /* SWActivitySummary.swift */; };
 		2BD727082921829C000B5E22 /* FinishedActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD727072921829C000B5E22 /* FinishedActivityView.swift */; };
 		2BD9470D290EBC12004FE29E /* EmptyWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD9470C290EBC12004FE29E /* EmptyWorkoutView.swift */; };
+		2BE80DF5296A2D0B0002B7AF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE80DF4296A2D0B0002B7AF /* Launch Screen.storyboard */; };
 		2BF5759628FF4EF000F21605 /* ExerciseSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759528FF4EF000F21605 /* ExerciseSearch.swift */; };
 		2BF5759828FF529A00F21605 /* ExerciseSearchLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759728FF529A00F21605 /* ExerciseSearchLoader.swift */; };
 		2BF5759A28FF53A200F21605 /* WGERNetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5759928FF53A200F21605 /* WGERNetworkResponse.swift */; };
@@ -156,8 +156,6 @@
 		2B02708A290DCE5500477305 /* InitialActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialActivityView.swift; sourceTree = "<group>"; };
 		2B03964B28FAE07F000D7B26 /* TraditionalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalFormView.swift; sourceTree = "<group>"; };
 		2B03964D28FAE0E9000D7B26 /* HIITFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITFormView.swift; sourceTree = "<group>"; };
-		2B03968428FAEBC6000D7B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
-		2B03968628FAEBDE000D7B26 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "fr.lproj/Launch Screen.strings"; sourceTree = "<group>"; };
 		2B03968F28FAEDB1000D7B26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B03969328FB4A93000D7B26 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWorkoutFormView.swift; sourceTree = "<group>"; };
@@ -250,6 +248,7 @@
 		2BD4A58A2916AF2100FAFCD9 /* SWActivitySummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWActivitySummary.swift; sourceTree = "<group>"; };
 		2BD727072921829C000B5E22 /* FinishedActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedActivityView.swift; sourceTree = "<group>"; };
 		2BD9470C290EBC12004FE29E /* EmptyWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWorkoutView.swift; sourceTree = "<group>"; };
+		2BE80DF4296A2D0B0002B7AF /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2BF5759528FF4EF000F21605 /* ExerciseSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSearch.swift; sourceTree = "<group>"; };
 		2BF5759728FF529A00F21605 /* ExerciseSearchLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSearchLoader.swift; sourceTree = "<group>"; };
 		2BF5759928FF53A200F21605 /* WGERNetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WGERNetworkResponse.swift; sourceTree = "<group>"; };
@@ -309,7 +308,7 @@
 		2B03968028FAEBA7000D7B26 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */,
+				2BE80DF4296A2D0B0002B7AF /* Launch Screen.storyboard */,
 			);
 			path = LaunchScreen;
 			sourceTree = "<group>";
@@ -716,8 +715,8 @@
 				2B03968E28FAEDB1000D7B26 /* Localizable.strings in Resources */,
 				2B266DAF2922B09F0069B749 /* Localizable.strings in Resources */,
 				2BD1D80228B626FF006A3848 /* Preview Assets.xcassets in Resources */,
+				2BE80DF5296A2D0B0002B7AF /* Launch Screen.storyboard in Resources */,
 				2BD1D7FF28B626FF006A3848 /* Assets.xcassets in Resources */,
-				2B03968328FAEBC6000D7B26 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,15 +894,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2B03968528FAEBC6000D7B26 /* Launch Screen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2B03968428FAEBC6000D7B26 /* Base */,
-				2B03968628FAEBDE000D7B26 /* fr */,
-			);
-			name = "Launch Screen.storyboard";
-			sourceTree = "<group>";
-		};
 		2B03969028FAEDB1000D7B26 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
