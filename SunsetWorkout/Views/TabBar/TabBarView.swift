@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @EnvironmentObject var navigationCoordinator: NavigationCoordinator
     let tabs: [TabBarItem]
     var promotedItems: [TabBarItem]? = nil
     
@@ -110,6 +111,10 @@ extension TabBarView {
     private func switchToTab(tab: TabBarItem) {
         withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.5, blendDuration: 0.5)) {
             selection = tab
+        }
+        
+        withAnimation {
+            navigationCoordinator.selectionFromTabBarItem(selection)
         }
     }
     

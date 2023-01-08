@@ -492,6 +492,7 @@
 				2B7FDFEF28E7F6A8009FFAF5 /* Models */,
 				2BD4A58C2916AF8B00FAFCD9 /* Entities */,
 				2BFF299E28C350A50041841F /* Views */,
+				2B6608C128CB5A4E00361C0F /* MainView.swift */,
 				2B6608C828CCC56A00361C0F /* ViewModels */,
 				2BF6882029339305007578BE /* AppDelegate.swift */,
 				2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */,
@@ -619,7 +620,6 @@
 			children = (
 				2BFF29B028C59BD40041841F /* TabBarContainerView.swift */,
 				2BFF29B228C5FFF00041841F /* TabBarView.swift */,
-				2B6608C128CB5A4E00361C0F /* MainView.swift */,
 				2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */,
 			);
 			path = TabBar;
