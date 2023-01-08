@@ -5,6 +5,7 @@
 //  Created by Paul Oggero on 26/11/2022.
 //
 
+import Combine
 import SwiftUI
 
 
@@ -81,5 +82,35 @@ struct TasterItemModifier<I: Identifiable & Equatable>: ViewModifier {
                     }
             }
         }
+    }
+}
+
+
+/// View modifier for numbers only view
+struct NumbersOnlyViewModifier: ViewModifier {
+    @Binding var text: String
+    var hasDecimal: Bool
+    
+    func body(content: Content) -> some View {
+        content
+            .keyboardType(hasDecimal ? .decimalPad : .numberPad)
+            .onReceive(Just(text)) { newValue in
+                var numbers = "0123456789"
+                let decimalSeparator: String = Locale.current.decimalSeparator ?? "."
+                
+                if hasDecimal {
+                    numbers.append(decimalSeparator)
+                }
+                
+                if newValue.components(separatedBy: decimalSeparator).count - 1 > 1 {
+                    let filtered = newValue
+                    self.text = String(filtered.dropLast())
+                } else {
+                    let filtered = newValue.filter { numbers.contains($0) }
+                    if filtered != newValue {
+                        self.text = filtered
+                    }
+                }
+            }
     }
 }

@@ -17,7 +17,6 @@ struct MainView: View, KeyboardReadable {
         if currenPage <= WalkthroughConfigurationSettings.totalPages {
             ConfigurationWalkthroughView(SWHealthStoreManager: SWHealthStoreManager())
                 .preferredColorScheme(.dark)
-                .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
                 .onReceive(keyboardPublisher) { newIsKeyboardVisible in
                     isKeyboardVisible = newIsKeyboardVisible
                 }
@@ -26,15 +25,12 @@ struct MainView: View, KeyboardReadable {
             TabBarContainerView(selection: $selectedTab) {
                 DashboardView()
                     .tabBarItem(tab: .dashboard, selection: $selectedTab)
-
-                EmptySelectingView()
-                    .tabBarItem(tab: .add, selection: $selectedTab)
+                
+                CreateFormView()
+                    .tabBarItem(tab: .create, selection: $selectedTab)
 
                 LaunchNewWorkoutView()
                     .tabBarItem(tab: .launch, selection: $selectedTab)
-
-                CreateFormView()
-                    .tabBarItem(tab: .create, selection: $selectedTab)
 
                 WorkoutsView()
                     .tabBarItem(tab: .activities, selection: $selectedTab)

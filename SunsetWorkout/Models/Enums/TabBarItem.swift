@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum TabBarItem {
-    case dashboard, launch, create, add, workouts, history, activities
-
+    case dashboard, launch, create, workouts, history, activities
+    
     var symbol: Image {
         switch self {
         case .dashboard:
@@ -17,8 +17,6 @@ enum TabBarItem {
         case .launch:
             return Image(systemName: "play")
         case .create:
-            return Image(systemName: "plus")
-        case .add:
             return Image(systemName: "plus")
         case .workouts:
             return Image(systemName: "bolt.heart")
@@ -28,27 +26,8 @@ enum TabBarItem {
             if #available(iOS 16, *) {
                 return Image(systemName: "figure.strengthtraining.traditional")
             } else {
-                return Image(systemName: "bolt.heart")
+                return Image(systemName: "bolt")
             }
-        }
-    }
-
-    var title: String {
-        switch self {
-        case .dashboard:
-            return NSLocalizedString("dashboard.tab.title", comment: "Dashboard tab bar title")
-        case .launch:
-            return NSLocalizedString("launch.tab.title", comment: "Launch tab bar title")
-        case .create:
-            return NSLocalizedString("create.tab.title", comment: "Create tab bar title")
-        case .add:
-            return NSLocalizedString("add.tab.title", comment: "Add tab bar title")
-        case .workouts:
-            return NSLocalizedString("workouts.tab.title", comment: "Workouts tab bar title")
-        case .history:
-            return NSLocalizedString("history.tab.title", comment: "Summaries tab bar title")
-        case .activities:
-            return NSLocalizedString("activities.tab.title", comment: "Summaries tab bar title")
         }
     }
 
@@ -57,17 +36,29 @@ enum TabBarItem {
         case .dashboard:
             return NSLocalizedString("dashboard.navigation.title", comment: "Dashboard navigation title")
         case .launch:
-            return ""
+            return NSLocalizedString("launch.navigation.title", comment: "Dashboard navigation title")
         case .create:
-            return ""
-        case .add:
-            return ""
+            return NSLocalizedString("create.navigation.title", comment: "Dashboard navigation title")
         case .workouts:
-            return ""
+            return NSLocalizedString("workouts.navigation.title", comment: "Dashboard navigation title")
         case .history:
             return NSLocalizedString("history.navigation.title", comment: "Summaries navigation title")
         case .activities:
             return NSLocalizedString("activities.navigation.title", comment: "Summaries navigation title")
+        }
+    }
+    
+    var shouldExpand: Bool {
+        switch self {
+        default:
+            return false
+        }
+    }
+    
+    var expandItems: [TabBarItem]? {
+        switch self {
+        default:
+            return nil
         }
     }
 }
