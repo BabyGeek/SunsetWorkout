@@ -17,7 +17,6 @@ struct CreateWorkoutExerciseView: View, KeyboardReadable {
             BackgroundView()
             
             WorkoutExerciseFormView(viewModel.workout?.id ?? "")
-                .endTextEditing(including: isKeyboardVisible ? .all : .subviews)
         }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible

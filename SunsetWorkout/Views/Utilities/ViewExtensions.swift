@@ -255,3 +255,10 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
+extension View {
+    func numbersOnly(_ text: Binding<String>, hasDecimal: Bool = false) -> some View {
+        self
+            .modifier(NumbersOnlyViewModifier(text: text, hasDecimal: hasDecimal))
+    }
+}

@@ -17,9 +17,11 @@
 
 // NAVIGATION
 "dashboard.navigation.title" = "Bienvenue";
+"create.navigation.title" = "Ajouter une séance";
+"launch.navigation.title" = "Lancer une séance";
+"workouts.navigation.title" = "Tes séances";
 "history.navigation.title" = "Historique";
-"activities.navigation.title" = "Activités";
-
+"activities.navigation.title" = "Activités récentes";
 
 // DASHBOARD
 "dashboard.sleep" = "Sommeil";
