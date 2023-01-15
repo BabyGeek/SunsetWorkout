@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class NavigationCoordinator: ObservableObject {
+    static let shared: NavigationCoordinator = .init()
     @Published var pageType: PageType = .dashboard
     @Published var selectedTab: TabBarItem = .dashboard
     

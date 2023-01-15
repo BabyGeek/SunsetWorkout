@@ -9,7 +9,7 @@ import SwiftUI
 import HealthKit
 
 struct CreateFormView: View {
-    @EnvironmentObject var navigatorCoordinator: NavigationCoordinator
+    @StateObject var navigatorCoordinator: NavigationCoordinator = .shared
     enum FocusedField {
         case type, name, endBreak, roundBreak, roundDuration, roundNumber, serieBreak, serieDuration, repetitionGoal
     }

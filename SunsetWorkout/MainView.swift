@@ -73,7 +73,6 @@ struct MainView: View, KeyboardReadable {
                             selection: $navigatorCoordinator.selectedTab)
                 }
             }
-            .environmentObject(navigatorCoordinator)
         }
     }
 }
