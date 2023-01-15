@@ -37,7 +37,6 @@ struct WorkoutView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(BackgroundView())
         .navigationTitle(viewModel.workout?.name ??
                          NSLocalizedString("workout.name.not.found", comment: "Label workout name not found"))
         .toolbar {

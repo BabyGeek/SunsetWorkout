@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FinishedActivityView: View {
     @EnvironmentObject var viewModel: ActivityViewModel
+    @EnvironmentObject var navigationCoordinator: NavigationCoordinator
     @Environment(\.presentationMode) var presentationMode
 
     @State var goToSummary: Bool = false
@@ -16,26 +17,17 @@ struct FinishedActivityView: View {
 
     var body: some View {
         VStack(spacing: 80) {
-            if viewModel.saved && viewModel.activitySummary != nil {
-                NavigationLink(
-                    destination: HistoryView(summary: viewModel.activitySummary!),
-                    isActive: $goToSummary) {
-                    EmptyView()
-                }
-
-                NavigationLink(
-                    destination: WorkoutView(workout: viewModel.activity.workout),
-                    isActive: $goToWorkout) {
-                    EmptyView()
-                }
-
+            if viewModel.saved, let summary = viewModel.activitySummary {
                 SWButton(tint: .green) {
                     SWButtonWithIconAndTitle(
                         titleKey: "button.go.to.summary",
                         iconName: "calendar.badge.clock"
                     )
                 } action: {
-                    goToSummary = true
+                    withAnimation {
+                        navigationCoordinator
+                            .showSummaryView(summary)
+                    }
                 }
 
                 SWButton(tint: .yellow) {
@@ -44,7 +36,10 @@ struct FinishedActivityView: View {
                         iconName: "figure.strengthtraining.traditional"
                     )
                 } action: {
-                    goToWorkout = true
+                    withAnimation {
+                        navigationCoordinator
+                            .showWorkoutView(summary.workout)
+                    }
                 }
 
                 SWButton(tint: .blue) {
@@ -55,7 +50,6 @@ struct FinishedActivityView: View {
                 } action: {
                     presentationMode.wrappedValue.dismiss()
                 }
-                Spacer()
             } else {
                 if viewModel.activityLastStateIs(.initialized) || viewModel.activityLastStateIs(.starting) {
                     SWButton(tint: .yellow) {
@@ -64,7 +58,10 @@ struct FinishedActivityView: View {
                             iconName: "figure.strengthtraining.traditional"
                         )
                     } action: {
-                        goToWorkout = true
+                        withAnimation {
+                            navigationCoordinator
+                                .showWorkoutView(viewModel.activity.workout)
+                        }
                     }
 
                     SWButton(tint: .blue) {
@@ -75,7 +72,6 @@ struct FinishedActivityView: View {
                     } action: {
                         presentationMode.wrappedValue.dismiss()
                     }
-                    Spacer()
                 } else {
                     ProgressView {
                         Text("activity.loading")

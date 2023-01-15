@@ -20,6 +20,7 @@ struct WorkoutsView: View {
                     ForEach(viewModel.workouts) { workout in
                         NavigationLink {
                             WorkoutView(workout: workout)
+                                .background(BackgroundView())
                         } label: {
                             WorkoutCardView(workout: workout)
                                 .foregroundColor(Color(.label))

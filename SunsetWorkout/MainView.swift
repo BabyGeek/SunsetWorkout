@@ -31,31 +31,46 @@ struct MainView: View, KeyboardReadable {
                         .activities,
                         .history
                 ],
-                selection: $selectedTab) {
+                selection: $navigatorCoordinator.selectedTab) {
+                    
                 switch navigatorCoordinator.pageType {
                 case .workoutDetail(let workout):
                     WorkoutView(workout: workout)
-                        .tabBarItem(tab: .activities, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .activities,
+                            selection: $navigatorCoordinator.selectedTab)
                 case .summaryDetail(let summary):
                     HistoryView(summary: summary)
-                        .tabBarItem(tab: .history, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .history,
+                            selection: $navigatorCoordinator.selectedTab)
                 case .dashboard:
                     DashboardView()
-                        .tabBarItem(tab: .dashboard, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .dashboard,
+                            selection: $navigatorCoordinator.selectedTab)
                 case .createWorkout:
                     CreateFormView()
-                        .tabBarItem(tab: .create, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .create,
+                            selection: $navigatorCoordinator.selectedTab)
                 case .launchActivity:
                     LaunchNewWorkoutView()
-                        .tabBarItem(tab: .launch, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .launch,
+                            selection: $navigatorCoordinator.selectedTab)
                 case .runningActivity(let workout):
                     ActivityView(workout: workout)
                 case .workoutList:
                     WorkoutsView()
-                        .tabBarItem(tab: .activities, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .activities,
+                            selection: $navigatorCoordinator.selectedTab)
                 case .summaryList:
                     HistoriesView()
-                        .tabBarItem(tab: .history, selection: $selectedTab)
+                        .tabBarItem(
+                            tab: .history,
+                            selection: $navigatorCoordinator.selectedTab)
                 }
             }
             .environmentObject(navigatorCoordinator)

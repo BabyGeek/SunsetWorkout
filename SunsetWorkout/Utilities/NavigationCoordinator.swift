@@ -10,6 +10,7 @@ import SwiftUI
 
 class NavigationCoordinator: ObservableObject {
     @Published var pageType: PageType = .dashboard
+    @Published var selectedTab: TabBarItem = .dashboard
     
     enum PageType {
         case dashboard, createWorkout, launchActivity, workoutList, summaryList
@@ -19,27 +20,30 @@ class NavigationCoordinator: ObservableObject {
     }
     
     func showWorkoutView(_ workout: SWWorkout) {
+        selectedTab = .activities
         pageType = .workoutDetail(workout)
     }
     
     func showSummaryView(_ summary: SWActivitySummary) {
+        selectedTab = .history
         pageType = .summaryDetail(summary)
     }
     
     func selectionFromTabBarItem(_ selection: TabBarItem) {
-            switch selection {
-            case .dashboard:
-                pageType = .dashboard
-            case .launch:
-                pageType = .launchActivity
-            case .create:
-                pageType = .createWorkout
-            case .history:
-                pageType = .summaryList
-            case .activities:
-                pageType = .workoutList
-            default:
-                pageType = .dashboard
-            }
+        selectedTab = selection
+        switch selection {
+        case .dashboard:
+            pageType = .dashboard
+        case .launch:
+            pageType = .launchActivity
+        case .create:
+            pageType = .createWorkout
+        case .history:
+            pageType = .summaryList
+        case .activities:
+            pageType = .workoutList
+        default:
+            pageType = .dashboard
+        }
     }
 }
