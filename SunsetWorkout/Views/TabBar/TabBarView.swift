@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @StateObject var navigatorCoordinator: NavigationCoordinator = .shared
+    @StateObject var navigationCoordinator: NavigationCoordinator = .shared
     let tabs: [TabBarItem]
     var promotedItems: [TabBarItem]? = nil
     
