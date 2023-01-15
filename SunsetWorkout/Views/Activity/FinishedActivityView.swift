@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FinishedActivityView: View {
     @EnvironmentObject var viewModel: ActivityViewModel
-    @StateObject var navigatorCoordinator: NavigationCoordinator = .shared
+    @StateObject var navigationCoordinator: NavigationCoordinator = .shared
     @Environment(\.presentationMode) var presentationMode
 
     @State var goToSummary: Bool = false
