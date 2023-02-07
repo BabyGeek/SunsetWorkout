@@ -98,13 +98,11 @@ class ActivityViewModel: ObservableObject {
 
     /// Save the workout session
     @MainActor func save() {
-        dump("saved: \(saved); finished: \(isFinished); !activityLastStateIs(.initialized): \(!activityLastStateIs(.initialized)); !activityLastStateIs(.starting): \(!activityLastStateIs(.starting))")
         if !activityLastStateIs(.initialized) && !activityLastStateIs(.starting) && !saved && isFinished {
             do {
                 self.activitySummary = self.activity.getSummary()
                 try self.save(with: SWActivitySummaryEntity.init)
             } catch {
-                dump("error: \(error)")
                 self.error = SWError(error: error)
             }
         }
@@ -345,13 +343,10 @@ extension ActivityViewModel {
         do {
             if let activitySummary {
                 try realmManager.save(model: activitySummary, with: reverseTransformer)
-                dump("saved")
                 self.activitySummary = try? realmManager.fetch(with: SWActivitySummary.allByDateDESC).first
-                dump("activity: \(self.activitySummary)")
                 self.saved = true
             }
         } catch {
-            dump("realm save error: \(error)")
             self.error = SWError(error: error)
         }
     }
