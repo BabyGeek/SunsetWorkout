@@ -9,21 +9,20 @@ import SwiftUI
 
 struct WorkoutsView: View {
     @ObservedObject var viewModel = WorkoutsViewModel()
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
 
     var body: some View {
         if viewModel.workouts.isEmpty {
             EmptyWorkoutView()
         } else {
             ScrollView {
-                
                 VStack(spacing: 12) {
                     ForEach(viewModel.workouts) { workout in
-                        NavigationLink {
-                            WorkoutView(workout: workout)
-                                .background(BackgroundView())
+                        Button {
+                            navigationCoordinator.showWorkoutView(workout)
                         } label: {
-                            WorkoutCardView(workout: workout)
-                                .foregroundColor(Color(.label))
+                                WorkoutCardView(workout: workout)
+                                    .foregroundColor(Color(.label))
                         }
                     }
                 }

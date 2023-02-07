@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WorkoutView: View {
     @ObservedObject var viewModel: WorkoutViewModel
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
 
     init(workout: SWWorkout) {
         _viewModel = ObservedObject(
@@ -53,6 +54,17 @@ struct WorkoutView: View {
                     label: {
                         Image(systemName: "plus")
                     })
+            }
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    navigationCoordinator.selectionFromTabBarItem(.activities)
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "chevron.left")
+                        Text("button.back")
+                    }
+                }
             }
 
         }

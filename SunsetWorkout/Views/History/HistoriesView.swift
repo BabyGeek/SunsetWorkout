@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HistoriesView: View {
     @StateObject var viewModel: HistoriesViewModel = HistoriesViewModel()
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
 
     var body: some View {
         if viewModel.summaries.isEmpty {
@@ -16,12 +17,12 @@ struct HistoriesView: View {
         } else {
             ScrollView {
                 ForEach(viewModel.summaries) { summary in
-                    NavigationLink {
-                        HistoryView(summary: summary)
-                    } label: {
-                        HistoryCardView(summary: summary)
-                            .foregroundColor(Color(.label))
-                    }
+                        Button {
+                            navigationCoordinator.showSummaryView(summary)
+                        } label: {
+                            HistoryCardView(summary: summary)
+                                .foregroundColor(Color(.label))
+                        }
                 }
             }
         }

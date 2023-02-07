@@ -30,6 +30,11 @@ class NavigationCoordinator: ObservableObject {
         pageType = .summaryDetail(summary)
     }
     
+    func runActicityFromWorkout(_ workout: SWWorkout) {
+        selectedTab = .activities
+        pageType = .runningActivity(workout)
+    }
+    
     func selectionFromTabBarItem(_ selection: TabBarItem) {
         selectedTab = selection
         switch selection {
@@ -43,8 +48,6 @@ class NavigationCoordinator: ObservableObject {
             pageType = .summaryList
         case .activities:
             pageType = .workoutList
-        default:
-            pageType = .dashboard
         }
     }
 }

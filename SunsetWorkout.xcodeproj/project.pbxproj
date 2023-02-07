@@ -47,6 +47,8 @@
 		2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACD28F96C6E00752742 /* WorkoutsView.swift */; };
 		2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACF28F96EE000752742 /* WorkoutsViewModel.swift */; };
 		2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EAD128F96FF700752742 /* FetchRequest.swift */; };
+		2B3DA6222974187E001677C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B03969028FAEDB1000D7B26 /* Localizable.strings */; };
+		2B3DA62329741881001677C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B266DB12922B09F0069B749 /* Localizable.strings */; };
 		2B4C3F97291FCA9300A12F11 /* HistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3F96291FCA9300A12F11 /* HistoryCardView.swift */; };
 		2B4C3F99291FCDE400A12F11 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3F98291FCDE400A12F11 /* TimeIntervalExtensions.swift */; };
 		2B4C3F9B291FDADC00A12F11 /* HistoryMetaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3F9A291FDADC00A12F11 /* HistoryMetaView.swift */; };
@@ -790,6 +792,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3DA6222974187E001677C6 /* Localizable.strings in Resources */,
+				2B3DA62329741881001677C6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,9 @@ import SwiftUI
 
 struct MainView: View, KeyboardReadable {
     @AppStorage("currentPage", store: UserDefaults(suiteName: "defaults.com.poggero.SunsetWorkout")) var currenPage = 1
-    @State private var selection: String = "dashboard"
-    @State private var selectedTab: TabBarItem = .dashboard
     @State private var isKeyboardVisible = false
     
-    @StateObject var navigatorCoordinator: NavigationCoordinator = .init()
+    @StateObject var navigatorCoordinator: NavigationCoordinator = .shared
 
     var body: some View {
         if currenPage <= WalkthroughConfigurationSettings.totalPages {
@@ -23,54 +21,37 @@ struct MainView: View, KeyboardReadable {
                     isKeyboardVisible = newIsKeyboardVisible
                 }
         } else {
-            TabBarContainerView(
-                tabs: [
-                        .dashboard,
-                        .create,
-                        .launch,
-                        .activities,
-                        .history
-                ],
-                selection: $navigatorCoordinator.selectedTab) {
-                    
+            TabBarContainerView {
                 switch navigatorCoordinator.pageType {
                 case .workoutDetail(let workout):
                     WorkoutView(workout: workout)
                         .tabBarItem(
-                            tab: .activities,
-                            selection: $navigatorCoordinator.selectedTab)
+                            tab: .activities)
                 case .summaryDetail(let summary):
                     HistoryView(summary: summary)
                         .tabBarItem(
-                            tab: .history,
-                            selection: $navigatorCoordinator.selectedTab)
+                            tab: .history)
                 case .dashboard:
                     DashboardView()
-                        .tabBarItem(
-                            tab: .dashboard,
-                            selection: $navigatorCoordinator.selectedTab)
+                        .tabBarItem(tab: .dashboard)
                 case .createWorkout:
                     CreateFormView()
                         .tabBarItem(
-                            tab: .create,
-                            selection: $navigatorCoordinator.selectedTab)
+                            tab: .create)
                 case .launchActivity:
                     LaunchNewWorkoutView()
                         .tabBarItem(
-                            tab: .launch,
-                            selection: $navigatorCoordinator.selectedTab)
+                            tab: .launch)
                 case .runningActivity(let workout):
                     ActivityView(workout: workout)
                 case .workoutList:
                     WorkoutsView()
                         .tabBarItem(
-                            tab: .activities,
-                            selection: $navigatorCoordinator.selectedTab)
+                            tab: .activities)
                 case .summaryList:
                     HistoriesView()
                         .tabBarItem(
-                            tab: .history,
-                            selection: $navigatorCoordinator.selectedTab)
+                            tab: .history)
                 }
             }
         }

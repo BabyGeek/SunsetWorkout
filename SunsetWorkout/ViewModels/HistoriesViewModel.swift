@@ -22,7 +22,10 @@ import RealmSwift
         if let realm = try? Realm() {
             self.notificationToken = realm.observe { [weak self] (_, _) in
                 if let self {
+                    dump("fetching")
                     self.fetch(with: SWActivitySummary.allByDateDESC)
+                } else {
+                    dump("no self")
                 }
             }
         }
@@ -35,6 +38,7 @@ import RealmSwift
     func fetch(with request: FetchRequest<[SWActivitySummary], SWActivitySummaryEntity>) {
         do {
             self.summaries = try realmManager.fetch(with: request)
+            dump(summaries.count)
         } catch {
             self.error = SWError(error: error)
         }

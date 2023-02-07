@@ -7,19 +7,17 @@
 
 import SwiftUI
 
-enum TabBarItem {
-    case dashboard, launch, create, workouts, history, activities
+enum TabBarItem: CaseIterable {
+    case dashboard, create, launch, history, activities
     
     var symbol: Image {
         switch self {
         case .dashboard:
             return Image(systemName: "house")
-        case .launch:
-            return Image(systemName: "play")
         case .create:
             return Image(systemName: "plus")
-        case .workouts:
-            return Image(systemName: "bolt.heart")
+        case .launch:
+            return Image(systemName: "play")
         case .history:
             return Image(systemName: "calendar.badge.clock")
         case .activities:
@@ -39,8 +37,6 @@ enum TabBarItem {
             return NSLocalizedString("launch.navigation.title", comment: "Dashboard navigation title")
         case .create:
             return NSLocalizedString("create.navigation.title", comment: "Dashboard navigation title")
-        case .workouts:
-            return NSLocalizedString("workouts.navigation.title", comment: "Dashboard navigation title")
         case .history:
             return NSLocalizedString("history.navigation.title", comment: "Summaries navigation title")
         case .activities:
@@ -48,17 +44,12 @@ enum TabBarItem {
         }
     }
     
-    var shouldExpand: Bool {
+    var isPromoted: Bool {
         switch self {
+        case .launch:
+            return true
         default:
             return false
-        }
-    }
-    
-    var expandItems: [TabBarItem]? {
-        switch self {
-        default:
-            return nil
         }
     }
 }

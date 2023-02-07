@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct TabBarView: View {
-    @StateObject var navigationCoordinator: NavigationCoordinator = .shared
-    let tabs: [TabBarItem]
-    var promotedItems: [TabBarItem]? = nil
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
     
-    @Binding var selection: TabBarItem
     @State var tabPoints: [CGFloat] = []
+    
+    var tabs: [TabBarItem] {
+        TabBarItem.allCases
+    }
+    
+    var selection: TabBarItem {
+        navigationCoordinator.selectedTab
+    }
     
     var body: some View {
         HStack(spacing: 0) {
@@ -97,7 +102,7 @@ extension TabBarView {
     /// Tab bar display, go through each item and display a tabView and add tap gesture
     private var tabBar: some View {
         ForEach(tabs, id: \.self) { tab in
-            if promotedItems?.contains(tab) ?? false {
+            if tab.isPromoted {
                 prometedTabView(item: tab)
             } else {
                 tabView(item: tab)
@@ -110,8 +115,7 @@ extension TabBarView {
     /// - Parameter tab: the tab to switch to
     private func switchToTab(tab: TabBarItem) {
         withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.5, blendDuration: 0.5)) {
-            selection = tab
-            navigationCoordinator.selectionFromTabBarItem(selection)
+            navigationCoordinator.selectionFromTabBarItem(tab)
         }
     }
     
@@ -130,18 +134,10 @@ extension TabBarView {
 
 #if DEBUG
 struct TabBarView_Previews: PreviewProvider {
-    static let tabs: [TabBarItem] = [
-        .dashboard,
-        .create,
-        .launch,
-        .workouts,
-        .history
-    ]
-    
     static var previews: some View {
         VStack {
             Spacer()
-            TabBarView(tabs: tabs, promotedItems: [.launch], selection: .constant(.dashboard))
+            TabBarView()
         }
     }
 }

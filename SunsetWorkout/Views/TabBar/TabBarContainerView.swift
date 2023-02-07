@@ -9,16 +9,11 @@ import SwiftUI
 
 struct TabBarContainerView<Content: View>: View, KeyboardReadable {
     @State private var isKeyboardVisible = false
-    
-    @Binding var selection: TabBarItem
-    var tabs: [TabBarItem]
-    
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
     let content: Content
 
-    init(tabs: [TabBarItem], selection: Binding<TabBarItem>, @ViewBuilder content: () -> Content) {
-        self._selection = selection
+    init(@ViewBuilder content: () -> Content) {
         self.content = content()
-        self.tabs = tabs
     }
 
     var body: some View {
@@ -26,11 +21,11 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
             VStack {
                 content
                 
-                TabBarView(tabs: tabs, promotedItems: [.launch], selection: $selection)
+                TabBarView()
                     .ignoresSafeArea(.all)
             }
             .background(BackgroundView())
-            .navigationTitle(selection.navigationTitle)
+            .navigationTitle(navigationCoordinator.selectedTab.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(.stack)
@@ -42,16 +37,8 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
 
 #if DEBUG
 struct TabBarContainerView_Previews: PreviewProvider {
-    static let tabs: [TabBarItem] = [
-        .dashboard,
-        .create,
-        .launch,
-        .workouts,
-        .history
-    ]
-
     static var previews: some View {
-        TabBarContainerView(tabs: tabs, selection: .constant(tabs.first!)) {
+        TabBarContainerView {
             DashboardView()
         }
     }

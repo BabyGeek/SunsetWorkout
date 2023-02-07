@@ -28,7 +28,13 @@ class SWActivity: ObservableObject {
 
     // MARK: - Published properties
     @Published var exerciseHasChanged: Bool = false
-    @Published var state: SWActivityState
+    @Published var state: SWActivityState {
+        willSet {
+            if newValue != .paused {
+                lastState = newValue
+            }
+        }
+    }
     @Published var currentExercise: SWExercise?
     @Published var nextExercise: SWExercise?
     @Published var currentExerciseRepetition: Int = 0
