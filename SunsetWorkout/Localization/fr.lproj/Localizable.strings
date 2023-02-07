@@ -157,4 +157,5 @@
 // GLOBAL
 "not.found" = "Non trouvé";
 "button.save" = "Sauvegarder";
+"button.back" = "Retour";
 "text.field.done" = "Terminé";

@@ -8,37 +8,27 @@
 import SwiftUI
 
 struct TabBarContainerView<Content: View>: View, KeyboardReadable {
-    @State private var tabs: [TabBarItem] = [TabBarItem]()
     @State private var isKeyboardVisible = false
-    
-    @Binding var selection: TabBarItem
-    
-    
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
     let content: Content
 
-    init(selection: Binding<TabBarItem>, @ViewBuilder content: () -> Content) {
-        self._selection = selection
+    init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
 
     var body: some View {
         NavigationView {
             VStack {
-                ZStack {
-                    content
-                }
+                content
                 
-                TabBarView(tabs: tabs, promotedItems: [.launch], selection: $selection)
+                TabBarView()
                     .ignoresSafeArea(.all)
             }
             .background(BackgroundView())
-            .navigationTitle(selection.navigationTitle)
+            .navigationTitle(navigationCoordinator.selectedTab.navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(.stack)
-        .onPreferenceChange(TabBarItemsPreferenceKey.self) { value in
-            self.tabs = value
-        }
         .onReceive(keyboardPublisher) { newIsKeyboardVisible in
             isKeyboardVisible = newIsKeyboardVisible
         }
@@ -47,16 +37,8 @@ struct TabBarContainerView<Content: View>: View, KeyboardReadable {
 
 #if DEBUG
 struct TabBarContainerView_Previews: PreviewProvider {
-    static let tabs: [TabBarItem] = [
-        .dashboard,
-        .create,
-        .launch,
-        .workouts,
-        .history
-    ]
-
     static var previews: some View {
-        TabBarContainerView(selection: .constant(tabs.first!)) {
+        TabBarContainerView {
             DashboardView()
         }
     }

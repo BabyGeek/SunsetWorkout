@@ -22,6 +22,7 @@
 		2B03969428FB4A93000D7B26 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969328FB4A93000D7B26 /* FloatingTextField.swift */; };
 		2B03969628FB4BB1000D7B26 /* BaseWorkoutFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */; };
 		2B03969828FB514E000D7B26 /* UserProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03969728FB514E000D7B26 /* UserProfileFormView.swift */; };
+		2B0A6341296B68E6007288A9 /* TabCurveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A6340296B68E6007288A9 /* TabCurveShape.swift */; };
 		2B0E224628D32152009F0E8B /* ProfileConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */; };
 		2B1480842909E2CB009E91B8 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1480832909E2CB009E91B8 /* ActivityView.swift */; };
 		2B266DAC29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B266DAB29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift */; };
@@ -46,12 +47,15 @@
 		2B39EACE28F96C6E00752742 /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACD28F96C6E00752742 /* WorkoutsView.swift */; };
 		2B39EAD028F96EE000752742 /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EACF28F96EE000752742 /* WorkoutsViewModel.swift */; };
 		2B39EAD228F96FF700752742 /* FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39EAD128F96FF700752742 /* FetchRequest.swift */; };
+		2B3DA6222974187E001677C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B03969028FAEDB1000D7B26 /* Localizable.strings */; };
+		2B3DA62329741881001677C6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B266DB12922B09F0069B749 /* Localizable.strings */; };
 		2B4C3F97291FCA9300A12F11 /* HistoryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3F96291FCA9300A12F11 /* HistoryCardView.swift */; };
 		2B4C3F99291FCDE400A12F11 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3F98291FCDE400A12F11 /* TimeIntervalExtensions.swift */; };
 		2B4C3F9B291FDADC00A12F11 /* HistoryMetaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3F9A291FDADC00A12F11 /* HistoryMetaView.swift */; };
 		2B4C3FA12920548600A12F11 /* HIITInputRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA02920548600A12F11 /* HIITInputRowView.swift */; };
 		2B4C3FA32920568200A12F11 /* StrengthInputRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA22920568200A12F11 /* StrengthInputRowView.swift */; };
 		2B4C3FA5292068AC00A12F11 /* SummaryExerciseSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B4C3FA4292068AC00A12F11 /* SummaryExerciseSelectionViewModel.swift */; };
+		2B50B5C32959B68400D008DC /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B50B5C22959B68400D008DC /* NavigationCoordinator.swift */; };
 		2B617CA3291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CA2291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift */; };
 		2B617CA5291EB5B80070C6D3 /* MainActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CA4291EB5B80070C6D3 /* MainActivityView.swift */; };
 		2B617CA7291EB5E70070C6D3 /* InputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B617CA6291EB5E70070C6D3 /* InputsView.swift */; };
@@ -91,6 +95,8 @@
 		2BB327422903642F008A4B81 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB327412903642F008A4B81 /* ArrayExtensions.swift */; };
 		2BB3274429036768008A4B81 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274329036768008A4B81 /* CollectionExtensions.swift */; };
 		2BB3274629036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */; };
+		2BB764C12973FE83002AF78D /* SunsetWorkoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB764C02973FE83002AF78D /* SunsetWorkoutUITests.swift */; };
+		2BB764C32973FE83002AF78D /* SunsetWorkoutUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB764C22973FE83002AF78D /* SunsetWorkoutUITestsLaunchTests.swift */; };
 		2BB7A4422932531400A51C4D /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB7A4412932531400A51C4D /* ViewModifiers.swift */; };
 		2BC1126828FDF1A400898C80 /* CreateWorkoutExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */; };
 		2BC1126A28FDF80500898C80 /* WorkoutExerciseSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */; };
@@ -135,6 +141,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2BB764C42973FE83002AF78D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BD1D7EF28B626FE006A3848 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BD1D7F628B626FE006A3848;
+			remoteInfo = SunsetWorkout;
+		};
 		2BD1D80828B626FF006A3848 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2BD1D7EF28B626FE006A3848 /* Project object */;
@@ -160,6 +173,7 @@
 		2B03969328FB4A93000D7B26 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
 		2B03969528FB4BB1000D7B26 /* BaseWorkoutFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWorkoutFormView.swift; sourceTree = "<group>"; };
 		2B03969728FB514E000D7B26 /* UserProfileFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileFormView.swift; sourceTree = "<group>"; };
+		2B0A6340296B68E6007288A9 /* TabCurveShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurveShape.swift; sourceTree = "<group>"; };
 		2B0E224528D32152009F0E8B /* ProfileConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileConfigurationViewModel.swift; sourceTree = "<group>"; };
 		2B1480832909E2CB009E91B8 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		2B266DAB29226F7D0069B749 /* SunsetWorkoutFeelingTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutFeelingTest.swift; sourceTree = "<group>"; };
@@ -191,6 +205,7 @@
 		2B4C3FA02920548600A12F11 /* HIITInputRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIITInputRowView.swift; sourceTree = "<group>"; };
 		2B4C3FA22920568200A12F11 /* StrengthInputRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrengthInputRowView.swift; sourceTree = "<group>"; };
 		2B4C3FA4292068AC00A12F11 /* SummaryExerciseSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryExerciseSelectionViewModel.swift; sourceTree = "<group>"; };
+		2B50B5C22959B68400D008DC /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		2B617CA2291EB4BF0070C6D3 /* ActivitySerieInputAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySerieInputAlertView.swift; sourceTree = "<group>"; };
 		2B617CA4291EB5B80070C6D3 /* MainActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainActivityView.swift; sourceTree = "<group>"; };
 		2B617CA6291EB5E70070C6D3 /* InputsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputsView.swift; sourceTree = "<group>"; };
@@ -230,6 +245,9 @@
 		2BB327412903642F008A4B81 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		2BB3274329036768008A4B81 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		2BB3274529036E4C008A4B81 /* SunsetWorkoutExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutExerciseTests.swift; sourceTree = "<group>"; };
+		2BB764BE2973FE83002AF78D /* SunsetWorkoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunsetWorkoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB764C02973FE83002AF78D /* SunsetWorkoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutUITests.swift; sourceTree = "<group>"; };
+		2BB764C22973FE83002AF78D /* SunsetWorkoutUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunsetWorkoutUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2BB7A4412932531400A51C4D /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		2BC1126728FDF1A400898C80 /* CreateWorkoutExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutExerciseView.swift; sourceTree = "<group>"; };
 		2BC1126928FDF80500898C80 /* WorkoutExerciseSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExerciseSearchView.swift; sourceTree = "<group>"; };
@@ -276,6 +294,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2BB764BB2973FE83002AF78D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2BD1D7F428B626FE006A3848 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -356,6 +381,7 @@
 				2B2EB19D28FC9FD500F4FEDB /* CustomBlurView.swift */,
 				2B2EB19F28FCA02200F4FEDB /* GlassMorphicCard.swift */,
 				2BB7A4412932531400A51C4D /* ViewModifiers.swift */,
+				2B0A6340296B68E6007288A9 /* TabCurveShape.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -460,12 +486,22 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		2BB764BF2973FE83002AF78D /* SunsetWorkoutUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2BB764C02973FE83002AF78D /* SunsetWorkoutUITests.swift */,
+				2BB764C22973FE83002AF78D /* SunsetWorkoutUITestsLaunchTests.swift */,
+			);
+			path = SunsetWorkoutUITests;
+			sourceTree = "<group>";
+		};
 		2BD1D7EE28B626FE006A3848 = {
 			isa = PBXGroup;
 			children = (
 				2B2EB1A728FCB7C400F4FEDB /* README.md */,
 				2BD1D7F928B626FE006A3848 /* SunsetWorkout */,
 				2BD1D80A28B626FF006A3848 /* SunsetWorkoutTests */,
+				2BB764BF2973FE83002AF78D /* SunsetWorkoutUITests */,
 				2BD1D7F828B626FE006A3848 /* Products */,
 				2B6608DA28D02D4F00361C0F /* Frameworks */,
 			);
@@ -476,6 +512,7 @@
 			children = (
 				2BD1D7F728B626FE006A3848 /* SunsetWorkout.app */,
 				2BD1D80728B626FF006A3848 /* SunsetWorkoutTests.xctest */,
+				2BB764BE2973FE83002AF78D /* SunsetWorkoutUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -490,6 +527,7 @@
 				2B7FDFEF28E7F6A8009FFAF5 /* Models */,
 				2BD4A58C2916AF8B00FAFCD9 /* Entities */,
 				2BFF299E28C350A50041841F /* Views */,
+				2B6608C128CB5A4E00361C0F /* MainView.swift */,
 				2B6608C828CCC56A00361C0F /* ViewModels */,
 				2BF6882029339305007578BE /* AppDelegate.swift */,
 				2BD1D7FA28B626FE006A3848 /* SunsetWorkoutApp.swift */,
@@ -607,6 +645,7 @@
 				2B75093E29185E5300A75F97 /* TypeAlias.swift */,
 				2B4C3F98291FCDE400A12F11 /* TimeIntervalExtensions.swift */,
 				2BF6882229339AB5007578BE /* K.swift */,
+				2B50B5C22959B68400D008DC /* NavigationCoordinator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -616,7 +655,6 @@
 			children = (
 				2BFF29B028C59BD40041841F /* TabBarContainerView.swift */,
 				2BFF29B228C5FFF00041841F /* TabBarView.swift */,
-				2B6608C128CB5A4E00361C0F /* MainView.swift */,
 				2B83FA7B28DC867200C3B1C0 /* EmptySelectingView.swift */,
 			);
 			path = TabBar;
@@ -625,6 +663,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2BB764BD2973FE83002AF78D /* SunsetWorkoutUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BB764C62973FE83002AF78D /* Build configuration list for PBXNativeTarget "SunsetWorkoutUITests" */;
+			buildPhases = (
+				2BB764BA2973FE83002AF78D /* Sources */,
+				2BB764BB2973FE83002AF78D /* Frameworks */,
+				2BB764BC2973FE83002AF78D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BB764C52973FE83002AF78D /* PBXTargetDependency */,
+			);
+			name = SunsetWorkoutUITests;
+			productName = SunsetWorkoutUITests;
+			productReference = 2BB764BE2973FE83002AF78D /* SunsetWorkoutUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		2BD1D7F628B626FE006A3848 /* SunsetWorkout */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BD1D81B28B626FF006A3848 /* Build configuration list for PBXNativeTarget "SunsetWorkout" */;
@@ -672,9 +728,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					2BB764BD2973FE83002AF78D = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 2BD1D7F628B626FE006A3848;
+					};
 					2BD1D7F628B626FE006A3848 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -703,11 +763,19 @@
 			targets = (
 				2BD1D7F628B626FE006A3848 /* SunsetWorkout */,
 				2BD1D80628B626FF006A3848 /* SunsetWorkoutTests */,
+				2BB764BD2973FE83002AF78D /* SunsetWorkoutUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2BB764BC2973FE83002AF78D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2BD1D7F528B626FE006A3848 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -724,6 +792,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B3DA6222974187E001677C6 /* Localizable.strings in Resources */,
+				2B3DA62329741881001677C6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +822,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2BB764BA2973FE83002AF78D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB764C32973FE83002AF78D /* SunsetWorkoutUITestsLaunchTests.swift in Sources */,
+				2BB764C12973FE83002AF78D /* SunsetWorkoutUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2BD1D7F328B626FE006A3848 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -796,6 +875,7 @@
 				2B00C25E28EEC637002FDA9F /* RealmManager.swift in Sources */,
 				2B2EB1A428FCA91F00F4FEDB /* DashboardCardView.swift in Sources */,
 				2B75093F29185E5300A75F97 /* TypeAlias.swift in Sources */,
+				2B0A6341296B68E6007288A9 /* TabCurveShape.swift in Sources */,
 				2B6608C228CB5A4E00361C0F /* MainView.swift in Sources */,
 				2BF575A628FF571E00F21605 /* UserSession.swift in Sources */,
 				2B2EB1A628FCB5B500F4FEDB /* WorkoutExerciseFormView.swift in Sources */,
@@ -846,6 +926,7 @@
 				2B2F76D6291C48A5001C1921 /* ActivityHIITInput.swift in Sources */,
 				2BF575A428FF552000F21605 /* EndpointKinds.swift in Sources */,
 				2B00C26628EEE3C3002FDA9F /* Quote.swift in Sources */,
+				2B50B5C32959B68400D008DC /* NavigationCoordinator.swift in Sources */,
 				2B4C3F97291FCA9300A12F11 /* HistoryCardView.swift in Sources */,
 				2B00C26828EEE3C9002FDA9F /* QuoteTag.swift in Sources */,
 				2B6608D828D02D0600361C0F /* SWHealthStoreManager.swift in Sources */,
@@ -886,6 +967,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2BB764C52973FE83002AF78D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BD1D7F628B626FE006A3848 /* SunsetWorkout */;
+			targetProxy = 2BB764C42973FE83002AF78D /* PBXContainerItemProxy */;
+		};
 		2BD1D80928B626FF006A3848 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2BD1D7F628B626FE006A3848 /* SunsetWorkout */;
@@ -1039,6 +1125,63 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunsetWorkout.app/SunsetWorkout";
 			};
 			name = Testing;
+		};
+		2BB764C72973FE83002AF78D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6268FDJSTY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stancer.SunsetWorkoutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SunsetWorkout;
+			};
+			name = Debug;
+		};
+		2BB764C82973FE83002AF78D /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6268FDJSTY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stancer.SunsetWorkoutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SunsetWorkout;
+			};
+			name = Testing;
+		};
+		2BB764C92973FE83002AF78D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6268FDJSTY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stancer.SunsetWorkoutUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SunsetWorkout;
+			};
+			name = Release;
 		};
 		2BD1D81928B626FF006A3848 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1291,6 +1434,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2BB764C62973FE83002AF78D /* Build configuration list for PBXNativeTarget "SunsetWorkoutUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB764C72973FE83002AF78D /* Debug */,
+				2BB764C82973FE83002AF78D /* Testing */,
+				2BB764C92973FE83002AF78D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2BD1D7F228B626FE006A3848 /* Build configuration list for PBXProject "SunsetWorkout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

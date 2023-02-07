@@ -23,6 +23,7 @@ import RealmSwift
             self.notificationToken = realm.observe { [weak self] (_, _) in
                 if let self {
                     self.fetch(with: SWActivitySummary.allByDateDESC)
+                } else {
                 }
             }
         }

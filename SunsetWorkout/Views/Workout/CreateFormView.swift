@@ -9,6 +9,7 @@ import SwiftUI
 import HealthKit
 
 struct CreateFormView: View {
+    @StateObject var navigatorCoordinator: NavigationCoordinator = .shared
     enum FocusedField {
         case type, name, endBreak, roundBreak, roundDuration, roundNumber, serieBreak, serieDuration, repetitionGoal
     }
@@ -18,32 +19,20 @@ struct CreateFormView: View {
     @State var selectBaseMetadata: Bool = true
     
     var shouldHaveBackground: Bool = false
-
+    
     init(shouldHaveBackground: Bool = false) {
         self.shouldHaveBackground = shouldHaveBackground
     }
-
+    
     var body: some View {
         VStack {
             form
             Spacer()
             
-            HStack {
-                SWButton(tint: .green) {
-                    Text("button.save")
-                } action: {
-                    saveWorkout()
-                }
-                
-                NavigationLink(isActive: $goToWorkoutView) {
-                    WorkoutView(workout: workoutViewModel.workout ?? SWWorkout(
-                        name: "Error",
-                        type: .highIntensityIntervalTraining,
-                        metadata: []))
-                } label: {
-                    EmptyView()
-                }
-                .frame(width: 0)
+            SWButton(tint: .green) {
+                Text("button.save")
+            } action: {
+                saveWorkout()
             }
             .padding()
         }
@@ -68,7 +57,7 @@ extension CreateFormView {
                 type: $workoutViewModel.type,
                 name: $workoutViewModel.name,
                 exerciseBreak: $workoutViewModel.exerciseBreak)
-
+            
             switch workoutViewModel.type {
             case .highIntensityIntervalTraining, .cycle:
                 HIITFormView(
@@ -85,7 +74,7 @@ extension CreateFormView {
                     roundBreak: $workoutViewModel.roundBreak,
                     roundDuration: $workoutViewModel.roundDuration,
                     roundNumber: $workoutViewModel.roundNumber)
-
+                
                 TraditionalFormView(
                     seriesBreak: $workoutViewModel.seriesBreak,
                     seriesNumber: $workoutViewModel.seriesNumber,
@@ -93,11 +82,13 @@ extension CreateFormView {
             }
         }
     }
-
+    
     func saveWorkout() {
         workoutViewModel.saveWorkout(isNew: true)
-        if workoutViewModel.error == nil && workoutViewModel.saved {
-            goToWorkoutView = true
+        
+        if workoutViewModel.error == nil && workoutViewModel.saved,
+           let workout = workoutViewModel.workout {
+            navigatorCoordinator.showWorkoutView(workout)
         }
     }
 }

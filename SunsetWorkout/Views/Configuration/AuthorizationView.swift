@@ -34,7 +34,7 @@ struct AuthorizationView: View {
             if withButton {
                 Button {
                     SWHealthStoreManager.askForPermission { (success) in
-                        dump(success)
+                        dump("permission success: \(success)")
                     }
                 } label: {
                     RoundedRectangle(cornerRadius: 25)

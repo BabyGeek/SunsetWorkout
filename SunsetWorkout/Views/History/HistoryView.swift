@@ -9,60 +9,70 @@ import SwiftUI
 
 struct HistoryView: View {
     let summary: SWActivitySummary
+    @ObservedObject var navigationCoordinator: NavigationCoordinator = .shared
 
     var body: some View {
-        ZStack(alignment: .top) {
-            BackgroundView()
+        VStack {
+            HStack {
+                HistoryMetaView(
+                    iconName: "timer",
+                    value: summary.duration.stringFromTimeInterval())
+                Spacer()
+                HistoryMetaView(
+                    iconName: "flame.fill",
+                    value: summary.totalEnergyBurnedInt.description)
+                Spacer()
+                HistoryMetaView(
+                    iconName: summary.type.iconName,
+                    value: summary.type.name)
+            }
+            .padding()
 
             VStack {
-                HStack {
-                    HistoryMetaView(
-                        iconName: "timer",
-                        value: summary.duration.stringFromTimeInterval())
-                    Spacer()
-                    HistoryMetaView(
-                        iconName: "flame.fill",
-                        value: summary.totalEnergyBurnedInt.description)
-                    Spacer()
-                    HistoryMetaView(
-                        iconName: summary.type.iconName,
-                        value: summary.type.name)
+                if summary.type == .traditionalStrengthTraining {
+                    Text(String(
+                        format: NSLocalizedString("summary.goal", comment: "Goal label"),
+                        summary.getGoal()))
+                        .padding(.horizontal)
+
+                    InputListView(
+                        exercises: summary.formattedInputsStrength,
+                        inputsKeyPath: \.inputs,
+                        inputTagKeyPath: \.exerciseUUID) { inputExercise in
+                            Text(summary.getExerciseNameFromID(inputExercise.exerciseUUID))
+                        } inputItemView: { (input, exerciseUUID) in
+                            StrengthInputRowView(
+                                input: input,
+                                goal: summary.getExerciseGoal(exerciseUUID))
+                        }
                 }
-                .padding()
 
-                VStack {
-                    if summary.type == .traditionalStrengthTraining {
-                        Text(String(
-                            format: NSLocalizedString("summary.goal", comment: "Goal label"),
-                            summary.getGoal()))
-                            .padding(.horizontal)
-
-                        InputListView(
-                            exercises: summary.formattedInputsStrength,
-                            inputsKeyPath: \.inputs,
-                            inputTagKeyPath: \.exerciseUUID) { inputExercise in
-                                Text(summary.getExerciseNameFromID(inputExercise.exerciseUUID))
-                            } inputItemView: { (input, exerciseUUID) in
-                                StrengthInputRowView(
-                                    input: input,
-                                    goal: summary.getExerciseGoal(exerciseUUID))
-                            }
-                    }
-
-                    if summary.type == .highIntensityIntervalTraining {
-                        InputListView(
-                            exercises: summary.formattedInputsHIIT,
-                            inputsKeyPath: \.inputs,
-                            inputTagKeyPath: \.exerciseUUID) { inputExercise in
-                                Text(summary.getExerciseNameFromID(inputExercise.exerciseUUID))
-                            } inputItemView: { (input, _) in
-                                HIITInputRowView(input: input)
-                            }
-                    }
+                if summary.type == .highIntensityIntervalTraining {
+                    InputListView(
+                        exercises: summary.formattedInputsHIIT,
+                        inputsKeyPath: \.inputs,
+                        inputTagKeyPath: \.exerciseUUID) { inputExercise in
+                            Text(summary.getExerciseNameFromID(inputExercise.exerciseUUID))
+                        } inputItemView: { (input, _) in
+                            HIITInputRowView(input: input)
+                        }
                 }
             }
         }
         .navigationTitle(summary.title)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    navigationCoordinator.selectionFromTabBarItem(.history)
+                } label: {
+                    HStack(spacing: 3) {
+                        Image(systemName: "chevron.left")
+                        Text("button.back")
+                    }
+                }
+            }
+
+        }
     }
 }
 

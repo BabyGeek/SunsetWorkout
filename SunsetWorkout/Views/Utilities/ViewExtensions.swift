@@ -16,8 +16,8 @@ extension View {
     /// - Parameters:
     ///   - tab: tab corresponding to the tab bar item
     ///   - selection: current tab selected
-    func tabBarItem(tab: TabBarItem, selection: Binding<TabBarItem>) -> some View {
-        modifier(TabBarItemModifier(tab: tab, selection: selection))
+    func tabBarItem(tab: TabBarItem) -> some View {
+        modifier(TabBarItemModifier(tab: tab))
     }
 }
 
